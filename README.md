@@ -1,6 +1,6 @@
 # UrchinReleaseMgt
 Release management application for Urchin engine
 
-- Report:
+- Reports:
   - API to receive reports
   - Web interface to see reports
