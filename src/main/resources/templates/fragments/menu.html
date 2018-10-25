@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+
+    </head>
+    <body class="p-3 mb-2 bg-dark text-white">
+        <div th:fragment="menu">
+            <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-primary">
+                <ul class="navbar-nav mr-auto">
+                    <li th:class="${pageId=='home'} ? 'nav-item active' : 'nav-item'">
+                        <a class="nav-link" href="/">Home</a>
+                    </li>
+                    <li th:class="${pageId=='report'} ? 'nav-item active' : 'nav-item'">
+                        <a class="nav-link" href="/reports/list">Reports</a>
+                    </li>
+                    <a th:href="${pageId}" th:value="${pageId}"></a>
+                </ul>
+                <span class="navbar-text">
+                    <form th:action="@{/logout}" method="post">
+                        <button type="submit" name="logout" value="true" class="btn btn-primary">Log out</button>
+                    </form>
+                </span>
+            </nav>
+            <br>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>Urchin Monitor: Home</title>
+
+        <link rel="icon" href="/img/favicon.png">
+        <link rel="stylesheet" href="/css/bootstrap.min.css">
+        <script src="/js/jquery-3.3.1.min.js"></script>
+        <script src="/js/bootstrap.min.js"></script>
+        <script src="/js/Chart.min.js"></script>
+    </head>
+    <body class="p-3 mb-2 bg-dark text-white">
+        <div th:replace="fragments/menu :: menu">&nbsp;</div>
+
+        <div style="height:500px; width:700px">
+            <canvas id="reportsChart"></canvas>
+        </div>
+        <script th:inline="javascript">
+            var chartLabels = /*[[${reportChartDates}]]*/ ['unknown'];
+            var chartValues = /*[[${reportChartValues}]]*/ [0];
+            new Chart(document.getElementById("reportsChart"), {
+                type: 'bar',
+                data: {
+                    labels: chartLabels,
+                    datasets: [{
+                        data: chartValues,
+                        label: "Reports",
+                        backgroundColor: "#007bff",
+                        fill: true
+                    }]
+                },
+                options: {
+                    maintainAspectRatio: true,
+                    legend: {
+                        display: false
+                    },
+                    title: {
+                        display: true,
+                        text: 'Number of reports'
+                    }
+                }
+            });
+        </script>
+    </body>
+</html>
