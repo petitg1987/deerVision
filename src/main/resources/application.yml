@@ -1,0 +1,15 @@
+server:
+  port: 8080
+  servlet.context-path: "/"
+management.endpoints.web.exposure.include: "*"
+spring.security.user:
+  name: "admin"
+  password: "$2a$10$SRSz7BSfnjvUnX7/BJyLSufHJOS5z6mDvo4lzeQkVUdYqGYtEx2UG"
+security:
+  password-strength: 10
+  api-user: "api"
+  api-password: "$2a$10$PC.ynuA8ojXtfkSnXFZVU.8ORkVcB6NmI3gOPsyAKWXJtZlGLJlKu"
+report:
+  base-folder: "/home/greg/_report/"
+  page-size: 10
+  chart-days: 15

@@ -1,7 +1,7 @@
-package com.urchin.engine.monitor.service;
+package com.urchin.release.mgt.service;
 
-import com.urchin.engine.monitor.model.Report;
-import com.urchin.engine.monitor.config.ReportProperties;
+import com.urchin.release.mgt.config.ReportProperties;
+import com.urchin.release.mgt.model.Report;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

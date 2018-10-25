@@ -1,4 +1,4 @@
-package com.urchin.engine.monitor.model;
+package com.urchin.release.mgt.model;
 
 import java.io.IOException;
 import java.nio.file.Files;

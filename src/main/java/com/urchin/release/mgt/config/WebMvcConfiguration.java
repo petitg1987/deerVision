@@ -1,4 +1,4 @@
-package com.urchin.engine.monitor.config;
+package com.urchin.release.mgt.config;
 
 
 import org.springframework.context.annotation.Configuration;

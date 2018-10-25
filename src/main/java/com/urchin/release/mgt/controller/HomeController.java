@@ -1,8 +1,7 @@
-package com.urchin.engine.monitor.controller;
+package com.urchin.release.mgt.controller;
 
-
-import com.urchin.engine.monitor.config.ReportProperties;
-import com.urchin.engine.monitor.service.ReportService;
+import com.urchin.release.mgt.config.ReportProperties;
+import com.urchin.release.mgt.service.ReportService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
