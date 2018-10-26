@@ -1,8 +1,8 @@
 package com.urchin.release.mgt.controller;
 
-import com.urchin.release.mgt.config.properties.ReportProperties;
-import com.urchin.release.mgt.model.Report;
-import com.urchin.release.mgt.service.ReportService;
+import com.urchin.release.mgt.config.properties.IssueProperties;
+import com.urchin.release.mgt.model.Issue;
+import com.urchin.release.mgt.service.IssueService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.data.domain.Page;
@@ -19,52 +19,50 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 @Controller
-@RequestMapping("/reports")
-public class ReportController {
+@RequestMapping("/issues")
+public class IssueController {
 
-    private ReportService reportService;
-    private ReportProperties reportProperties;
+    private IssueService issueService;
+    private IssueProperties issueProperties;
 
     @Autowired
-    public ReportController(ReportService reportService, ReportProperties reportProperties){
-        this.reportService = reportService;
-        this.reportProperties = reportProperties;
+    public IssueController(IssueService issueService, IssueProperties issueProperties){
+        this.issueService = issueService;
+        this.issueProperties = issueProperties;
     }
 
     @ModelAttribute
     public void pageIdAttribute(Model model) {
-        model.addAttribute("pageId", "report");
+        model.addAttribute("pageId", "issue");
     }
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public String listBooks(Model model, @RequestParam(value = "page", defaultValue = "1") Integer page) {
-        Page<Report> reportPage = reportService.findPaginated(PageRequest.of(page - 1, reportProperties.getPageSize()));
+        Page<Issue> issuePage = issueService.findPaginated(PageRequest.of(page - 1, issueProperties.getPageSize()));
 
-        model.addAttribute("reportPage", reportPage);
+        model.addAttribute("issuePage", issuePage);
 
-        int totalPages = reportPage.getTotalPages();
+        int totalPages = issuePage.getTotalPages();
         if (totalPages > 0) {
-            List<Integer> pageNumbers = IntStream.rangeClosed(1, totalPages)
-                    .boxed()
-                    .collect(Collectors.toList());
+            List<Integer> pageNumbers = IntStream.rangeClosed(1, totalPages).boxed().collect(Collectors.toList());
             model.addAttribute("pageNumbers", pageNumbers);
         }
 
-        return "reports.html";
+        return "issues.html";
     }
 
     @RequestMapping(value="/download", method=RequestMethod.GET)
     @ResponseBody
     public FileSystemResource downloadFile(@Param(value="filename") String filename) {
-        Report report = reportService.findByFilename(filename);
-        return new FileSystemResource(new File(report.getFilePath()));
+        Issue issue = issueService.findByFilename(filename);
+        return new FileSystemResource(new File(issue.getFilePath()));
     }
 
     @RequestMapping(value="/remove", method=RequestMethod.GET)
     @ResponseBody
     public RedirectView removeFile(@Param(value="filename") String filename) {
-        reportService.removeByFilename(filename);
-        return new RedirectView("/reports/list");
+        issueService.removeByFilename(filename);
+        return new RedirectView("/issues/list");
     }
 
 }

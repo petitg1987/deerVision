@@ -35,8 +35,7 @@ public class SecurityConfig {
 
         @Override
         protected void configure(HttpSecurity http) throws Exception {
-            http.antMatcher("/api/**").authorizeRequests().anyRequest().authenticated()
-                    .and().httpBasic()
+            http.antMatcher("/api/**").authorizeRequests().anyRequest().permitAll()
                     .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                     .and().csrf().disable();
         }

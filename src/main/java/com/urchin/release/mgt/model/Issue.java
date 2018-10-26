@@ -6,14 +6,14 @@ import java.nio.file.Path;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class Report {
+public class Issue {
 
     private static final int MAX_SAMPLE_VALUE_SIZE = 150;
 
     private LocalDateTime dateTime;
     private Path path;
 
-    public Report(LocalDateTime dateTime, Path path) {
+    public Issue(LocalDateTime dateTime, Path path) {
         this.dateTime = dateTime;
         this.path = path;
     }

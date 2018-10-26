@@ -11,6 +11,8 @@ public class BinaryProperties {
 
     private String versionPattern;
 
+    private int chartDays;
+
     public String getBaseFolder() {
         return baseFolder;
     }
@@ -25,5 +27,13 @@ public class BinaryProperties {
 
     public void setVersionPattern(String versionPattern) {
         this.versionPattern = versionPattern;
+    }
+
+    public int getChartDays() {
+        return chartDays;
+    }
+
+    public void setChartDays(int chartDays) {
+        this.chartDays = chartDays;
     }
 }

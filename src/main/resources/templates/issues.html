@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <title>Urchin Release Mgt: Reports</title>
+        <title>Urchin Release Mgt: Issues</title>
 
         <link rel="icon" href="/img/favicon.png">
         <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -23,19 +23,19 @@
                 </tr>
             </thead>
             <tbody>
-                <tr th:each="report : ${reportPage}">
-                    <td th:text="${report.dateTime}" />
-                    <td th:text="${report.sampleValue}" />
+                <tr th:each="issue : ${issuePage}">
+                    <td th:text="${issue.dateTime}" />
+                    <td th:text="${issue.sampleValue}" />
                     <td>
-                        <a th:href="@{|/reports/download?filename=${report.fileName}|}" th:download="${report.fileName}">Download</a>&nbsp;|&nbsp;<a th:href="@{|/reports/remove?filename=${report.fileName}|}">Remove</a>
+                        <a th:href="@{|/issues/download?filename=${issue.fileName}|}" th:download="${issue.fileName}">Download</a>&nbsp;|&nbsp;<a th:href="@{|/issues/remove?filename=${issue.fileName}|}">Remove</a>
                     </td>
                 </tr>
             </tbody>
         </table>
 
-        <ul th:if="${reportPage.totalPages > 0}" class="pagination" >
-            <li th:each="pageNumber : ${pageNumbers}" th:class="${pageNumber==reportPage.number + 1} ? 'page-item active' : 'page-item'">
-                <a th:href="@{/reports/list(page=${pageNumber})}" th:text="${pageNumber}" class="page-link"></a>
+        <ul th:if="${issuePage.totalPages > 0}" class="pagination" >
+            <li th:each="pageNumber : ${pageNumbers}" th:class="${pageNumber==issuePage.number + 1} ? 'page-item active' : 'page-item'">
+                <a th:href="@{/issues/list(page=${pageNumber})}" th:text="${pageNumber}" class="page-link"></a>
             </li>
         </ul>
     </body>

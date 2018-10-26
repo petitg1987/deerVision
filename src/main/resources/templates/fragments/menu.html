@@ -10,8 +10,11 @@
                     <li th:class="${pageId=='home'} ? 'nav-item active' : 'nav-item'">
                         <a class="nav-link" href="/">Home</a>
                     </li>
-                    <li th:class="${pageId=='report'} ? 'nav-item active' : 'nav-item'">
-                        <a class="nav-link" href="/reports/list">Reports</a>
+                    <li th:class="${pageId=='issue'} ? 'nav-item active' : 'nav-item'">
+                        <a class="nav-link" href="/issues/list">Issues</a>
+                    </li>
+                    <li th:class="${pageId=='binary'} ? 'nav-item active' : 'nav-item'">
+                        <a class="nav-link" href="/binaries">Binaries</a>
                     </li>
                     <a th:href="${pageId}" th:value="${pageId}"></a>
                 </ul>

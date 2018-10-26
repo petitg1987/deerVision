@@ -1,7 +1,7 @@
 package com.urchin.release.mgt.service;
 
-import com.urchin.release.mgt.config.properties.ReportProperties;
-import com.urchin.release.mgt.model.Report;
+import com.urchin.release.mgt.config.properties.IssueProperties;
+import com.urchin.release.mgt.model.Issue;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,49 +24,49 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @Service
-public class ReportService {
+public class IssueService {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(ReportService.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(IssueService.class);
     private static final String DATE_PATTERN = "yyyyMMdd";
     private static final String DATE_TIME_PATTERN = DATE_PATTERN + "-HHmmss";
     private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern(DATE_TIME_PATTERN);
 
-    private ReportProperties reportProperties;
+    private IssueProperties issueProperties;
 
     @Autowired
-    public ReportService(ReportProperties reportProperties){
-        this.reportProperties = reportProperties;
+    public IssueService(IssueProperties issueProperties){
+        this.issueProperties = issueProperties;
     }
 
-    public void writeReport(String reportValue, String callerId){
+    public void writeIssue(String issueValue, String callerId){
         String uuid = UUID.randomUUID().toString();
-        String errorReportFilename = determineFilename(uuid);
-        LOGGER.info("Error report received from {}. Report saved in {}", callerId, errorReportFilename);
+        String issueFilename = determineFilename(uuid);
+        LOGGER.info("Issue received from {} and saved in {}", callerId, issueFilename);
 
-        Path path = Paths.get(errorReportFilename);
+        Path path = Paths.get(issueFilename);
         try {
-            Files.write(path, reportValue.getBytes());
+            Files.write(path, issueValue.getBytes());
         } catch (IOException e) {
-            LOGGER.error("Impossible to write error report on disk", e);
+            LOGGER.error("Impossible to write issue on disk", e);
         }
     }
 
-    public Page<Report> findPaginated(Pageable pageable){
+    public Page<Issue> findPaginated(Pageable pageable){
         int pageSize = pageable.getPageSize();
         int currentPage = pageable.getPageNumber();
         int startItem = currentPage * pageSize;
 
-        List<Report> reports = getReports(startItem, pageSize);
-        return new PageImpl<>(reports, PageRequest.of(currentPage, pageSize), totalReports());
+        List<Issue> issues = getIssues(startItem, pageSize);
+        return new PageImpl<>(issues, PageRequest.of(currentPage, pageSize), totalIssues());
     }
 
-    public Report findByFilename(String filename){
-        Path path = Paths.get(reportProperties.getBaseFolder() + filename);
-        return new Report(extractDate(path), path);
+    public Issue findByFilename(String filename){
+        Path path = Paths.get(issueProperties.getBaseFolder() + filename);
+        return new Issue(extractDate(path), path);
     }
 
     public void removeByFilename(String filename){
-        Path path = Paths.get(reportProperties.getBaseFolder() + filename);
+        Path path = Paths.get(issueProperties.getBaseFolder() + filename);
         try {
             Files.deleteIfExists(path);
         } catch (IOException e) {
@@ -74,38 +74,38 @@ public class ReportService {
         }
     }
 
-    public List<Report> findByLocalDate(LocalDate localDate){
-        return streamPathReports()
+    public List<Issue> findByLocalDate(LocalDate localDate){
+        return streamPathIssues()
                 .filter(p ->  p.getFileName().toString().startsWith(localDate.format(DateTimeFormatter.ofPattern(DATE_PATTERN))))
-                .map(p -> new Report(extractDate(p), p))
+                .map(p -> new Issue(extractDate(p), p))
                 .collect(Collectors.toList());
     }
 
-    private List<Report> getReports(int startItem, int pageSize){
-        return streamPathReports()
+    private List<Issue> getIssues(int startItem, int pageSize){
+        return streamPathIssues()
                 .sorted((p1, p2) -> p2.getFileName().compareTo(p1.getFileName()))
                 .skip(startItem)
                 .limit(pageSize)
-                .map(p -> new Report(extractDate(p), p))
+                .map(p -> new Issue(extractDate(p), p))
                 .collect(Collectors.toList());
     }
 
-    private long totalReports(){
-        return streamPathReports().count();
+    private long totalIssues(){
+        return streamPathIssues().count();
     }
 
-    private Stream<Path> streamPathReports(){
+    private Stream<Path> streamPathIssues(){
         try {
-            return Files.list(Paths.get(reportProperties.getBaseFolder()))
+            return Files.list(Paths.get(issueProperties.getBaseFolder()))
                     .filter(Files::isRegularFile);
         } catch (IOException e) {
-            throw new IllegalArgumentException("Impossible to read files in folder: " + reportProperties.getBaseFolder(), e);
+            throw new IllegalArgumentException("Impossible to read files in folder: " + issueProperties.getBaseFolder(), e);
         }
     }
 
     private String determineFilename(String uuid) {
         String date = LocalDateTime.now().format(DATE_TIME_FORMATTER);
-        return reportProperties.getBaseFolder() + date + "-" + uuid + "-error-report.txt";
+        return issueProperties.getBaseFolder() + date + "-" + uuid + "-error-issue.txt";
     }
 
     private LocalDateTime extractDate(Path path){

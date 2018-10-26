@@ -1,12 +1,13 @@
 package com.urchin.release.mgt.controller;
 
+import com.google.common.base.CaseFormat;
 import com.urchin.release.mgt.model.BinaryType;
 import com.urchin.release.mgt.service.BinaryService;
 import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletResponse;
@@ -14,7 +15,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 @RestController
-@RequestMapping("/api/binary") //TODO REST: /api/binaries/windows/[version] | /api/binaries/linux-tar/[version] | /api/binaries/linux-deb/[version]
+@RequestMapping("/api/binaries")
 public class BinaryRestController {
 
     private BinaryService binaryService;
@@ -24,22 +25,35 @@ public class BinaryRestController {
         this.binaryService = binaryService;
     }
 
-    //curl -u api:[PASSWORD] http://localhost:8080/api/binary/version/?type=LINUX_TAR
-    @GetMapping(value="/version")
-    public String getLastVersion(@RequestParam(name = "type") BinaryType binaryType){
-        return binaryService.getBinaryVersion(binaryType);
+    //curl http://localhost:8080/api/binaries/linux-tar/version
+    @GetMapping(value="/{binaryId}/version")
+    public String lastVersion(@PathVariable(name = "binaryId") String binaryId){
+        BinaryType binaryType = retrieveBinaryType(binaryId);
+        String appVersion = binaryService.getBinaryVersion(binaryType);
+
+        binaryService.auditVersion(appVersion, binaryType);
+        return appVersion;
     }
 
-    //wget --auth-no-challenge --user api --password [PASSWORD] -O release.tar.bz2 "http://localhost:8080/api/binary?type=LINUX_TAR"
-    @GetMapping
-    public void getLastBinary(@RequestParam(name = "type") BinaryType binaryType, HttpServletResponse response){
+    //wget -O release.tar.bz2 http://localhost:8080/api/binaries/linux-tar
+    @GetMapping(value="/{binaryId}")
+    public void download(@PathVariable(name = "binaryId") String binaryId, HttpServletResponse response){
+        BinaryType binaryType = retrieveBinaryType(binaryId);
+        String appVersion = binaryService.getBinaryVersion(binaryType);
         InputStream binaryStream = binaryService.getBinaryStream(binaryType);
 
         try {
             IOUtils.copy(binaryStream, response.getOutputStream());
             response.flushBuffer();
         } catch (IOException e) {
-            throw new IllegalArgumentException("Impossible to copy binary stream in response for binary type: " + binaryType);
+            throw new IllegalArgumentException("Copy binary in HTTP response fail for binary ID: " + binaryId);
         }
+
+        binaryService.auditDownload(appVersion, binaryType);
+    }
+
+    private BinaryType retrieveBinaryType(String binaryId){
+        String binaryTypeString = CaseFormat.LOWER_HYPHEN.to(CaseFormat.UPPER_UNDERSCORE, binaryId);
+        return BinaryType.valueOf(binaryTypeString);
     }
 }
