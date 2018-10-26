@@ -13,3 +13,6 @@ report:
   base-folder: "/home/greg/_report/"
   page-size: 10
   chart-days: 15
+binary:
+  base-folder: "/home/greg/_binary/"
+  version-pattern: "(\\d[.]\\d[.]\\d)"

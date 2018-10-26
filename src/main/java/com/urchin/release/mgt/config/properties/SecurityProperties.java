@@ -1,4 +1,4 @@
-package com.urchin.release.mgt.config;
+package com.urchin.release.mgt.config.properties;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;

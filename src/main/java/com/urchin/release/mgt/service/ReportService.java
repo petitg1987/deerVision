@@ -1,6 +1,6 @@
 package com.urchin.release.mgt.service;
 
-import com.urchin.release.mgt.config.ReportProperties;
+import com.urchin.release.mgt.config.properties.ReportProperties;
 import com.urchin.release.mgt.model.Report;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -27,7 +27,7 @@ public class ReportRestController {
     }
 
     @PostMapping(value="/", consumes = MediaType.TEXT_PLAIN_VALUE)
-    public void addReport(@RequestBody String value, HttpServletRequest request){
+    public void addReport(@RequestBody String value, HttpServletRequest request){ //TODO receive application version
         if(StringUtils.isEmpty(value)){
             LOGGER.warn("Empty error report received");
             return;

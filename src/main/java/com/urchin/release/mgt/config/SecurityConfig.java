@@ -1,5 +1,6 @@
 package com.urchin.release.mgt.config;
 
+import com.urchin.release.mgt.config.properties.SecurityProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
