@@ -5,6 +5,7 @@ import com.urchin.release.mgt.model.BinaryType;
 import com.urchin.release.mgt.service.BinaryService;
 import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,7 +27,7 @@ public class BinaryRestController {
     }
 
     //curl http://localhost:8080/api/binaries/linux-tar/version
-    @GetMapping(value="/{binaryId}/version")
+    @GetMapping(value="/{binaryId}/version", produces = MediaType.TEXT_PLAIN_VALUE)
     public String lastVersion(@PathVariable(name = "binaryId") String binaryId){
         BinaryType binaryType = retrieveBinaryType(binaryId);
         String appVersion = binaryService.getBinaryVersion(binaryType);
