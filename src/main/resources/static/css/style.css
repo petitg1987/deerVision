@@ -1,5 +1,10 @@
-.homeCharts {
-    width:720px;
-    margin:auto;
-    text-align:center;
+@media (max-width: 1200px) { /* One chart by line */
+    .homeCharts {
+        width:100%;
+    }
+}
+@media (min-width: 1200px) { /* One or more charts by line */
+    .homeCharts {
+        width:815px;
+    }
 }

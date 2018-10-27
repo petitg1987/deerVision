@@ -3,9 +3,9 @@
     <head>
 
     </head>
-    <body class="p-3 mb-2 bg-dark text-white">
+    <body>
         <div th:fragment="menu">
-            <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-primary">
+            <nav class="navbar sticky-top navbar-expand navbar-dark bg-primary">
                 <ul class="navbar-nav mr-auto">
                     <li th:class="${pageId=='home'} ? 'nav-item active' : 'nav-item'">
                         <a class="nav-link" href="/">Home</a>
@@ -16,7 +16,6 @@
                     <li th:class="${pageId=='binaries'} ? 'nav-item active' : 'nav-item'">
                         <a class="nav-link" href="/binaries/info">Binaries</a>
                     </li>
-                    <a th:href="${pageId}" th:value="${pageId}"></a>
                 </ul>
                 <span class="navbar-text">
                     <form th:action="@{/logout}" method="post">
