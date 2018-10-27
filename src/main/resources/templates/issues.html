@@ -17,17 +17,19 @@
         <table class="table table-striped table-dark">
             <thead>
                 <tr>
-                    <th style="width: 15.00%">Date</th>
+                    <th style="width: 10.00%">Date</th>
+                    <th style="width: 10.00%">App. version</th>
                     <th style="width: 70.00%">Sample value</th>
-                    <th style="width: 15.00%">Actions</th>
+                    <th style="width: 10.00%">Actions</th>
                 </tr>
             </thead>
             <tbody>
                 <tr th:each="issue : ${issuePage}">
-                    <td th:text="${issue.dateTime}" />
+                    <td th:text="${issue.dateTimeDisplay}" />
+                    <td th:text="${issue.appVersion}" />
                     <td th:text="${issue.sampleValue}" />
                     <td>
-                        <a th:href="@{|/issues/download?filename=${issue.fileName}|}" th:download="${issue.fileName}">Download</a>&nbsp;|&nbsp;<a th:href="@{|/issues/remove?filename=${issue.fileName}|}">Remove</a>
+                        <a th:href="@{|/issues/download?id=${issue.id}|}" th:download="'issue' + ${issue.id} +'.txt'">Download</a>&nbsp;|&nbsp;<a th:href="@{|/issues/remove?id=${issue.id}|}">Remove</a>
                     </td>
                 </tr>
             </tbody>

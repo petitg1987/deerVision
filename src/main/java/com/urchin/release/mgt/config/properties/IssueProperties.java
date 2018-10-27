@@ -7,17 +7,8 @@ import org.springframework.context.annotation.Configuration;
 @ConfigurationProperties(prefix = "issue")
 public class IssueProperties {
 
-    private String baseFolder;
     private int pageSize;
     private int chartDays;
-
-    public String getBaseFolder() {
-        return baseFolder;
-    }
-
-    public void setBaseFolder(String baseFolder) {
-        this.baseFolder = baseFolder;
-    }
 
     public int getPageSize() {
         return pageSize;

@@ -3,8 +3,8 @@ package com.urchin.release.mgt.controller;
 import com.urchin.release.mgt.config.properties.IssueProperties;
 import com.urchin.release.mgt.model.Issue;
 import com.urchin.release.mgt.service.IssueService;
+import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.FileSystemResource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.repository.query.Param;
@@ -13,7 +13,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
-import java.io.File;
+import javax.servlet.http.HttpServletResponse;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -52,16 +55,22 @@ public class IssueController {
     }
 
     @RequestMapping(value="/download", method=RequestMethod.GET)
-    @ResponseBody
-    public FileSystemResource downloadFile(@Param(value="filename") String filename) {
-        Issue issue = issueService.findByFilename(filename);
-        return new FileSystemResource(new File(issue.getFilePath()));
+    public void downloadFile(@Param(value="id") Long id, HttpServletResponse response) {
+        Issue issue = issueService.findById(id);
+        InputStream issueValueStream = new ByteArrayInputStream(issue.getValue().getBytes());
+
+        try {
+            IOUtils.copy(issueValueStream, response.getOutputStream());
+            response.flushBuffer();
+        } catch (IOException e) {
+            throw new IllegalArgumentException("Copy issue in HTTP response fail for issue ID: " + id);
+        }
     }
 
     @RequestMapping(value="/remove", method=RequestMethod.GET)
     @ResponseBody
-    public RedirectView removeFile(@Param(value="filename") String filename) {
-        issueService.removeByFilename(filename);
+    public RedirectView removeFile(@Param(value="id") Long id) {
+        issueService.removeById(id);
         return new RedirectView("/issues/list");
     }
 

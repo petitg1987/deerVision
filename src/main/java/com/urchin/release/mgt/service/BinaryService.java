@@ -1,11 +1,12 @@
 package com.urchin.release.mgt.service;
 
 import com.urchin.release.mgt.config.properties.BinaryProperties;
-import com.urchin.release.mgt.model.BinaryDownloadAudit;
+import com.urchin.release.mgt.model.audit.BinaryDownloadAudit;
 import com.urchin.release.mgt.model.BinaryType;
-import com.urchin.release.mgt.model.BinaryVersionAudit;
+import com.urchin.release.mgt.model.audit.BinaryVersionAudit;
 import com.urchin.release.mgt.repository.BinaryDownloadAuditRepository;
 import com.urchin.release.mgt.repository.BinaryVersionAuditRepository;
+import com.urchin.release.mgt.repository.DownloadByVersionCount;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +18,8 @@ import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
@@ -37,6 +40,12 @@ public class BinaryService {
         this.binaryProperties = binaryProperties;
         this.binaryDownloadAuditRepository = binaryDownloadAuditRepository;
         this.binaryVersionAuditRepository = binaryVersionAuditRepository;
+    }
+
+    public List<Path> getBinaryPaths(){
+        List<Path> binaryPaths = new ArrayList<>(BinaryType.values().length);
+        Arrays.stream(BinaryType.values()).forEach(bt -> binaryPaths.add(getBinaryPath(bt)));
+        return binaryPaths;
     }
 
     public String getBinaryVersion(BinaryType binaryType){
@@ -60,15 +69,27 @@ public class BinaryService {
         }
     }
 
+    public InputStream getBinaryStream(String filename){
+        for(BinaryType binaryType : BinaryType.values()){
+            Path binaryPath = getBinaryPath(binaryType);
+
+            if(binaryPath.getFileName().toString().equals(filename)){
+                return getBinaryStream(binaryType);
+            }
+        }
+
+        throw new IllegalArgumentException("Fail to find file with filename: " + filename);
+    }
+
     public void newAuditDownload(String appVersion, BinaryType binaryType){
-        binaryDownloadAuditRepository.saveAndFlush(new BinaryDownloadAudit(appVersion, binaryType, LocalDateTime.now()));
+        binaryDownloadAuditRepository.saveAndFlush(new BinaryDownloadAudit(appVersion, binaryType));
     }
 
     public void newAuditVersion(String appVersion, BinaryType binaryType){
-        binaryVersionAuditRepository.saveAndFlush(new BinaryVersionAudit(appVersion, binaryType, LocalDateTime.now()));
+        binaryVersionAuditRepository.saveAndFlush(new BinaryVersionAudit(appVersion, binaryType));
     }
 
-    public Map<LocalDate, Long> findVersionAuditsGroupByDateTime(LocalDate startDate, LocalDate endDate){
+    public Map<LocalDate, Long> findBinaryVersionAuditsGroupByDate(LocalDate startDate, LocalDate endDate){
         LocalDateTime startDateTime = startDate.atTime(LocalTime.MIN);
         LocalDateTime endDateTime = endDate.atTime(LocalTime.MAX);
 
@@ -76,12 +97,16 @@ public class BinaryService {
         return binaryVersionAudits.stream().collect(Collectors.groupingBy(bva -> bva.getDateTime().toLocalDate(), Collectors.counting()));
     }
 
-    public Map<LocalDate, Long> findDownloadAuditsGroupByDateTime(BinaryType binaryType, LocalDate startDate, LocalDate endDate){
+    public Map<LocalDate, Long> findBinaryDownloadAuditsGroupByDate(BinaryType binaryType, LocalDate startDate, LocalDate endDate){
         LocalDateTime startDateTime = startDate.atTime(LocalTime.MIN);
         LocalDateTime endDateTime = endDate.atTime(LocalTime.MAX);
 
         List<BinaryDownloadAudit> binaryDownloadAudits = binaryDownloadAuditRepository.findByBinaryTypeAndDateTimeBetween(binaryType, startDateTime, endDateTime);
         return binaryDownloadAudits.stream().collect(Collectors.groupingBy(bda -> bda.getDateTime().toLocalDate(), Collectors.counting()));
+    }
+
+    public List<DownloadByVersionCount> findDownloadsByVersionCount(){
+        return binaryDownloadAuditRepository.findDownloadsByVersionCount();
     }
 
     private Path getBinaryPath(BinaryType binaryType){

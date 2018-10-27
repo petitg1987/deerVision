@@ -23,6 +23,8 @@ import java.util.stream.Collectors;
 @Controller
 public class HomeController {
 
+    private static final String CHARTS_DATE_FORMAT = "dd-MM-yyyy";
+
     private IssueService issueService;
     private IssueProperties issueProperties;
     private BinaryService binaryService;
@@ -52,13 +54,17 @@ public class HomeController {
 
     private void populateIssueChart(Model model){
         List<LocalDate> chartDates = retrieveChartsDates(issueProperties.getChartDays());
+        LocalDate startDate = chartDates.get(0);
+        LocalDate endDate = chartDates.get(chartDates.size() - 1);
 
         model.addAttribute("issueChartDates", chartDates.stream()
-                .map(ld -> ld.format(DateTimeFormatter.ofPattern("dd-MM-yyyy")))
+                .map(ld -> ld.format(DateTimeFormatter.ofPattern(CHARTS_DATE_FORMAT)))
                 .collect(Collectors.toList()));
 
-        model.addAttribute("issueChartValues", chartDates.stream()
-                .map(ld -> issueService.findByLocalDate(ld).size())
+        Map<LocalDate, Long> mapIssues = addMissingDates(issueService.findIssuesGroupByDate(startDate, endDate), chartDates);
+        model.addAttribute("issueChartValues", mapIssues.keySet().stream()
+                .sorted()
+                .map(mapIssues::get)
                 .collect(Collectors.toList()));
     }
 
@@ -68,13 +74,13 @@ public class HomeController {
         LocalDate endDate = chartDates.get(chartDates.size() - 1);
 
         model.addAttribute("downloadChartDates", chartDates.stream()
-                .map(ld -> ld.format(DateTimeFormatter.ofPattern("dd-MM-yyyy")))
+                .map(ld -> ld.format(DateTimeFormatter.ofPattern(CHARTS_DATE_FORMAT)))
                 .collect(Collectors.toList()));
 
         for(BinaryType binaryType : BinaryType.values())
         {
             String binaryTypeString = CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, binaryType.name());
-            Map<LocalDate, Long> mapDownload = addMissingDates(binaryService.findDownloadAuditsGroupByDateTime(binaryType, startDate, endDate), chartDates);
+            Map<LocalDate, Long> mapDownload = addMissingDates(binaryService.findBinaryDownloadAuditsGroupByDate(binaryType, startDate, endDate), chartDates);
             model.addAttribute("download" + binaryTypeString + "ChartValues", mapDownload.keySet().stream()
                     .sorted()
                     .map(mapDownload::get)
@@ -88,10 +94,10 @@ public class HomeController {
         LocalDate endDate = chartDates.get(chartDates.size() - 1);
 
         model.addAttribute("appVersionCheckChartDates", chartDates.stream()
-                .map(ld -> ld.format(DateTimeFormatter.ofPattern("dd-MM-yyyy")))
+                .map(ld -> ld.format(DateTimeFormatter.ofPattern(CHARTS_DATE_FORMAT)))
                 .collect(Collectors.toList()));
 
-        Map<LocalDate, Long> mapAppVersionCheck = addMissingDates(binaryService.findVersionAuditsGroupByDateTime(startDate, endDate), chartDates);
+        Map<LocalDate, Long> mapAppVersionCheck = addMissingDates(binaryService.findBinaryVersionAuditsGroupByDate(startDate, endDate), chartDates);
         model.addAttribute("appVersionCheckChartValues", mapAppVersionCheck.keySet().stream()
                 .sorted()
                 .map(mapAppVersionCheck::get)

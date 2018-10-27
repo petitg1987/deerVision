@@ -1,4 +1,6 @@
-package com.urchin.release.mgt.model;
+package com.urchin.release.mgt.model.audit;
+
+import com.urchin.release.mgt.model.BinaryType;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -6,25 +8,25 @@ import javax.persistence.Id;
 import java.time.LocalDateTime;
 
 @Entity
-public class BinaryDownloadAudit {
+public class BinaryVersionAudit {
 
     @Id
     @GeneratedValue
     private Long id;
 
-    private String appVersion;
+    private String version;
 
     private BinaryType binaryType;
 
     private LocalDateTime dateTime;
 
-    public BinaryDownloadAudit(){
+    public BinaryVersionAudit(){
     }
 
-    public BinaryDownloadAudit(String appVersion, BinaryType binaryType, LocalDateTime dateTime) {
-        this.appVersion = appVersion;
+    public BinaryVersionAudit(String version, BinaryType binaryType) {
+        this.version = version;
         this.binaryType = binaryType;
-        this.dateTime = dateTime;
+        this.dateTime = LocalDateTime.now();
     }
 
     public Long getId() {
@@ -35,12 +37,12 @@ public class BinaryDownloadAudit {
         this.id = id;
     }
 
-    public String getAppVersion() {
-        return appVersion;
+    public String getVersion() {
+        return version;
     }
 
-    public void setAppVersion(String appVersion) {
-        this.appVersion = appVersion;
+    public void setVersion(String version) {
+        this.version = version;
     }
 
     public BinaryType getBinaryType() {

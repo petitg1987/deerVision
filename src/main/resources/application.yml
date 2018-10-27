@@ -1,7 +1,8 @@
 server:
   port: 8080
   servlet.context-path: "/"
-management.endpoints.web.exposure.include: "*"
+management:
+  endpoints.web.exposure.include: "*"
 spring:
   security.user:
     name: "admin"
@@ -15,12 +16,7 @@ spring:
     database-platform: "org.hibernate.dialect.H2Dialect"
     hibernate.ddl-auto: "update"
     show-sql: false
-security:
-  password-strength: 10
-  api-user: "api"
-  api-password: "$2a$10$PC.ynuA8ojXtfkSnXFZVU.8ORkVcB6NmI3gOPsyAKWXJtZlGLJlKu"
 issue:
-  base-folder: "/home/greg/_issue/"
   page-size: 10
   chart-days: 15
 binary:
