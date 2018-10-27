@@ -31,7 +31,7 @@ public class BinaryRestController {
         BinaryType binaryType = retrieveBinaryType(binaryId);
         String appVersion = binaryService.getBinaryVersion(binaryType);
 
-        binaryService.auditVersion(appVersion, binaryType);
+        binaryService.newAuditVersion(appVersion, binaryType);
         return appVersion;
     }
 
@@ -49,7 +49,7 @@ public class BinaryRestController {
             throw new IllegalArgumentException("Copy binary in HTTP response fail for binary ID: " + binaryId);
         }
 
-        binaryService.auditDownload(appVersion, binaryType);
+        binaryService.newAuditDownload(appVersion, binaryType);
     }
 
     private BinaryType retrieveBinaryType(String binaryId){

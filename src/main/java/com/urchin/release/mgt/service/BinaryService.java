@@ -15,6 +15,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
@@ -58,22 +60,28 @@ public class BinaryService {
         }
     }
 
-    public void auditDownload(String appVersion, BinaryType binaryType){
-        binaryDownloadAuditRepository.saveAndFlush(new BinaryDownloadAudit(appVersion, binaryType, LocalDate.now()));
+    public void newAuditDownload(String appVersion, BinaryType binaryType){
+        binaryDownloadAuditRepository.saveAndFlush(new BinaryDownloadAudit(appVersion, binaryType, LocalDateTime.now()));
     }
 
-    public void auditVersion(String appVersion, BinaryType binaryType){
-        binaryVersionAuditRepository.saveAndFlush(new BinaryVersionAudit(appVersion, binaryType, LocalDate.now()));
+    public void newAuditVersion(String appVersion, BinaryType binaryType){
+        binaryVersionAuditRepository.saveAndFlush(new BinaryVersionAudit(appVersion, binaryType, LocalDateTime.now()));
     }
 
-    public Map<LocalDate, Long> findVersionAuditsGroupByDate(LocalDate startDate, LocalDate endDate){
-        List<BinaryVersionAudit> binaryVersionAudits = binaryVersionAuditRepository.findByDateBetween(startDate, endDate);
-        return binaryVersionAudits.stream().collect(Collectors.groupingBy(BinaryVersionAudit::getDate, Collectors.counting()));
+    public Map<LocalDate, Long> findVersionAuditsGroupByDateTime(LocalDate startDate, LocalDate endDate){
+        LocalDateTime startDateTime = startDate.atTime(LocalTime.MIN);
+        LocalDateTime endDateTime = endDate.atTime(LocalTime.MAX);
+
+        List<BinaryVersionAudit> binaryVersionAudits = binaryVersionAuditRepository.findByDateTimeBetween(startDateTime, endDateTime);
+        return binaryVersionAudits.stream().collect(Collectors.groupingBy(bva -> bva.getDateTime().toLocalDate(), Collectors.counting()));
     }
 
-    public Map<LocalDate, Long> findDownloadAuditsGroupByDate(BinaryType binaryType, LocalDate startDate, LocalDate endDate){
-        List<BinaryDownloadAudit> binaryDownloadAudits = binaryDownloadAuditRepository.findByBinaryTypeAndDateBetween(binaryType, startDate, endDate);
-        return binaryDownloadAudits.stream().collect(Collectors.groupingBy(BinaryDownloadAudit::getDate, Collectors.counting()));
+    public Map<LocalDate, Long> findDownloadAuditsGroupByDateTime(BinaryType binaryType, LocalDate startDate, LocalDate endDate){
+        LocalDateTime startDateTime = startDate.atTime(LocalTime.MIN);
+        LocalDateTime endDateTime = endDate.atTime(LocalTime.MAX);
+
+        List<BinaryDownloadAudit> binaryDownloadAudits = binaryDownloadAuditRepository.findByBinaryTypeAndDateTimeBetween(binaryType, startDateTime, endDateTime);
+        return binaryDownloadAudits.stream().collect(Collectors.groupingBy(bda -> bda.getDateTime().toLocalDate(), Collectors.counting()));
     }
 
     private Path getBinaryPath(BinaryType binaryType){

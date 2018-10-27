@@ -38,7 +38,7 @@ public class IssueService {
         this.issueProperties = issueProperties;
     }
 
-    public void writeIssue(String issueValue, String callerId){
+    public void newIssue(String issueValue, String callerId){
         String uuid = UUID.randomUUID().toString();
         String issueFilename = determineFilename(uuid);
         LOGGER.info("Issue received from {} and saved in {}", callerId, issueFilename);

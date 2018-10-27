@@ -1,7 +1,10 @@
 package com.urchin.release.mgt.controller;
 
+import com.google.common.base.CaseFormat;
 import com.urchin.release.mgt.config.properties.BinaryProperties;
 import com.urchin.release.mgt.config.properties.IssueProperties;
+import com.urchin.release.mgt.model.BinaryType;
+import com.urchin.release.mgt.service.BinaryService;
 import com.urchin.release.mgt.service.IssueService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,6 +17,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Controller
@@ -21,12 +25,14 @@ public class HomeController {
 
     private IssueService issueService;
     private IssueProperties issueProperties;
+    private BinaryService binaryService;
     private BinaryProperties binaryProperties;
 
     @Autowired
-    public HomeController(IssueService issueService, IssueProperties issueProperties, BinaryProperties binaryProperties){
+    public HomeController(IssueService issueService, IssueProperties issueProperties, BinaryService binaryService, BinaryProperties binaryProperties){
         this.issueService = issueService;
         this.issueProperties = issueProperties;
+        this.binaryService = binaryService;
         this.binaryProperties = binaryProperties;
     }
 
@@ -58,20 +64,38 @@ public class HomeController {
 
     private void populateDownloadChart(Model model){
         List<LocalDate> chartDates = retrieveChartsDates(binaryProperties.getChartDays());
+        LocalDate startDate = chartDates.get(0);
+        LocalDate endDate = chartDates.get(chartDates.size() - 1);
 
         model.addAttribute("downloadChartDates", chartDates.stream()
                 .map(ld -> ld.format(DateTimeFormatter.ofPattern("dd-MM-yyyy")))
                 .collect(Collectors.toList()));
-        //TODO ...
+
+        for(BinaryType binaryType : BinaryType.values())
+        {
+            String binaryTypeString = CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, binaryType.name());
+            Map<LocalDate, Long> mapDownload = addMissingDates(binaryService.findDownloadAuditsGroupByDateTime(binaryType, startDate, endDate), chartDates);
+            model.addAttribute("download" + binaryTypeString + "ChartValues", mapDownload.keySet().stream()
+                    .sorted()
+                    .map(mapDownload::get)
+                    .collect(Collectors.toList()));
+        }
     }
 
     private void populateAppVersionCheckChart(Model model){
         List<LocalDate> chartDates = retrieveChartsDates(binaryProperties.getChartDays());
+        LocalDate startDate = chartDates.get(0);
+        LocalDate endDate = chartDates.get(chartDates.size() - 1);
 
         model.addAttribute("appVersionCheckChartDates", chartDates.stream()
                 .map(ld -> ld.format(DateTimeFormatter.ofPattern("dd-MM-yyyy")))
                 .collect(Collectors.toList()));
-        //TODO ...
+
+        Map<LocalDate, Long> mapAppVersionCheck = addMissingDates(binaryService.findVersionAuditsGroupByDateTime(startDate, endDate), chartDates);
+        model.addAttribute("appVersionCheckChartValues", mapAppVersionCheck.keySet().stream()
+                .sorted()
+                .map(mapAppVersionCheck::get)
+                .collect(Collectors.toList()));
     }
 
     private List<LocalDate> retrieveChartsDates(int nbChartDays) {
@@ -84,6 +108,11 @@ public class HomeController {
         }
 
         return dates;
+    }
+
+    private Map<LocalDate, Long> addMissingDates(Map<LocalDate, Long> map, List<LocalDate> dates){
+        dates.forEach(d -> map.putIfAbsent(d,  0L));
+        return map;
     }
 
 }

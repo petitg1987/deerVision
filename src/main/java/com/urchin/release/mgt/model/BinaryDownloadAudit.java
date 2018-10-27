@@ -3,7 +3,7 @@ package com.urchin.release.mgt.model;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 public class BinaryDownloadAudit {
@@ -16,15 +16,15 @@ public class BinaryDownloadAudit {
 
     private BinaryType binaryType;
 
-    private LocalDate date;
+    private LocalDateTime dateTime;
 
     public BinaryDownloadAudit(){
     }
 
-    public BinaryDownloadAudit(String appVersion, BinaryType binaryType, LocalDate date) {
+    public BinaryDownloadAudit(String appVersion, BinaryType binaryType, LocalDateTime dateTime) {
         this.appVersion = appVersion;
         this.binaryType = binaryType;
-        this.date = date;
+        this.dateTime = dateTime;
     }
 
     public Long getId() {
@@ -51,11 +51,11 @@ public class BinaryDownloadAudit {
         this.binaryType = binaryType;
     }
 
-    public LocalDate getDate() {
-        return date;
+    public LocalDateTime getDateTime() {
+        return dateTime;
     }
 
-    public void setDate(LocalDate date) {
-        this.date = date;
+    public void setDateTime(LocalDateTime dateTime) {
+        this.dateTime = dateTime;
     }
 }

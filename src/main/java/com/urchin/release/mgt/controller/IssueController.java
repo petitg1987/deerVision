@@ -33,7 +33,7 @@ public class IssueController {
 
     @ModelAttribute
     public void pageIdAttribute(Model model) {
-        model.addAttribute("pageId", "issue");
+        model.addAttribute("pageId", "issues");
     }
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)

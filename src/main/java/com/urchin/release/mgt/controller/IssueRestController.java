@@ -30,6 +30,6 @@ public class IssueRestController {
             return;
         }
 
-        issueService.writeIssue(value, request.getRemoteAddr());
+        issueService.newIssue(value, request.getRemoteAddr());
     }
 }
