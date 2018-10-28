@@ -21,5 +21,5 @@ issue:
   chart-days: 15
 binary:
   base-folder: "/home/greg/_binary/"
-  version-pattern: "(\\d[.]\\d[.]\\d)"
+  version-pattern: "(\\d+[.]\\d+[.]\\d+)"
   chart-days: 15

@@ -34,7 +34,7 @@ public class IssueService {
         if(StringUtils.isEmpty(value)){
             throw new IllegalArgumentException("Empty issue value received");
         }
-        String versionPattern = "^" + binaryProperties.getVersionPattern() + "$";
+        String versionPattern = "^" + binaryProperties.getVersionPattern() + "(-SNAPSHOT)?$";
         if(!Pattern.matches(versionPattern, appVersion)){
             throw new IllegalArgumentException("Invalid application version: " + appVersion);
         }
