@@ -1,25 +1,24 @@
 package com.urchin.release.mgt.service;
 
 import com.urchin.release.mgt.config.properties.BinaryProperties;
-import com.urchin.release.mgt.model.audit.BinaryDownloadAudit;
+import com.urchin.release.mgt.model.Binary;
 import com.urchin.release.mgt.model.BinaryType;
+import com.urchin.release.mgt.model.audit.BinaryDownloadAudit;
 import com.urchin.release.mgt.model.audit.BinaryVersionAudit;
 import com.urchin.release.mgt.repository.BinaryDownloadAuditRepository;
 import com.urchin.release.mgt.repository.BinaryVersionAuditRepository;
 import com.urchin.release.mgt.repository.DownloadByVersionCount;
+import com.urchin.release.mgt.utils.CollectorUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
@@ -42,43 +41,17 @@ public class BinaryService {
         this.binaryVersionAuditRepository = binaryVersionAuditRepository;
     }
 
-    public List<Path> getBinaryPaths(){
-        List<Path> binaryPaths = new ArrayList<>(BinaryType.values().length);
-        Arrays.stream(BinaryType.values()).forEach(bt -> binaryPaths.add(getBinaryPath(bt)));
-        return binaryPaths;
+    public List<Binary> getBinaries(){
+        return streamPathBinaries()
+                .map(p -> new Binary(p, retrieveVersion(p)))
+                .collect(Collectors.toList());
     }
 
-    public String getBinaryVersion(BinaryType binaryType){
-        Path binaryPath = getBinaryPath(binaryType);
-
-        Matcher matcher = Pattern.compile(binaryProperties.getVersionPattern()).matcher(binaryPath.getFileName().toString());
-        if(!matcher.find()){
-            throw new IllegalArgumentException("Impossible to find binary version on '" + binaryPath.getFileName().toString() + "' with: " + binaryProperties.getVersionPattern());
-        }
-
-        return matcher.group(0);
-    }
-
-    public InputStream getBinaryStream(BinaryType binaryType){
-        Path binaryPath = getBinaryPath(binaryType);
-
-        try {
-            return Files.newInputStream(binaryPath);
-        } catch (IOException e) {
-            throw new IllegalArgumentException("Impossible to create stream from path: " + binaryPath.toAbsolutePath().toString(), e);
-        }
-    }
-
-    public InputStream getBinaryStream(String filename){
-        for(BinaryType binaryType : BinaryType.values()){
-            Path binaryPath = getBinaryPath(binaryType);
-
-            if(binaryPath.getFileName().toString().equals(filename)){
-                return getBinaryStream(binaryType);
-            }
-        }
-
-        throw new IllegalArgumentException("Fail to find file with filename: " + filename);
+    public Binary getBinary(BinaryType binaryType){
+        return streamPathBinaries()
+                .filter(p -> p.getFileName().toString().endsWith(binaryType.getExtension()))
+                .map(p -> new Binary(p, retrieveVersion(p)))
+                .collect(CollectorUtils.toSingleton());
     }
 
     public void newAuditDownload(String appVersion, BinaryType binaryType){
@@ -109,13 +82,6 @@ public class BinaryService {
         return binaryDownloadAuditRepository.findDownloadsByVersionCount();
     }
 
-    private Path getBinaryPath(BinaryType binaryType){
-        return streamPathBinaries()
-                .filter(p -> p.getFileName().toString().endsWith(binaryType.getExtension()))
-                .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("Impossible to find binary for extension: " + binaryType.getExtension()));
-    }
-
     private Stream<Path> streamPathBinaries(){
         try {
             return Files.list(Paths.get(binaryProperties.getBaseFolder()))
@@ -123,5 +89,15 @@ public class BinaryService {
         } catch (IOException e) {
             throw new IllegalArgumentException("Impossible to read files in folder: " + binaryProperties.getBaseFolder(), e);
         }
+    }
+
+    private String retrieveVersion(Path path){
+        String filename = path.getFileName().toString();
+        Matcher matcher = Pattern.compile(binaryProperties.getVersionPattern()).matcher(filename);
+        if(!matcher.find()){
+            throw new IllegalArgumentException("Impossible to find binary version on '" + filename + "' with: " + binaryProperties.getVersionPattern());
+        }
+
+        return matcher.group(0);
     }
 }
