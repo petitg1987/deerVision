@@ -57,6 +57,15 @@ public class IssueController {
         return "issues.html";
     }
 
+    @RequestMapping(value = "/view", method = RequestMethod.GET)
+    public String viewIssues(Model model, @Param(value="id") Long id) {
+        Issue issue = issueService.findById(id);
+
+        model.addAttribute("issueValue", issue.getValue());
+
+        return "issues-view.html";
+    }
+
     @RequestMapping(value="/download", method=RequestMethod.GET)
     public void downloadFile(@Param(value="id") Long id, HttpServletResponse response) {
         Issue issue = issueService.findById(id);
@@ -72,9 +81,9 @@ public class IssueController {
 
     @RequestMapping(value="/remove", method=RequestMethod.GET)
     @ResponseBody
-    public RedirectView removeFile(@Param(value="id") Long id) {
+    public RedirectView removeFile(@Param(value="id") Long id, @RequestParam(value = "page", defaultValue = "1") Integer page) {
         issueService.removeById(id);
-        return new RedirectView("/issues/list");
+        return new RedirectView("/issues/list?page=" + String.valueOf(page));
     }
 
 }

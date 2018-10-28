@@ -19,8 +19,8 @@
                 <tr>
                     <th style="width: 10.00%">Date</th>
                     <th style="width: 10.00%">Version</th>
-                    <th style="width: 70.00%">Sample value</th>
-                    <th style="width: 10.00%">Actions</th>
+                    <th style="width: 68.00%">Sample value</th>
+                    <th style="width: 12.00%">Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -29,7 +29,7 @@
                     <td th:text="${issue.appVersion}" />
                     <td th:text="${issue.sampleValue}" />
                     <td>
-                        <a th:href="@{|/issues/download?id=${issue.id}|}" th:download="'issue' + ${issue.id} +'.txt'">Download</a>&nbsp;|&nbsp;<a th:href="@{|/issues/remove?id=${issue.id}|}">Remove</a>
+                        <a th:href="@{|/issues/view?id=${issue.id}|}">View</a>&nbsp;|&nbsp;<a th:href="@{|/issues/download?id=${issue.id}|}" th:download="'issue' + ${issue.id} +'.txt'">Download</a>&nbsp;|&nbsp;<a th:href="@{|/issues/remove?id=${issue.id}&page=${issuePage.number + 1}|}">Remove</a>
                     </td>
                 </tr>
             </tbody>
