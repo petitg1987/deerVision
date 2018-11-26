@@ -9,6 +9,8 @@ import com.urchin.release.mgt.repository.BinaryDownloadAuditRepository;
 import com.urchin.release.mgt.repository.BinaryVersionAuditRepository;
 import com.urchin.release.mgt.repository.DownloadByVersionCount;
 import com.urchin.release.mgt.utils.CollectorUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,6 +30,8 @@ import java.util.stream.Stream;
 
 @Service
 public class BinaryService {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(BinaryService.class);
 
     private BinaryProperties binaryProperties;
     private BinaryDownloadAuditRepository binaryDownloadAuditRepository;
@@ -87,7 +91,8 @@ public class BinaryService {
             return Files.list(Paths.get(binaryProperties.getBaseFolder()))
                     .filter(Files::isRegularFile);
         } catch (IOException e) {
-            throw new IllegalArgumentException("Impossible to read files in folder: " + binaryProperties.getBaseFolder(), e);
+            LOGGER.error("Impossible to read files in folder: " + binaryProperties.getBaseFolder(), e);
+            return Stream.of();
         }
     }
 
