@@ -17,10 +17,12 @@ spring:
     hibernate.ddl-auto: "update"
     show-sql: false
     open-in-view: false
+actuator:
+  password: "$2a$10$LP.C2c/pkgWQE2Z5x9JNNejYbh1lJ81au58xoUZa5ZnWh/4ROITfu"
 issue:
   page-size: 10
   chart-days: 15
 binary:
-  base-folder: "/home/greg/_binary/"
+  base-url: "https://s3.eu-west-3.amazonaws.com/urchinreleasemgt/"
   version-pattern: "(\\d+[.]\\d+[.]\\d+)"
   chart-days: 15

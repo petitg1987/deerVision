@@ -7,18 +7,18 @@ import org.springframework.context.annotation.Configuration;
 @ConfigurationProperties(prefix = "binary")
 public class BinaryProperties {
 
-    private String baseFolder;
+    private String baseUrl;
 
     private String versionPattern;
 
     private int chartDays;
 
-    public String getBaseFolder() {
-        return baseFolder;
+    public String getBaseUrl() {
+        return baseUrl;
     }
 
-    public void setBaseFolder(String baseFolder) {
-        this.baseFolder = baseFolder;
+    public void setBaseUrl(String baseUrl) {
+        this.baseUrl = baseUrl;
     }
 
     public String getVersionPattern() {

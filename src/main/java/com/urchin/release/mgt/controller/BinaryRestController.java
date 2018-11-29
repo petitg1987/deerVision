@@ -4,18 +4,13 @@ import com.google.common.base.CaseFormat;
 import com.urchin.release.mgt.model.Binary;
 import com.urchin.release.mgt.model.BinaryType;
 import com.urchin.release.mgt.service.BinaryService;
-import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.io.InputStream;
-import java.nio.file.Files;
+import org.springframework.web.servlet.ModelAndView;
 
 @RestController
 @RequestMapping("/api/binaries")
@@ -40,23 +35,12 @@ public class BinaryRestController {
 
     //wget -O release.tar.bz2 http://localhost:8080/api/binaries/linux-tar
     @GetMapping(value="/{binaryId}")
-    public void download(@PathVariable(name = "binaryId") String binaryId, HttpServletResponse response){
+    public ModelAndView download(@PathVariable(name = "binaryId") String binaryId){
         BinaryType binaryType = retrieveBinaryType(binaryId);
         Binary binary = binaryService.getBinary(binaryType);
 
-        String binaryFilename = binary.getFileName();
-        response.addHeader("Content-Disposition", "attachment; filename=\"" + binaryFilename +"\"");
-        response.addHeader("Content-Transfer-Encoding", "binary");
-
-        try {
-            InputStream binaryStream = Files.newInputStream(binary.getPath());
-            IOUtils.copy(binaryStream, response.getOutputStream());
-            response.flushBuffer();
-        } catch (IOException e) {
-            throw new IllegalArgumentException("Copy binary in HTTP response fail for binary ID: " + binaryId);
-        }
-
         binaryService.newAuditDownload(binary.getVersion(), binaryType);
+        return new ModelAndView("redirect:" + binary.getUrl());
     }
 
     private BinaryType retrieveBinaryType(String binaryId){

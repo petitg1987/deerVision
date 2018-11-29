@@ -1,5 +1,8 @@
 package com.urchin.release.mgt.service;
 
+import com.amazonaws.services.s3.AmazonS3;
+import com.amazonaws.services.s3.AmazonS3ClientBuilder;
+import com.amazonaws.services.s3.model.ListObjectsV2Result;
 import com.urchin.release.mgt.config.properties.BinaryProperties;
 import com.urchin.release.mgt.model.Binary;
 import com.urchin.release.mgt.model.BinaryType;
@@ -14,10 +17,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -32,6 +31,7 @@ import java.util.stream.Stream;
 public class BinaryService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(BinaryService.class);
+    private static final String BUCKET_NAME = "urchinreleasemgt";
 
     private BinaryProperties binaryProperties;
     private BinaryDownloadAuditRepository binaryDownloadAuditRepository;
@@ -46,15 +46,13 @@ public class BinaryService {
     }
 
     public List<Binary> getBinaries(){
-        return streamPathBinaries()
-                .map(p -> new Binary(p, retrieveVersion(p)))
+        return streamBinaries()
                 .collect(Collectors.toList());
     }
 
     public Binary getBinary(BinaryType binaryType){
-        return streamPathBinaries()
-                .filter(p -> p.getFileName().toString().endsWith(binaryType.getExtension()))
-                .map(p -> new Binary(p, retrieveVersion(p)))
+        return streamBinaries()
+                .filter(b -> b.getFileName().endsWith(binaryType.getExtension()))
                 .collect(CollectorUtils.toSingleton());
     }
 
@@ -86,18 +84,15 @@ public class BinaryService {
         return binaryDownloadAuditRepository.findDownloadsByVersionCount();
     }
 
-    private Stream<Path> streamPathBinaries(){
-        try {
-            return Files.list(Paths.get(binaryProperties.getBaseFolder()))
-                    .filter(Files::isRegularFile);
-        } catch (IOException e) {
-            LOGGER.error("Impossible to read files in folder: " + binaryProperties.getBaseFolder(), e);
-            return Stream.of();
-        }
+    private Stream<Binary> streamBinaries(){
+        final AmazonS3 s3 = AmazonS3ClientBuilder.defaultClient();
+        ListObjectsV2Result result = s3.listObjectsV2(BUCKET_NAME);
+        return result.getObjectSummaries()
+                .stream()
+                .map(o -> new Binary(binaryProperties.getBaseUrl() + o.getKey(), o.getSize(), retrieveVersion(o.getKey())));
     }
 
-    private String retrieveVersion(Path path){
-        String filename = path.getFileName().toString();
+    private String retrieveVersion(String filename){
         Matcher matcher = Pattern.compile(binaryProperties.getVersionPattern()).matcher(filename);
         if(!matcher.find()){
             throw new IllegalArgumentException("Impossible to find binary version on '" + filename + "' with: " + binaryProperties.getVersionPattern());
