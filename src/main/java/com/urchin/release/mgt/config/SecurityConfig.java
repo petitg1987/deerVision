@@ -9,7 +9,6 @@ import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -41,7 +40,7 @@ public class SecurityConfig {
         @Override
         protected void configure(HttpSecurity http) throws Exception {
             http.antMatcher("/actuator/**").authorizeRequests()
-                    .anyRequest().authenticated()
+                    .antMatchers("/actuator/**").authenticated()
                     .and().httpBasic()
                     .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                     .and().csrf().disable();
@@ -67,7 +66,7 @@ public class SecurityConfig {
         @Override
         protected void configure(HttpSecurity http) throws Exception {
             http.antMatcher("/api/binaries/**").authorizeRequests()
-                    .antMatchers(HttpMethod.PUT).authenticated()
+                    .antMatchers(HttpMethod.PUT, "/api/binaries/**").authenticated()
                     .and().httpBasic()
                     .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                     .and().csrf().disable();
@@ -86,7 +85,7 @@ public class SecurityConfig {
         @Override
         protected void configure(HttpSecurity http) throws Exception {
             http.antMatcher("/api/**").authorizeRequests()
-                    .anyRequest().permitAll()
+                    .antMatchers("/api/**").permitAll()
                     .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                     .and().csrf().disable();
         }
@@ -98,16 +97,11 @@ public class SecurityConfig {
 
         @Override
         protected void configure(HttpSecurity http) throws Exception {
-            http.authorizeRequests()
-                    .antMatchers("/js/**", "/css/**", "/img/**", "/logout").permitAll()
-                    .anyRequest().authenticated()
+            http.regexMatcher("^/(?!api/|actuator/).*").authorizeRequests()
+                    .regexMatchers("^/js/.*", "^/css/.*", "^/img/.*", "^/logout$").permitAll()
+                    .regexMatchers("^/(?!api/|actuator/).*").authenticated()
                     .and().formLogin().loginPage("/login").permitAll()
                     .and().logout().permitAll();
-        }
-
-        @Override
-        public void configure(WebSecurity web) {
-            web.ignoring().regexMatchers("^/(?!api/|actuator/).*");
         }
     }
 
