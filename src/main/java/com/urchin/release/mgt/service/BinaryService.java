@@ -3,6 +3,7 @@ package com.urchin.release.mgt.service;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 import com.amazonaws.services.s3.model.ListObjectsV2Result;
+import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.urchin.release.mgt.config.properties.BinaryProperties;
 import com.urchin.release.mgt.model.Binary;
 import com.urchin.release.mgt.model.BinaryType;
@@ -11,17 +12,18 @@ import com.urchin.release.mgt.model.audit.BinaryVersionAudit;
 import com.urchin.release.mgt.repository.BinaryDownloadAuditRepository;
 import com.urchin.release.mgt.repository.BinaryVersionAuditRepository;
 import com.urchin.release.mgt.repository.DownloadByVersionCount;
-import com.urchin.release.mgt.utils.CollectorUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.urchin.release.mgt.utils.AppVersionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.ByteArrayInputStream;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -29,9 +31,6 @@ import java.util.stream.Stream;
 
 @Service
 public class BinaryService {
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(BinaryService.class);
-    private static final String BUCKET_NAME = "urchinreleasemgt";
 
     private BinaryProperties binaryProperties;
     private BinaryDownloadAuditRepository binaryDownloadAuditRepository;
@@ -45,15 +44,24 @@ public class BinaryService {
         this.binaryVersionAuditRepository = binaryVersionAuditRepository;
     }
 
-    public List<Binary> getBinaries(){
-        return streamBinaries()
-                .collect(Collectors.toList());
+    public List<Binary> getLastBinaries(){
+        List<Binary> lastBinaries = new ArrayList<>();
+        for(BinaryType binaryType : BinaryType.values()) {
+            getLastBinary(binaryType).ifPresent(lastBinaries::add);
+        }
+
+        return lastBinaries;
     }
 
-    public Binary getBinary(BinaryType binaryType){
+    public Optional<Binary> getLastBinary(BinaryType binaryType){
         return streamBinaries()
                 .filter(b -> b.getFileName().endsWith(binaryType.getExtension()))
-                .collect(CollectorUtils.toSingleton());
+                .max((e1, e2) -> AppVersionUtils.compareVersion(e1.getVersion(), e2.getVersion()));
+    }
+
+    public void uploadOrReplace(String filename, byte[] bytes) {
+        deleteIfExist(filename);
+        upload(filename, bytes);
     }
 
     public void newAuditDownload(String appVersion, BinaryType binaryType){
@@ -86,10 +94,24 @@ public class BinaryService {
 
     private Stream<Binary> streamBinaries(){
         final AmazonS3 s3 = AmazonS3ClientBuilder.defaultClient();
-        ListObjectsV2Result result = s3.listObjectsV2(BUCKET_NAME);
+        ListObjectsV2Result result = s3.listObjectsV2(binaryProperties.getAwsBucketName());
         return result.getObjectSummaries()
                 .stream()
                 .map(o -> new Binary(binaryProperties.getBaseUrl() + o.getKey(), o.getSize(), retrieveVersion(o.getKey())));
+    }
+
+    private void deleteIfExist(String filename){
+        final AmazonS3 s3 = AmazonS3ClientBuilder.defaultClient();
+        s3.deleteObject(binaryProperties.getAwsBucketName(), filename);
+    }
+
+    private void upload(String filename, byte[] bytes){
+        final AmazonS3 s3 = AmazonS3ClientBuilder.defaultClient();
+        ObjectMetadata objectMetadata = new ObjectMetadata();
+        objectMetadata.setContentLength(bytes.length);
+        s3.putObject(binaryProperties.getAwsBucketName(), filename, new ByteArrayInputStream(bytes), objectMetadata);
+
+        //TODO: make it public !!!
     }
 
     private String retrieveVersion(String filename){

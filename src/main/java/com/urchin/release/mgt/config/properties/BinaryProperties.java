@@ -13,6 +13,10 @@ public class BinaryProperties {
 
     private int chartDays;
 
+    private String uploadPassword;
+
+    private String awsBucketName;
+
     public String getBaseUrl() {
         return baseUrl;
     }
@@ -35,5 +39,21 @@ public class BinaryProperties {
 
     public void setChartDays(int chartDays) {
         this.chartDays = chartDays;
+    }
+
+    public String getUploadPassword() {
+        return uploadPassword;
+    }
+
+    public void setUploadPassword(String uploadPassword) {
+        this.uploadPassword = uploadPassword;
+    }
+
+    public String getAwsBucketName() {
+        return awsBucketName;
+    }
+
+    public void setAwsBucketName(String awsBucketName) {
+        this.awsBucketName = awsBucketName;
     }
 }

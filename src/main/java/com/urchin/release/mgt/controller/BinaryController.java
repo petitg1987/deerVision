@@ -33,7 +33,7 @@ public class BinaryController {
                 .sorted((d1, d2) -> d2.getAppVersion().compareTo(d1.getAppVersion()))
                 .collect(Collectors.toList()));
 
-        model.addAttribute("binaries", binaryService.getBinaries());
+        model.addAttribute("binaries", binaryService.getLastBinaries());
 
         String requestUrl = request.getRequestURL().toString();
         String baseServerUrl = requestUrl.substring(0, requestUrl.length() - request.getRequestURI().length());
