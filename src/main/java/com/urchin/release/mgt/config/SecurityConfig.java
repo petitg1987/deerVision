@@ -39,8 +39,8 @@ public class SecurityConfig {
 
         @Override
         protected void configure(HttpSecurity http) throws Exception {
-            http.antMatcher("/actuator/**").authorizeRequests()
-                    .antMatchers("/actuator/**").authenticated()
+            http.regexMatcher("^/actuator/.*").authorizeRequests()
+                    .regexMatchers("^/actuator/.*").authenticated()
                     .and().httpBasic()
                     .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                     .and().csrf().disable();
@@ -65,8 +65,8 @@ public class SecurityConfig {
 
         @Override
         protected void configure(HttpSecurity http) throws Exception {
-            http.antMatcher("/api/binaries/**").authorizeRequests()
-                    .antMatchers(HttpMethod.PUT, "/api/binaries/**").authenticated()
+            http.regexMatcher("^/api/binaries/.*").authorizeRequests()
+                    .regexMatchers(HttpMethod.PUT, "^/api/binaries/.*").authenticated()
                     .and().httpBasic()
                     .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                     .and().csrf().disable();
@@ -84,8 +84,8 @@ public class SecurityConfig {
 
         @Override
         protected void configure(HttpSecurity http) throws Exception {
-            http.antMatcher("/api/**").authorizeRequests()
-                    .antMatchers("/api/**").permitAll()
+            http.regexMatcher("^/api/.*").authorizeRequests()
+                    .regexMatchers("^/api/.*").permitAll()
                     .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                     .and().csrf().disable();
         }
