@@ -9,6 +9,7 @@ import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -48,10 +49,7 @@ public class SecurityConfig {
 
         @Override
         protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-            auth.inMemoryAuthentication()
-                    .withUser("actuator")
-                    .password(actuatorProperties.getPassword())
-                    .roles("ACTUATOR_USER");
+            auth.inMemoryAuthentication().withUser("actuator").password(actuatorProperties.getPassword()).roles("ACTUATOR_USER");
         }
     }
 
@@ -67,7 +65,7 @@ public class SecurityConfig {
         }
 
         @Override
-        protected void configure(HttpSecurity http) throws Exception { //TODO not working well (return 302 in case of wrong auth)
+        protected void configure(HttpSecurity http) throws Exception {
             http.antMatcher("/api/binaries/**").authorizeRequests()
                     .antMatchers(HttpMethod.PUT).authenticated()
                     .and().httpBasic()
@@ -77,10 +75,7 @@ public class SecurityConfig {
 
         @Override
         protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-            auth.inMemoryAuthentication()
-                    .withUser("api")
-                    .password(binaryProperties.getUploadPassword())
-                    .roles("API_UPLOAD_USER");
+            auth.inMemoryAuthentication().withUser("api").password(binaryProperties.getUploadPassword()).roles("API_UPLOAD_USER");
         }
     }
 
@@ -103,12 +98,17 @@ public class SecurityConfig {
 
         @Override
         protected void configure(HttpSecurity http) throws Exception {
-            http.authorizeRequests().antMatchers("/js/**", "/css/**", "/img/**", "/logout").permitAll()
+            http.authorizeRequests()
+                    .antMatchers("/js/**", "/css/**", "/img/**", "/logout").permitAll()
                     .anyRequest().authenticated()
                     .and().formLogin().loginPage("/login").permitAll()
                     .and().logout().permitAll();
         }
 
+        @Override
+        public void configure(WebSecurity web) {
+            web.ignoring().regexMatchers("^/(?!api/|actuator/).*");
+        }
     }
 
 }

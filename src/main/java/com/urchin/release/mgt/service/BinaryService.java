@@ -2,9 +2,9 @@ package com.urchin.release.mgt.service;
 
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
-import com.amazonaws.services.s3.model.ListObjectsV2Result;
-import com.amazonaws.services.s3.model.ObjectMetadata;
+import com.amazonaws.services.s3.model.*;
 import com.urchin.release.mgt.config.properties.BinaryProperties;
+import com.urchin.release.mgt.exception.BinaryVersionMissingException;
 import com.urchin.release.mgt.model.Binary;
 import com.urchin.release.mgt.model.BinaryType;
 import com.urchin.release.mgt.model.audit.BinaryDownloadAudit;
@@ -60,6 +60,10 @@ public class BinaryService {
     }
 
     public void uploadOrReplace(String filename, byte[] bytes) {
+        if(!hasVersion(filename)){
+            throw new BinaryVersionMissingException("Binary version is missing in filename: " + filename);
+        }
+
         deleteIfExist(filename);
         upload(filename, bytes);
     }
@@ -73,18 +77,12 @@ public class BinaryService {
     }
 
     public Map<LocalDate, Long> findBinaryVersionAuditsGroupByDate(LocalDate startDate, LocalDate endDate){
-        LocalDateTime startDateTime = startDate.atTime(LocalTime.MIN);
-        LocalDateTime endDateTime = endDate.atTime(LocalTime.MAX);
-
-        List<BinaryVersionAudit> binaryVersionAudits = binaryVersionAuditRepository.findByDateTimeBetween(startDateTime, endDateTime);
+        List<BinaryVersionAudit> binaryVersionAudits = binaryVersionAuditRepository.findByDateTimeBetween(toStartDateTime(startDate), toEndDateTime(endDate));
         return binaryVersionAudits.stream().collect(Collectors.groupingBy(bva -> bva.getDateTime().toLocalDate(), Collectors.counting()));
     }
 
     public Map<LocalDate, Long> findBinaryDownloadAuditsGroupByDate(BinaryType binaryType, LocalDate startDate, LocalDate endDate){
-        LocalDateTime startDateTime = startDate.atTime(LocalTime.MIN);
-        LocalDateTime endDateTime = endDate.atTime(LocalTime.MAX);
-
-        List<BinaryDownloadAudit> binaryDownloadAudits = binaryDownloadAuditRepository.findByBinaryTypeAndDateTimeBetween(binaryType, startDateTime, endDateTime);
+        List<BinaryDownloadAudit> binaryDownloadAudits = binaryDownloadAuditRepository.findByBinaryTypeAndDateTimeBetween(binaryType, toStartDateTime(startDate), toEndDateTime(endDate));
         return binaryDownloadAudits.stream().collect(Collectors.groupingBy(bda -> bda.getDateTime().toLocalDate(), Collectors.counting()));
     }
 
@@ -92,15 +90,24 @@ public class BinaryService {
         return binaryDownloadAuditRepository.findDownloadsByVersionCount();
     }
 
+    private LocalDateTime toStartDateTime(LocalDate startDate){
+        return startDate.atTime(LocalTime.MIN);
+    }
+
+    private LocalDateTime toEndDateTime(LocalDate endDate){
+        return endDate.atTime(LocalTime.MAX);
+    }
+
     private Stream<Binary> streamBinaries(){
         final AmazonS3 s3 = AmazonS3ClientBuilder.defaultClient();
         ListObjectsV2Result result = s3.listObjectsV2(binaryProperties.getAwsBucketName());
+        String bucketUrl = binaryProperties.getBaseUrl() + binaryProperties.getAwsBucketName() + "/";
         return result.getObjectSummaries()
                 .stream()
-                .map(o -> new Binary(binaryProperties.getBaseUrl() + o.getKey(), o.getSize(), retrieveVersion(o.getKey())));
+                .map(o -> new Binary(bucketUrl + o.getKey(), o.getSize(), retrieveVersion(o.getKey())));
     }
 
-    private void deleteIfExist(String filename){
+    public void deleteIfExist(String filename){
         final AmazonS3 s3 = AmazonS3ClientBuilder.defaultClient();
         s3.deleteObject(binaryProperties.getAwsBucketName(), filename);
     }
@@ -111,13 +118,25 @@ public class BinaryService {
         objectMetadata.setContentLength(bytes.length);
         s3.putObject(binaryProperties.getAwsBucketName(), filename, new ByteArrayInputStream(bytes), objectMetadata);
 
-        //TODO: make it public !!!
+        makePublicReadable(s3, filename);
+    }
+
+    private void makePublicReadable(final AmazonS3 s3, String filename){
+        AccessControlList acl = s3.getObjectAcl(binaryProperties.getAwsBucketName(), filename);
+        Grantee grantee = GroupGrantee.AllUsers;
+        Permission permission = Permission.Read;
+        acl.grantPermission(grantee, permission);
+        s3.setObjectAcl(binaryProperties.getAwsBucketName(), filename, acl);
+    }
+
+    private boolean hasVersion(String filename){
+        return Pattern.matches(binaryProperties.getVersionPattern(), filename);
     }
 
     private String retrieveVersion(String filename){
         Matcher matcher = Pattern.compile(binaryProperties.getVersionPattern()).matcher(filename);
         if(!matcher.find()){
-            throw new IllegalArgumentException("Impossible to find binary version on '" + filename + "' with: " + binaryProperties.getVersionPattern());
+            throw new IllegalStateException("Impossible to find binary version on '" + filename + "' with: " + binaryProperties.getVersionPattern());
         }
 
         return matcher.group(0);

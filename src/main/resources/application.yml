@@ -26,8 +26,8 @@ issue:
   page-size: 10
   chart-days: 15
 binary:
-  base-url: "https://s3.eu-west-3.amazonaws.com/urchinreleasemgt/"
-  version-pattern: "(\\d+[.]\\d+[.]\\d+)"
+  base-url: "https://s3.eu-west-3.amazonaws.com/"
+  version-pattern: ".*(\\d+[.]\\d+[.]\\d+).*"
   chart-days: 15
   upload-password: "$2a$10$xTIPQNMJouHawt2.YOjhZuSBCxxmkhgWZpe/McV/z56EmbRvFJL32"
   aws-bucket-name: "greencityrelease"

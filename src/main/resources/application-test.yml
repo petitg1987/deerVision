@@ -1,0 +1,2 @@
+spring.datasource.url: "jdbc:h2:mem:testdb"
+binary.upload-password: "$2a$10$0eLIELN74M2J/EjC1Gav5uHiHJ5R7.YYb8SLFp9aEo.F6T.wRLOr."
