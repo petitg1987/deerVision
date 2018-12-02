@@ -16,7 +16,7 @@ public class IssueRestController {
         this.issueService = issueService;
     }
 
-    //curl -X POST -H "Content-Type: text/plain" --data "Error description" http://localhost:8080/api/issues?appVersion=1.0.0-SNAPSHOT
+    //curl -X POST -H "Content-Type: text/plain" --data "Error description" http://localhost:5000/api/issues?appVersion=1.0.0-SNAPSHOT
     @PostMapping(consumes = MediaType.TEXT_PLAIN_VALUE)
     public void addIssue(@RequestBody String value, @RequestParam(value="appVersion") String appVersion){
         issueService.newIssue(value, appVersion);

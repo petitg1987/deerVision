@@ -24,7 +24,7 @@ public class BinaryRestController {
         this.binaryService = binaryService;
     }
 
-    //curl http://localhost:8080/api/binaries/linux-tar/version
+    //curl http://localhost:5000/api/binaries/linux-tar/version
     @GetMapping(value="/{binaryId}/version", produces = MediaType.TEXT_PLAIN_VALUE)
     public String lastVersion(@PathVariable(name = "binaryId") String binaryId){
         BinaryType binaryType = retrieveBinaryType(binaryId);
@@ -35,7 +35,7 @@ public class BinaryRestController {
         return appVersion;
     }
 
-    //curl -L http://localhost:8080/api/binaries/linux-deb --output release.deb
+    //curl -L http://localhost:5000/api/binaries/linux-deb --output release.deb
     @GetMapping(value="/{binaryId}")
     public ModelAndView download(@PathVariable(name = "binaryId") String binaryId){
         BinaryType binaryType = retrieveBinaryType(binaryId);
@@ -45,7 +45,7 @@ public class BinaryRestController {
         return new ModelAndView("redirect:" + lastBinary.getUrl());
     }
 
-    //curl -u "api:PASSWORD" -F 'file=@/home/greg/_binary/green-city-1.0.0.deb' -X PUT http://localhost:8080/api/binaries/linux-deb/
+    //curl -u "api:PASSWORD" -F 'file=@/home/greg/_binary/green-city-1.0.0.deb' -X PUT http://localhost:5000/api/binaries/linux-deb/
     @PutMapping(value="/{binaryId}")
     public void upload(@PathVariable(name = "binaryId") String binaryId, @RequestParam("file") MultipartFile file) {
         BinaryType binaryType = retrieveBinaryType(binaryId);
