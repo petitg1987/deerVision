@@ -18,4 +18,10 @@
             <outputDirectory>target/</outputDirectory>
         </file>
     </files>
+    <fileSets>
+        <fileSet>
+            <directory>${project.basedir}/.ebextensions</directory>
+            <outputDirectory>.ebextensions</outputDirectory>
+        </fileSet>
+    </fileSets>
 </assembly>
