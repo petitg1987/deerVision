@@ -10,7 +10,7 @@ if [[ -z $1 ]]; then
     exit 1
 fi
 
-if ! [[ "$2" =~ ^(delete|init|deploy)$ ]]; then
+if ! [[ "$2" =~ ^(init|deploy|delete)$ ]]; then
     echo "Action must be defined: init, deploy, delete"
     exit 1
 fi
