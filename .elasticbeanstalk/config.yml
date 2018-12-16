@@ -1,6 +1,7 @@
 branch-defaults:
   master:
-    environment: null
+    environment: prod-env
+    group_suffix: null
 deploy:
   artifact: target/urchin-release-mgt.zip
 global:
