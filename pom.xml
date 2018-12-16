@@ -118,6 +118,7 @@
                             <goal>single</goal>
                         </goals>
                         <configuration>
+							<finalName>${project.artifactId}</finalName>
                             <appendAssemblyId>false</appendAssemblyId>
                             <descriptors>
                                 <descriptor>src/main/assembly/zip-aws.xml</descriptor>

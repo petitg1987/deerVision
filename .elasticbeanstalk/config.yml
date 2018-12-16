@@ -1,8 +1,8 @@
 branch-defaults:
   master:
-    environment: prod-env
+    environment: null
 deploy:
-  artifact: target/urchin-release-mgt-1.0.0.zip
+  artifact: target/urchin-release-mgt.zip
 global:
   application_name: GreenCityReleaseMgt
   branch: null

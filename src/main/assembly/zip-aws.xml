@@ -10,12 +10,13 @@
     </formats>
     <files>
         <file>
-            <source>${project.basedir}/Dockerfile</source>
-            <outputDirectory/>
+            <source>${project.build.directory}/${project.artifactId}-${project.version}.jar</source>
+            <outputDirectory>bin/</outputDirectory>
+            <destName>${project.artifactId}.jar</destName>
         </file>
         <file>
-            <source>${project.build.directory}/${project.artifactId}-${project.version}.jar</source>
-            <outputDirectory>target/</outputDirectory>
+            <source>${project.basedir}/src/main/assembly/Dockerfile</source>
+            <outputDirectory/>
         </file>
     </files>
     <fileSets>
