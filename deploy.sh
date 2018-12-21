@@ -18,19 +18,24 @@
 CERTIFICATE_ARN="arn:aws:acm:eu-west-3:496124100072:certificate/5d207839-3699-4bc7-b207-6f52ddd42fd3"
 #///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-read -p "Application name (example: GreenCity): " appName
-read -p "Action (init/deploy/delete):" actionName
+set -e
+cd "$(dirname "$0")"
 
-sed "s/.*SSLCertificateId.*/    SSLCertificateId: ${CERTIFICATE_ARN}/"
+read -p "Application name to manage (example: GreenCity): " appName
+read -p "Action to execute (init/deploy/delete): " actionName
 
 fullAppName="${appName}ReleaseMgt"
 appVersion=`cat pom.xml | grep -Eo "[0-9]\.[0-9]\.[0-9]</version>" | head -1 | cut -d'<' -f1`
 cnamePrefix=`echo "$fullAppName" | tr '[:upper:]' '[:lower:]'`
 echo "Execute '$actionName' action on application '$fullAppName/$appVersion' with CNAME prefix '$cnamePrefix'"
 
-cd "$(dirname "$0")"
-mvn clean install
+echo " - Replace ARN certificate in ./.ebextensions/options.config"
+sed -i "s@.*SSLCertificateId.*@    SSLCertificateId: ${CERTIFICATE_ARN}@" ./.ebextensions/options.config
 
+echo " - Build application"
+mvn clean install > /tmp/build.txt
+
+echo " - Execute action $actionName on AWS"
 if [[ "$actionName" == "init" ]]; then
     rm -rf ./.elasticbeanstalk/config.yml
     mkdir -p ./.elasticbeanstalk
@@ -43,8 +48,9 @@ elif [[ "$actionName" == "deploy" ]]; then
     eb deploy prod-env
 elif [[ "$actionName" == "delete" ]]; then
     eb terminate prod-env --all
-    echo "AWS S3 bucket linked to elastic beanstalk can be deleted"
 else
     echo "Unknown action $actionName"
     exit 1
 fi
+
+echo "DEPLOYMENT SUCCESS !"

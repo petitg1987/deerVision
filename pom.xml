@@ -65,7 +65,7 @@
 		<dependency>
 			<groupId>com.google.guava</groupId>
 			<artifactId>guava</artifactId>
-			<version>27.0-jre</version>
+			<version>27.0.1-jre</version>
 		</dependency>
 		<dependency>
 			<groupId>com.h2database</groupId>
@@ -74,7 +74,7 @@
 		<dependency>
 			<groupId>com.amazonaws</groupId>
 			<artifactId>aws-java-sdk-s3</artifactId>
-			<version>1.11.460</version>
+			<version>1.11.473</version>
 		</dependency>
 		<dependency>
 			<groupId>io.rest-assured</groupId>
