@@ -8,8 +8,7 @@
 #   - DNS:
 #       - Create DNS "releasemgt.net" by using Route 53
 #       - Configure DNS by using Route 53 for hosted zones:
-#           - Add "A" record for [APP_NAME].releasemgt.net with Alias value: [APP_NAME]releasemgt.eu-west-3.elasticbeanstalk.com
-#           - Add "CNAME" record for www.[APP_NAME].releasemgt.net with value: [APP_NAME]releasemgt.eu-west-3.elasticbeanstalk.com
+#           - Add "A / IPv4" record for [APP_NAME].releasemgt.net with alias value: [APP_NAME]releasemgt.eu-west-3.elasticbeanstalk.com
 #   - HTTPS Certificate:
 #       - Request a public certificate for following domains: releasemgt.net & *.releasemgt.net
 #       - Update "CERTIFICATE_ARN" variable with certificate ARN value
