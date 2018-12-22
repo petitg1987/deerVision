@@ -4,6 +4,7 @@ server:
 management:
   endpoints.web.exposure.include: "*"
 spring:
+  profiles.active: "awssecurity"
   security.user:
     name: "admin"
     password: "$2a$10$SRSz7BSfnjvUnX7/BJyLSufHJOS5z6mDvo4lzeQkVUdYqGYtEx2UG"
@@ -27,7 +28,7 @@ issue:
   chart-days: 15
 binary:
   base-url: "https://s3.eu-west-3.amazonaws.com/"
+  aws-bucket-name: "greencityrelease"
   version-pattern: ".*(\\d+[.]\\d+[.]\\d+).*"
   chart-days: 15
   upload-password: "$2a$10$xTIPQNMJouHawt2.YOjhZuSBCxxmkhgWZpe/McV/z56EmbRvFJL32"
-  aws-bucket-name: "greencityrelease"

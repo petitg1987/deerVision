@@ -1,5 +1,8 @@
 package com.urchin.release.mgt.service;
 
+import com.amazonaws.auth.AWSStaticCredentialsProvider;
+import com.amazonaws.auth.BasicAWSCredentials;
+import com.amazonaws.regions.Regions;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 import com.amazonaws.services.s3.model.*;
@@ -13,6 +16,7 @@ import com.urchin.release.mgt.repository.BinaryDownloadAuditRepository;
 import com.urchin.release.mgt.repository.BinaryVersionAuditRepository;
 import com.urchin.release.mgt.repository.DownloadByVersionCount;
 import com.urchin.release.mgt.utils.AppVersionUtils;
+import org.apache.logging.log4j.util.Strings;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -99,8 +103,8 @@ public class BinaryService {
     }
 
     private Stream<Binary> streamBinaries(){
-        final AmazonS3 s3 = AmazonS3ClientBuilder.defaultClient();
-        ListObjectsV2Result result = s3.listObjectsV2(binaryProperties.getAwsBucketName());
+        final AmazonS3 s3Authenticated = buildAwsS3Authenticated();
+        ListObjectsV2Result result = s3Authenticated.listObjectsV2(binaryProperties.getAwsBucketName());
         String bucketUrl = binaryProperties.getBaseUrl() + binaryProperties.getAwsBucketName() + "/";
         return result.getObjectSummaries()
                 .stream()
@@ -108,25 +112,25 @@ public class BinaryService {
     }
 
     public void deleteIfExist(String filename){
-        final AmazonS3 s3 = AmazonS3ClientBuilder.defaultClient();
-        s3.deleteObject(binaryProperties.getAwsBucketName(), filename);
+        final AmazonS3 s3Authenticated = buildAwsS3Authenticated();
+        s3Authenticated.deleteObject(binaryProperties.getAwsBucketName(), filename);
     }
 
     private void upload(String filename, byte[] bytes){
-        final AmazonS3 s3 = AmazonS3ClientBuilder.defaultClient();
+        final AmazonS3 s3Authenticated = buildAwsS3Authenticated();
         ObjectMetadata objectMetadata = new ObjectMetadata();
         objectMetadata.setContentLength(bytes.length);
-        s3.putObject(binaryProperties.getAwsBucketName(), filename, new ByteArrayInputStream(bytes), objectMetadata);
+        s3Authenticated.putObject(binaryProperties.getAwsBucketName(), filename, new ByteArrayInputStream(bytes), objectMetadata);
 
-        makePublicReadable(s3, filename);
+        makePublicReadable(s3Authenticated, filename);
     }
 
-    private void makePublicReadable(final AmazonS3 s3, String filename){
-        AccessControlList acl = s3.getObjectAcl(binaryProperties.getAwsBucketName(), filename);
+    private void makePublicReadable(final AmazonS3 s3Authenticated, String filename){
+        AccessControlList acl = s3Authenticated.getObjectAcl(binaryProperties.getAwsBucketName(), filename);
         Grantee grantee = GroupGrantee.AllUsers;
         Permission permission = Permission.Read;
         acl.grantPermission(grantee, permission);
-        s3.setObjectAcl(binaryProperties.getAwsBucketName(), filename, acl);
+        s3Authenticated.setObjectAcl(binaryProperties.getAwsBucketName(), filename, acl);
     }
 
     private boolean hasVersion(String filename){
@@ -140,5 +144,19 @@ public class BinaryService {
         }
 
         return matcher.group(0);
+    }
+
+    private AmazonS3 buildAwsS3Authenticated(){
+        if(Strings.isBlank(binaryProperties.getAwsAccessKeyId())){
+            throw new IllegalArgumentException("AWS access key ID properties must be provided");
+        }
+        if(Strings.isBlank(binaryProperties.getAwsSecretAccessKey())){
+            throw new IllegalArgumentException("AWS secret access key properties must be provided");
+        }
+
+        return AmazonS3ClientBuilder.standard()
+                .withCredentials(new AWSStaticCredentialsProvider(new BasicAWSCredentials(binaryProperties.getAwsAccessKeyId(), binaryProperties.getAwsSecretAccessKey())))
+                .withRegion(Regions.EU_WEST_3)
+                .build();
     }
 }

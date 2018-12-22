@@ -7,10 +7,10 @@
 #   - Configure EB CLI: https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/eb-cli3-configuration.html
 #   - DNS:
 #       - Create DNS "releasemgt.net" by using Route 53
-#       - Configure DNS by using Route 53 for hosted zones:
+#       - Configure DNS hosted zones by using Route 53:
 #           - Add "A / IPv4" record for [APP_NAME].releasemgt.net with alias value: [APP_NAME]releasemgt.eu-west-3.elasticbeanstalk.com
 #   - HTTPS Certificate:
-#       - Request a public certificate for following domains: releasemgt.net & *.releasemgt.net
+#       - Request a public certificate for following domains on Amazon Certificate Manager: releasemgt.net & *.releasemgt.net
 #       - Update "CERTIFICATE_ARN" variable with certificate ARN value
 #
 # Configuration
@@ -43,13 +43,16 @@ if [[ "$actionName" == "init" ]]; then
 
     eb init ${fullAppName}
     eb create prod-env --cname ${cnamePrefix}
+    echo "INIT SUCCESS !"
 elif [[ "$actionName" == "deploy" ]]; then
     eb deploy prod-env
+    echo "DEPLOY SUCCESS !"
 elif [[ "$actionName" == "delete" ]]; then
     eb terminate prod-env --all
+    echo "DELETE SUCCESS !"
 else
     echo "Unknown action $actionName"
     exit 1
 fi
 
-echo "DEPLOYMENT SUCCESS !"
+

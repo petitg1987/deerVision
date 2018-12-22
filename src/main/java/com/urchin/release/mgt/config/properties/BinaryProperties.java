@@ -9,13 +9,17 @@ public class BinaryProperties {
 
     private String baseUrl;
 
+    private String awsBucketName;
+
+    private String awsAccessKeyId;
+
+    private String awsSecretAccessKey;
+
     private String versionPattern;
 
     private int chartDays;
 
     private String uploadPassword;
-
-    private String awsBucketName;
 
     public String getBaseUrl() {
         return baseUrl;
@@ -23,6 +27,30 @@ public class BinaryProperties {
 
     public void setBaseUrl(String baseUrl) {
         this.baseUrl = baseUrl;
+    }
+
+    public String getAwsBucketName() {
+        return awsBucketName;
+    }
+
+    public void setAwsBucketName(String awsBucketName) {
+        this.awsBucketName = awsBucketName;
+    }
+
+    public String getAwsAccessKeyId() {
+        return awsAccessKeyId;
+    }
+
+    public void setAwsAccessKeyId(String awsAccessKeyId) {
+        this.awsAccessKeyId = awsAccessKeyId;
+    }
+
+    public String getAwsSecretAccessKey() {
+        return awsSecretAccessKey;
+    }
+
+    public void setAwsSecretAccessKey(String awsSecretAccessKey) {
+        this.awsSecretAccessKey = awsSecretAccessKey;
     }
 
     public String getVersionPattern() {
@@ -48,12 +76,4 @@ public class BinaryProperties {
     public void setUploadPassword(String uploadPassword) {
         this.uploadPassword = uploadPassword;
     }
-
-    public String getAwsBucketName() {
-        return awsBucketName;
     }
-
-    public void setAwsBucketName(String awsBucketName) {
-        this.awsBucketName = awsBucketName;
-    }
-}
