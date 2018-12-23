@@ -18,6 +18,10 @@
             <source>${project.basedir}/src/main/assembly/Dockerfile</source>
             <outputDirectory/>
         </file>
+        <file>
+            <source>${project.basedir}/src/main/assembly/Dockerrun.aws.json</source>
+            <outputDirectory/>
+        </file>
     </files>
     <fileSets>
         <fileSet>
