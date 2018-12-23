@@ -143,7 +143,7 @@ public class BinaryService {
             throw new IllegalStateException("Impossible to find binary version on '" + filename + "' with: " + binaryProperties.getVersionPattern());
         }
 
-        return matcher.group(0);
+        return matcher.group(1);
     }
 
     private AmazonS3 buildAwsS3Authenticated(){
