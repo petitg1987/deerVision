@@ -2,11 +2,15 @@ package com.urchin.release.mgt.controller;
 
 import com.urchin.release.mgt.service.BinaryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
+import org.springframework.http.server.ServletServerHttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.util.UriComponents;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.stream.Collectors;
@@ -35,7 +39,9 @@ public class BinaryController {
 
         model.addAttribute("binaries", binaryService.getLastBinaries());
 
-        String requestUrl = request.getRequestURL().toString();
+        HttpRequest httpRequest = new ServletServerHttpRequest(request);
+        UriComponents uriComponents = UriComponentsBuilder.fromHttpRequest(httpRequest).build();
+        String requestUrl = uriComponents.toUri().toString();
         String baseServerUrl = requestUrl.substring(0, requestUrl.length() - request.getRequestURI().length());
         model.addAttribute("baseServerUrl", baseServerUrl);
 

@@ -25,7 +25,8 @@
             <thead>
             <tr>
                 <th style="width: 20.00%">Filename</th>
-                <th style="width: 60.00%">Public link</th>
+                <th style="width: 45.00%">Public link</th>
+                <th style="width: 15.00%">Last modified</th>
                 <th style="width: 10.00%">Size (MB)</th>
                 <th style="width: 10.00%">Actions</th>
             </tr>
@@ -34,6 +35,7 @@
             <tr th:each="binary : ${binaries}">
                 <td th:text="${binary.fileName}" />
                 <td th:text="@{|${baseServerUrl}/api/binaries/${binary.binaryId}|}" />
+                <td th:text="${binary.lastModifiedDisplay}" />
                 <td th:text="${binary.fileSizeMB}" />
                 <td>
                     <a th:href="@{|/api/binaries/${binary.binaryId}|}">Download</a>

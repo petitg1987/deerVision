@@ -24,10 +24,8 @@ import java.io.ByteArrayInputStream;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.time.ZoneId;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -108,7 +106,7 @@ public class BinaryService {
         String bucketUrl = binaryProperties.getBaseUrl() + binaryProperties.getAwsBucketName() + "/";
         return result.getObjectSummaries()
                 .stream()
-                .map(o -> new Binary(bucketUrl + o.getKey(), o.getSize(), retrieveVersion(o.getKey())));
+                .map(o -> new Binary(bucketUrl + o.getKey(), o.getSize(), retrieveVersion(o.getKey()), toLocalDateTime(o.getLastModified())));
     }
 
     public void deleteIfExist(String filename){
@@ -144,6 +142,12 @@ public class BinaryService {
         }
 
         return matcher.group(1);
+    }
+
+    public LocalDateTime toLocalDateTime(Date dateToConvert) {
+        return dateToConvert.toInstant()
+                .atZone(ZoneId.systemDefault())
+                .toLocalDateTime();
     }
 
     private AmazonS3 buildAwsS3Authenticated(){

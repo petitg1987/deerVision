@@ -2,6 +2,9 @@ package com.urchin.release.mgt.model;
 
 import com.google.common.base.CaseFormat;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 public class Binary {
 
     private String url;
@@ -12,12 +15,14 @@ public class Binary {
 
     private BinaryType binaryType;
 
-    public Binary(String url, long sizeInBytes, String version) {
+    private LocalDateTime lastModified;
+
+    public Binary(String url, long sizeInBytes, String version, LocalDateTime lastModified) {
         this.url = url;
         this.sizeInBytes = sizeInBytes;
         this.version = version;
-
         this.binaryType = retrieveBinaryType();
+        this.lastModified = lastModified;
     }
 
     public String getUrl() {
@@ -32,6 +37,10 @@ public class Binary {
         return binaryType;
     }
 
+    public LocalDateTime getLastModified() {
+        return lastModified;
+    }
+
     public String getBinaryId() {
         return CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.LOWER_HYPHEN, binaryType.name());
     }
@@ -43,6 +52,11 @@ public class Binary {
     public String getFileSizeMB(){
         double sizeDouble = sizeInBytes / 1000.0 / 1000.0;
         return String.format("%.01f", sizeDouble);
+    }
+
+    public String getLastModifiedDisplay() {
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH':'mm':'ss");
+        return lastModified.format(dateTimeFormatter);
     }
 
     private BinaryType retrieveBinaryType() {
