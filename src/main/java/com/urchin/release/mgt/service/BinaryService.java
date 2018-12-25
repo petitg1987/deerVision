@@ -121,6 +121,7 @@ public class BinaryService {
         final AmazonS3 s3Authenticated = buildAwsS3Authenticated();
         ObjectMetadata objectMetadata = new ObjectMetadata();
         objectMetadata.setContentLength(bytes.length);
+        objectMetadata.setLastModified(new Date());
         s3Authenticated.putObject(binaryProperties.getAwsBucketName(), filename, new ByteArrayInputStream(bytes), objectMetadata);
 
         makePublicReadable(s3Authenticated, filename);
