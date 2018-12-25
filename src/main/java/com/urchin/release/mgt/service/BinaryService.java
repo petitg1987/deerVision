@@ -149,7 +149,7 @@ public class BinaryService {
         return matcher.group(1);
     }
 
-    public LocalDateTime toLocalDateTime(Date dateToConvert) {
+    private LocalDateTime toLocalDateTime(Date dateToConvert) {
         return dateToConvert.toInstant()
                 .atZone(ZoneId.systemDefault())
                 .toLocalDateTime();
