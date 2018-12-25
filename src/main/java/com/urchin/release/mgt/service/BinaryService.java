@@ -104,6 +104,7 @@ public class BinaryService {
         final AmazonS3 s3Authenticated = buildAwsS3Authenticated();
         ListObjectsV2Result result = s3Authenticated.listObjectsV2(binaryProperties.getAwsBucketName());
         String bucketUrl = binaryProperties.getBaseUrl() + binaryProperties.getAwsBucketName() + "/";
+        s3Authenticated.shutdown();
         return result.getObjectSummaries()
                 .stream()
                 .map(o -> new Binary(bucketUrl + o.getKey(), o.getSize(), retrieveVersion(o.getKey()), toLocalDateTime(o.getLastModified())));
@@ -112,6 +113,7 @@ public class BinaryService {
     public void deleteIfExist(String filename){
         final AmazonS3 s3Authenticated = buildAwsS3Authenticated();
         s3Authenticated.deleteObject(binaryProperties.getAwsBucketName(), filename);
+        s3Authenticated.shutdown();
     }
 
     private void upload(String filename, byte[] bytes){
@@ -121,6 +123,7 @@ public class BinaryService {
         s3Authenticated.putObject(binaryProperties.getAwsBucketName(), filename, new ByteArrayInputStream(bytes), objectMetadata);
 
         makePublicReadable(s3Authenticated, filename);
+        s3Authenticated.shutdown();
     }
 
     private void makePublicReadable(final AmazonS3 s3Authenticated, String filename){
