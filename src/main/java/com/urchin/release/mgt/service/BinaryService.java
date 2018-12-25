@@ -104,10 +104,11 @@ public class BinaryService {
         final AmazonS3 s3Authenticated = buildAwsS3Authenticated();
         ListObjectsV2Result result = s3Authenticated.listObjectsV2(binaryProperties.getAwsBucketName());
         String bucketUrl = binaryProperties.getBaseUrl() + binaryProperties.getAwsBucketName() + "/";
-        s3Authenticated.shutdown();
-        return result.getObjectSummaries()
+        Stream<Binary> binariesStream = result.getObjectSummaries()
                 .stream()
                 .map(o -> new Binary(bucketUrl + o.getKey(), o.getSize(), retrieveVersion(o.getKey()), toLocalDateTime(o.getLastModified())));
+        s3Authenticated.shutdown();
+        return binariesStream;
     }
 
     public void deleteIfExist(String filename){
