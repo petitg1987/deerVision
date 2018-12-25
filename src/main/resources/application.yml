@@ -31,4 +31,4 @@ binary:
   aws-bucket-name: "greencityrelease"
   version-pattern: ".*(\\d+[.]\\d+[.]\\d+).*"
   chart-days: 15
-  upload-password: "$2y$10$ohvVNQySzT9K0WSNPLgVAeApcrFKUBWQ8Im8bfSVA5BWN/EdiAi3q"
+  upload-password: "$2a$10$7yJPwmnfTkHqW/816QF6guMWU8mgx4DmXMdOul6BbIyapjGwrBYLG"
