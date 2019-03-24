@@ -4,7 +4,6 @@ import com.urchin.release.mgt.config.properties.BinaryProperties;
 import com.urchin.release.mgt.service.BinaryService;
 import io.restassured.RestAssured;
 import io.restassured.specification.RequestSpecification;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -50,25 +49,15 @@ public class BinaryRestControllerTest {
     }
 
     //@Test
-    public void uploadPublicAccessTest(){
+    public void uploadAndDeleteTest(){
         //upload
         String filename = "test-0.0.0.deb";
         String fileContent = "fileContent";
         restAssuredAuth.multiPart("file", filename, fileContent.getBytes()).put("api/binaries/linux-deb")
                 .then().statusCode(200);
 
-        //check upload
-        String fileUrl = binaryProperties.getBaseUrl() + binaryProperties.getAwsBucketName() + "/" + filename;
-        String bodyContent = new String(RestAssured.given().baseUri(fileUrl).get()
-                .then().statusCode(200).extract().body().asByteArray());
-        Assert.assertEquals(fileContent, bodyContent);
-
         //delete
         binaryService.deleteIfExist(filename);
-
-        //check delete
-        RestAssured.given().baseUri(fileUrl).get()
-                .then().statusCode(403);
     }
 
 }

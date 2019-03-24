@@ -9,6 +9,8 @@ public class Binary {
 
     private String url;
 
+    private String filename;
+
     private long sizeInBytes;
 
     private String version;
@@ -17,8 +19,9 @@ public class Binary {
 
     private LocalDateTime lastModified;
 
-    public Binary(String url, long sizeInBytes, String version, LocalDateTime lastModified) {
+    public Binary(String url, String filename, long sizeInBytes, String version, LocalDateTime lastModified) {
         this.url = url;
+        this.filename = filename;
         this.sizeInBytes = sizeInBytes;
         this.version = version;
         this.binaryType = retrieveBinaryType();
@@ -46,7 +49,7 @@ public class Binary {
     }
 
     public String getFileName(){
-        return url.substring(url.lastIndexOf("/") + 1);
+        return filename;
     }
 
     public String getFileSizeMB(){

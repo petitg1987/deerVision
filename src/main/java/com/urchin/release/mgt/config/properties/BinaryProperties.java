@@ -7,8 +7,6 @@ import org.springframework.context.annotation.Configuration;
 @ConfigurationProperties(prefix = "binary")
 public class BinaryProperties {
 
-    private String baseUrl;
-
     private String awsBucketName;
 
     private String awsAccessKeyId;
@@ -20,14 +18,6 @@ public class BinaryProperties {
     private int chartDays;
 
     private String uploadPassword;
-
-    public String getBaseUrl() {
-        return baseUrl;
-    }
-
-    public void setBaseUrl(String baseUrl) {
-        this.baseUrl = baseUrl;
-    }
 
     public String getAwsBucketName() {
         return awsBucketName;

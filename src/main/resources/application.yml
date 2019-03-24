@@ -27,7 +27,6 @@ issue:
   page-size: 10
   chart-days: 15
 binary:
-  base-url: "https://s3.eu-west-3.amazonaws.com/"
   aws-bucket-name: "greencityrelease"
   version-pattern: ".*(\\d+[.]\\d+[.]\\d+).*"
   chart-days: 15

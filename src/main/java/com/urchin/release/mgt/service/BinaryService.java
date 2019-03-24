@@ -1,5 +1,6 @@
 package com.urchin.release.mgt.service;
 
+import com.amazonaws.HttpMethod;
 import com.amazonaws.auth.AWSStaticCredentialsProvider;
 import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.regions.Regions;
@@ -16,11 +17,13 @@ import com.urchin.release.mgt.repository.BinaryDownloadAuditRepository;
 import com.urchin.release.mgt.repository.BinaryVersionAuditRepository;
 import com.urchin.release.mgt.repository.DownloadByVersionCount;
 import com.urchin.release.mgt.utils.AppVersionUtils;
+import org.apache.commons.io.FilenameUtils;
 import org.apache.logging.log4j.util.Strings;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.ByteArrayInputStream;
+import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -103,12 +106,26 @@ public class BinaryService {
     private Stream<Binary> streamBinaries(){
         final AmazonS3 s3Authenticated = buildAwsS3Authenticated();
         ListObjectsV2Result result = s3Authenticated.listObjectsV2(binaryProperties.getAwsBucketName());
-        String bucketUrl = binaryProperties.getBaseUrl() + binaryProperties.getAwsBucketName() + "/";
         Stream<Binary> binariesStream = result.getObjectSummaries()
                 .stream()
-                .map(o -> new Binary(bucketUrl + o.getKey(), o.getSize(), retrieveVersion(o.getKey()), toLocalDateTime(o.getLastModified())));
+                .map(o -> {
+                    URL url = retrievePresignedUrl(o.getKey(), s3Authenticated);
+                    String filename = FilenameUtils.getName(url.getPath());
+                    return new Binary(url.toExternalForm(), filename, o.getSize(), retrieveVersion(o.getKey()), toLocalDateTime(o.getLastModified()));
+                });
         s3Authenticated.shutdown();
         return binariesStream;
+    }
+
+    private URL retrievePresignedUrl(String objectKey, final AmazonS3 s3Authenticated){
+        Date expiration = new Date();
+        long expTimeMillis = expiration.getTime() + 1000 * 60 * 60 * 12; //12 hours
+        expiration.setTime(expTimeMillis);
+
+        GeneratePresignedUrlRequest generatePresignedUrlRequest = new GeneratePresignedUrlRequest(binaryProperties.getAwsBucketName(), objectKey)
+                .withMethod(HttpMethod.GET)
+                .withExpiration(expiration);
+        return s3Authenticated.generatePresignedUrl(generatePresignedUrlRequest);
     }
 
     public void deleteIfExist(String filename){
@@ -123,17 +140,7 @@ public class BinaryService {
         objectMetadata.setContentLength(bytes.length);
         objectMetadata.setLastModified(new Date());
         s3Authenticated.putObject(binaryProperties.getAwsBucketName(), filename, new ByteArrayInputStream(bytes), objectMetadata);
-
-        makePublicReadable(s3Authenticated, filename);
         s3Authenticated.shutdown();
-    }
-
-    private void makePublicReadable(final AmazonS3 s3Authenticated, String filename){
-        AccessControlList acl = s3Authenticated.getObjectAcl(binaryProperties.getAwsBucketName(), filename);
-        Grantee grantee = GroupGrantee.AllUsers;
-        Permission permission = Permission.Read;
-        acl.grantPermission(grantee, permission);
-        s3Authenticated.setObjectAcl(binaryProperties.getAwsBucketName(), filename, acl);
     }
 
     private boolean hasVersion(String filename){
