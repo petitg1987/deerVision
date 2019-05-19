@@ -1,8 +1,5 @@
 /target/
-/.idea/workspace.xml
 application-awssecurity.yml
-
-
 
 # Elastic Beanstalk Files
 .elasticbeanstalk/*
