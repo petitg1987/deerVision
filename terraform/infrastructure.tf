@@ -1,9 +1,13 @@
 ##########################################################################################
 # PRE-REQUISITE
 ##########################################################################################
-# 1) Create IAM User with programmatic access & "AdministratorAccess" IAM policy
-# 2) Add keys in ~/.aws/credentials under "[releasemgt]" profile
-# 3) Use: terraform init && terraform apply -auto-approve
+# - Create IAM User named "release-mgt-user" with programmatic access and having "AdministratorAccess" IAM policy
+# - Add IAM user keys in ~/.aws/credentials under "[releasemgt]" profile
+# - Create DNS "releasemgt.net" by using Route 53
+# - Request a public certificate for following domains on Amazon Certificate Manager: releasemgt.net & *.releasemgt.net
+# - Use:
+#     - terraform init
+#     - terraform apply -auto-approve
 
 ##########################################################################################
 # CREDENTIAL
@@ -17,59 +21,59 @@ provider "aws" {
 ##########################################################################################
 # NETWORK & ACCESS
 ##########################################################################################
-resource "aws_vpc" "release_mgt_vpc" {
+resource "aws_vpc" "rlmgt_vpc" {
   cidr_block = "10.0.0.0/16"
   tags = {
     Name = "releaseMgtVPC"
   }
 }
 
-resource "aws_internet_gateway" "release_mgt_igw" {
-  vpc_id = "${aws_vpc.release_mgt_vpc.id}"
+resource "aws_internet_gateway" "rlmgt_igw" {
+  vpc_id = "${aws_vpc.rlmgt_vpc.id}"
   tags = {
     Name = "releaseMgtIGW"
   }
 }
 
-resource "aws_route_table" "release_mgt_route" {
-  vpc_id = "${aws_vpc.release_mgt_vpc.id}"
+resource "aws_route_table" "rlmgt_route" {
+  vpc_id = "${aws_vpc.rlmgt_vpc.id}"
   route {
     cidr_block = "0.0.0.0/0"
-    gateway_id = "${aws_internet_gateway.release_mgt_igw.id}"
+    gateway_id = "${aws_internet_gateway.rlmgt_igw.id}"
   }
   tags = {
     Name = "releaseMgtRoute"
   }
 }
 
-resource "aws_subnet" "release_mgt_subnet_a" {
-  vpc_id = "${aws_vpc.release_mgt_vpc.id}"
+resource "aws_subnet" "rlmgt_subnet_a" {
+  vpc_id = "${aws_vpc.rlmgt_vpc.id}"
   cidr_block = "10.0.0.0/24"
   map_public_ip_on_launch = true
   availability_zone = "eu-west-3a"
 }
 
-resource "aws_subnet" "release_mgt_subnet_b" {
-  vpc_id = "${aws_vpc.release_mgt_vpc.id}"
+resource "aws_subnet" "rlmgt_subnet_b" {
+  vpc_id = "${aws_vpc.rlmgt_vpc.id}"
   cidr_block = "10.0.1.0/24"
   map_public_ip_on_launch = true
   availability_zone = "eu-west-3b"
 }
 
-resource "aws_route_table_association" "release_mgt_route_a" {
-  subnet_id = "${aws_subnet.release_mgt_subnet_a.id}"
-  route_table_id = "${aws_route_table.release_mgt_route.id}"
+resource "aws_route_table_association" "rlmgt_route_a" {
+  subnet_id = "${aws_subnet.rlmgt_subnet_a.id}"
+  route_table_id = "${aws_route_table.rlmgt_route.id}"
 }
 
-resource "aws_route_table_association" "release_mgt_route_b" {
-  subnet_id = "${aws_subnet.release_mgt_subnet_b.id}"
-  route_table_id = "${aws_route_table.release_mgt_route.id}"
+resource "aws_route_table_association" "rlmgt_route_b" {
+  subnet_id = "${aws_subnet.rlmgt_subnet_b.id}"
+  route_table_id = "${aws_route_table.rlmgt_route.id}"
 }
 
-resource "aws_security_group" "release_mgt_sg" {
+resource "aws_security_group" "rlmgt_sg" {
   name = "releaseMgtSG"
   description = "Release Mgt Security Group"
-  vpc_id = "${aws_vpc.release_mgt_vpc.id}"
+  vpc_id = "${aws_vpc.rlmgt_vpc.id}"
   ingress {
     from_port = 22
     to_port = 22
@@ -88,15 +92,8 @@ resource "aws_security_group" "release_mgt_sg" {
     from_port = 80
     to_port = 80
     protocol = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
+    cidr_blocks = ["0.0.0.0/0"] #TODO can be reduced to IP of ELB ?
     description = "HTTP"
-  }
-  ingress { #TODO remove (use SSL until ELB) ?
-    from_port = 443
-    to_port = 443
-    protocol = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-    description = "HTTPS"
   }
   tags = {
     Name = "releaseMgtSG"
@@ -119,19 +116,19 @@ data "aws_ami" "ubuntu" {
   owners = ["099720109477"]
 }
 
-resource "aws_launch_template" "release_mgt_launch_template" {
+resource "aws_launch_template" "rlmgt_launch_template" {
   name_prefix = "releaseMgtInstance"
   image_id = "${data.aws_ami.ubuntu.id}"
   instance_type = "t2.micro"
   key_name = "releasemgt"
-  vpc_security_group_ids = ["${aws_security_group.release_mgt_sg.id}"]
+  vpc_security_group_ids = ["${aws_security_group.rlmgt_sg.id}"]
 }
 
-resource "aws_autoscaling_group" "release_mgt_asg" {
+resource "aws_autoscaling_group" "rlmgt_asg" {
   desired_capacity = 1
   max_size = 1
   min_size = 1
-  vpc_zone_identifier = ["${aws_subnet.release_mgt_subnet_a.id}", "${aws_subnet.release_mgt_subnet_b.id}"]
+  vpc_zone_identifier = ["${aws_subnet.rlmgt_subnet_a.id}", "${aws_subnet.rlmgt_subnet_b.id}"]
   health_check_grace_period = 300
   health_check_type = "ELB"
   tag {
@@ -140,7 +137,7 @@ resource "aws_autoscaling_group" "release_mgt_asg" {
     propagate_at_launch = true
   }
   launch_template {
-    id = "${aws_launch_template.release_mgt_launch_template.id}"
+    id = "${aws_launch_template.rlmgt_launch_template.id}"
     version = "$Latest"
   }
 }
@@ -148,63 +145,126 @@ resource "aws_autoscaling_group" "release_mgt_asg" {
 ##########################################################################################
 # LOAD BALANCER
 ##########################################################################################
-resource "aws_lb_target_group" "release_mgt_elb_target_group" {
+resource "aws_lb_target_group" "rlmgt_elb_target_group" {
   name = "releaseMgtTargetGroup"
-  port= 443
-  protocol = "HTTPS"
-  vpc_id = "${aws_vpc.release_mgt_vpc.id}"
+  port= 80
+  protocol = "HTTP"
+  vpc_id = "${aws_vpc.rlmgt_vpc.id}"
   target_type = "instance"
-  #TODO add health_check
-}
-
-resource "aws_lb" "release_mgt_elb" {
-  name = "releaseMgtElb"
-  internal = false
-  load_balancer_type = "application"
-  security_groups = ["${aws_security_group.release_mgt_sg.id}"]
-  subnets = ["${aws_subnet.release_mgt_subnet_a.id}", "${aws_subnet.release_mgt_subnet_b.id}"]
-  enable_deletion_protection = false
-  # access_logs {
-  #    bucket  = "${aws_s3_bucket.lb_logs.bucket}"
-  #    prefix  = "test-lb"
-  #    enabled = true
-  #  }
-}
-
-resource "aws_lb_listener" "front_end" {
-  load_balancer_arn = "${aws_lb.release_mgt_elb.arn}"
-  port = "443"
-  protocol = "HTTPS"
-  ssl_policy = "ELBSecurityPolicy-2016-08"
-  certificate_arn = "arn:aws:acm:eu-west-3:496124100072:certificate/5d207839-3699-4bc7-b207-6f52ddd42fd3" #TODO variable or create or pre-condition ?
-  default_action {
-    type = "forward"
-    target_group_arn = "${aws_lb_target_group.release_mgt_elb_target_group.arn}"
+  health_check {
+    protocol = "HTTP"
+    port = 80
+    path = "/"
   }
 }
 
-#TODO add redirect from 80 to 443: https://www.terraform.io/docs/providers/aws/r/lb_listener.html
+resource "aws_s3_bucket" "rlmgt_s3_access_logs_bucket" {
+  bucket = "rlmgt-elb-access-logs-bucket"
+  acl = "private"
+  tags = {
+    Name = "Release Mgt ELB Access Logs Buket"
+  }
+}
+
+data "aws_iam_user" "rlmgt_iam_user" {
+  user_name = "release-mgt-user"
+}
+
+resource "aws_s3_bucket_policy" "rlmgt_s3_policy" {
+  bucket = "${aws_s3_bucket.rlmgt_s3_access_logs_bucket.id}"
+  policy = <<POLICY
+{
+  "Version": "2012-10-17",
+  "Id": "releaseMgtElbAccessLogsBucketId",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": "s3:PutObject",
+      "Resource": "arn:aws:s3:::rlmgt-elb-access-logs-bucket/*",
+      "Principal": {
+        "AWS": ["009996457667"]
+      }
+    },
+    {
+      "Effect": "Allow",
+      "Action": "s3:*",
+      "Resource": "arn:aws:s3:::rlmgt-elb-access-logs-bucket",
+      "Principal": {
+        "AWS": ["${data.aws_iam_user.rlmgt_iam_user.arn}"]
+      }
+    }
+
+  ]
+}
+POLICY
+}
+
+resource "aws_lb" "rlmgt_elb" {
+  name = "releaseMgtElb"
+  internal = false
+  load_balancer_type = "application"
+  security_groups = ["${aws_security_group.rlmgt_sg.id}"]
+  subnets = ["${aws_subnet.rlmgt_subnet_a.id}", "${aws_subnet.rlmgt_subnet_b.id}"]
+  enable_deletion_protection = false
+  access_logs {
+    bucket = "${aws_s3_bucket.rlmgt_s3_access_logs_bucket.bucket}"
+    prefix = "rlmgt-access-logs"
+    enabled = true
+  }
+}
+
+data "aws_acm_certificate" "rlmgt_domain_certificate" {
+  domain = "releasemgt.net"
+  types = ["AMAZON_ISSUED"]
+  most_recent = true
+}
+
+resource "aws_lb_listener" "rlmgt_elb_listener_https" {
+  load_balancer_arn = "${aws_lb.rlmgt_elb.arn}"
+  port = "443"
+  protocol = "HTTPS"
+  ssl_policy = "ELBSecurityPolicy-2016-08"
+  certificate_arn = "${data.aws_acm_certificate.rlmgt_domain_certificate.arn}"
+  default_action {
+    type = "forward"
+    target_group_arn = "${aws_lb_target_group.rlmgt_elb_target_group.arn}"
+  }
+}
+
+resource "aws_lb_listener" "rlmgt_elb_listener_http" {
+  load_balancer_arn = "${aws_lb.rlmgt_elb.arn}"
+  port = "80"
+  protocol = "HTTP"
+  default_action {
+    type = "redirect"
+    redirect {
+      port = "443"
+      protocol = "HTTPS"
+      status_code = "HTTP_301"
+    }
+  }
+}
 
 resource "aws_autoscaling_attachment" "asg_attachment_bar" {
-  autoscaling_group_name = "${aws_autoscaling_group.release_mgt_asg.id}"
-  alb_target_group_arn   = "${aws_lb_target_group.release_mgt_elb_target_group.arn}"
+  autoscaling_group_name = "${aws_autoscaling_group.rlmgt_asg.id}"
+  alb_target_group_arn   = "${aws_lb_target_group.rlmgt_elb_target_group.arn}"
 }
 
 ##########################################################################################
 # ROUTE 53
 ##########################################################################################
 data "aws_route53_zone" "selected" {
-  name = "releasemgt.net." #TODO parameter ?
+  name = "releasemgt.net."
   private_zone = false
 }
 
-resource "aws_route53_record" "release_mgt_dns_record" {
+resource "aws_route53_record" "rlmgt_dns_record" {
   zone_id = "${data.aws_route53_zone.selected.zone_id}"
   name = "greencity" #TODO parameter
   type = "A"
   alias {
-    name = "${aws_lb.release_mgt_elb.dns_name}"
-    zone_id = "${aws_lb.release_mgt_elb.zone_id}"
+    name = "${aws_lb.rlmgt_elb.dns_name}"
+    zone_id = "${aws_lb.rlmgt_elb.zone_id}"
     evaluate_target_health = false
   }
 }
