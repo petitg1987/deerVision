@@ -50,11 +50,16 @@ resource "aws_route_table" "rlmgt_route" {
   }
 }
 
-resource "aws_subnet" "rlmgt_subnet_a" {
+resource "aws_subnet" "rlmgt_subnet_a" { #TODO create subnet from list of AZ
   vpc_id = "${aws_vpc.rlmgt_vpc.id}"
   cidr_block = "10.0.0.0/24"
   map_public_ip_on_launch = true
   availability_zone = "eu-west-3a"
+}
+
+resource "aws_route_table_association" "rlmgt_route_a" {
+  subnet_id = "${aws_subnet.rlmgt_subnet_a.id}"
+  route_table_id = "${aws_route_table.rlmgt_route.id}"
 }
 
 resource "aws_subnet" "rlmgt_subnet_b" {
@@ -64,19 +69,14 @@ resource "aws_subnet" "rlmgt_subnet_b" {
   availability_zone = "eu-west-3b"
 }
 
-resource "aws_route_table_association" "rlmgt_route_a" {
-  subnet_id = "${aws_subnet.rlmgt_subnet_a.id}"
-  route_table_id = "${aws_route_table.rlmgt_route.id}"
-}
-
 resource "aws_route_table_association" "rlmgt_route_b" {
   subnet_id = "${aws_subnet.rlmgt_subnet_b.id}"
   route_table_id = "${aws_route_table.rlmgt_route.id}"
 }
 
-resource "aws_security_group" "rlmgt_sg" {
-  name = "releaseMgtSG"
-  description = "Release Mgt Security Group"
+resource "aws_security_group" "rlmgt_instance_sg" {
+  name = "releaseMgtInstanceSG"
+  description = "Release Mgt Instance Security Group"
   vpc_id = "${aws_vpc.rlmgt_vpc.id}"
   ingress {
     from_port = 22
@@ -107,7 +107,7 @@ resource "aws_security_group" "rlmgt_sg" {
     description = "Connection from EC2 to Internet"
   }
   tags = {
-    Name = "releaseMgtSG"
+    Name = "releaseMgtInstanceSG"
   }
 }
 
@@ -132,7 +132,8 @@ resource "aws_launch_template" "rlmgt_launch_template" {
   image_id = "${data.aws_ami.ubuntu.id}"
   instance_type = "t2.micro"
   key_name = "releasemgt"
-  vpc_security_group_ids = ["${aws_security_group.rlmgt_sg.id}"]
+  vpc_security_group_ids = ["${aws_security_group.rlmgt_instance_sg.id}"]
+  user_data = "IyEvYmluL2Jhc2gKc3VkbyBhcHQgaW5zdGFsbCAteSBhcGFjaGUy" #TODO remove
 }
 
 resource "aws_autoscaling_group" "rlmgt_asg" {
@@ -210,11 +211,44 @@ resource "aws_s3_bucket_policy" "rlmgt_s3_policy" {
 POLICY
 }
 
+resource "aws_security_group" "rlmgt_elb_sg" {
+  name = "releaseMgtElbSG"
+  description = "Release Mgt ELB Security Group"
+  vpc_id = "${aws_vpc.rlmgt_vpc.id}"
+  ingress {
+    from_port = 80
+    to_port = 80
+    protocol = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+    ipv6_cidr_blocks = ["::/0"]
+    description = "HTTP"
+  }
+  ingress {
+    from_port = 443
+    to_port = 443
+    protocol = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+    ipv6_cidr_blocks = ["::/0"]
+    description = "HTTPS"
+  }
+  egress {
+    from_port = 80
+    to_port = 80
+    protocol = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+    ipv6_cidr_blocks = ["::/0"]
+    description = "Instances access (web page & health check)"
+  }
+  tags = {
+    Name = "releaseMgtElbSG"
+  }
+}
+
 resource "aws_lb" "rlmgt_elb" {
   name = "releaseMgtElb"
   internal = false
   load_balancer_type = "application"
-  security_groups = ["${aws_security_group.rlmgt_sg.id}"]
+  security_groups = ["${aws_security_group.rlmgt_elb_sg.id}"]
   subnets = ["${aws_subnet.rlmgt_subnet_a.id}", "${aws_subnet.rlmgt_subnet_b.id}"]
   enable_deletion_protection = false
   access_logs {
