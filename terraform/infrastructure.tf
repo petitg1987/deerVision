@@ -3,14 +3,17 @@
 ##########################################################################################
 # - Create IAM User named "release-mgt-user" with programmatic access and having "AdministratorAccess" IAM policy
 # - Add IAM user keys in ~/.aws/credentials under "[releasemgt]" profile
+# - Create EC2 key pair named "releasemgt" and add them in ~/.ssh/
+# - Delete the default VPC (optional but more clean)
 # - Create DNS "releasemgt.net" by using Route 53
 # - Request a public certificate for following domains on Amazon Certificate Manager: releasemgt.net & *.releasemgt.net
 # - Use:
 #     - terraform init
 #     - terraform apply -auto-approve
+#     - terraform destroy
 
 ##########################################################################################
-# CREDENTIAL
+# CREDENTIAL & LOCATION
 ##########################################################################################
 provider "aws" {
   region = "eu-west-3"
@@ -23,6 +26,7 @@ provider "aws" {
 ##########################################################################################
 resource "aws_vpc" "rlmgt_vpc" {
   cidr_block = "10.0.0.0/16"
+  enable_dns_hostnames = true
   tags = {
     Name = "releaseMgtVPC"
   }
@@ -94,6 +98,13 @@ resource "aws_security_group" "rlmgt_sg" {
     protocol = "tcp"
     cidr_blocks = ["0.0.0.0/0"] #TODO can be reduced to IP of ELB ?
     description = "HTTP"
+  }
+  egress {
+    from_port = 0
+    to_port = 0
+    protocol = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+    description = "Connection from EC2 to Internet"
   }
   tags = {
     Name = "releaseMgtSG"
