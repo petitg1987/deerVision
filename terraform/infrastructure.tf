@@ -21,6 +21,12 @@ provider "aws" {
   profile = "releasemgt"
 }
 
+variable "availabilityZones" {
+  description = "Run the EC2 Instances in these Availability Zones"
+  type = "list"
+  default = ["eu-west-3a", "eu-west-3b", "eu-west-3c"]
+}
+
 ##########################################################################################
 # NETWORK & ACCESS
 ##########################################################################################
@@ -50,27 +56,17 @@ resource "aws_route_table" "rlmgt_route" {
   }
 }
 
-resource "aws_subnet" "rlmgt_subnet_a" { #TODO create subnet from list of AZ
+resource "aws_subnet" "rlmgt_public_subnet" {
+  count = "${length(var.availabilityZones)}"
   vpc_id = "${aws_vpc.rlmgt_vpc.id}"
-  cidr_block = "10.0.0.0/24"
+  cidr_block = "10.0.${count.index}.0/24"
   map_public_ip_on_launch = true
-  availability_zone = "eu-west-3a"
+  availability_zone = "${element(var.availabilityZones, count.index)}"
 }
 
-resource "aws_route_table_association" "rlmgt_route_a" {
-  subnet_id = "${aws_subnet.rlmgt_subnet_a.id}"
-  route_table_id = "${aws_route_table.rlmgt_route.id}"
-}
-
-resource "aws_subnet" "rlmgt_subnet_b" {
-  vpc_id = "${aws_vpc.rlmgt_vpc.id}"
-  cidr_block = "10.0.1.0/24"
-  map_public_ip_on_launch = true
-  availability_zone = "eu-west-3b"
-}
-
-resource "aws_route_table_association" "rlmgt_route_b" {
-  subnet_id = "${aws_subnet.rlmgt_subnet_b.id}"
+resource "aws_route_table_association" "rlmgt_route_association" {
+  count = "${length(var.availabilityZones)}"
+  subnet_id = "${element(aws_subnet.rlmgt_public_subnet, count.index).id}"
   route_table_id = "${aws_route_table.rlmgt_route.id}"
 }
 
@@ -140,7 +136,7 @@ resource "aws_autoscaling_group" "rlmgt_asg" {
   desired_capacity = 1
   max_size = 1
   min_size = 1
-  vpc_zone_identifier = ["${aws_subnet.rlmgt_subnet_a.id}", "${aws_subnet.rlmgt_subnet_b.id}"]
+  vpc_zone_identifier = "${aws_subnet.rlmgt_public_subnet.*.id}"
   health_check_grace_period = 300
   health_check_type = "ELB"
   tag {
@@ -237,7 +233,7 @@ resource "aws_security_group" "rlmgt_elb_sg" {
     protocol = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
     ipv6_cidr_blocks = ["::/0"]
-    description = "Instances access (web page & health check)"
+    description = "Instances access (Web page and health check)"
   }
   tags = {
     Name = "releaseMgtElbSG"
@@ -249,7 +245,7 @@ resource "aws_lb" "rlmgt_elb" {
   internal = false
   load_balancer_type = "application"
   security_groups = ["${aws_security_group.rlmgt_elb_sg.id}"]
-  subnets = ["${aws_subnet.rlmgt_subnet_a.id}", "${aws_subnet.rlmgt_subnet_b.id}"]
+  subnets = "${aws_subnet.rlmgt_public_subnet.*.id}"
   enable_deletion_protection = false
   access_logs {
     bucket = "${aws_s3_bucket.rlmgt_s3_access_logs_bucket.bucket}"
@@ -290,9 +286,9 @@ resource "aws_lb_listener" "rlmgt_elb_listener_http" {
   }
 }
 
-resource "aws_autoscaling_attachment" "asg_attachment_bar" {
+resource "aws_autoscaling_attachment" "rlmgt_asg_attachment" {
   autoscaling_group_name = "${aws_autoscaling_group.rlmgt_asg.id}"
-  alb_target_group_arn   = "${aws_lb_target_group.rlmgt_elb_target_group.arn}"
+  alb_target_group_arn = "${aws_lb_target_group.rlmgt_elb_target_group.arn}"
 }
 
 ##########################################################################################
