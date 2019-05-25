@@ -92,8 +92,9 @@ resource "aws_security_group" "rlmgt_instance_sg" {
     from_port = 80
     to_port = 80
     protocol = "tcp"
-    cidr_blocks = ["0.0.0.0/0"] #TODO can be reduced to IP of ELB ?
-    description = "HTTP"
+    security_groups = ["${aws_security_group.rlmgt_elb_sg.id}"]
+    #cidr_blocks = ["0.0.0.0/0"] #Debug: use to access instance without going through ELB
+    description = "HTTP requests from ELB"
   }
   egress {
     from_port = 0
@@ -226,6 +227,13 @@ resource "aws_security_group" "rlmgt_elb_sg" {
     cidr_blocks = ["0.0.0.0/0"]
     ipv6_cidr_blocks = ["::/0"]
     description = "HTTPS"
+  }
+  ingress {
+    protocol = "icmp"
+    from_port = 8 # ICMP type: echo request
+    to_port = 0
+    cidr_blocks = ["0.0.0.0/0"]
+    description = "Ping"
   }
   egress {
     from_port = 80
