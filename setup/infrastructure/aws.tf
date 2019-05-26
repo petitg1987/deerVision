@@ -1,18 +1,4 @@
 ##########################################################################################
-# PRE-REQUISITE
-##########################################################################################
-# - Create IAM User named "release-mgt-user" with programmatic access and having "AdministratorAccess" IAM policy
-# - Add IAM user keys in ~/.aws/credentials under "[releasemgt]" profile
-# - Create EC2 key pair named "releasemgt" and add them in ~/.ssh/
-# - Delete the default VPC (optional but more clean)
-# - Create DNS "releasemgt.net" by using Route 53
-# - Request a public certificate for following domains on Amazon Certificate Manager: releasemgt.net & *.releasemgt.net
-# - Use:
-#     - terraform init
-#     - terraform apply -auto-approve
-#     - terraform destroy
-
-##########################################################################################
 # VARIABLES
 ##########################################################################################
 variable "appName" {
