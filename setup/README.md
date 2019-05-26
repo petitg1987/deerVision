@@ -2,7 +2,7 @@
 ## Pre-requisites
 * AWS
   * Create IAM User named "release-mgt-user" with programmatic access and having "AdministratorAccess" IAM policy
-  * Add IAM user keys in ~/.aws/credentials under "[releasemgt]" profile
+  * Add IAM user keys in `~/.aws/credentials` under "[releasemgt]" profile
   * Create EC2 key pair named "releasemgt" and add them in ~/.ssh/
   * Delete the default VPC (optional)
   * Create DNS "releasemgt.net" by using Route 53
@@ -13,7 +13,7 @@
 ## Manage infrastructure
 ### Create
 * Create infrastructure: `./infrastructure/infra.sh create [APP_NAME] [CIDR_PREFIX]`
-    * Example: `./infrastructure/infra.sh init greencity 10.0`
+    * Example: `./infrastructure/infra.sh create greencity 10.0`
 
 ### Update
 * Update infrastructure: `./infrastructure/infra.sh update [APP_NAME]`

@@ -13,6 +13,11 @@ function checkAppName() {
         echo "Application name not matching regex $regexAppName"
         exit 1
     fi
+
+    if grep -q "${appName}" ./config/*; then
+        echo "Application name already used"
+        exit 1
+    fi
 }
 
 function checkCIDRPrefix() {
@@ -29,7 +34,6 @@ function checkCIDRPrefix() {
 }
 
 function switchWorkspace() {
-    checkAppName
     configFile=./config/${appName}.tfvars
     if [[ ! -f "$configFile" ]]; then
         echo "Configuration file '$configFile' doesn't exist"
