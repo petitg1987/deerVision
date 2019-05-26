@@ -1,3 +1,0 @@
-- Secure Spring Actuator
-- Download: should return to an AWS S3 URL
-- Allow upload of release
