@@ -2,10 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2e0ba787-3e10-4807-920a-380e6f994ff7" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/setup/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/setup/infrastructure/config/greencity.tfvars" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/setup/infrastructure/infra.sh" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/terraform/infrastructure.tf" beforeDir="false" afterPath="$PROJECT_DIR$/terraform/infrastructure.tf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/terraform/terraform.tfstate" beforeDir="false" afterPath="$PROJECT_DIR$/terraform/terraform.tfstate" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/terraform/terraform.tfstate.backup" beforeDir="false" afterPath="$PROJECT_DIR$/terraform/terraform.tfstate.backup" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/terraform/infrastructure.tf" beforeDir="false" afterPath="$PROJECT_DIR$/setup/infrastructure/aws.tf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/terraform/terraform.tfstate" beforeDir="false" afterPath="$PROJECT_DIR$/setup/infrastructure/terraform.tfstate.d/greencity/terraform.tfstate" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/terraform/terraform.tfstate.backup" beforeDir="false" afterPath="$PROJECT_DIR$/setup/infrastructure/terraform.tfstate.d/greencity/terraform.tfstate.backup" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/classes/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -26,19 +29,10 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/terraform/infrastructure.tf">
+        <entry file="file://$PROJECT_DIR$/setup/infrastructure/infra.sh">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="366">
-              <caret line="234" column="31" selection-start-line="234" selection-start-column="31" selection-end-line="234" selection-end-column="31" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/deploy.sh">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret selection-end-column="11" />
+            <state relative-caret-position="435">
+              <caret line="29" column="60" selection-start-line="29" selection-start-column="60" selection-end-line="29" selection-end-column="60" />
             </state>
           </provider>
         </entry>
@@ -55,6 +49,11 @@
       <find>rlmgt_instance_sg</find>
       <find>rlmgt_public_subnet</find>
       <find>_bar</find>
+      <find>eu-west</find>
+      <find>10.</find>
+      <find>aws_iam_user</find>
+      <find>name</find>
+      <find>Name</find>
     </findStrings>
     <replaceStrings>
       <replace>.rlmgt_</replace>
@@ -69,6 +68,11 @@
         <option value="$PROJECT_DIR$/src/main/resources/cloudformation/infra.yml" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/terraform/infrastructure.tf" />
+        <option value="$PROJECT_DIR$/infrastructure/aws.tf" />
+        <option value="$PROJECT_DIR$/infrastructure/infra.sh" />
+        <option value="$PROJECT_DIR$/setup/README.md" />
+        <option value="$PROJECT_DIR$/setup/infrastructure/infra.sh" />
+        <option value="$PROJECT_DIR$/setup/infrastructure/aws.tf" />
       </list>
     </option>
   </component>
@@ -82,6 +86,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -92,13 +97,40 @@
             <path>
               <item name="urchin-release-mgt" type="b2602c69:ProjectViewProjectNode" />
               <item name="urchinReleaseMgt" type="462c0819:PsiDirectoryNode" />
-              <item name="terraform" type="462c0819:PsiDirectoryNode" />
+              <item name="setup" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="urchin-release-mgt" type="b2602c69:ProjectViewProjectNode" />
+              <item name="urchinReleaseMgt" type="462c0819:PsiDirectoryNode" />
+              <item name="setup" type="462c0819:PsiDirectoryNode" />
+              <item name="infrastructure" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="urchin-release-mgt" type="b2602c69:ProjectViewProjectNode" />
+              <item name="urchinReleaseMgt" type="462c0819:PsiDirectoryNode" />
+              <item name="setup" type="462c0819:PsiDirectoryNode" />
+              <item name="infrastructure" type="462c0819:PsiDirectoryNode" />
+              <item name="config" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="urchin-release-mgt" type="b2602c69:ProjectViewProjectNode" />
+              <item name="urchinReleaseMgt" type="462c0819:PsiDirectoryNode" />
+              <item name="setup" type="462c0819:PsiDirectoryNode" />
+              <item name="infrastructure" type="462c0819:PsiDirectoryNode" />
+              <item name="terraform.tfstate.d" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="urchin-release-mgt" type="b2602c69:ProjectViewProjectNode" />
+              <item name="urchinReleaseMgt" type="462c0819:PsiDirectoryNode" />
+              <item name="setup" type="462c0819:PsiDirectoryNode" />
+              <item name="infrastructure" type="462c0819:PsiDirectoryNode" />
+              <item name="terraform.tfstate.d" type="462c0819:PsiDirectoryNode" />
+              <item name="greencity" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
     </panes>
   </component>
@@ -113,6 +145,12 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../awsSysOps" />
     <property name="nodejs_package_manager_path" value="npm" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/setup/infrastructure/config" />
+      <recent name="$PROJECT_DIR$/setup/infrastructure" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -154,7 +192,8 @@
       <workItem from="1558688117350" duration="2262000" />
       <workItem from="1558695678869" duration="29677000" />
       <workItem from="1558760090915" duration="10224000" />
-      <workItem from="1558790336455" duration="3671000" />
+      <workItem from="1558790336455" duration="7055000" />
+      <workItem from="1558850552248" duration="10176000" />
     </task>
     <task id="LOCAL-00001" summary="Add workspace file">
       <created>1558271512088</created>
@@ -240,17 +279,23 @@
       <option name="project" value="LOCAL" />
       <updated>1558791820059</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Terraform update (restrict security group)">
+      <created>1558797902763</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1558797902763</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="46195000" />
+    <option name="totallyTimeSpent" value="59755000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="0" width="1922" height="1054" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17289221" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17449306" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -266,13 +311,13 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Spring" order="7" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="8" sideWeight="0.4994664" visible="true" weight="0.23258306" />
+      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.4994664" visible="true" weight="0.27331188" />
       <window_info anchor="bottom" id="Docker" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50053364" side_tool="true" weight="0.3290461" />
       <window_info anchor="bottom" id="Messages" order="11" />
       <window_info anchor="bottom" id="Java Enterprise" order="12" weight="0.3290461" />
-      <window_info anchor="bottom" id="Database Changes" order="13" />
-      <window_info anchor="bottom" id="Version Control" order="14" sideWeight="0.49839914" weight="0.187567" />
+      <window_info anchor="bottom" id="Database Changes" order="13" weight="0.3290461" />
+      <window_info anchor="bottom" id="Version Control" order="14" sideWeight="0.49839914" weight="0.3954984" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -297,7 +342,8 @@
     <MESSAGE value="Terraform update (add internet access)" />
     <MESSAGE value="Terraform update (new SG for ELB)" />
     <MESSAGE value="Terraform update (dynamic subnet creation)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Terraform update (dynamic subnet creation)" />
+    <MESSAGE value="Terraform update (restrict security group)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Terraform update (restrict security group)" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/main/java/com/urchin/release/mgt/UrchinReleaseMgtApplication.java">
@@ -341,13 +387,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/terraform/terraform.tfstate.backup">
+    <entry file="file://$PROJECT_DIR$/setup/infrastructure/terraform.tfstate.backup">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/terraform/terraform.tfstate">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1530" />
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/application.yml">
       <provider selected="true" editor-type-id="text-editor">
@@ -356,17 +397,50 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/terraform/infrastructure.tf">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="366">
-          <caret line="234" column="31" selection-start-line="234" selection-start-column="31" selection-end-line="234" selection-end-column="31" />
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/setup/infrastructure/.terraform/plugins/linux_amd64/lock.json">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/setup/infrastructure/config/greencity.auto.tfvars">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/setup/infrastructure/terraform.tfstate">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/deploy.sh">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret selection-end-column="11" />
+        <state relative-caret-position="285">
+          <caret line="37" column="38" selection-start-line="37" selection-start-column="38" selection-end-line="37" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/setup/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="15">
+            <caret line="1" selection-start-line="1" selection-end-line="1" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/setup/infrastructure/config/greencity.tfvars">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" column="19" lean-forward="true" selection-start-line="1" selection-start-column="19" selection-end-line="1" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/setup/infrastructure/aws.tf">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="421">
+          <caret line="226" column="1" lean-forward="true" selection-start-line="226" selection-start-column="1" selection-end-line="226" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/setup/infrastructure/infra.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="435">
+          <caret line="29" column="60" selection-start-line="29" selection-start-column="60" selection-end-line="29" selection-end-column="60" />
         </state>
       </provider>
     </entry>

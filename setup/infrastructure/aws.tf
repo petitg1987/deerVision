@@ -13,35 +13,54 @@
 #     - terraform destroy
 
 ##########################################################################################
-# CREDENTIAL & LOCATION
+# VARIABLES
 ##########################################################################################
-provider "aws" {
-  region = "eu-west-3"
-  shared_credentials_file = "~/.aws/credentials"
-  profile = "releasemgt"
+variable "appName" {
+  description = "Application name"
+  type = "string"
+}
+
+variable "cidrPrefix" {
+  description = "CIDR prefix (e.g.: 10.0)"
+  type = "string"
+}
+
+variable "region" {
+  description = "Run the EC2 instances in this region"
+  type = "string"
+  default = "eu-west-3"
 }
 
 variable "availabilityZones" {
-  description = "Run the EC2 Instances in these Availability Zones"
+  description = "Run the EC2 instances in these availability zones"
   type = "list"
   default = ["eu-west-3a", "eu-west-3b", "eu-west-3c"]
+}
+
+##########################################################################################
+# CREDENTIAL & LOCATION
+##########################################################################################
+provider "aws" {
+  region = "${var.region}"
+  shared_credentials_file = "~/.aws/credentials"
+  profile = "releasemgt"
 }
 
 ##########################################################################################
 # NETWORK & ACCESS
 ##########################################################################################
 resource "aws_vpc" "rlmgt_vpc" {
-  cidr_block = "10.0.0.0/16"
+  cidr_block = "${var.cidrPrefix}.0.0/16"
   enable_dns_hostnames = true
   tags = {
-    Name = "releaseMgtVPC"
+    Name = "${var.appName}RelMgtVPC"
   }
 }
 
 resource "aws_internet_gateway" "rlmgt_igw" {
   vpc_id = "${aws_vpc.rlmgt_vpc.id}"
   tags = {
-    Name = "releaseMgtIGW"
+    Name = "${var.appName}RelMgtIGW"
   }
 }
 
@@ -52,14 +71,14 @@ resource "aws_route_table" "rlmgt_route" {
     gateway_id = "${aws_internet_gateway.rlmgt_igw.id}"
   }
   tags = {
-    Name = "releaseMgtRoute"
+    Name = "${var.appName}RelMgtRoute"
   }
 }
 
 resource "aws_subnet" "rlmgt_public_subnet" {
   count = "${length(var.availabilityZones)}"
   vpc_id = "${aws_vpc.rlmgt_vpc.id}"
-  cidr_block = "10.0.${count.index}.0/24"
+  cidr_block = "${var.cidrPrefix}.${count.index}.0/24"
   map_public_ip_on_launch = true
   availability_zone = "${element(var.availabilityZones, count.index)}"
 }
@@ -71,7 +90,7 @@ resource "aws_route_table_association" "rlmgt_route_association" {
 }
 
 resource "aws_security_group" "rlmgt_instance_sg" {
-  name = "releaseMgtInstanceSG"
+  name = "${var.appName}RelMgtInstanceSG"
   description = "Release Mgt Instance Security Group"
   vpc_id = "${aws_vpc.rlmgt_vpc.id}"
   ingress {
@@ -104,7 +123,7 @@ resource "aws_security_group" "rlmgt_instance_sg" {
     description = "Connection from EC2 to Internet"
   }
   tags = {
-    Name = "releaseMgtInstanceSG"
+    Name = "${var.appName}RelMgtInstanceSG"
   }
 }
 
@@ -125,7 +144,7 @@ data "aws_ami" "ubuntu" {
 }
 
 resource "aws_launch_template" "rlmgt_launch_template" {
-  name_prefix = "releaseMgtInstance"
+  name_prefix = "${var.appName}RelMgtInstance"
   image_id = "${data.aws_ami.ubuntu.id}"
   instance_type = "t2.micro"
   key_name = "releasemgt"
@@ -142,7 +161,7 @@ resource "aws_autoscaling_group" "rlmgt_asg" {
   health_check_type = "ELB"
   tag {
     key = "Name"
-    value = "releaseMgtInstance"
+    value = "${var.appName}RelMgtInstance"
     propagate_at_launch = true
   }
   launch_template {
@@ -155,7 +174,7 @@ resource "aws_autoscaling_group" "rlmgt_asg" {
 # LOAD BALANCER
 ##########################################################################################
 resource "aws_lb_target_group" "rlmgt_elb_target_group" {
-  name = "releaseMgtTargetGroup"
+  name = "${var.appName}RelMgtTargetGroup"
   port= 80
   protocol = "HTTP"
   vpc_id = "${aws_vpc.rlmgt_vpc.id}"
@@ -167,49 +186,8 @@ resource "aws_lb_target_group" "rlmgt_elb_target_group" {
   }
 }
 
-resource "aws_s3_bucket" "rlmgt_s3_access_logs_bucket" {
-  bucket = "rlmgt-elb-access-logs-bucket"
-  acl = "private"
-  tags = {
-    Name = "Release Mgt ELB Access Logs Buket"
-  }
-}
-
-data "aws_iam_user" "rlmgt_iam_user" {
-  user_name = "release-mgt-user"
-}
-
-resource "aws_s3_bucket_policy" "rlmgt_s3_policy" {
-  bucket = "${aws_s3_bucket.rlmgt_s3_access_logs_bucket.id}"
-  policy = <<POLICY
-{
-  "Version": "2012-10-17",
-  "Id": "releaseMgtElbAccessLogsBucketId",
-  "Statement": [
-    {
-      "Effect": "Allow",
-      "Action": "s3:PutObject",
-      "Resource": "arn:aws:s3:::rlmgt-elb-access-logs-bucket/*",
-      "Principal": {
-        "AWS": ["009996457667"]
-      }
-    },
-    {
-      "Effect": "Allow",
-      "Action": "s3:*",
-      "Resource": "arn:aws:s3:::rlmgt-elb-access-logs-bucket",
-      "Principal": {
-        "AWS": ["${data.aws_iam_user.rlmgt_iam_user.arn}"]
-      }
-    }
-
-  ]
-}
-POLICY
-}
-
 resource "aws_security_group" "rlmgt_elb_sg" {
-  name = "releaseMgtElbSG"
+  name = "${var.appName}RelMgtElbSG"
   description = "Release Mgt ELB Security Group"
   vpc_id = "${aws_vpc.rlmgt_vpc.id}"
   ingress {
@@ -244,22 +222,17 @@ resource "aws_security_group" "rlmgt_elb_sg" {
     description = "Instances access (Web page and health check)"
   }
   tags = {
-    Name = "releaseMgtElbSG"
+    Name = "${var.appName}RelMgtElbSG"
   }
 }
 
 resource "aws_lb" "rlmgt_elb" {
-  name = "releaseMgtElb"
+  name = "${var.appName}RelMgtElb"
   internal = false
   load_balancer_type = "application"
   security_groups = ["${aws_security_group.rlmgt_elb_sg.id}"]
   subnets = "${aws_subnet.rlmgt_public_subnet.*.id}"
   enable_deletion_protection = false
-  access_logs {
-    bucket = "${aws_s3_bucket.rlmgt_s3_access_logs_bucket.bucket}"
-    prefix = "rlmgt-access-logs"
-    enabled = true
-  }
 }
 
 data "aws_acm_certificate" "rlmgt_domain_certificate" {
@@ -309,7 +282,7 @@ data "aws_route53_zone" "selected" {
 
 resource "aws_route53_record" "rlmgt_dns_record" {
   zone_id = "${data.aws_route53_zone.selected.zone_id}"
-  name = "greencity" #TODO parameter
+  name = "${var.appName}"
   type = "A"
   alias {
     name = "${aws_lb.rlmgt_elb.dns_name}"
