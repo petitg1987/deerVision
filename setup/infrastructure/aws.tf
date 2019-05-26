@@ -129,13 +129,51 @@ data "aws_ami" "ubuntu" {
   owners = ["099720109477"]
 }
 
+resource "aws_iam_role" "rlmgt_instance_role" {
+  name = "${var.appName}RelMgtInstanceRole"
+  description = "Allow EC2 instances to access to S3, SNS and SQS which are used by CodeDeploy agent"
+  assume_role_policy = <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Action": "sts:AssumeRole",
+      "Principal": {
+        "Service": "ec2.amazonaws.com"
+      },
+      "Effect": "Allow",
+      "Sid": ""
+    }
+  ]
+}
+EOF
+}
+
+resource "aws_iam_role_policy_attachment" "AmazonEC2RoleforAWSCodeDeploy" {
+  policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonEC2RoleforAWSCodeDeploy"
+  role = "${aws_iam_role.rlmgt_instance_role.name}"
+}
+
+resource "aws_iam_role_policy_attachment" "AutoScalingNotificationAccessRole" {
+  policy_arn = "arn:aws:iam::aws:policy/service-role/AutoScalingNotificationAccessRole"
+  role = "${aws_iam_role.rlmgt_instance_role.name}"
+}
+
+resource "aws_iam_instance_profile" "rlmgt_instance_profile" {
+  name = "${var.appName}RelMgtInstanceProfile"
+  role = "${aws_iam_role.rlmgt_instance_role.name}"
+}
+
 resource "aws_launch_template" "rlmgt_launch_template" {
   name_prefix = "${var.appName}RelMgtInstance"
   image_id = "${data.aws_ami.ubuntu.id}"
   instance_type = "t2.micro"
   key_name = "releasemgt"
+  iam_instance_profile {
+    name = "${aws_iam_instance_profile.rlmgt_instance_profile.name}"
+  }
   vpc_security_group_ids = ["${aws_security_group.rlmgt_instance_sg.id}"]
-  user_data = "IyEvYmluL2Jhc2gKc3VkbyBhcHQgaW5zdGFsbCAteSBhcGFjaGUy" #TODO remove
+  user_data = "${base64encode(file("${path.module}/instancesSetupScript.sh"))}"
 }
 
 resource "aws_autoscaling_group" "rlmgt_asg" {
@@ -274,5 +312,51 @@ resource "aws_route53_record" "rlmgt_dns_record" {
     name = "${aws_lb.rlmgt_elb.dns_name}"
     zone_id = "${aws_lb.rlmgt_elb.zone_id}"
     evaluate_target_health = false
+  }
+}
+
+##########################################################################################
+# CODE DEPLOY
+##########################################################################################
+resource "aws_iam_role" "rlmgt_deployment_role" {
+  name = "${var.appName}RelMgtCodeDeployRole"
+  description = "Allow CodeDeploy service to access autoscale, ec2 and SNS"
+  assume_role_policy = <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "",
+      "Effect": "Allow",
+      "Principal": {
+        "Service": "codedeploy.amazonaws.com"
+      },
+      "Action": "sts:AssumeRole"
+    }
+  ]
+}
+EOF
+}
+
+resource "aws_iam_role_policy_attachment" "AWSCodeDeployRole" {
+  policy_arn = "arn:aws:iam::aws:policy/service-role/AWSCodeDeployRole"
+  role = "${aws_iam_role.rlmgt_deployment_role.name}"
+}
+
+resource "aws_codedeploy_app" "rlmgt_codedeploy_app" {
+  compute_platform = "Server"
+  name = "${var.appName}RelMgtApp"
+}
+
+resource "aws_codedeploy_deployment_group" "rlmgt_deployment_group" {
+  app_name = "${aws_codedeploy_app.rlmgt_codedeploy_app.name}"
+  deployment_group_name = "${var.appName}RelMgtDeploymentGroup"
+  deployment_config_name = "CodeDeployDefault.AllAtOnce"
+  service_role_arn = "${aws_iam_role.rlmgt_deployment_role.arn}"
+  autoscaling_groups = ["${aws_autoscaling_group.rlmgt_asg.id}"]
+  load_balancer_info {
+    elb_info {
+      name = "${aws_lb.rlmgt_elb.name}"
+    }
   }
 }
