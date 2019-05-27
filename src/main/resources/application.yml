@@ -24,10 +24,11 @@ spring:
 actuator:
   password: "$2a$10$LP.C2c/pkgWQE2Z5x9JNNejYbh1lJ81au58xoUZa5ZnWh/4ROITfu"
 issue:
-  page-size: 10
+  page-size: 11
   chart-days: 15
 binary:
-  aws-bucket-name: "greencityrelease"
+  aws-bucket-name: "greencity-releasemgt"
+  aws-binaries-folder-name: "binaries/"
   version-pattern: ".*(\\d+[.]\\d+[.]\\d+).*"
   chart-days: 15
   upload-password: "$2a$10$7yJPwmnfTkHqW/816QF6guMWU8mgx4DmXMdOul6BbIyapjGwrBYLG"

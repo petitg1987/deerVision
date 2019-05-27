@@ -105,9 +105,10 @@ public class BinaryService {
 
     private Stream<Binary> streamBinaries(){
         final AmazonS3 s3Authenticated = buildAwsS3Authenticated();
-        ListObjectsV2Result result = s3Authenticated.listObjectsV2(binaryProperties.getAwsBucketName());
+        ListObjectsV2Result result = s3Authenticated.listObjectsV2(binaryProperties.getAwsBucketName(), binaryProperties.getAwsBinariesFolderName());
         Stream<Binary> binariesStream = result.getObjectSummaries()
                 .stream()
+                .filter(o -> !o.getKey().equals(binaryProperties.getAwsBinariesFolderName()))
                 .map(o -> {
                     URL url = retrievePresignedUrl(o.getKey(), s3Authenticated);
                     String filename = FilenameUtils.getName(url.getPath());
@@ -130,7 +131,7 @@ public class BinaryService {
 
     public void deleteIfExist(String filename){
         final AmazonS3 s3Authenticated = buildAwsS3Authenticated();
-        s3Authenticated.deleteObject(binaryProperties.getAwsBucketName(), filename);
+        s3Authenticated.deleteObject(binaryProperties.getAwsBucketName(), binaryProperties.getAwsBinariesFolderName() + filename);
         s3Authenticated.shutdown();
     }
 
@@ -139,7 +140,7 @@ public class BinaryService {
         ObjectMetadata objectMetadata = new ObjectMetadata();
         objectMetadata.setContentLength(bytes.length);
         objectMetadata.setLastModified(new Date());
-        s3Authenticated.putObject(binaryProperties.getAwsBucketName(), filename, new ByteArrayInputStream(bytes), objectMetadata);
+        s3Authenticated.putObject(binaryProperties.getAwsBucketName(), binaryProperties.getAwsBinariesFolderName() + filename, new ByteArrayInputStream(bytes), objectMetadata);
         s3Authenticated.shutdown();
     }
 

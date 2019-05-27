@@ -206,7 +206,7 @@ resource "aws_lb_target_group" "rlmgt_elb_target_group" {
   health_check {
     protocol = "HTTP"
     port = 80
-    path = "/"
+    path = "/login"
   }
 }
 

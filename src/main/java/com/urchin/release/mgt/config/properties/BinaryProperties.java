@@ -9,6 +9,8 @@ public class BinaryProperties {
 
     private String awsBucketName;
 
+    private String awsBinariesFolderName;
+
     private String awsAccessKeyId;
 
     private String awsSecretAccessKey;
@@ -25,6 +27,14 @@ public class BinaryProperties {
 
     public void setAwsBucketName(String awsBucketName) {
         this.awsBucketName = awsBucketName;
+    }
+
+    public String getAwsBinariesFolderName() {
+        return awsBinariesFolderName;
+    }
+
+    public void setAwsBinariesFolderName(String awsBinariesFolderName) {
+        this.awsBinariesFolderName = awsBinariesFolderName;
     }
 
     public String getAwsAccessKeyId() {
