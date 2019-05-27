@@ -164,15 +164,6 @@ public class BinaryService {
     }
 
     private AmazonS3 buildAwsS3Authenticated(){
-        //Pre-requisites:
-        //  - In AWS IAM:
-        //      - Create users "green-city" with programmatic access
-        //      - Create group "green-city-group" with policy "AmazonS3FullAccess"
-        //      - Add user to group
-        //      - Download credential (access key ID & secret access key)
-        //  - In /src/main/resources/application-awssecurity.yml:
-        //      - Define properties binary.aws-access-key-id & binary.aws-secret-access-key
-
         if(Strings.isBlank(binaryProperties.getAwsAccessKeyId())){
             throw new IllegalArgumentException("AWS access key ID properties must be provided");
         }

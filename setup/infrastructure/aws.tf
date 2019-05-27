@@ -360,3 +360,22 @@ resource "aws_codedeploy_deployment_group" "rlmgt_deployment_group" {
     }
   }
 }
+
+##########################################################################################
+# STORAGE (zip for code deploy and binaries of the managed application)
+##########################################################################################
+resource "aws_s3_bucket" "rlmgt_storage" {
+  bucket = "${var.appName}-releasemgt"
+  acl = "private"
+  tags = {
+    Name = "${var.appName}RelMgtStorage"
+  }
+}
+
+resource "aws_s3_bucket_public_access_block" "rlmgt_storage_access" {
+  bucket = "${aws_s3_bucket.rlmgt_storage.id}"
+  block_public_acls = true
+  block_public_policy = true
+  ignore_public_acls = true
+  restrict_public_buckets = true
+}
