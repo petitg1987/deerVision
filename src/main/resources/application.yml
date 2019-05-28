@@ -4,7 +4,7 @@ server:
 management:
   endpoints.web.exposure.include: "*"
 spring:
-  profiles.active: "awssecurity"
+  profiles.active: "awssecurity,appinfo"
   security.user:
     name: "admin"
     password: "$2a$10$SRSz7BSfnjvUnX7/BJyLSufHJOS5z6mDvo4lzeQkVUdYqGYtEx2UG"
@@ -27,7 +27,6 @@ issue:
   page-size: 11
   chart-days: 15
 binary:
-  aws-bucket-name: "greencity-releasemgt"
   aws-binaries-folder-name: "binaries/"
   version-pattern: ".*(\\d+[.]\\d+[.]\\d+).*"
   chart-days: 15

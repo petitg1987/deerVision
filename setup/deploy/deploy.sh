@@ -15,14 +15,23 @@ function checkAppName() {
     fi
 }
 
-function buildProject() {
+function buildPackage() {
     mvn clean package -f ../../pom.xml
+
+    cd ../../target/
+    genericPackagePattern=(urchin-release-mgt-*.zip)
+    genericPackageName="${genericPackagePattern[0]}"
+    packageName=${appName}-${genericPackageName}
+
+    cp ${genericPackageName} ${packageName}
+    echo "binary.aws-bucket-name: \"${appName}-releasemgt\"" > application-appinfo.yml
+    zip -r ${packageName} application-appinfo.yml
+    rm application-appinfo.yml
+    cd ../setup/deploy/
 }
 
 function copyPackageInS3() {
-    packagePattern=(../../target/urchin-release-mgt-*.zip)
-    packagePath="${packagePattern[0]}"
-    packageName="${packagePath##*/}"
+    packagePath="../../target/${packageName}"
     echo "Copying '$packagePath' in S3 bucket '${appName}-releasemgt'"
     aws s3 cp ${packagePath} s3://${appName}-releasemgt/releases/${packageName}
 }
@@ -38,6 +47,6 @@ function triggerCodeDeploy() {
 
 checkAppName
 
-buildProject
+buildPackage
 copyPackageInS3
 triggerCodeDeploy
