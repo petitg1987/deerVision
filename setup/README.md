@@ -25,4 +25,12 @@
 * Destroy infrastructure and configurations: `./infrastructure/infra.sh destroyAll [APP_NAME]`
 
 # Deploy the application
-* TODO
+## Pre-requisites
+* AWS
+  * Create IAM User named "release-mgt-user" with programmatic access and having "AdministratorAccess" IAM policy
+  * Add the IAM user keys in:
+    * `~/.aws/credentials` for "releasemgt" profile
+* Install AWS CLI and Maven `snap install aws-cli` and `sudo apt-get install maven`
+
+## Deploy process
+* Execute: `./deploy/deploy.sh [APP_NAME]`
