@@ -9,6 +9,8 @@ public class BinaryProperties {
 
     private String awsBucketName;
 
+    private String awsBucketRegion;
+
     private String awsBinariesFolderName;
 
     private String awsAccessKeyId;
@@ -27,6 +29,14 @@ public class BinaryProperties {
 
     public void setAwsBucketName(String awsBucketName) {
         this.awsBucketName = awsBucketName;
+    }
+
+    public String getAwsBucketRegion() {
+        return awsBucketRegion;
+    }
+
+    public void setAwsBucketRegion(String awsBucketRegion) {
+        this.awsBucketRegion = awsBucketRegion;
     }
 
     public String getAwsBinariesFolderName() {

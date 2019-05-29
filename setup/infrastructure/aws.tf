@@ -14,13 +14,13 @@ variable "cidrPrefix" {
 variable "region" {
   description = "Run the EC2 instances in this region"
   type = "string"
-  default = "eu-west-3"
+  default = "eu-central-1"
 }
 
 variable "availabilityZones" {
   description = "Run the EC2 instances in these availability zones"
   type = "list"
-  default = ["eu-west-3a", "eu-west-3b", "eu-west-3c"]
+  default = ["eu-central-1a", "eu-central-1b", "eu-central-1c"]
 }
 
 ##########################################################################################

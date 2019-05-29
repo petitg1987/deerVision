@@ -173,7 +173,7 @@ public class BinaryService {
 
         return AmazonS3ClientBuilder.standard()
                 .withCredentials(new AWSStaticCredentialsProvider(new BasicAWSCredentials(binaryProperties.getAwsAccessKeyId(), binaryProperties.getAwsSecretAccessKey())))
-                .withRegion(Regions.EU_WEST_3)
+                .withRegion(Regions.fromName(binaryProperties.getAwsBucketRegion()))
                 .build();
     }
 }

@@ -27,6 +27,7 @@ issue:
   page-size: 11
   chart-days: 15
 binary:
+  aws-bucket-region: "eu-central-1"
   aws-binaries-folder-name: "binaries/"
   version-pattern: ".*(\\d+[.]\\d+[.]\\d+).*"
   chart-days: 15

@@ -38,7 +38,7 @@ function copyPackageInS3() {
 
 function triggerCodeDeploy() {
     aws deploy create-deployment \
-      --region eu-west-3 \
+      --region eu-central-1 \
       --application-name ${appName}RelMgtApp \
       --deployment-config-name CodeDeployDefault.AllAtOnce \
       --deployment-group-name ${appName}RelMgtDeploymentGroup \
