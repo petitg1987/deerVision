@@ -12,9 +12,6 @@ wget https://aws-codedeploy-eu-central-1.s3.eu-central-1.amazonaws.com/latest/in
 chmod +x ./install
 sudo ./install auto
 rm ./install
-sed -i 's/CODEDEPLOY_USER=""/CODEDEPLOY_USER="ubuntu"/g' /etc/init.d/codedeploy-agent
-sudo chown ubuntu:ubuntu -R /opt/codedeploy-agent/
-sudo chown ubuntu:ubuntu -R /var/log/aws/
 sudo service codedeploy-agent start
 
 #Install Java

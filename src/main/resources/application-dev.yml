@@ -1,5 +1,5 @@
 spring:
   datasource:
-    url: "jdbc:h2:tcp://localhost/~/Project/urchin/urchinReleaseMgt/database/urchinReleaseMgtDB;DB_CLOSE_ON_EXIT=FALSE"
+    url: "jdbc:h2:file:/home/greg/Project/urchin/urchinReleaseMgt/database/urchinReleaseMgtDB;DB_CLOSE_ON_EXIT=FALSE"
 binary:
   aws-bucket-name: "greencity-releasemgt"
