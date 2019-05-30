@@ -32,6 +32,10 @@ provider "aws" {
   profile = "releasemgt"
 }
 
+data "aws_iam_user" "rlmgt_user" {
+  user_name = "release-mgt-user"
+}
+
 ##########################################################################################
 # NETWORK & ACCESS
 ##########################################################################################
@@ -204,6 +208,34 @@ resource "aws_iam_instance_profile" "rlmgt_instance_profile" {
   role = "${aws_iam_role.rlmgt_instance_role.name}"
 }
 
+data "aws_iam_role" "AWSServiceRoleForAutoScaling" {
+  name = "AWSServiceRoleForAutoScaling"
+}
+
+resource "aws_kms_key" "rlmgt_kms_key" {
+  description = "${var.appName} KMS key"
+  policy = <<EOF
+{
+    "Version": "2012-10-17",
+    "Id": "key-default-1",
+    "Statement": [
+        {
+            "Sid": "Enable IAM User Permissions",
+            "Effect": "Allow",
+            "Principal": {
+                "AWS": [
+                  "${data.aws_iam_role.AWSServiceRoleForAutoScaling.arn}",
+                  "${data.aws_iam_user.rlmgt_user.arn}"
+                ]
+            },
+            "Action": "kms:*",
+            "Resource": "*"
+        }
+    ]
+}
+EOF
+}
+
 resource "aws_launch_template" "rlmgt_launch_template" {
   name_prefix = "${var.appName}RelMgtInstance"
   image_id = "${data.aws_ami.ubuntu.id}"
@@ -214,6 +246,15 @@ resource "aws_launch_template" "rlmgt_launch_template" {
   }
   vpc_security_group_ids = ["${aws_security_group.rlmgt_instance_sg.id}"]
   user_data = "${base64encode(templatefile("${path.module}/instancesSetupScript.tmpl.sh", { efsDnsName = aws_efs_file_system.rlmgt_efs.dns_name }))}"
+  block_device_mappings {
+    device_name = "/dev/sda1"
+    ebs {
+      delete_on_termination = "true"
+      encrypted = "true"
+      kms_key_id = "${aws_kms_key.rlmgt_kms_key.id}"
+      volume_size = 8
+    }
+  }
 }
 
 resource "aws_autoscaling_group" "rlmgt_asg" {
@@ -223,6 +264,7 @@ resource "aws_autoscaling_group" "rlmgt_asg" {
   vpc_zone_identifier = "${aws_subnet.rlmgt_public_subnet.*.id}"
   health_check_grace_period = 300
   health_check_type = "ELB"
+  service_linked_role_arn = "${data.aws_iam_role.AWSServiceRoleForAutoScaling.arn}"
   tag {
     key = "Name"
     value = "${var.appName}RelMgtInstance"
