@@ -75,42 +75,37 @@ resource "aws_route_table_association" "rlmgt_route_association" {
   route_table_id = "${aws_route_table.rlmgt_route.id}"
 }
 
-resource "aws_security_group" "rlmgt_instance_sg" {
-  name = "${var.appName}RelMgtInstanceSG"
-  description = "Release Mgt Instance Security Group"
+##########################################################################################
+# EFS
+##########################################################################################
+resource "aws_efs_file_system" "rlmgt_efs" {
+  creation_token = "${var.appName}RelMgEfsToken"
+  tags = {
+    Name = "${var.appName}RelMgtEfsName"
+  }
+}
+
+resource "aws_security_group" "rlmgt_efs_sg" {
+  name = "${var.appName}RelMgtEfsSG"
+  description = "Release Mgt EFS Security Group"
   vpc_id = "${aws_vpc.rlmgt_vpc.id}"
   ingress {
-    from_port = 22
-    to_port = 22
-    protocol = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-    description = "SSH"
-  }
-  ingress {
-    protocol = "icmp"
-    from_port = 8 # ICMP type: echo request
-    to_port = 0
-    cidr_blocks = ["0.0.0.0/0"]
-    description = "Ping"
-  }
-  ingress {
-    from_port = 80
-    to_port = 80
-    protocol = "tcp"
-    security_groups = ["${aws_security_group.rlmgt_elb_sg.id}"]
-    #cidr_blocks = ["0.0.0.0/0"] #Debug: use to access instance without going through ELB
-    description = "HTTP requests from ELB"
-  }
-  egress {
     from_port = 0
     to_port = 0
     protocol = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
-    description = "Connection from EC2 to Internet"
+    security_groups = ["${aws_security_group.rlmgt_instance_sg.id}"]
+    description = "Instances can access to EFS"
   }
   tags = {
     Name = "${var.appName}RelMgtInstanceSG"
   }
+}
+
+resource "aws_efs_mount_target" "rlmgt_efs_mount_target" {
+  count = "${length(var.availabilityZones)}"
+  file_system_id = "${aws_efs_file_system.rlmgt_efs.id}"
+  subnet_id = "${element(aws_subnet.rlmgt_public_subnet, count.index).id}"
+  security_groups = ["${aws_security_group.rlmgt_efs_sg.id}"]
 }
 
 ##########################################################################################
@@ -149,6 +144,51 @@ resource "aws_iam_role" "rlmgt_instance_role" {
 EOF
 }
 
+resource "aws_security_group" "rlmgt_instance_sg" {
+  name = "${var.appName}RelMgtInstanceSG"
+  description = "Release Mgt Instance Security Group"
+  vpc_id = "${aws_vpc.rlmgt_vpc.id}"
+  ingress {
+    from_port = 22
+    to_port = 22
+    protocol = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+    description = "SSH"
+  }
+  ingress {
+    protocol = "icmp"
+    from_port = 8 # ICMP type: echo request
+    to_port = 0
+    cidr_blocks = ["0.0.0.0/0"]
+    description = "Ping"
+  }
+  ingress {
+    from_port = 80
+    to_port = 80
+    protocol = "tcp"
+    security_groups = ["${aws_security_group.rlmgt_elb_sg.id}"]
+    #cidr_blocks = ["0.0.0.0/0"] #Debug: use to access instance without going through ELB
+    description = "HTTP requests from ELB"
+  }
+  ingress {
+    from_port = 2049
+    to_port = 2049
+    protocol = "tcp"
+    cidr_blocks = ["${aws_vpc.rlmgt_vpc.cidr_block}"] #Alternative: use EFS security group
+    description = "EFS"
+  }
+  egress {
+    from_port = 0
+    to_port = 0
+    protocol = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+    description = "Connection from EC2 to Internet"
+  }
+  tags = {
+    Name = "${var.appName}RelMgtInstanceSG"
+  }
+}
+
 resource "aws_iam_role_policy_attachment" "AmazonEC2RoleforAWSCodeDeploy" {
   policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonEC2RoleforAWSCodeDeploy"
   role = "${aws_iam_role.rlmgt_instance_role.name}"
@@ -173,7 +213,7 @@ resource "aws_launch_template" "rlmgt_launch_template" {
     name = "${aws_iam_instance_profile.rlmgt_instance_profile.name}"
   }
   vpc_security_group_ids = ["${aws_security_group.rlmgt_instance_sg.id}"]
-  user_data = "${base64encode(file("${path.module}/instancesSetupScript.sh"))}"
+  user_data = "${base64encode(templatefile("${path.module}/instancesSetupScript.tmpl.sh", { efsDnsName = aws_efs_file_system.rlmgt_efs.dns_name }))}"
 }
 
 resource "aws_autoscaling_group" "rlmgt_asg" {

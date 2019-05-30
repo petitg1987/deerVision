@@ -9,7 +9,7 @@ spring:
     name: "admin"
     password: "$2a$10$SRSz7BSfnjvUnX7/BJyLSufHJOS5z6mDvo4lzeQkVUdYqGYtEx2UG"
   datasource:
-    url: "jdbc:h2:tcp://localhost/~/database/urchinReleaseMgtDB;DB_CLOSE_ON_EXIT=FALSE"
+    url: "jdbc:h2:tcp://localhost/~/efs/urchinReleaseMgtDB;DB_CLOSE_ON_EXIT=FALSE"
     driverClassName: "org.h2.Driver"
     username: "sa"
     password:
