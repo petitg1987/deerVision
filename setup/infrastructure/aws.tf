@@ -212,8 +212,8 @@ data "aws_iam_role" "AWSServiceRoleForAutoScaling" {
   name = "AWSServiceRoleForAutoScaling"
 }
 
-resource "aws_kms_key" "rlmgt_kms_key" {
-  description = "${var.appName} KMS key"
+resource "aws_kms_key" "rlmgt_ebs_kms_key" {
+  description = "${var.appName} EBS KMS Key"
   policy = <<EOF
 {
     "Version": "2012-10-17",
@@ -236,6 +236,11 @@ resource "aws_kms_key" "rlmgt_kms_key" {
 EOF
 }
 
+resource "aws_kms_alias" "rlmgt_ebs_kms_key_alias" {
+  name = "alias/${var.appName}EbsKmsKey"
+  target_key_id = "${aws_kms_key.rlmgt_ebs_kms_key.key_id}"
+}
+
 resource "aws_launch_template" "rlmgt_launch_template" {
   name_prefix = "${var.appName}RelMgtInstance"
   image_id = "${data.aws_ami.ubuntu.id}"
@@ -251,7 +256,7 @@ resource "aws_launch_template" "rlmgt_launch_template" {
     ebs {
       delete_on_termination = "true"
       encrypted = "true"
-      kms_key_id = "${aws_kms_key.rlmgt_kms_key.id}"
+      kms_key_id = "${aws_kms_key.rlmgt_ebs_kms_key.id}"
       volume_size = 8
     }
   }
@@ -444,7 +449,9 @@ resource "aws_codedeploy_deployment_group" "rlmgt_deployment_group" {
 }
 
 ##########################################################################################
-# STORAGE (zip for code deploy and binaries of the managed application)
+# STORAGE:
+#   - zip for code deploy in "releases/" folder
+#   - binaries of the managed application in "binaries/" folder
 ##########################################################################################
 resource "aws_s3_bucket" "rlmgt_storage" {
   bucket = "${var.appName}-releasemgt"

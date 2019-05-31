@@ -29,20 +29,17 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/setup/infrastructure/aws.tf">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="447">
-              <caret line="229" column="14" lean-forward="true" selection-start-line="229" selection-start-column="14" selection-end-line="229" selection-end-column="14" />
+            <state relative-caret-position="423">
+              <caret line="236" column="1" lean-forward="true" selection-start-line="236" selection-start-column="1" selection-end-line="236" selection-end-column="1" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/setup/README.md">
-          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-            <state split_layout="SPLIT">
-              <first_editor relative-caret-position="30">
-                <caret line="2" column="43" lean-forward="true" selection-start-line="2" selection-start-column="27" selection-end-line="2" selection-end-column="43" />
-              </first_editor>
-              <second_editor />
+        <entry file="file://$PROJECT_DIR$/setup/deploy/deploy.sh">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="445">
+              <caret line="39" column="34" lean-forward="true" selection-start-line="39" selection-start-column="34" selection-end-line="39" selection-end-column="34" />
             </state>
           </provider>
         </entry>
@@ -51,9 +48,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>_bar</find>
-      <find>eu-west</find>
-      <find>10.</find>
       <find>aws_iam_user</find>
       <find>name</find>
       <find>Name</find>
@@ -81,6 +75,9 @@
       <find>release-mgt-user</find>
       <find>role</find>
       <find>aws_iam_role</find>
+      <find>kms_</find>
+      <find>aws_iam_role_policy_attachment</find>
+      <find>AWSCodeDeployRole</find>
     </findStrings>
     <replaceStrings>
       <replace>.rlmgt_</replace>
@@ -138,6 +135,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
@@ -150,6 +148,12 @@
               <item name="urchin-release-mgt" type="b2602c69:ProjectViewProjectNode" />
               <item name="urchinReleaseMgt" type="462c0819:PsiDirectoryNode" />
               <item name="setup" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="urchin-release-mgt" type="b2602c69:ProjectViewProjectNode" />
+              <item name="urchinReleaseMgt" type="462c0819:PsiDirectoryNode" />
+              <item name="setup" type="462c0819:PsiDirectoryNode" />
+              <item name="deploy" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="urchin-release-mgt" type="b2602c69:ProjectViewProjectNode" />
@@ -173,21 +177,6 @@
               <item name="urchinReleaseMgt" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="assembly" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="urchin-release-mgt" type="b2602c69:ProjectViewProjectNode" />
-              <item name="urchinReleaseMgt" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="assembly" type="462c0819:PsiDirectoryNode" />
-              <item name="scripts" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="urchin-release-mgt" type="b2602c69:ProjectViewProjectNode" />
-              <item name="urchinReleaseMgt" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -200,7 +189,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -271,7 +259,9 @@
       <workItem from="1559196517001" duration="2179000" />
       <workItem from="1559198713705" duration="10000" />
       <workItem from="1559198734828" duration="14734000" />
-      <workItem from="1559241158320" duration="7538000" />
+      <workItem from="1559241158320" duration="7766000" />
+      <workItem from="1559332428789" duration="20000" />
+      <workItem from="1559332459495" duration="7613000" />
     </task>
     <task id="LOCAL-00001" summary="Add workspace file">
       <created>1558271512088</created>
@@ -469,16 +459,23 @@
       <option name="project" value="LOCAL" />
       <updated>1559220145144</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="Encrypt EBS">
+      <created>1559249045240</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1559249045240</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="132254000" />
+    <option name="totallyTimeSpent" value="140115000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="0" width="1922" height="1054" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.20277481" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.20704375" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -494,13 +491,13 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Spring" order="7" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="8" sideWeight="0.4994664" visible="true" weight="0.27545553" />
+      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.4994664" weight="0.3290461" />
       <window_info anchor="bottom" id="Docker" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50053364" side_tool="true" weight="0.3290461" />
       <window_info anchor="bottom" id="Messages" order="11" />
       <window_info anchor="bottom" id="Java Enterprise" order="12" weight="0.3290461" />
       <window_info anchor="bottom" id="Database Changes" order="13" weight="0.3290461" />
-      <window_info anchor="bottom" id="Version Control" order="14" sideWeight="0.49839914" weight="0.18220793" />
+      <window_info active="true" anchor="bottom" id="Version Control" order="14" sideWeight="0.49839914" visible="true" weight="0.44908896" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -538,7 +535,8 @@
     <MESSAGE value="Move to eu-central-1 region to use EFS" />
     <MESSAGE value="Use EFS for database" />
     <MESSAGE value="Use EFS for database (bug fix)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Use EFS for database (bug fix)" />
+    <MESSAGE value="Encrypt EBS" />
+    <option name="LAST_COMMIT_MESSAGE" value="Encrypt EBS" />
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="evaluateExpression">
@@ -673,13 +671,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/setup/deploy/deploy.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="26" column="86" lean-forward="true" selection-start-line="26" selection-start-column="86" selection-end-line="26" selection-end-column="86" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/urchin/release/mgt/config/properties/BinaryProperties.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-429">
@@ -767,17 +758,24 @@
     <entry file="file://$PROJECT_DIR$/setup/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="30">
-            <caret line="2" column="43" lean-forward="true" selection-start-line="2" selection-start-column="27" selection-end-line="2" selection-end-column="43" />
+          <first_editor relative-caret-position="45">
+            <caret line="3" column="29" lean-forward="true" selection-start-line="3" selection-start-column="29" selection-end-line="3" selection-end-column="29" />
           </first_editor>
           <second_editor />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/setup/deploy/deploy.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="445">
+          <caret line="39" column="34" lean-forward="true" selection-start-line="39" selection-start-column="34" selection-end-line="39" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/setup/infrastructure/aws.tf">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="447">
-          <caret line="229" column="14" lean-forward="true" selection-start-line="229" selection-start-column="14" selection-end-line="229" selection-end-column="14" />
+        <state relative-caret-position="423">
+          <caret line="236" column="1" lean-forward="true" selection-start-line="236" selection-start-column="1" selection-end-line="236" selection-end-column="1" />
         </state>
       </provider>
     </entry>
