@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2e0ba787-3e10-4807-920a-380e6f994ff7" name="Default Changelist" comment="" />
+    <list default="true" id="2e0ba787-3e10-4807-920a-380e6f994ff7" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/setup/infrastructure/aws.tf" beforeDir="false" afterPath="$PROJECT_DIR$/setup/infrastructure/aws.tf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/setup/infrastructure/terraform.tfstate.d/greencity/terraform.tfstate" beforeDir="false" afterPath="$PROJECT_DIR$/setup/infrastructure/terraform.tfstate.d/greencity/terraform.tfstate" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/setup/infrastructure/terraform.tfstate.d/greencity/terraform.tfstate.backup" beforeDir="false" afterPath="$PROJECT_DIR$/setup/infrastructure/terraform.tfstate.d/greencity/terraform.tfstate.backup" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/classes/" />
     <ignored path="$PROJECT_DIR$/target/" />
     <ignored path="$PROJECT_DIR$/.idea/shelf/" />
@@ -20,7 +25,17 @@
     <option name="isMigrated" value="true" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/setup/infrastructure/aws.tf">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="270">
+              <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
@@ -111,6 +126,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -164,7 +180,6 @@
         </subPane>
       </pane>
       <pane id="Scope" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -239,6 +254,9 @@
       <workItem from="1559332428789" duration="20000" />
       <workItem from="1559332459495" duration="7795000" />
       <workItem from="1559367616259" duration="2400000" />
+      <workItem from="1559370903983" duration="151000" />
+      <workItem from="1559757139161" duration="14000" />
+      <workItem from="1559757163625" duration="239000" />
     </task>
     <task id="LOCAL-00001" summary="Add workspace file">
       <created>1558271512088</created>
@@ -457,16 +475,23 @@
       <option name="project" value="LOCAL" />
       <updated>1559369783634</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="Encrypt EBS (add key alias)">
+      <created>1559370915322</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1559370915322</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="142697000" />
+    <option name="totallyTimeSpent" value="143101000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="0" width="1922" height="1054" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.20917822" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.21558164" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -488,7 +513,7 @@
       <window_info anchor="bottom" id="Messages" order="11" />
       <window_info anchor="bottom" id="Java Enterprise" order="12" weight="0.3290461" />
       <window_info anchor="bottom" id="Database Changes" order="13" weight="0.3290461" />
-      <window_info active="true" anchor="bottom" id="Version Control" order="14" sideWeight="0.49839914" visible="true" weight="0.34726688" />
+      <window_info active="true" anchor="bottom" id="Version Control" order="14" sideWeight="0.49839914" visible="true" weight="0.4523044" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -743,13 +768,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/setup/infrastructure/aws.tf">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6900">
-          <caret line="460" column="3" lean-forward="true" selection-start-line="460" selection-start-column="3" selection-end-line="460" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/urchin/release/mgt/service/BinaryService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="259">
@@ -768,6 +786,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="445">
           <caret line="39" column="34" selection-start-line="39" selection-start-column="34" selection-end-line="39" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/setup/infrastructure/aws.tf">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
         </state>
       </provider>
     </entry>
