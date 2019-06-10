@@ -250,7 +250,7 @@ resource "aws_launch_template" "rlmgt_launch_template" {
     name = aws_iam_instance_profile.rlmgt_instance_profile.name
   }
   vpc_security_group_ids = [aws_security_group.rlmgt_instance_sg.id]
-  user_data = "${base64encode(templatefile("${path.module}/instancesSetupScript.tmpl.sh", { efsDnsName = aws_efs_file_system.rlmgt_efs.dns_name }))}"
+  user_data = base64encode(templatefile("${path.module}/instancesSetupScript.tmpl.sh", { efsDnsName = aws_efs_file_system.rlmgt_efs.dns_name }))
   block_device_mappings {
     device_name = "/dev/sda1"
     ebs {
