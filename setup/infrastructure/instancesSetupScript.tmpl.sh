@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -x
 
 #==========================================================================================================
 # Note: to apply changes performed in this script: force running EC2 instances to terminate via AWS Console
