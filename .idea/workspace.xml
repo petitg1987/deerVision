@@ -3,6 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="2e0ba787-3e10-4807-920a-380e6f994ff7" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/setup/infrastructure/aws.tf" beforeDir="false" afterPath="$PROJECT_DIR$/setup/infrastructure/aws.tf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/setup/infrastructure/terraform.tfstate.d/greencity/terraform.tfstate" beforeDir="false" afterPath="$PROJECT_DIR$/setup/infrastructure/terraform.tfstate.d/greencity/terraform.tfstate" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/setup/infrastructure/terraform.tfstate.d/greencity/terraform.tfstate.backup" beforeDir="false" afterPath="$PROJECT_DIR$/setup/infrastructure/terraform.tfstate.d/greencity/terraform.tfstate.backup" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/classes/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -26,8 +29,26 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/setup/infrastructure/aws.tf">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="551">
-              <caret line="255" column="9" selection-start-line="255" selection-start-column="9" selection-end-line="255" selection-end-column="9" />
+            <state relative-caret-position="399">
+              <caret line="260" column="5" lean-forward="true" selection-start-line="260" selection-start-column="5" selection-end-line="260" selection-end-column="5" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/setup/infrastructure/infra.sh">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="135">
+              <caret line="9" column="21" selection-start-line="9" selection-start-column="9" selection-end-line="9" selection-end-column="21" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/setup/infrastructure/instancesSetupScript.tmpl.sh">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="360">
+              <caret line="24" selection-start-line="24" selection-end-line="24" />
             </state>
           </provider>
         </entry>
@@ -36,11 +57,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>aws_iam_user</find>
-      <find>name</find>
-      <find>Name</find>
-      <find>user_</find>
-      <find>green-city</find>
       <find>beans</find>
       <find>&quot;actuator</find>
       <find>health</find>
@@ -66,6 +82,11 @@
       <find>kms_</find>
       <find>aws_iam_role_policy_attachment</find>
       <find>AWSCodeDeployRole</find>
+      <find>nat</find>
+      <find>kms</find>
+      <find>aws_internet_gateway</find>
+      <find>key</find>
+      <find>releasemgt</find>
     </findStrings>
     <replaceStrings>
       <replace>.rlmgt_</replace>
@@ -100,8 +121,8 @@
         <option value="$PROJECT_DIR$/src/main/resources/application-dev.yml" />
         <option value="$PROJECT_DIR$/src/main/resources/application.yml" />
         <option value="$PROJECT_DIR$/src/main/assembly/appspec.yml" />
-        <option value="$PROJECT_DIR$/setup/infrastructure/instancesSetupScript.tmpl.sh" />
         <option value="$PROJECT_DIR$/src/main/assembly/scripts/start.sh" />
+        <option value="$PROJECT_DIR$/setup/infrastructure/instancesSetupScript.tmpl.sh" />
         <option value="$PROJECT_DIR$/setup/infrastructure/aws.tf" />
       </list>
     </option>
@@ -123,8 +144,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -141,42 +160,14 @@
               <item name="urchin-release-mgt" type="b2602c69:ProjectViewProjectNode" />
               <item name="urchinReleaseMgt" type="462c0819:PsiDirectoryNode" />
               <item name="setup" type="462c0819:PsiDirectoryNode" />
-              <item name="deploy" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="urchin-release-mgt" type="b2602c69:ProjectViewProjectNode" />
-              <item name="urchinReleaseMgt" type="462c0819:PsiDirectoryNode" />
-              <item name="setup" type="462c0819:PsiDirectoryNode" />
               <item name="infrastructure" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="urchin-release-mgt" type="b2602c69:ProjectViewProjectNode" />
-              <item name="urchinReleaseMgt" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="urchin-release-mgt" type="b2602c69:ProjectViewProjectNode" />
-              <item name="urchinReleaseMgt" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="urchin-release-mgt" type="b2602c69:ProjectViewProjectNode" />
-              <item name="urchinReleaseMgt" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="urchin-release-mgt" type="b2602c69:ProjectViewProjectNode" />
-              <item name="urchinReleaseMgt" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -257,6 +248,16 @@
       <workItem from="1559936508231" duration="605000" />
       <workItem from="1560062160212" duration="27000" />
       <workItem from="1560194459206" duration="21000" />
+      <workItem from="1560194490721" duration="92000" />
+      <workItem from="1560194794535" duration="21000" />
+      <workItem from="1560444903930" duration="7000" />
+      <workItem from="1560577358119" duration="6000" />
+      <workItem from="1561211550758" duration="1200000" />
+      <workItem from="1561214697053" duration="4000" />
+      <workItem from="1561281273032" duration="638000" />
+      <workItem from="1561399481147" duration="446000" />
+      <workItem from="1561645808205" duration="5626000" />
+      <workItem from="1561998584297" duration="2131000" />
     </task>
     <task id="LOCAL-00001" summary="Add workspace file">
       <created>1558271512088</created>
@@ -489,16 +490,31 @@
       <option name="project" value="LOCAL" />
       <updated>1559757415084</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="Update to HCL v2">
+      <created>1560194568032</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1560194568032</updated>
+    </task>
+    <task id="LOCAL-00035" summary="Update user data script">
+      <created>1561659173335</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1561659173336</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="144985000" />
+    <option name="totallyTimeSpent" value="155156000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="0" width="1922" height="1054" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2230523" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2497332" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -514,13 +530,13 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Spring" order="7" />
-      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.4994664" weight="0.3290461" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="8" sideWeight="0.4994664" visible="true" weight="0.32690248" />
       <window_info anchor="bottom" id="Docker" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50053364" side_tool="true" weight="0.3290461" />
       <window_info anchor="bottom" id="Messages" order="11" />
       <window_info anchor="bottom" id="Java Enterprise" order="12" weight="0.3290461" />
       <window_info anchor="bottom" id="Database Changes" order="13" weight="0.3290461" />
-      <window_info active="true" anchor="bottom" id="Version Control" order="14" sideWeight="0.49839914" visible="true" weight="0.19506967" />
+      <window_info anchor="bottom" id="Version Control" order="14" sideWeight="0.49839914" weight="0.2601713" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -561,7 +577,8 @@
     <MESSAGE value="Encrypt EBS" />
     <MESSAGE value="Encrypt EBS (add key alias)" />
     <MESSAGE value="Update to HCL v2" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update to HCL v2" />
+    <MESSAGE value="Update user data script" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update user data script" />
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="evaluateExpression">
@@ -682,13 +699,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/setup/infrastructure/infra.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="21" selection-start-line="9" selection-start-column="9" selection-end-line="9" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/com/amazonaws/aws-java-sdk-core/1.11.473/aws-java-sdk-core-1.11.473.jar!/com/amazonaws/regions/Regions.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="167">
@@ -752,13 +762,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/setup/infrastructure/instancesSetupScript.tmpl.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" selection-start-line="15" selection-end-line="15" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/assembly/scripts/start.sh">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
@@ -797,10 +800,24 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/setup/infrastructure/infra.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="21" selection-start-line="9" selection-start-column="9" selection-end-line="9" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/setup/infrastructure/instancesSetupScript.tmpl.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="24" selection-start-line="24" selection-end-line="24" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/setup/infrastructure/aws.tf">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="551">
-          <caret line="255" column="9" selection-start-line="255" selection-start-column="9" selection-end-line="255" selection-end-column="9" />
+        <state relative-caret-position="399">
+          <caret line="260" column="5" lean-forward="true" selection-start-line="260" selection-start-column="5" selection-end-line="260" selection-end-column="5" />
         </state>
       </provider>
     </entry>

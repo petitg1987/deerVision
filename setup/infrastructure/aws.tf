@@ -260,6 +260,12 @@ resource "aws_launch_template" "rlmgt_launch_template" {
       volume_size = 8
     }
   }
+  tag_specifications {
+    resource_type = "volume"
+    tags = {
+      Name = "${var.appName}RelMgtVolume"
+    }
+  }
 }
 
 resource "aws_autoscaling_group" "rlmgt_asg" {
