@@ -1,6 +1,7 @@
 # Pre-requisites
 * AWS
-  * Create IAM User named "release-mgt-user" with programmatic access and having "AdministratorAccess" IAM policy
+  * Create "IAM Group" named "release-mgt-group" having "AdministratorAccess" IAM policy
+  * Create "IAM User" named "release-mgt-user" with programmatic access and in "release-mgt-group" group
   * Add the IAM user keys in:
     * `~/.aws/credentials` for "releasemgt" profile
     * `src/main/resources/application-awssecurity.yml` for "binary.aws-access-key-id" and "binary.aws-secret-access-key" properties

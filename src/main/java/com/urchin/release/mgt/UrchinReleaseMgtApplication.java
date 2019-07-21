@@ -10,7 +10,7 @@ import java.sql.SQLException;
 public class UrchinReleaseMgtApplication {
 
 	public static void main(String[] args) throws SQLException {
-		Server.createTcpServer().start();
+		Server.createTcpServer("-ifNotExists").start();
 
 		SpringApplication.run(UrchinReleaseMgtApplication.class, args);
 	}
