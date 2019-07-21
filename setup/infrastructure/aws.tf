@@ -79,6 +79,54 @@ resource "aws_route_table_association" "rlmgt_route_association" {
   route_table_id = aws_route_table.rlmgt_route.id
 }
 
+resource "aws_network_acl" "rlmgt_network_acl" {
+  vpc_id = aws_vpc.rlmgt_vpc.id
+  subnet_ids = aws_subnet.rlmgt_public_subnet.*.id
+  ingress { #port for HTTPS (website request)
+    rule_no = 100
+    from_port = 443
+    to_port = 443
+    action = "allow"
+    protocol = "tcp"
+    cidr_block = "0.0.0.0/0"
+  }
+  ingress { #port for SSH (request)
+    rule_no = 120
+    from_port = 22
+    to_port = 22
+    action = "allow"
+    protocol = "tcp"
+    cidr_block = "0.0.0.0/0"
+  }
+  ingress { #ephemeral ports for HTTPS (S3 reponse)
+    rule_no = 130
+    from_port = 1024
+    to_port = 65535
+    action = "allow"
+    protocol = "tcp"
+    cidr_block = "0.0.0.0/0"
+  }
+  egress { #ephemeral ports for SSH (reponse) and HTTPS (website reponse)
+    rule_no = 100
+    from_port = 1024
+    to_port = 65535
+    action = "allow"
+    protocol = "tcp"
+    cidr_block = "0.0.0.0/0"
+  }
+  egress { #port for HTTPS (S3 request)
+    rule_no = 110
+    from_port = 443
+    to_port = 443
+    action = "allow"
+    protocol = "tcp"
+    cidr_block = "0.0.0.0/0"
+  }
+  tags = {
+    Name = "${var.appName}RelMgtNetworkACL"
+  }
+}
+
 ##########################################################################################
 # EFS
 ##########################################################################################
@@ -160,18 +208,10 @@ resource "aws_security_group" "rlmgt_instance_sg" {
     description = "SSH"
   }
   ingress {
-    protocol = "icmp"
-    from_port = 8 # ICMP type: echo request
-    to_port = 0
-    cidr_blocks = ["0.0.0.0/0"]
-    description = "Ping"
-  }
-  ingress {
     from_port = 80
     to_port = 80
     protocol = "tcp"
     security_groups = [aws_security_group.rlmgt_elb_sg.id]
-    #cidr_blocks = ["0.0.0.0/0"] #Debug: use to access instance without going through ELB
     description = "HTTP requests from ELB"
   }
   ingress {
