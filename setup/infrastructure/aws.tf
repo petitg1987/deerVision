@@ -90,6 +90,14 @@ resource "aws_network_acl" "rlmgt_network_acl" {
     protocol = "tcp"
     cidr_block = "0.0.0.0/0"
   }
+  ingress { #port for HTTP (website request)
+    rule_no = 110
+    from_port = 80
+    to_port = 80
+    action = "allow"
+    protocol = "tcp"
+    cidr_block = "0.0.0.0/0"
+  }
   ingress { #port for SSH (request)
     rule_no = 120
     from_port = 22
@@ -98,7 +106,7 @@ resource "aws_network_acl" "rlmgt_network_acl" {
     protocol = "tcp"
     cidr_block = "0.0.0.0/0"
   }
-  ingress { #ephemeral ports for HTTPS (S3 reponse)
+  ingress { #ephemeral ports for HTTP (EC2 internet response) and HTTPS (S3 response)
     rule_no = 130
     from_port = 1024
     to_port = 65535
@@ -106,7 +114,7 @@ resource "aws_network_acl" "rlmgt_network_acl" {
     protocol = "tcp"
     cidr_block = "0.0.0.0/0"
   }
-  egress { #ephemeral ports for SSH (reponse) and HTTPS (website reponse)
+  egress { #ephemeral ports for SSH (response) and HTTP/HTTPS (website response)
     rule_no = 100
     from_port = 1024
     to_port = 65535
@@ -118,6 +126,14 @@ resource "aws_network_acl" "rlmgt_network_acl" {
     rule_no = 110
     from_port = 443
     to_port = 443
+    action = "allow"
+    protocol = "tcp"
+    cidr_block = "0.0.0.0/0"
+  }
+  egress { #port for HTTP (EC2 internet request)
+    rule_no = 120
+    from_port = 80
+    to_port = 80
     action = "allow"
     protocol = "tcp"
     cidr_block = "0.0.0.0/0"
