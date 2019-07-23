@@ -31,8 +31,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/setup/infrastructure/aws.tf">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="440">
-              <caret line="524" lean-forward="true" selection-start-line="524" selection-end-line="524" />
+            <state relative-caret-position="823">
+              <caret line="528" lean-forward="true" selection-start-line="528" selection-end-line="528" />
             </state>
           </provider>
         </entry>
@@ -40,17 +40,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/setup/infrastructure/instancesSetupScript.tmpl.sh">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/urchin/release/mgt/service/BinaryService.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="439">
-              <caret line="173" selection-start-line="173" selection-end-line="173" />
+            <state relative-caret-position="385">
+              <caret line="27" column="37" lean-forward="true" selection-start-line="27" selection-start-column="37" selection-end-line="27" selection-end-column="37" />
             </state>
           </provider>
         </entry>
@@ -59,12 +50,7 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>EU_WEST_</find>
-      <find>instances</find>
-      <find>EOF</find>
-      <find>rlmgt_elb_sg</find>
       <find>user_da</find>
-      <find>efsDnsName</find>
       <find>_rule</find>
       <find>data</find>
       <find>release-mgt-user</find>
@@ -77,7 +63,6 @@
       <find>kms</find>
       <find>aws_internet_gateway</find>
       <find>key</find>
-      <find>releasemgt</find>
       <find>rlmgt_launch_template</find>
       <find>rlmgt_asg</find>
       <find>rlmgt_elb_target_group</find>
@@ -89,6 +74,12 @@
       <find>AutoScalingNotificationAccessRole</find>
       <find>rlmgt_instance_role</find>
       <find>rlmgt_instance_profile</find>
+      <find>releasemgt</find>
+      <find>Key</find>
+      <find>efsDnsName</find>
+      <find>dns_name</find>
+      <find>appName</find>
+      <find>logGroupName</find>
     </findStrings>
     <replaceStrings>
       <replace>.rlmgt_</replace>
@@ -116,7 +107,6 @@
         <option value="$PROJECT_DIR$/src/main/resources/application-awssecurity.yml" />
         <option value="$PROJECT_DIR$/setup/deploy/deploy.sh" />
         <option value="$PROJECT_DIR$/src/main/java/com/urchin/release/mgt/config/properties/BinaryProperties.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/urchin/release/mgt/service/BinaryService.java" />
         <option value="$PROJECT_DIR$/setup/infrastructure/instancesSetupScript.sh" />
         <option value="$PROJECT_DIR$/src/main/assembly/appspec.yml" />
         <option value="$PROJECT_DIR$/src/main/assembly/scripts/start.sh" />
@@ -126,6 +116,7 @@
         <option value="$PROJECT_DIR$/src/main/resources/application-dev.yml" />
         <option value="$PROJECT_DIR$/src/main/java/com/urchin/release/mgt/UrchinReleaseMgtApplication.java" />
         <option value="$PROJECT_DIR$/setup/infrastructure/cloud-watch-agent-config.json" />
+        <option value="$PROJECT_DIR$/src/main/java/com/urchin/release/mgt/service/BinaryService.java" />
         <option value="$PROJECT_DIR$/setup/infrastructure/aws.tf" />
         <option value="$PROJECT_DIR$/setup/infrastructure/instancesSetupScript.tmpl.sh" />
       </list>
@@ -139,15 +130,15 @@
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-2" />
-    <option name="width" value="1918" />
-    <option name="height" value="1047" />
+    <option name="width" value="1910" />
+    <option name="height" value="1042" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -158,6 +149,24 @@
             <path>
               <item name="urchin-release-mgt" type="b2602c69:ProjectViewProjectNode" />
               <item name="urchinReleaseMgt" type="462c0819:PsiDirectoryNode" />
+              <item name="setup" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="urchin-release-mgt" type="b2602c69:ProjectViewProjectNode" />
+              <item name="urchinReleaseMgt" type="462c0819:PsiDirectoryNode" />
+              <item name="setup" type="462c0819:PsiDirectoryNode" />
+              <item name="infrastructure" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="urchin-release-mgt" type="b2602c69:ProjectViewProjectNode" />
+              <item name="urchinReleaseMgt" type="462c0819:PsiDirectoryNode" />
+              <item name="setup" type="462c0819:PsiDirectoryNode" />
+              <item name="infrastructure" type="462c0819:PsiDirectoryNode" />
+              <item name="config" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="urchin-release-mgt" type="b2602c69:ProjectViewProjectNode" />
+              <item name="urchinReleaseMgt" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -171,31 +180,13 @@
               <item name="urchinReleaseMgt" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="urchin-release-mgt" type="b2602c69:ProjectViewProjectNode" />
-              <item name="urchinReleaseMgt" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="mgt" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="urchin-release-mgt" type="b2602c69:ProjectViewProjectNode" />
-              <item name="urchinReleaseMgt" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="mgt" type="462c0819:PsiDirectoryNode" />
-              <item name="controller" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
       <pane id="PackagesPane" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -289,7 +280,8 @@
       <workItem from="1563090393032" duration="798000" />
       <workItem from="1563709290937" duration="20060000" />
       <workItem from="1563770365521" duration="1325000" />
-      <workItem from="1563812141091" duration="7114000" />
+      <workItem from="1563812141091" duration="9414000" />
+      <workItem from="1563893229585" duration="9068000" />
     </task>
     <task id="LOCAL-00001" summary="Add workspace file">
       <created>1558271512088</created>
@@ -564,11 +556,18 @@
       <option name="project" value="LOCAL" />
       <updated>1563738669241</updated>
     </task>
-    <option name="localTasksCounter" value="40" />
+    <task id="LOCAL-00040" summary="Configure NACL (review)">
+      <created>1563822938058</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1563822938058</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="186120000" />
+    <option name="totallyTimeSpent" value="197488000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -582,7 +581,7 @@
   <component name="ToolWindowManager">
     <frame x="-1" y="0" width="1922" height="1054" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19103523" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19316968" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -598,13 +597,13 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.41050375" />
       <window_info anchor="bottom" id="Spring" order="7" weight="0.3290461" />
-      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.49839914" weight="0.24973205" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="8" sideWeight="0.49839914" visible="true" weight="0.37406215" />
       <window_info anchor="bottom" id="Docker" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50160086" side_tool="true" weight="0.2636656" />
       <window_info anchor="bottom" id="Messages" order="11" />
       <window_info anchor="bottom" id="Java Enterprise" order="12" weight="0.3290461" />
       <window_info anchor="bottom" id="Database Changes" order="13" weight="0.3290461" />
-      <window_info active="true" anchor="bottom" id="Version Control" order="14" sideWeight="0.49786553" visible="true" weight="0.2829582" />
+      <window_info anchor="bottom" id="Version Control" order="14" sideWeight="0.49786553" weight="0.42658094" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -620,8 +619,17 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ORDER">
+      <list>
+        <option value="0" />
+        <option value="2" />
+        <option value="3" />
+        <option value="1" />
+      </list>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Terraform update (add health check)" />
     <MESSAGE value="Terraform update (add internet access)" />
     <MESSAGE value="Terraform update (new SG for ELB)" />
     <MESSAGE value="Terraform update (dynamic subnet creation)" />
@@ -646,7 +654,8 @@
     <MESSAGE value="Allow several db connections from same host &amp; update libraries" />
     <MESSAGE value="Allow several db connections from same host" />
     <MESSAGE value="Configure NACL" />
-    <option name="LAST_COMMIT_MESSAGE" value="Configure NACL" />
+    <MESSAGE value="Configure NACL (review)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Configure NACL (review)" />
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="evaluateExpression">
@@ -751,13 +760,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/target/greencity/application-appinfo.yml" />
-    <entry file="file://$PROJECT_DIR$/setup/infrastructure/config/greencity.tfvars">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="11" selection-start-column="11" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/com/amazonaws/aws-java-sdk-core/1.11.473/aws-java-sdk-core-1.11.473.jar!/com/amazonaws/regions/Regions.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="167">
@@ -904,20 +906,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/setup/infrastructure/cloud-watch-agent-config.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="530">
-          <caret line="50" column="3" lean-forward="true" selection-start-line="50" selection-start-column="3" selection-end-line="50" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/setup/infrastructure/infra.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="9" column="21" selection-start-line="9" selection-start-column="9" selection-end-line="9" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/setup/infrastructure/cloud-watch-agent-config.json" />
     <entry file="file://$PROJECT_DIR$/setup/deploy/deploy.sh">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="660">
@@ -935,13 +924,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/setup/infrastructure/aws.tf">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="440">
-          <caret line="524" lean-forward="true" selection-start-line="524" selection-end-line="524" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/urchin/release/mgt/controller/BinaryRestController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="453">
@@ -956,17 +938,59 @@
         </state>
       </provider>
     </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/com/amazonaws/aws-java-sdk-s3/1.11.595/aws-java-sdk-s3-1.11.595.jar!/com/amazonaws/services/s3/AmazonS3.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="214">
+          <caret line="404" column="8" selection-start-line="404" selection-start-column="8" selection-end-line="404" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/com/amazonaws/aws-java-sdk-s3/1.11.595/aws-java-sdk-s3-1.11.595.jar!/com/amazonaws/services/s3/model/GeneratePresignedUrlRequest.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="840">
+          <caret line="64" column="11" selection-start-line="64" selection-start-column="11" selection-end-line="64" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/com/amazonaws/aws-java-sdk-s3/1.11.595/aws-java-sdk-s3-1.11.595-sources.jar!/com/amazonaws/services/s3/model/GeneratePresignedUrlRequest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="294">
+          <caret line="123" column="26" lean-forward="true" selection-start-line="123" selection-start-column="26" selection-end-line="123" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/urchin/release/mgt/service/BinaryService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="439">
-          <caret line="173" selection-start-line="173" selection-end-line="173" />
+        <state relative-caret-position="267">
+          <caret line="126" column="43" selection-start-line="126" selection-start-column="43" selection-end-line="126" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/setup/infrastructure/config/greencity.tfvars">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="11" selection-start-column="11" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/setup/infrastructure/infra.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-360">
+          <caret line="9" column="21" selection-start-line="9" selection-start-column="9" selection-end-line="9" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/setup/infrastructure/aws.tf">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="823">
+          <caret line="528" lean-forward="true" selection-start-line="528" selection-end-line="528" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/setup/infrastructure/instancesSetupScript.tmpl.sh">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
+        <state relative-caret-position="385">
+          <caret line="27" column="37" lean-forward="true" selection-start-line="27" selection-start-column="37" selection-end-line="27" selection-end-column="37" />
         </state>
       </provider>
     </entry>
