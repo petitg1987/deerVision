@@ -43,6 +43,30 @@ cat <<EOT > ./amazon-cloudwatch-agent.json
     },
     "log_stream_name": "${logStreamNamePrefix}Default",
     "force_flush_interval" : 15
+  },
+
+  "metrics": {
+    "metrics_collected": {
+      "disk": {
+        "resources": [
+          "/"
+        ],
+        "measurement": [
+          "free",
+          "total",
+          "used"
+        ],
+        "metrics_collection_interval": 60
+      },
+      "mem": {
+        "measurement": [
+          "mem_used",
+          "mem_cached",
+          "mem_total"
+        ],
+        "metrics_collection_interval": 60
+      }
+    }
   }
 }
 EOT
