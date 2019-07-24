@@ -523,8 +523,7 @@ resource "aws_codedeploy_deployment_group" "rlmgt_deployment_group" {
 # CLOUD WATCH
 ##########################################################################################
 resource "aws_cloudwatch_log_group" "rlmgt_cloudwatch_log_group" {
-  #Name must match with variable "logGroupName" defined above
-  name = "${var.appName}RelMgtLogsGroup"
+  name = "${var.appName}RelMgtLogsGroup" #Name must match with variable "logGroupName" defined above
   retention_in_days = 60
 }
 
