@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="2e0ba787-3e10-4807-920a-380e6f994ff7" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/setup/infrastructure/aws.tf" beforeDir="false" afterPath="$PROJECT_DIR$/setup/infrastructure/aws.tf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/setup/infrastructure/instancesSetupScript.tmpl.sh" beforeDir="false" afterPath="$PROJECT_DIR$/setup/infrastructure/instancesSetupScript.tmpl.sh" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/setup/infrastructure/terraform.tfstate.d/greencity/terraform.tfstate" beforeDir="false" afterPath="$PROJECT_DIR$/setup/infrastructure/terraform.tfstate.d/greencity/terraform.tfstate" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/setup/infrastructure/terraform.tfstate.d/greencity/terraform.tfstate.backup" beforeDir="false" afterPath="$PROJECT_DIR$/setup/infrastructure/terraform.tfstate.d/greencity/terraform.tfstate.backup" afterDir="false" />
     </list>
@@ -27,20 +25,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/setup/infrastructure/aws.tf">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="706">
-              <caret line="537" column="17" lean-forward="true" selection-start-line="537" selection-start-column="17" selection-end-line="537" selection-end-column="17" />
+            <state relative-caret-position="171">
+              <caret line="529" selection-start-line="529" selection-end-line="529" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/setup/infrastructure/instancesSetupScript.tmpl.sh">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="490">
-              <caret line="59" column="8" lean-forward="true" selection-start-line="59" selection-start-column="8" selection-end-line="59" selection-end-column="8" />
+            <state relative-caret-position="1155">
+              <caret line="77" column="33" selection-start-line="77" selection-start-column="33" selection-end-line="77" selection-end-column="33" />
             </state>
           </provider>
         </entry>
@@ -128,16 +126,13 @@
       </MavenImportingSettings>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="width" value="1910" />
-    <option name="height" value="1042" />
-  </component>
+  <component name="ProjectId" id="1OSyRSTkWJ2DHPRTqgdQ5RZvM3h" />
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -185,7 +180,7 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -280,7 +275,8 @@
       <workItem from="1563709290937" duration="20060000" />
       <workItem from="1563770365521" duration="1325000" />
       <workItem from="1563812141091" duration="9414000" />
-      <workItem from="1563893229585" duration="10925000" />
+      <workItem from="1563893229585" duration="13667000" />
+      <workItem from="1563979047938" duration="2423000" />
     </task>
     <task id="LOCAL-00001" summary="Add workspace file">
       <created>1558271512088</created>
@@ -569,11 +565,18 @@
       <option name="project" value="LOCAL" />
       <updated>1563904333572</updated>
     </task>
-    <option name="localTasksCounter" value="42" />
+    <task id="LOCAL-00042" summary="Add memory and disk metrics">
+      <created>1563906250264</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1563906250264</updated>
+    </task>
+    <option name="localTasksCounter" value="43" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="199345000" />
+    <option name="totallyTimeSpent" value="204510000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -586,9 +589,8 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="0" width="1922" height="1054" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19316968" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19530416" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -604,13 +606,13 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.41050375" />
       <window_info anchor="bottom" id="Spring" order="7" weight="0.3290461" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="8" sideWeight="0.49839914" visible="true" weight="0.30546623" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="8" sideWeight="0.49839914" visible="true" weight="0.3290461" />
       <window_info anchor="bottom" id="Docker" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50160086" side_tool="true" weight="0.2636656" />
       <window_info anchor="bottom" id="Messages" order="11" />
       <window_info anchor="bottom" id="Java Enterprise" order="12" weight="0.3290461" />
       <window_info anchor="bottom" id="Database Changes" order="13" weight="0.3290461" />
-      <window_info anchor="bottom" id="Version Control" order="14" sideWeight="0.49786553" weight="0.20150054" />
+      <window_info anchor="bottom" id="Version Control" order="14" sideWeight="0.49786553" weight="0.1800643" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -637,7 +639,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Terraform update (new SG for ELB)" />
     <MESSAGE value="Terraform update (dynamic subnet creation)" />
     <MESSAGE value="Terraform update (restrict security group)" />
     <MESSAGE value="Create script to manage infrastructure" />
@@ -662,7 +663,8 @@
     <MESSAGE value="Configure NACL" />
     <MESSAGE value="Configure NACL (review)" />
     <MESSAGE value="Use CloudWatch logs" />
-    <option name="LAST_COMMIT_MESSAGE" value="Use CloudWatch logs" />
+    <MESSAGE value="Add memory and disk metrics" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add memory and disk metrics" />
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="evaluateExpression">
@@ -989,15 +991,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/setup/infrastructure/aws.tf">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="706">
-          <caret line="537" column="17" lean-forward="true" selection-start-line="537" selection-start-column="17" selection-end-line="537" selection-end-column="17" />
+        <state relative-caret-position="171">
+          <caret line="529" selection-start-line="529" selection-end-line="529" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/setup/infrastructure/instancesSetupScript.tmpl.sh">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="490">
-          <caret line="59" column="8" lean-forward="true" selection-start-line="59" selection-start-column="8" selection-end-line="59" selection-end-column="8" />
+        <state relative-caret-position="1155">
+          <caret line="77" column="33" selection-start-line="77" selection-start-column="33" selection-end-line="77" selection-end-column="33" />
         </state>
       </provider>
     </entry>

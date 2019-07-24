@@ -8,7 +8,9 @@
       <Current>1</Current>
       <Visible>1</Visible>
     </database>
-    <schema id="3" parent="2" name="INFORMATION_SCHEMA"/>
+    <schema id="3" parent="2" name="INFORMATION_SCHEMA">
+      <Substituted>1</Substituted>
+    </schema>
     <schema id="4" parent="2" name="PUBLIC">
       <Current>1</Current>
       <Visible>1</Visible>
