@@ -4,6 +4,8 @@
     <list default="true" id="2e0ba787-3e10-4807-920a-380e6f994ff7" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/setup/infrastructure/aws.tf" beforeDir="false" afterPath="$PROJECT_DIR$/setup/infrastructure/aws.tf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/setup/infrastructure/terraform.tfstate.d/greencity/terraform.tfstate" beforeDir="false" afterPath="$PROJECT_DIR$/setup/infrastructure/terraform.tfstate.d/greencity/terraform.tfstate" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/setup/infrastructure/terraform.tfstate.d/greencity/terraform.tfstate.backup" beforeDir="false" afterPath="$PROJECT_DIR$/setup/infrastructure/terraform.tfstate.d/greencity/terraform.tfstate.backup" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -18,46 +20,6 @@
   </component>
   <component name="DefaultGradleProjectSettings">
     <option name="isMigrated" value="true" />
-  </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>user_da</find>
-      <find>_rule</find>
-      <find>data</find>
-      <find>release-mgt-user</find>
-      <find>role</find>
-      <find>aws_iam_role</find>
-      <find>kms_</find>
-      <find>aws_iam_role_policy_attachment</find>
-      <find>AWSCodeDeployRole</find>
-      <find>nat</find>
-      <find>kms</find>
-      <find>aws_internet_gateway</find>
-      <find>key</find>
-      <find>rlmgt_launch_template</find>
-      <find>rlmgt_asg</find>
-      <find>rlmgt_elb_target_group</find>
-      <find>sed</find>
-      <find>docker</find>
-      <find>LOGG</find>
-      <find>-user</find>
-      <find>aws_iam_user</find>
-      <find>AutoScalingNotificationAccessRole</find>
-      <find>rlmgt_instance_role</find>
-      <find>rlmgt_instance_profile</find>
-      <find>releasemgt</find>
-      <find>Key</find>
-      <find>efsDnsName</find>
-      <find>dns_name</find>
-      <find>appName</find>
-      <find>logGroupName</find>
-    </findStrings>
-    <replaceStrings>
-      <replace>.rlmgt_</replace>
-    </replaceStrings>
-    <dirStrings>
-      <dir>$PROJECT_DIR$</dir>
-    </dirStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -171,7 +133,8 @@
       <workItem from="1563812141091" duration="9414000" />
       <workItem from="1563893229585" duration="13667000" />
       <workItem from="1563979047938" duration="2423000" />
-      <workItem from="1563985287825" duration="1048000" />
+      <workItem from="1563985287825" duration="1830000" />
+      <workItem from="1564327681555" duration="2964000" />
     </task>
     <task id="LOCAL-00001" summary="Add workspace file">
       <created>1558271512088</created>
@@ -474,7 +437,14 @@
       <option name="project" value="LOCAL" />
       <updated>1563985519807</updated>
     </task>
-    <option name="localTasksCounter" value="44" />
+    <task id="LOCAL-00044" summary="Add memory and disk metrics">
+      <created>1563986366517</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1563986366517</updated>
+    </task>
+    <option name="localTasksCounter" value="45" />
     <servers />
   </component>
   <component name="TodoView">
@@ -504,7 +474,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>

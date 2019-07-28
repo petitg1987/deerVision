@@ -44,6 +44,7 @@ resource "aws_vpc" "rlmgt_vpc" {
   enable_dns_hostnames = true
   tags = {
     Name = "${var.appName}RelMgtVPC"
+    Application = var.appName
   }
 }
 
@@ -51,6 +52,7 @@ resource "aws_internet_gateway" "rlmgt_igw" {
   vpc_id = aws_vpc.rlmgt_vpc.id
   tags = {
     Name = "${var.appName}RelMgtIGW"
+    Application = var.appName
   }
 }
 
@@ -62,6 +64,7 @@ resource "aws_route_table" "rlmgt_route" {
   }
   tags = {
     Name = "${var.appName}RelMgtRoute"
+    Application = var.appName
   }
 }
 
@@ -71,6 +74,9 @@ resource "aws_subnet" "rlmgt_public_subnet" {
   cidr_block = "${var.cidrPrefix}.${count.index}.0/24"
   map_public_ip_on_launch = true
   availability_zone = var.availabilityZones[count.index]
+  tags = {
+    Application = var.appName
+  }
 }
 
 resource "aws_route_table_association" "rlmgt_route_association" {
@@ -140,6 +146,7 @@ resource "aws_network_acl" "rlmgt_network_acl" {
   }
   tags = {
     Name = "${var.appName}RelMgtNetworkACL"
+    Application = var.appName
   }
 }
 
@@ -150,6 +157,7 @@ resource "aws_efs_file_system" "rlmgt_efs" {
   creation_token = "${var.appName}RelMgEfsToken"
   tags = {
     Name = "${var.appName}RelMgtEfsName"
+    Application = var.appName
   }
 }
 
@@ -166,6 +174,7 @@ resource "aws_security_group" "rlmgt_efs_sg" {
   }
   tags = {
     Name = "${var.appName}RelMgtInstanceSG"
+    Application = var.appName
   }
 }
 
@@ -210,6 +219,9 @@ resource "aws_iam_role" "rlmgt_instance_role" {
   ]
 }
 EOF
+  tags = {
+    Application = var.appName
+  }
 }
 
 resource "aws_security_group" "rlmgt_instance_sg" {
@@ -246,6 +258,7 @@ resource "aws_security_group" "rlmgt_instance_sg" {
   }
   tags = {
     Name = "${var.appName}RelMgtInstanceSG"
+    Application = var.appName
   }
 }
 
@@ -295,6 +308,9 @@ resource "aws_kms_key" "rlmgt_ebs_kms_key" {
     ]
 }
 EOF
+  tags = {
+    Application = var.appName
+  }
 }
 
 resource "aws_kms_alias" "rlmgt_ebs_kms_key_alias" {
@@ -329,6 +345,7 @@ resource "aws_launch_template" "rlmgt_launch_template" {
     resource_type = "volume"
     tags = {
       Name = "${var.appName}RelMgtVolume"
+      Application = var.appName
     }
   }
 }
@@ -344,6 +361,11 @@ resource "aws_autoscaling_group" "rlmgt_asg" {
   tag {
     key = "Name"
     value = "${var.appName}RelMgtInstance"
+    propagate_at_launch = true
+  }
+  tag {
+    key = "Application"
+    value = var.appName
     propagate_at_launch = true
   }
   launch_template {
@@ -365,6 +387,9 @@ resource "aws_lb_target_group" "rlmgt_elb_target_group" {
     protocol = "HTTP"
     port = 80
     path = "/login"
+  }
+  tags = {
+    Application = var.appName
   }
 }
 
@@ -405,6 +430,7 @@ resource "aws_security_group" "rlmgt_elb_sg" {
   }
   tags = {
     Name = "${var.appName}RelMgtElbSG"
+    Application = var.appName
   }
 }
 
@@ -415,6 +441,9 @@ resource "aws_lb" "rlmgt_elb" {
   security_groups = [aws_security_group.rlmgt_elb_sg.id]
   subnets = aws_subnet.rlmgt_public_subnet.*.id
   enable_deletion_protection = false
+  tags = {
+    Application = var.appName
+  }
 }
 
 data "aws_acm_certificate" "rlmgt_domain_certificate" {
@@ -494,6 +523,9 @@ resource "aws_iam_role" "rlmgt_deployment_role" {
   ]
 }
 EOF
+  tags = {
+    Application = var.appName
+  }
 }
 
 resource "aws_iam_role_policy_attachment" "AWSCodeDeployRole" {
@@ -525,6 +557,9 @@ resource "aws_codedeploy_deployment_group" "rlmgt_deployment_group" {
 resource "aws_cloudwatch_log_group" "rlmgt_cloudwatch_log_group" {
   name = "${var.appName}RelMgtLogsGroup" #Name must match with variable "logGroupName" defined above
   retention_in_days = 60
+  tags = {
+    Application = var.appName
+  }
 }
 
 ##########################################################################################
@@ -537,6 +572,7 @@ resource "aws_s3_bucket" "rlmgt_storage" {
   acl = "private"
   tags = {
     Name = "${var.appName}RelMgtStorage"
+    Application = var.appName
   }
 }
 
