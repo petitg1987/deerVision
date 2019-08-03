@@ -339,6 +339,7 @@ resource "aws_launch_template" "rlmgt_launch_template" {
       encrypted = "true"
       kms_key_id = aws_kms_key.rlmgt_ebs_kms_key.id
       volume_size = 8
+      volume_type = "gp2"
     }
   }
   tag_specifications {
