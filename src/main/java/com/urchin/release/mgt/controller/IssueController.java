@@ -42,7 +42,7 @@ public class IssueController {
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public String listIssues(Model model, @RequestParam(value = "page", defaultValue = "1") Integer page) {
-        Sort sortByDate = new Sort(Sort.Direction.DESC, "dateTime");
+        Sort sortByDate = Sort.by(Sort.Direction.DESC, "dateTime");
         PageRequest pageRequest = PageRequest.of(page - 1, issueProperties.getPageSize(), sortByDate);
         Page<Issue> issuePage = issueService.findPaginated(pageRequest);
 
@@ -83,7 +83,7 @@ public class IssueController {
     @ResponseBody
     public RedirectView removeFile(@Param(value="id") Long id, @RequestParam(value = "page", defaultValue = "1") Integer page) {
         issueService.removeById(id);
-        return new RedirectView("/issues/list?page=" + String.valueOf(page));
+        return new RedirectView("/issues/list?page=" + page);
     }
 
 }
