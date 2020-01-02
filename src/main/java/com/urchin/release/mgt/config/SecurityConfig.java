@@ -14,6 +14,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 
 @Configuration
 @EnableWebSecurity
@@ -95,13 +96,21 @@ public class SecurityConfig {
     @Order(4)
     public class WebAppSecurity extends WebSecurityConfigurerAdapter {
 
+        public final InMemoryUserDetailsManager inMemoryUserDetailsManager;
+
+        public WebAppSecurity(InMemoryUserDetailsManager inMemoryUserDetailsManager) {
+            this.inMemoryUserDetailsManager = inMemoryUserDetailsManager;
+        }
+
         @Override
         protected void configure(HttpSecurity http) throws Exception {
-            http.regexMatcher("^/(?!api/|actuator/).*").authorizeRequests()
+            http
+                    .regexMatcher("^/(?!api/|actuator/).*").authorizeRequests()
                     .regexMatchers("^/js/.*", "^/css/.*", "^/img/.*", "^/logout$").permitAll()
                     .regexMatchers("^/(?!api/|actuator/).*").authenticated()
                     .and().formLogin().loginPage("/login").permitAll()
-                    .and().logout().permitAll();
+                    .and().logout().permitAll()
+                    .and().rememberMe().alwaysRemember(true).tokenValiditySeconds(365*24*60*60).userDetailsService(inMemoryUserDetailsManager);
         }
     }
 

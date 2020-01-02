@@ -11,7 +11,6 @@ Release management application for Urchin engine
   - API to download binaries and retrieve last binaries version
   - Web interface to see statistics of binaries
 
-
 ## Setup
 ### Jar
 - Build Jar: `mvn clean package`

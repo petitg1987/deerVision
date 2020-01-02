@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataSource name="jdbc:h2:tcp://localhost/~/urchinReleaseMgtDB;DB_CLOSE_ON_EXIT=FALSE">
-  <database-model serializer="dbm" dbms="H2" family-id="H2" format-version="4.16">
+  <database-model serializer="dbm" dbms="H2" family-id="H2" format-version="4.17">
     <root id="1">
       <ServerVersion>1.4.196</ServerVersion>
     </root>
