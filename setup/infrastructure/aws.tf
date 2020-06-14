@@ -237,19 +237,12 @@ resource "aws_security_group" "rlmgt_instance_sg" {
     cidr_blocks = ["0.0.0.0/0"]
     description = "SSH"
   }
-  ingress { #TODO remove ?
-    from_port = 80
-    to_port = 80
-    protocol = "tcp"
-    cidr_blocks = ["0.0.0.0/0"] #TODO: limit to Route53 ???
-    description = "HTTP requests from Route53"
-  }
   ingress {
     from_port = 443
     to_port = 443
     protocol = "tcp"
-    cidr_blocks = ["0.0.0.0/0"] #TODO: limit to Route53 ???
-    description = "HTTPS requests from Route53"
+    cidr_blocks = ["0.0.0.0/0"]
+    description = "HTTPS requests from Internet"
   }
   ingress {
     from_port = 2049
