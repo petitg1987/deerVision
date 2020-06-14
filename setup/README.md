@@ -7,11 +7,10 @@
     * `src/main/resources/application-awssecurity.yml` for "binary.aws-access-key-id" and "binary.aws-secret-access-key" properties
   * Create EC2 key pair named "releasemgt" and add files in `~/.ssh/`
   * Create DNS "releasemgt.net" by using Route 53
-  * Request a public certificate for following domains on Amazon Certificate Manager: releasemgt.net & *.releasemgt.net
   * Delete the default VPC (optional)
 * Terraform: terraform >= v0.12 must be installed
 * Install AWS CLI: `snap install aws-cli`
-* Install Maven: `sudo apt-get install maven`
+* Install Maven: `sudo apt install maven`
 
 # Manage infrastructure
 * Create infrastructure: `./infrastructure/infra.sh create [APP_NAME] [CIDR_PREFIX]`

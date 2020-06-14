@@ -2,7 +2,7 @@
 
 while [[ true ]]
 do
-    httpCodeStatus=`curl -I -o /dev/null -w "%{http_code}" -s http://localhost:80/login`
+    httpCodeStatus=`curl -I -o /dev/null -w "%{http_code}" -s http://localhost:8080/login`
     echo "HTTP code status: $httpCodeStatus"
 
     if [[ "$httpCodeStatus" = "200" ]]

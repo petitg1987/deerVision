@@ -3,23 +3,23 @@
 ##########################################################################################
 variable "appName" {
   description = "Application name"
-  type = "string"
+  type = string
 }
 
 variable "cidrPrefix" {
   description = "CIDR prefix (e.g.: 10.0)"
-  type = "string"
+  type = string
 }
 
 variable "region" {
   description = "Run the EC2 instances in this region"
-  type = "string"
+  type = string
   default = "eu-central-1"
 }
 
 variable "availabilityZones" {
   description = "Run the EC2 instances in these availability zones"
-  type = "list"
+  type = list(string)
   default = ["eu-central-1a", "eu-central-1b", "eu-central-1c"]
 }
 
@@ -30,6 +30,7 @@ provider "aws" {
   region = var.region
   shared_credentials_file = "~/.aws/credentials"
   profile = "releasemgt"
+  version = "~> 2.23"
 }
 
 data "aws_iam_user" "rlmgt_user" {
@@ -192,6 +193,7 @@ data "aws_ami" "ubuntu" {
   most_recent = true
   filter {
     name = "name"
+    #New Ubuntu 20.04: "ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-*". Doesn't work with code deploy script yet.
     values = ["ubuntu/images/hvm-ssd/ubuntu-bionic-18.04-amd64-server-*"]
   }
   filter {
@@ -203,7 +205,7 @@ data "aws_ami" "ubuntu" {
 
 resource "aws_iam_role" "rlmgt_instance_role" {
   name = "${var.appName}RelMgtInstanceRole"
-  description = "Allow EC2 instances to access to S3, SNS and SQS which are used by CodeDeploy agent"
+  description = "Allow EC2 instances to access to S3/SNS/SQS (code deploy agent) and Route53 (let's encrypt)"
   assume_role_policy = <<EOF
 {
   "Version": "2012-10-17",
@@ -235,12 +237,19 @@ resource "aws_security_group" "rlmgt_instance_sg" {
     cidr_blocks = ["0.0.0.0/0"]
     description = "SSH"
   }
-  ingress {
+  ingress { #TODO remove ?
     from_port = 80
     to_port = 80
     protocol = "tcp"
-    security_groups = [aws_security_group.rlmgt_elb_sg.id]
-    description = "HTTP requests from ELB"
+    cidr_blocks = ["0.0.0.0/0"] #TODO: limit to Route53 ???
+    description = "HTTP requests from Route53"
+  }
+  ingress {
+    from_port = 443
+    to_port = 443
+    protocol = "tcp"
+    cidr_blocks = ["0.0.0.0/0"] #TODO: limit to Route53 ???
+    description = "HTTPS requests from Route53"
   }
   ingress {
     from_port = 2049
@@ -274,6 +283,11 @@ resource "aws_iam_role_policy_attachment" "AutoScalingNotificationAccessRole" {
 
 resource "aws_iam_role_policy_attachment" "CloudWatchAgentAdminPolicy" {
   policy_arn = "arn:aws:iam::aws:policy/CloudWatchAgentAdminPolicy"
+  role = aws_iam_role.rlmgt_instance_role.name
+}
+
+resource "aws_iam_role_policy_attachment" "AmazonRoute53FullAccess" {
+  policy_arn = "arn:aws:iam::aws:policy/AmazonRoute53FullAccess"
   role = aws_iam_role.rlmgt_instance_role.name
 }
 
@@ -318,170 +332,35 @@ resource "aws_kms_alias" "rlmgt_ebs_kms_key_alias" {
   target_key_id = aws_kms_key.rlmgt_ebs_kms_key.key_id
 }
 
-resource "aws_launch_template" "rlmgt_launch_template" {
-  name_prefix = "${var.appName}RelMgtInstance"
-  image_id = data.aws_ami.ubuntu.id
+resource "aws_instance" "rlmgt_instance" {
+  ami = data.aws_ami.ubuntu.id
   instance_type = "t2.micro"
   key_name = "releasemgt"
-  iam_instance_profile {
-    name = aws_iam_instance_profile.rlmgt_instance_profile.name
-  }
+  iam_instance_profile = aws_iam_instance_profile.rlmgt_instance_profile.name
+  subnet_id = aws_subnet.rlmgt_public_subnet[0].id
   vpc_security_group_ids = [aws_security_group.rlmgt_instance_sg.id]
   user_data = base64encode(templatefile("${path.module}/instancesSetupScript.tmpl.sh", {
     efsDnsName = aws_efs_file_system.rlmgt_efs.dns_name,
     logGroupName = "${var.appName}RelMgtLogsGroup",
     logStreamNamePrefix = "${var.appName}RelMgtLogsStream"
   }))
-  block_device_mappings {
+  ebs_block_device {
     device_name = "/dev/sda1"
-    ebs {
-      delete_on_termination = "true"
-      encrypted = "true"
-      kms_key_id = aws_kms_key.rlmgt_ebs_kms_key.id
-      volume_size = 8
-      volume_type = "gp2"
-    }
-  }
-  tag_specifications {
-    resource_type = "volume"
-    tags = {
-      Name = "${var.appName}RelMgtVolume"
-      Application = var.appName
-    }
-  }
-}
-
-resource "aws_autoscaling_group" "rlmgt_asg" {
-  desired_capacity = 1
-  max_size = 1
-  min_size = 1
-  vpc_zone_identifier = aws_subnet.rlmgt_public_subnet.*.id
-  health_check_grace_period = 300
-  health_check_type = "ELB"
-  service_linked_role_arn = data.aws_iam_role.AWSServiceRoleForAutoScaling.arn
-  tag {
-    key = "Name"
-    value = "${var.appName}RelMgtInstance"
-    propagate_at_launch = true
-  }
-  tag {
-    key = "Application"
-    value = var.appName
-    propagate_at_launch = true
-  }
-  launch_template {
-    id = aws_launch_template.rlmgt_launch_template.id
-    version = "$Latest"
-  }
-}
-
-##########################################################################################
-# LOAD BALANCER
-##########################################################################################
-resource "aws_lb_target_group" "rlmgt_elb_target_group" {
-  name = "${var.appName}RelMgtTargetGroup"
-  port= 80
-  protocol = "HTTP"
-  vpc_id = aws_vpc.rlmgt_vpc.id
-  target_type = "instance"
-  health_check {
-    protocol = "HTTP"
-    port = 80
-    path = "/login"
+    delete_on_termination = "true"
+    encrypted = "true"
+    kms_key_id = aws_kms_key.rlmgt_ebs_kms_key.id
+    volume_size = 8
+    volume_type = "gp2"
   }
   tags = {
+    Name = "${var.appName}RelMgtInstance"
     Application = var.appName
   }
 }
 
-resource "aws_security_group" "rlmgt_elb_sg" {
-  name = "${var.appName}RelMgtElbSG"
-  description = "Release Mgt ELB Security Group"
-  vpc_id = aws_vpc.rlmgt_vpc.id
-  ingress {
-    from_port = 80
-    to_port = 80
-    protocol = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-    ipv6_cidr_blocks = ["::/0"]
-    description = "HTTP"
-  }
-  ingress {
-    from_port = 443
-    to_port = 443
-    protocol = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-    ipv6_cidr_blocks = ["::/0"]
-    description = "HTTPS"
-  }
-  ingress {
-    protocol = "icmp"
-    from_port = 8 # ICMP type: echo request
-    to_port = 0
-    cidr_blocks = ["0.0.0.0/0"]
-    description = "Ping"
-  }
-  egress {
-    from_port = 80
-    to_port = 80
-    protocol = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-    ipv6_cidr_blocks = ["::/0"]
-    description = "Instances access (Web page and health check)"
-  }
-  tags = {
-    Name = "${var.appName}RelMgtElbSG"
-    Application = var.appName
-  }
-}
-
-resource "aws_lb" "rlmgt_elb" {
-  name = "${var.appName}RelMgtElb"
-  internal = false
-  load_balancer_type = "application"
-  security_groups = [aws_security_group.rlmgt_elb_sg.id]
-  subnets = aws_subnet.rlmgt_public_subnet.*.id
-  enable_deletion_protection = false
-  tags = {
-    Application = var.appName
-  }
-}
-
-data "aws_acm_certificate" "rlmgt_domain_certificate" {
-  domain = "releasemgt.net"
-  types = ["AMAZON_ISSUED"]
-  most_recent = true
-}
-
-resource "aws_lb_listener" "rlmgt_elb_listener_https" {
-  load_balancer_arn = aws_lb.rlmgt_elb.arn
-  port = "443"
-  protocol = "HTTPS"
-  ssl_policy = "ELBSecurityPolicy-2016-08"
-  certificate_arn = data.aws_acm_certificate.rlmgt_domain_certificate.arn
-  default_action {
-    type = "forward"
-    target_group_arn = aws_lb_target_group.rlmgt_elb_target_group.arn
-  }
-}
-
-resource "aws_lb_listener" "rlmgt_elb_listener_http" {
-  load_balancer_arn = aws_lb.rlmgt_elb.arn
-  port = "80"
-  protocol = "HTTP"
-  default_action {
-    type = "redirect"
-    redirect {
-      port = "443"
-      protocol = "HTTPS"
-      status_code = "HTTP_301"
-    }
-  }
-}
-
-resource "aws_autoscaling_attachment" "rlmgt_asg_attachment" {
-  autoscaling_group_name = aws_autoscaling_group.rlmgt_asg.id
-  alb_target_group_arn = aws_lb_target_group.rlmgt_elb_target_group.arn
+resource "aws_eip" "rlmgt_eip" {
+  instance = aws_instance.rlmgt_instance.id
+  vpc = true
 }
 
 ##########################################################################################
@@ -496,11 +375,8 @@ resource "aws_route53_record" "rlmgt_dns_record" {
   zone_id = data.aws_route53_zone.selected.zone_id
   name = var.appName
   type = "A"
-  alias {
-    name = aws_lb.rlmgt_elb.dns_name
-    zone_id = aws_lb.rlmgt_elb.zone_id
-    evaluate_target_health = false
-  }
+  ttl = "300"
+  records = [aws_eip.rlmgt_eip.public_ip]
 }
 
 ##########################################################################################
@@ -544,10 +420,11 @@ resource "aws_codedeploy_deployment_group" "rlmgt_deployment_group" {
   deployment_group_name = "${var.appName}RelMgtDeploymentGroup"
   deployment_config_name = "CodeDeployDefault.AllAtOnce"
   service_role_arn = aws_iam_role.rlmgt_deployment_role.arn
-  autoscaling_groups = [aws_autoscaling_group.rlmgt_asg.id]
-  load_balancer_info {
-    elb_info {
-      name = aws_lb.rlmgt_elb.name
+  ec2_tag_set {
+    ec2_tag_filter {
+      key = "Application"
+      type = "KEY_AND_VALUE"
+      value = var.appName
     }
   }
 }
