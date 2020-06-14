@@ -12,7 +12,7 @@ mkdir -p letsencrypt/work
 mkdir -p letsencrypt/config
 sudo certbot -n --agree-tos -m releasemgt@gmail.com --logs-dir /home/ubuntu/letsencrypt/logs --work-dir /home/ubuntu/letsencrypt/work \
  --config-dir /home/ubuntu/letsencrypt/config certonly --dns-route53 -d *.releasemgt.net
-echo -e "#"'!'"/bin/bash\n\nsudo certbot --logs-dir /home/ubuntu/letsencrypt/logs --work-dir letsencrypt/work --config-dir letsencrypt/config renew --dns-route53" | sudo tee /etc/cron.hourly/cert.sh
+echo -e "#"'!'"/bin/bash\n\ncertbot --logs-dir /home/ubuntu/letsencrypt/logs --work-dir /home/ubuntu/letsencrypt/work --config-dir /home/ubuntu/letsencrypt/config renew --dns-route53" | sudo tee /etc/cron.hourly/cert.sh
 sudo chmod +x /etc/cron.hourly/cert.sh
 
 #Setup Nginx
