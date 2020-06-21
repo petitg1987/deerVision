@@ -16,7 +16,20 @@ echo -e "#"'!'"/bin/bash\n\ncertbot --logs-dir /home/ubuntu/letsencrypt/logs --w
 sudo chmod +x /etc/cron.daily/releasemgt-renew-cert
 
 #Setup Nginx
-echo -e "server {\n listen 443;\n server_name _;\n ssl on;\n ssl_certificate /home/ubuntu/letsencrypt/config/live/releasemgt.net/fullchain.pem;\n ssl_certificate_key /home/ubuntu/letsencrypt/config/live/releasemgt.net/privkey.pem;\n location / {\n  proxy_pass http://127.0.0.1:8080;\n }\n}" | sudo tee /etc/nginx/sites-available/reverseproxy
+echo -e "server {\n" \
+  "  listen 443;\n" \
+  "  server_name _;\n" \
+  "  ssl on;\n" \
+  "  ssl_certificate /home/ubuntu/letsencrypt/config/live/releasemgt.net/fullchain.pem;\n" \
+  "  ssl_certificate_key /home/ubuntu/letsencrypt/config/live/releasemgt.net/privkey.pem;\n" \
+  "  client_max_body_size 1000M;\n" \
+  "  location / {\n"\
+  "    proxy_set_header X-Forwarded-Host \$host;\n" \
+  "    proxy_set_header X-Forwarded-Port 443;\n" \
+  "    proxy_set_header X-Forwarded-Proto https;\n" \
+  "    proxy_pass http://127.0.0.1:8080;\n" \
+  "  }\n" \
+  "}" | sudo tee /etc/nginx/sites-available/reverseproxy
 sudo rm /etc/nginx/sites-enabled/default
 sudo ln -s /etc/nginx/sites-available/reverseproxy /etc/nginx/sites-enabled/reverseproxy
 sudo systemctl restart nginx
