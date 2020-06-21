@@ -12,8 +12,8 @@ sudo certbot -n --agree-tos -m releasemgt@gmail.com --logs-dir /home/ubuntu/lets
  --config-dir /home/ubuntu/letsencrypt/config certonly --dns-route53 -d *.releasemgt.net
 
 #Schedule renew certificate (Let's encrypt)
-echo -e "#"'!'"/bin/bash\n\ncertbot --logs-dir /home/ubuntu/letsencrypt/logs --work-dir /home/ubuntu/letsencrypt/work --config-dir /home/ubuntu/letsencrypt/config renew --dns-route53" | sudo tee /etc/cron.hourly/releasemgt-renew-cert
-sudo chmod +x /etc/cron.hourly/releasemgt-renew-cert
+echo -e "#"'!'"/bin/bash\n\ncertbot --logs-dir /home/ubuntu/letsencrypt/logs --work-dir /home/ubuntu/letsencrypt/work --config-dir /home/ubuntu/letsencrypt/config renew --dns-route53" | sudo tee /etc/cron.daily/releasemgt-renew-cert
+sudo chmod +x /etc/cron.daily/releasemgt-renew-cert
 
 #Setup Nginx
 echo -e "server {\n listen 443;\n server_name _;\n ssl on;\n ssl_certificate /home/ubuntu/letsencrypt/config/live/releasemgt.net/fullchain.pem;\n ssl_certificate_key /home/ubuntu/letsencrypt/config/live/releasemgt.net/privkey.pem;\n location / {\n  proxy_pass http://127.0.0.1:8080;\n }\n}" | sudo tee /etc/nginx/sites-available/reverseproxy
