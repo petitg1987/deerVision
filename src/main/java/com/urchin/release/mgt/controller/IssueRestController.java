@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/issues")
 public class IssueRestController {
 
-    private IssueService issueService;
+    private final IssueService issueService;
 
     @Autowired
     public IssueRestController(IssueService issueService){

@@ -25,10 +25,10 @@ public class HomeController {
 
     private static final String CHARTS_DATE_FORMAT = "dd-MM-yyyy";
 
-    private IssueService issueService;
-    private IssueProperties issueProperties;
-    private BinaryService binaryService;
-    private BinaryProperties binaryProperties;
+    private final IssueService issueService;
+    private final IssueProperties issueProperties;
+    private final BinaryService binaryService;
+    private final BinaryProperties binaryProperties;
 
     @Autowired
     public HomeController(IssueService issueService, IssueProperties issueProperties, BinaryService binaryService, BinaryProperties binaryProperties){

@@ -17,7 +17,7 @@ import java.io.IOException;
 @RequestMapping("/api/binaries")
 public class BinaryRestController {
 
-    private BinaryService binaryService;
+    private final BinaryService binaryService;
 
     @Autowired
     public BinaryRestController(BinaryService binaryService) {
@@ -35,7 +35,7 @@ public class BinaryRestController {
         return appVersion;
     }
 
-    //curl -L http://localhost:5000/api/binaries/linux-deb --output release.deb
+    //curl -L http://localhost:5000/api/binaries/linux-snap --output release.snap
     @GetMapping(value="/{binaryId}")
     public ModelAndView download(@PathVariable(name = "binaryId") String binaryId){
         BinaryType binaryType = retrieveBinaryType(binaryId);
@@ -45,7 +45,7 @@ public class BinaryRestController {
         return new ModelAndView("redirect:" + lastBinary.getUrl());
     }
 
-    //curl -u "api:PASSWORD" -F 'file=@/home/greg/_binary/green-city-1.0.0.deb' -X PUT http://localhost:5000/api/binaries/linux-deb/
+    //curl -u "api:PASSWORD" -F 'file=@/home/greg/_binary/green-city-1.0.0.snap' -X PUT http://localhost:5000/api/binaries/linux-snap/
     @PutMapping(value="/{binaryId}")
     public void upload(@PathVariable(name = "binaryId") String binaryId, @RequestParam("file") MultipartFile file) {
         BinaryType binaryType = retrieveBinaryType(binaryId);

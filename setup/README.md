@@ -21,3 +21,4 @@
 
 # Deploy the application
 * Execute: `./deploy/deploy.sh [APP_NAME]`
+    * Example: `./deploy/deploy.sh greencity`

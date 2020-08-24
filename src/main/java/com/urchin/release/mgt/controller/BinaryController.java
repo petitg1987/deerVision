@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
 @RequestMapping("/binaries")
 public class BinaryController {
 
-    private BinaryService binaryService;
+    private final BinaryService binaryService;
 
     @Autowired
     public BinaryController(BinaryService binaryService){

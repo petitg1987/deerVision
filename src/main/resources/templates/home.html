@@ -57,8 +57,8 @@
 
             var downloadChartLabels = /*[[${downloadChartDates}]]*/ ['unknown'];
             var downloadLinuxTarChartValues = /*[[${downloadLinuxTarChartValues}]]*/ [0];
-            var downloadLinuxDebChartValues = /*[[${downloadLinuxDebChartValues}]]*/ [0];
-            var downloadWindowsChartValues = /*[[${downloadWindowsChartValues}]]*/ [0];
+            var downloadLinuxSnapChartValues = /*[[${downloadLinuxSnapChartValues}]]*/ [0];
+            var downloadWindowsMsiChartValues = /*[[${downloadWindowsMsiChartValues}]]*/ [0];
             new Chart(document.getElementById("downloadChart"), {
                 type: 'bar',
                 data: {
@@ -69,13 +69,13 @@
                         backgroundColor: "#007bff",
                         fill: true
                     },{
-                        data: downloadLinuxDebChartValues,
-                        label: "Linux (deb)",
+                        data: downloadLinuxSnapChartValues,
+                        label: "Linux (snap)",
                         backgroundColor: "#ff007b",
                         fill: true
                     },{
-                        data: downloadWindowsChartValues,
-                        label: "Windows",
+                        data: downloadWindowsMsiChartValues,
+                        label: "Windows (msi)",
                         backgroundColor: "#7bd000",
                         fill: true
                     }]

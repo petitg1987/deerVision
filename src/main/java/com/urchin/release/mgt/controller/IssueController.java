@@ -26,8 +26,8 @@ import java.util.stream.IntStream;
 @RequestMapping("/issues")
 public class IssueController {
 
-    private IssueService issueService;
-    private IssueProperties issueProperties;
+    private final IssueService issueService;
+    private final IssueProperties issueProperties;
 
     @Autowired
     public IssueController(IssueService issueService, IssueProperties issueProperties){

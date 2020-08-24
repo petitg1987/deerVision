@@ -38,22 +38,22 @@ public class BinaryRestControllerTest {
 
     @Test
     public void checkSecure(){
-        restAssured.put("api/binaries/linux-deb").then().statusCode(401);
+        restAssured.put("api/binaries/linux-snap").then().statusCode(401);
     }
 
     //@Test
     public void uploadWithoutVersion(){
-        String filename = "test.deb";
-        restAssuredAuth.multiPart("file", filename, "fileContent".getBytes()).put("api/binaries/linux-deb")
+        String filename = "test.snap";
+        restAssuredAuth.multiPart("file", filename, "fileContent".getBytes()).put("api/binaries/linux-snap")
                 .then().statusCode(400);
     }
 
     //@Test
     public void uploadAndDeleteTest(){
         //upload
-        String filename = "test-0.0.0.deb";
+        String filename = "test-0.0.0.snap";
         String fileContent = "fileContent";
-        restAssuredAuth.multiPart("file", filename, fileContent.getBytes()).put("api/binaries/linux-deb")
+        restAssuredAuth.multiPart("file", filename, fileContent.getBytes()).put("api/binaries/linux-snap")
                 .then().statusCode(200);
 
         //delete

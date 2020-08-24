@@ -7,17 +7,17 @@ import java.time.format.DateTimeFormatter;
 
 public class Binary {
 
-    private String url;
+    private final String url;
 
-    private String filename;
+    private final String filename;
 
-    private long sizeInBytes;
+    private final long sizeInBytes;
 
-    private String version;
+    private final String version;
 
     private BinaryType binaryType;
 
-    private LocalDateTime lastModified;
+    private final LocalDateTime lastModified;
 
     public Binary(String url, String filename, long sizeInBytes, String version, LocalDateTime lastModified) {
         this.url = url;

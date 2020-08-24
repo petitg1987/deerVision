@@ -29,9 +29,9 @@ public class SecurityConfig {
 
     @Configuration
     @Order(1)
-    public class ActuatorSecurity extends WebSecurityConfigurerAdapter {
+    public static class ActuatorSecurity extends WebSecurityConfigurerAdapter {
 
-        private ActuatorProperties actuatorProperties;
+        private final ActuatorProperties actuatorProperties;
 
         @Autowired
         public ActuatorSecurity(ActuatorProperties actuatorProperties){
@@ -55,9 +55,9 @@ public class SecurityConfig {
 
     @Configuration
     @Order(2)
-    public class APIBinaryUploadSecurity extends WebSecurityConfigurerAdapter {
+    public static class APIBinaryUploadSecurity extends WebSecurityConfigurerAdapter {
 
-        private BinaryProperties binaryProperties;
+        private final BinaryProperties binaryProperties;
 
         @Autowired
         public APIBinaryUploadSecurity(BinaryProperties binaryProperties){
@@ -81,7 +81,7 @@ public class SecurityConfig {
 
     @Configuration
     @Order(3)
-    public class APIPublicSecurity extends WebSecurityConfigurerAdapter {
+    public static class APIPublicSecurity extends WebSecurityConfigurerAdapter {
 
         @Override
         protected void configure(HttpSecurity http) throws Exception {
@@ -94,7 +94,7 @@ public class SecurityConfig {
 
     @Configuration
     @Order(4)
-    public class WebAppSecurity extends WebSecurityConfigurerAdapter {
+    public static class WebAppSecurity extends WebSecurityConfigurerAdapter {
 
         public final InMemoryUserDetailsManager inMemoryUserDetailsManager;
 

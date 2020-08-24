@@ -70,7 +70,7 @@ public class Issue {
     }
 
     public String getSampleValue() {
-        int maxLength = (value.length() < MAX_SAMPLE_VALUE_SIZE) ? value.length() : MAX_SAMPLE_VALUE_SIZE;
+        int maxLength = Math.min(value.length(), MAX_SAMPLE_VALUE_SIZE);
         return value.substring(0, maxLength);
     }
 

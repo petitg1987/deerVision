@@ -37,9 +37,9 @@ import java.util.stream.Stream;
 @Service
 public class BinaryService {
 
-    private BinaryProperties binaryProperties;
-    private BinaryDownloadAuditRepository binaryDownloadAuditRepository;
-    private BinaryVersionAuditRepository binaryVersionAuditRepository;
+    private final BinaryProperties binaryProperties;
+    private final BinaryDownloadAuditRepository binaryDownloadAuditRepository;
+    private final BinaryVersionAuditRepository binaryVersionAuditRepository;
 
     @Autowired
     public BinaryService(BinaryProperties binaryProperties, BinaryDownloadAuditRepository binaryDownloadAuditRepository,

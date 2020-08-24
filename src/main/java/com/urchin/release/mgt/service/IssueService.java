@@ -21,8 +21,8 @@ import java.util.stream.Collectors;
 @Service
 public class IssueService {
 
-    private IssueRepository issueRepository;
-    private BinaryProperties binaryProperties;
+    private final IssueRepository issueRepository;
+    private final BinaryProperties binaryProperties;
 
     @Autowired
     public IssueService(IssueRepository issueRepository, BinaryProperties binaryProperties){
