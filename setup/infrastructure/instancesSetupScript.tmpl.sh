@@ -12,7 +12,7 @@ sudo certbot -n --agree-tos -m releasemgt@gmail.com --logs-dir /home/ubuntu/lets
  --config-dir /home/ubuntu/letsencrypt/config certonly --dns-route53 -d *.releasemgt.net
 
 #Schedule renew certificate (Let's encrypt)
-echo -e "#"'!'"/bin/bash\n\ncertbot --logs-dir /home/ubuntu/letsencrypt/logs --work-dir /home/ubuntu/letsencrypt/work --config-dir /home/ubuntu/letsencrypt/config renew --dns-route53" | sudo tee /etc/cron.daily/releasemgt-renew-cert
+echo -e "#"'!'"/bin/bash\n\ncertbot --logs-dir /home/ubuntu/letsencrypt/logs --work-dir /home/ubuntu/letsencrypt/work --config-dir /home/ubuntu/letsencrypt/config renew --dns-route53\nsudo service nginx reload" | sudo tee /etc/cron.daily/releasemgt-renew-cert
 sudo chmod +x /etc/cron.daily/releasemgt-renew-cert
 
 #Setup Nginx
