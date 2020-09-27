@@ -436,7 +436,6 @@ resource "aws_cloudwatch_log_group" "rlmgt_cloudwatch_log_group" {
 ##########################################################################################
 # STORAGE:
 #   - zip for code deploy in "releases/" folder
-#   - binaries of the managed application in "binaries/" folder
 ##########################################################################################
 resource "aws_s3_bucket" "rlmgt_storage" {
   bucket = "${var.appName}-releasemgt"

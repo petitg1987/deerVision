@@ -4,7 +4,7 @@ server:
 management:
   endpoints.web.exposure.include: "*"
 spring:
-  profiles.active: "awssecurity,appinfo"
+  profiles.active: "appinfo"
   security.user:
     name: "admin"
     password: "$2a$10$SRSz7BSfnjvUnX7/BJyLSufHJOS5z6mDvo4lzeQkVUdYqGYtEx2UG"
@@ -24,11 +24,8 @@ spring:
 actuator:
   password: "$2a$10$LP.C2c/pkgWQE2Z5x9JNNejYbh1lJ81au58xoUZa5ZnWh/4ROITfu"
 issue:
+  version-pattern: ".*(\\d+[.]\\d+[.]\\d+).*"
   page-size: 11
   chart-days: 15
 binary:
-  aws-bucket-region: "eu-central-1"
-  aws-binaries-folder-name: "binaries/"
-  version-pattern: ".*(\\d+[.]\\d+[.]\\d+).*"
   chart-days: 15
-  upload-password: "$2a$10$7yJPwmnfTkHqW/816QF6guMWU8mgx4DmXMdOul6BbIyapjGwrBYLG"

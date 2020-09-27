@@ -21,10 +21,7 @@
                 <canvas id="issuesChart"></canvas>
             </div>
             <div class="homeCharts mr-auto">
-                <canvas id="downloadChart"></canvas>
-            </div>
-            <div class="homeCharts mr-auto">
-                <canvas id="appVersionCheckChart"></canvas>
+                <canvas id="appUsedChart"></canvas>
             </div>
         </div>
 
@@ -55,35 +52,39 @@
                 }
             });
 
-            var downloadChartLabels = /*[[${downloadChartDates}]]*/ ['unknown'];
-            var downloadLinuxTarChartValues = /*[[${downloadLinuxTarChartValues}]]*/ [0];
-            var downloadLinuxSnapChartValues = /*[[${downloadLinuxSnapChartValues}]]*/ [0];
-            var downloadWindowsZipChartValues = /*[[${downloadWindowsZipChartValues}]]*/ [0];
-            var downloadWindowsMsiChartValues = /*[[${downloadWindowsMsiChartValues}]]*/ [0];
-            new Chart(document.getElementById("downloadChart"), {
-                type: 'bar',
+            var appUsedChartLabels = /*[[${appUsedChartDates}]]*/ ['unknown'];
+            var appUsedLinuxTarChartValues = /*[[${appUsedLinuxTarChartValues}]]*/ [0];
+            var appUsedLinuxDebChartValues = /*[[${appUsedLinuxDebChartValues}]]*/ [0];
+            var appUsedWindowsZipChartValues = /*[[${appUsedWindowsZipChartValues}]]*/ [0];
+            var appUsedWindowsMsiChartValues = /*[[${appUsedWindowsMsiChartValues}]]*/ [0];
+            new Chart(document.getElementById("appUsedChart"), {
+                type: 'line',
                 data: {
-                    labels: downloadChartLabels,
+                    labels: appUsedChartLabels,
                     datasets: [{
-                        data: downloadLinuxTarChartValues,
+                        data: appUsedLinuxTarChartValues,
                         label: "Linux (tar)",
-                        backgroundColor: "#007bff",
-                        fill: true
+                        borderColor: "#007bff",
+                        fill: false,
+                        lineTension: 0
                     },{
-                        data: downloadLinuxSnapChartValues,
+                        data: appUsedLinuxDebChartValues,
                         label: "Linux (deb)",
-                        backgroundColor: "#ff007b",
-                        fill: true
+                        borderColor: "#ff007b",
+                        fill: false,
+                        lineTension: 0
                     },{
-                        data: downloadWindowsZipChartValues,
+                        data: appUsedWindowsZipChartValues,
                         label: "Windows (zip)",
-                        backgroundColor: "#7b00ff",
-                        fill: true
+                        borderColor: "#7b00ff",
+                        fill: false,
+                        lineTension: 0
                     },{
-                        data: downloadWindowsMsiChartValues,
+                        data: appUsedWindowsMsiChartValues,
                         label: "Windows (msi)",
-                        backgroundColor: "#7bd000",
-                        fill: true
+                        borderColor: "#7bd000",
+                        fill: false,
+                        lineTension: 0
                     }]
                 },
                 options: {
@@ -94,34 +95,7 @@
                     },
                     title: {
                         display: true,
-                        text: 'Number of download'
-                    }
-                }
-            });
-
-            var appVersionCheckChartLabels = /*[[${appVersionCheckChartDates}]]*/ ['unknown'];
-            var appVersionCheckChartValues = /*[[${appVersionCheckChartValues}]]*/ [0];
-            new Chart(document.getElementById("appVersionCheckChart"), {
-                type: 'line',
-                data: {
-                    labels: appVersionCheckChartLabels,
-                    datasets: [{
-                        data: appVersionCheckChartValues,
-                        label: "App. version check",
-                        borderColor: "#7b00ff",
-                        fill: false,
-                        lineTension: 0
-                    }]
-                },
-                options: {
-                    animation: false,
-                    maintainAspectRatio: true,
-                    legend: {
-                        display: false
-                    },
-                    title: {
-                        display: true,
-                        text: 'Application version check'
+                        text: 'Application used'
                     }
                 }
             });

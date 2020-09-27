@@ -46,8 +46,7 @@ public class HomeController {
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String home(Model model) {
         populateIssueChart(model);
-        populateDownloadChart(model);
-        populateAppVersionCheckChart(model);
+        populateAppUsedChart(model);
 
         return "home.html";
     }
@@ -68,40 +67,24 @@ public class HomeController {
                 .collect(Collectors.toList()));
     }
 
-    private void populateDownloadChart(Model model){
+    private void populateAppUsedChart(Model model){
         List<LocalDate> chartDates = retrieveChartsDates(binaryProperties.getChartDays());
         LocalDate startDate = chartDates.get(0);
         LocalDate endDate = chartDates.get(chartDates.size() - 1);
 
-        model.addAttribute("downloadChartDates", chartDates.stream()
+        model.addAttribute("appUsedChartDates", chartDates.stream()
                 .map(ld -> ld.format(DateTimeFormatter.ofPattern(CHARTS_DATE_FORMAT)))
                 .collect(Collectors.toList()));
 
         for(BinaryType binaryType : BinaryType.values())
         {
             String binaryTypeString = CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, binaryType.name());
-            Map<LocalDate, Long> mapDownload = addMissingDates(binaryService.findBinaryDownloadAuditsGroupByDate(binaryType, startDate, endDate), chartDates);
-            model.addAttribute("download" + binaryTypeString + "ChartValues", mapDownload.keySet().stream()
+            Map<LocalDate, Long> mapAppVersionUsed = addMissingDates(binaryService.findBinaryVersionAuditsGroupByDate(binaryType, startDate, endDate), chartDates);
+            model.addAttribute("appUsed" + binaryTypeString + "ChartValues", mapAppVersionUsed.keySet().stream()
                     .sorted()
-                    .map(mapDownload::get)
+                    .map(mapAppVersionUsed::get)
                     .collect(Collectors.toList()));
         }
-    }
-
-    private void populateAppVersionCheckChart(Model model){
-        List<LocalDate> chartDates = retrieveChartsDates(binaryProperties.getChartDays());
-        LocalDate startDate = chartDates.get(0);
-        LocalDate endDate = chartDates.get(chartDates.size() - 1);
-
-        model.addAttribute("appVersionCheckChartDates", chartDates.stream()
-                .map(ld -> ld.format(DateTimeFormatter.ofPattern(CHARTS_DATE_FORMAT)))
-                .collect(Collectors.toList()));
-
-        Map<LocalDate, Long> mapAppVersionCheck = addMissingDates(binaryService.findBinaryVersionAuditsGroupByDate(startDate, endDate), chartDates);
-        model.addAttribute("appVersionCheckChartValues", mapAppVersionCheck.keySet().stream()
-                .sorted()
-                .map(mapAppVersionCheck::get)
-                .collect(Collectors.toList()));
     }
 
     private List<LocalDate> retrieveChartsDates(int nbChartDays) {

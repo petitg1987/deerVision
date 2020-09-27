@@ -13,9 +13,6 @@
                     <li th:class="${pageId=='issues'} ? 'nav-item active' : 'nav-item'">
                         <a class="nav-link" href="/issues/list">Issues</a>
                     </li>
-                    <li th:class="${pageId=='binaries'} ? 'nav-item active' : 'nav-item'">
-                        <a class="nav-link" href="/binaries/info">Binaries</a>
-                    </li>
                 </ul>
                 <span class="navbar-text">
                     <form th:action="@{/logout}" method="post">

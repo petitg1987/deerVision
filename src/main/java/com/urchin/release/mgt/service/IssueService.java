@@ -1,6 +1,6 @@
 package com.urchin.release.mgt.service;
 
-import com.urchin.release.mgt.config.properties.BinaryProperties;
+import com.urchin.release.mgt.config.properties.IssueProperties;
 import com.urchin.release.mgt.model.Issue;
 import com.urchin.release.mgt.repository.IssueRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,19 +22,19 @@ import java.util.stream.Collectors;
 public class IssueService {
 
     private final IssueRepository issueRepository;
-    private final BinaryProperties binaryProperties;
+    private final IssueProperties issueProperties;
 
     @Autowired
-    public IssueService(IssueRepository issueRepository, BinaryProperties binaryProperties){
+    public IssueService(IssueRepository issueRepository, IssueProperties issueProperties){
         this.issueRepository = issueRepository;
-        this.binaryProperties = binaryProperties;
+        this.issueProperties = issueProperties;
     }
 
     public void newIssue(String value, String appVersion){
         if(StringUtils.isEmpty(value)){
             throw new IllegalArgumentException("Empty issue value received");
         }
-        String versionPattern = "^" + binaryProperties.getVersionPattern() + "(-SNAPSHOT)?$";
+        String versionPattern = "^" + issueProperties.getVersionPattern() + "(-SNAPSHOT)?$";
         if(!Pattern.matches(versionPattern, appVersion)){
             throw new IllegalArgumentException("Invalid application version: " + appVersion);
         }
