@@ -3,7 +3,7 @@ package com.urchin.release.mgt.controller;
 import com.google.common.base.CaseFormat;
 import com.urchin.release.mgt.config.properties.BinaryProperties;
 import com.urchin.release.mgt.config.properties.IssueProperties;
-import com.urchin.release.mgt.model.BinaryType;
+import com.urchin.release.mgt.model.OperatingSystem;
 import com.urchin.release.mgt.service.BinaryService;
 import com.urchin.release.mgt.service.IssueService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -76,11 +76,11 @@ public class HomeController {
                 .map(ld -> ld.format(DateTimeFormatter.ofPattern(CHARTS_DATE_FORMAT)))
                 .collect(Collectors.toList()));
 
-        for(BinaryType binaryType : BinaryType.values())
+        for(OperatingSystem operatingSystem : OperatingSystem.values())
         {
-            String binaryTypeString = CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, binaryType.name());
-            Map<LocalDate, Long> mapBinaryUsage = addMissingDates(binaryService.findBinaryVersionAuditsGroupByDate(binaryType, startDate, endDate), chartDates);
-            model.addAttribute("binaryUsage" + binaryTypeString + "ChartValues", mapBinaryUsage.keySet().stream()
+            String operatingSystemString = CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, operatingSystem.name());
+            Map<LocalDate, Long> mapBinaryUsage = addMissingDates(binaryService.findBinaryVersionAuditsGroupByDate(operatingSystem, startDate, endDate), chartDates);
+            model.addAttribute("binaryUsage" + operatingSystemString + "ChartValues", mapBinaryUsage.keySet().stream()
                     .sorted()
                     .map(mapBinaryUsage::get)
                     .collect(Collectors.toList()));

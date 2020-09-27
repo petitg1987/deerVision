@@ -53,35 +53,28 @@
             });
 
             var binaryUsageChartLabels = /*[[${binaryUsageChartDates}]]*/ ['unknown'];
-            var binaryUsageLinuxTarChartValues = /*[[${binaryUsageLinuxTarChartValues}]]*/ [0];
-            var binaryUsageLinuxDebChartValues = /*[[${binaryUsageLinuxDebChartValues}]]*/ [0];
-            var binaryUsageWindowsZipChartValues = /*[[${binaryUsageWindowsZipChartValues}]]*/ [0];
-            var binaryUsageWindowsMsiChartValues = /*[[${binaryUsageWindowsMsiChartValues}]]*/ [0];
+            var binaryUsageLinuxChartValues = /*[[${binaryUsageLinuxChartValues}]]*/ [0];
+            var binaryUsageWindowsChartValues = /*[[${binaryUsageWindowsChartValues}]]*/ [0];
+            var binaryUsageMacOsChartValues = /*[[${binaryUsageMacOsChartValues}]]*/ [0];
             new Chart(document.getElementById("binariesUsageChart"), {
                 type: 'line',
                 data: {
                     labels: binaryUsageChartLabels,
                     datasets: [{
-                        data: binaryUsageLinuxTarChartValues,
-                        label: "Linux (tar)",
+                        data: binaryUsageLinuxChartValues,
+                        label: "Linux",
                         borderColor: "#007bff",
                         fill: false,
                         lineTension: 0
                     },{
-                        data: binaryUsageLinuxDebChartValues,
-                        label: "Linux (deb)",
+                        data: binaryUsageWindowsChartValues,
+                        label: "Windows",
                         borderColor: "#ff007b",
                         fill: false,
                         lineTension: 0
                     },{
-                        data: binaryUsageWindowsZipChartValues,
-                        label: "Windows (zip)",
-                        borderColor: "#7b00ff",
-                        fill: false,
-                        lineTension: 0
-                    },{
-                        data: binaryUsageWindowsMsiChartValues,
-                        label: "Windows (msi)",
+                        data: binaryUsageMacOsChartValues,
+                        label: "Mac OS",
                         borderColor: "#7bd000",
                         fill: false,
                         lineTension: 0

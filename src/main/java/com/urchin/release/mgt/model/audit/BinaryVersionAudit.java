@@ -1,6 +1,6 @@
 package com.urchin.release.mgt.model.audit;
 
-import com.urchin.release.mgt.model.BinaryType;
+import com.urchin.release.mgt.model.OperatingSystem;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,16 +16,16 @@ public class BinaryVersionAudit {
 
     private String version;
 
-    private BinaryType binaryType;
+    private OperatingSystem operatingSystem;
 
     private LocalDateTime dateTime;
 
     public BinaryVersionAudit(){
     }
 
-    public BinaryVersionAudit(String version, BinaryType binaryType) {
+    public BinaryVersionAudit(String version, OperatingSystem operatingSystem) {
         this.version = version;
-        this.binaryType = binaryType;
+        this.operatingSystem = operatingSystem;
         this.dateTime = LocalDateTime.now();
     }
 
@@ -45,12 +45,12 @@ public class BinaryVersionAudit {
         this.version = version;
     }
 
-    public BinaryType getBinaryType() {
-        return binaryType;
+    public OperatingSystem getOperatingSystem() {
+        return operatingSystem;
     }
 
-    public void setBinaryType(BinaryType binaryType) {
-        this.binaryType = binaryType;
+    public void setOperatingSystem(OperatingSystem operatingSystem) {
+        this.operatingSystem = operatingSystem;
     }
 
     public LocalDateTime getDateTime() {

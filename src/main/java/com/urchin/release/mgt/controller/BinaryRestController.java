@@ -1,7 +1,7 @@
 package com.urchin.release.mgt.controller;
 
 import com.google.common.base.CaseFormat;
-import com.urchin.release.mgt.model.BinaryType;
+import com.urchin.release.mgt.model.OperatingSystem;
 import com.urchin.release.mgt.service.BinaryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -18,15 +18,15 @@ public class BinaryRestController {
         this.binaryService = binaryService;
     }
 
-    //curl -X POST -H "Content-Type: text/plain" --data "1.0.0" http://localhost:5000/api/binaries/linux-tar/version
-    @PostMapping(value="/{binaryId}/version", consumes = MediaType.TEXT_PLAIN_VALUE)
-    public void postReleaseUsed(@PathVariable(name = "binaryId") String binaryId, @RequestBody String appVersion) {
-        BinaryType binaryType = retrieveBinaryType(binaryId);
-        binaryService.newAuditVersion(appVersion, binaryType);
+    //curl -X POST -H "Content-Type: text/plain" --data "1.0.0" http://localhost:5000/api/binaries/linux/version
+    @PostMapping(value="/{os}/version", consumes = MediaType.TEXT_PLAIN_VALUE)
+    public void postReleaseUsed(@PathVariable(name = "os") String os, @RequestBody String binaryVersion) {
+        OperatingSystem operatingSystem = retrieveOperatingSystem(os);
+        binaryService.newAuditVersion(binaryVersion, operatingSystem);
     }
 
-    private BinaryType retrieveBinaryType(String binaryId){
-        String binaryTypeString = CaseFormat.LOWER_HYPHEN.to(CaseFormat.UPPER_UNDERSCORE, binaryId);
-        return BinaryType.valueOf(binaryTypeString);
+    private OperatingSystem retrieveOperatingSystem(String os){
+        String osString = CaseFormat.LOWER_HYPHEN.to(CaseFormat.UPPER_UNDERSCORE, os);
+        return OperatingSystem.valueOf(osString);
     }
 }

@@ -1,6 +1,6 @@
 package com.urchin.release.mgt.service;
 
-import com.urchin.release.mgt.model.BinaryType;
+import com.urchin.release.mgt.model.OperatingSystem;
 import com.urchin.release.mgt.model.audit.BinaryVersionAudit;
 import com.urchin.release.mgt.repository.BinaryVersionAuditRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,12 +23,12 @@ public class BinaryService {
         this.binaryVersionAuditRepository = binaryVersionAuditRepository;
     }
 
-    public void newAuditVersion(String appVersion, BinaryType binaryType){
-        binaryVersionAuditRepository.saveAndFlush(new BinaryVersionAudit(appVersion, binaryType));
+    public void newAuditVersion(String binaryVersion, OperatingSystem operatingSystem){
+        binaryVersionAuditRepository.saveAndFlush(new BinaryVersionAudit(binaryVersion, operatingSystem));
     }
 
-    public Map<LocalDate, Long> findBinaryVersionAuditsGroupByDate(BinaryType binaryType, LocalDate startDate, LocalDate endDate){
-        List<BinaryVersionAudit> binaryVersionAudits = binaryVersionAuditRepository.findByBinaryTypeAndDateTimeBetween(binaryType, toStartDateTime(startDate), toEndDateTime(endDate));
+    public Map<LocalDate, Long> findBinaryVersionAuditsGroupByDate(OperatingSystem operatingSystem, LocalDate startDate, LocalDate endDate){
+        List<BinaryVersionAudit> binaryVersionAudits = binaryVersionAuditRepository.findByOperatingSystemAndDateTimeBetween(operatingSystem, toStartDateTime(startDate), toEndDateTime(endDate));
         return binaryVersionAudits.stream().collect(Collectors.groupingBy(bva -> bva.getDateTime().toLocalDate(), Collectors.counting()));
     }
 
