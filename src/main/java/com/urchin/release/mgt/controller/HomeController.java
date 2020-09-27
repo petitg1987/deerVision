@@ -46,7 +46,7 @@ public class HomeController {
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String home(Model model) {
         populateIssueChart(model);
-        populateAppUsedChart(model);
+        populateBinariesUsageChart(model);
 
         return "home.html";
     }
@@ -67,22 +67,22 @@ public class HomeController {
                 .collect(Collectors.toList()));
     }
 
-    private void populateAppUsedChart(Model model){
+    private void populateBinariesUsageChart(Model model){
         List<LocalDate> chartDates = retrieveChartsDates(binaryProperties.getChartDays());
         LocalDate startDate = chartDates.get(0);
         LocalDate endDate = chartDates.get(chartDates.size() - 1);
 
-        model.addAttribute("appUsedChartDates", chartDates.stream()
+        model.addAttribute("binaryUsageChartDates", chartDates.stream()
                 .map(ld -> ld.format(DateTimeFormatter.ofPattern(CHARTS_DATE_FORMAT)))
                 .collect(Collectors.toList()));
 
         for(BinaryType binaryType : BinaryType.values())
         {
             String binaryTypeString = CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, binaryType.name());
-            Map<LocalDate, Long> mapAppVersionUsed = addMissingDates(binaryService.findBinaryVersionAuditsGroupByDate(binaryType, startDate, endDate), chartDates);
-            model.addAttribute("appUsed" + binaryTypeString + "ChartValues", mapAppVersionUsed.keySet().stream()
+            Map<LocalDate, Long> mapBinaryUsage = addMissingDates(binaryService.findBinaryVersionAuditsGroupByDate(binaryType, startDate, endDate), chartDates);
+            model.addAttribute("binaryUsage" + binaryTypeString + "ChartValues", mapBinaryUsage.keySet().stream()
                     .sorted()
-                    .map(mapAppVersionUsed::get)
+                    .map(mapBinaryUsage::get)
                     .collect(Collectors.toList()));
         }
     }

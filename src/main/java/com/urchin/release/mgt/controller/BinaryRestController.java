@@ -20,11 +20,10 @@ public class BinaryRestController {
 
     //curl -X POST -H "Content-Type: text/plain" --data "1.0.0" http://localhost:5000/api/binaries/linux-tar/version
     @PostMapping(value="/{binaryId}/version", consumes = MediaType.TEXT_PLAIN_VALUE)
-    public void usage(@PathVariable(name = "binaryId") String binaryId, @RequestBody String appVersion) {
+    public void postReleaseUsed(@PathVariable(name = "binaryId") String binaryId, @RequestBody String appVersion) {
         BinaryType binaryType = retrieveBinaryType(binaryId);
         binaryService.newAuditVersion(appVersion, binaryType);
     }
-
 
     private BinaryType retrieveBinaryType(String binaryId){
         String binaryTypeString = CaseFormat.LOWER_HYPHEN.to(CaseFormat.UPPER_UNDERSCORE, binaryId);

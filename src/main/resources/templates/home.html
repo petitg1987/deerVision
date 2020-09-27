@@ -21,7 +21,7 @@
                 <canvas id="issuesChart"></canvas>
             </div>
             <div class="homeCharts mr-auto">
-                <canvas id="appUsedChart"></canvas>
+                <canvas id="binariesUsageChart"></canvas>
             </div>
         </div>
 
@@ -52,35 +52,35 @@
                 }
             });
 
-            var appUsedChartLabels = /*[[${appUsedChartDates}]]*/ ['unknown'];
-            var appUsedLinuxTarChartValues = /*[[${appUsedLinuxTarChartValues}]]*/ [0];
-            var appUsedLinuxDebChartValues = /*[[${appUsedLinuxDebChartValues}]]*/ [0];
-            var appUsedWindowsZipChartValues = /*[[${appUsedWindowsZipChartValues}]]*/ [0];
-            var appUsedWindowsMsiChartValues = /*[[${appUsedWindowsMsiChartValues}]]*/ [0];
-            new Chart(document.getElementById("appUsedChart"), {
+            var binaryUsageChartLabels = /*[[${binaryUsageChartDates}]]*/ ['unknown'];
+            var binaryUsageLinuxTarChartValues = /*[[${binaryUsageLinuxTarChartValues}]]*/ [0];
+            var binaryUsageLinuxDebChartValues = /*[[${binaryUsageLinuxDebChartValues}]]*/ [0];
+            var binaryUsageWindowsZipChartValues = /*[[${binaryUsageWindowsZipChartValues}]]*/ [0];
+            var binaryUsageWindowsMsiChartValues = /*[[${binaryUsageWindowsMsiChartValues}]]*/ [0];
+            new Chart(document.getElementById("binariesUsageChart"), {
                 type: 'line',
                 data: {
-                    labels: appUsedChartLabels,
+                    labels: binaryUsageChartLabels,
                     datasets: [{
-                        data: appUsedLinuxTarChartValues,
+                        data: binaryUsageLinuxTarChartValues,
                         label: "Linux (tar)",
                         borderColor: "#007bff",
                         fill: false,
                         lineTension: 0
                     },{
-                        data: appUsedLinuxDebChartValues,
+                        data: binaryUsageLinuxDebChartValues,
                         label: "Linux (deb)",
                         borderColor: "#ff007b",
                         fill: false,
                         lineTension: 0
                     },{
-                        data: appUsedWindowsZipChartValues,
+                        data: binaryUsageWindowsZipChartValues,
                         label: "Windows (zip)",
                         borderColor: "#7b00ff",
                         fill: false,
                         lineTension: 0
                     },{
-                        data: appUsedWindowsMsiChartValues,
+                        data: binaryUsageWindowsMsiChartValues,
                         label: "Windows (msi)",
                         borderColor: "#7bd000",
                         fill: false,
@@ -95,7 +95,7 @@
                     },
                     title: {
                         display: true,
-                        text: 'Application used'
+                        text: 'Binaries usage'
                     }
                 }
             });
