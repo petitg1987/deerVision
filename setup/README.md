@@ -12,11 +12,11 @@
 
 # Manage infrastructure
 * Create infrastructure: `./infrastructure/infra.sh create [APP_NAME] [CIDR_PREFIX]`
-    * Example: `./infrastructure/infra.sh create greencity 10.0`
+    * Example: `./infrastructure/infra.sh create laserriddle 10.0`
 * Update infrastructure: `./infrastructure/infra.sh update [APP_NAME]`
 * Destroy infrastructure: `./infrastructure/infra.sh destroy [APP_NAME]`
 * Destroy infrastructure and configurations: `./infrastructure/infra.sh destroyAll [APP_NAME]`
 
 # Deploy the application
 * Execute: `./deploy/deploy.sh [APP_NAME]`
-    * Example: `./deploy/deploy.sh greencity`
+    * Example: `./deploy/deploy.sh laserriddle`
