@@ -333,6 +333,8 @@ resource "aws_instance" "rlmgt_instance" {
   subnet_id = aws_subnet.rlmgt_public_subnet[0].id
   vpc_security_group_ids = [aws_security_group.rlmgt_instance_sg.id]
   user_data = base64encode(templatefile("${path.module}/instancesSetupScript.tmpl.sh", {
+    requestsBySecond = 5,
+    requestsBurst = 10,
     efsDnsName = aws_efs_file_system.rlmgt_efs.dns_name,
     logGroupName = "${var.appName}RelMgtLogsGroup",
     logStreamNamePrefix = "${var.appName}RelMgtLogsStream"
