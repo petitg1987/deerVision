@@ -16,16 +16,16 @@ echo -e "#"'!'"/bin/bash\n\ncertbot --logs-dir /home/ubuntu/letsencrypt/logs --w
 sudo chmod +x /etc/cron.daily/releasemgt-renew-cert
 
 #Setup Nginx
-echo -e "limit_req_zone \$binary_remote_addr zone=mylimit:500m rate=${requestsBySecond}r/s;\n" \
+echo -e "limit_req_zone \$binary_remote_addr zone=req_zone:500m rate=${maxRequestsBySecond}r/s;\n" \
   "server {\n" \
   "  listen 443;\n" \
   "  server_name _;\n" \
   "  ssl on;\n" \
   "  ssl_certificate /home/ubuntu/letsencrypt/config/live/releasemgt.net/fullchain.pem;\n" \
   "  ssl_certificate_key /home/ubuntu/letsencrypt/config/live/releasemgt.net/privkey.pem;\n" \
-  "  client_max_body_size 250K;\n" \
+  "  client_max_body_size ${maxRequestsBodySizeInKB}K;\n" \
   "  location / {\n"\
-  "    limit_req zone=mylimit burst=${requestsBurst} nodelay;\n" \
+  "    limit_req zone=req_zone burst=${maxRequestsBurst} nodelay;\n" \
   "    proxy_set_header X-Forwarded-Host \$host;\n" \
   "    proxy_set_header X-Forwarded-Port 443;\n" \
   "    proxy_set_header X-Forwarded-Proto https;\n" \
