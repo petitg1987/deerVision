@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -31,7 +30,7 @@ public class IssueService {
     }
 
     public void newIssue(String value, String appVersion){
-        if(StringUtils.isEmpty(value)){
+        if(value == null || "".equals(value)) {
             throw new IllegalArgumentException("Empty issue value received");
         }
         String versionPattern = "^" + issueProperties.getVersionPattern() + "(-SNAPSHOT)?$";

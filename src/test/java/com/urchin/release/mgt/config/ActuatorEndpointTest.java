@@ -2,15 +2,15 @@ package com.urchin.release.mgt.config;
 
 import io.restassured.RestAssured;
 import io.restassured.specification.RequestSpecification;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @ActiveProfiles("test")
 public class ActuatorEndpointTest {
@@ -20,7 +20,7 @@ public class ActuatorEndpointTest {
     @LocalServerPort
     int randomServerPort;
 
-    @Before
+    @BeforeEach
     public void setup() {
         restAssured = RestAssured.given().baseUri("http://localhost:" + randomServerPort + "/");
     }
