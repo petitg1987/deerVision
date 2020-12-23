@@ -24,38 +24,38 @@ public class IssueService {
     private final IssueProperties issueProperties;
 
     @Autowired
-    public IssueService(IssueRepository issueRepository, IssueProperties issueProperties){
+    public IssueService(IssueRepository issueRepository, IssueProperties issueProperties) {
         this.issueRepository = issueRepository;
         this.issueProperties = issueProperties;
     }
 
-    public void newIssue(String value, String appVersion){
+    public void newIssue(String value, String userKey, String appVersion) {
         if(value == null || "".equals(value)) {
             throw new IllegalArgumentException("Empty issue value received");
         }
         String versionPattern = "^" + issueProperties.getVersionPattern() + "(-SNAPSHOT)?$";
-        if(!Pattern.matches(versionPattern, appVersion)){
+        if(!Pattern.matches(versionPattern, appVersion)) {
             throw new IllegalArgumentException("Invalid application version: " + appVersion);
         }
 
-        Issue issue = new Issue(value, appVersion);
+        Issue issue = new Issue(value, userKey, appVersion);
         issueRepository.saveAndFlush(issue);
     }
 
-    public Page<Issue> findPaginated(Pageable pageable){
+    public Page<Issue> findPaginated(Pageable pageable) {
         return issueRepository.findAll(pageable);
     }
 
-    public Issue findById(Long id){
+    public Issue findById(Long id) {
         Optional<Issue> issue = issueRepository.findById(id);
         return issue.orElseThrow(() -> new IllegalArgumentException("Error to find issue with ID : " + id));
     }
 
-    public void removeById(Long id){
+    public void removeById(Long id) {
         issueRepository.deleteById(id);
     }
 
-    public Map<LocalDate, Long> findIssuesGroupByDate(LocalDate startDate, LocalDate endDate){
+    public Map<LocalDate, Long> findIssuesGroupByDate(LocalDate startDate, LocalDate endDate) {
         LocalDateTime startDateTime = startDate.atTime(LocalTime.MIN);
         LocalDateTime endDateTime = endDate.atTime(LocalTime.MAX);
 

@@ -23,8 +23,8 @@ public class BinaryService {
         this.binaryVersionAuditRepository = binaryVersionAuditRepository;
     }
 
-    public void newAuditVersion(String binaryVersion, OperatingSystem operatingSystem){
-        binaryVersionAuditRepository.saveAndFlush(new BinaryVersionAudit(binaryVersion, operatingSystem));
+    public void newAuditVersion(String binaryVersion, String userKey, OperatingSystem operatingSystem){
+        binaryVersionAuditRepository.saveAndFlush(new BinaryVersionAudit(binaryVersion, userKey, operatingSystem));
     }
 
     public Map<LocalDate, Long> findBinaryVersionAuditsGroupByDate(OperatingSystem operatingSystem, LocalDate startDate, LocalDate endDate){

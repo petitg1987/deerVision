@@ -16,6 +16,8 @@ public class BinaryVersionAudit {
 
     private String version;
 
+    private String userKey;
+
     private OperatingSystem operatingSystem;
 
     private LocalDateTime dateTime;
@@ -23,8 +25,9 @@ public class BinaryVersionAudit {
     public BinaryVersionAudit(){
     }
 
-    public BinaryVersionAudit(String version, OperatingSystem operatingSystem) {
+    public BinaryVersionAudit(String version, String userKey, OperatingSystem operatingSystem) {
         this.version = version;
+        this.userKey = userKey;
         this.operatingSystem = operatingSystem;
         this.dateTime = LocalDateTime.now();
     }
@@ -43,6 +46,14 @@ public class BinaryVersionAudit {
 
     public void setVersion(String version) {
         this.version = version;
+    }
+
+    public String getUserKey() {
+        return userKey;
+    }
+
+    public void setUserKey(String userKey) {
+        this.userKey = userKey;
     }
 
     public OperatingSystem getOperatingSystem() {

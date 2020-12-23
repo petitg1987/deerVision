@@ -19,6 +19,8 @@ public class Issue {
     @Lob
     private String value;
 
+    private String userKey;
+
     private String appVersion;
 
     private LocalDateTime dateTime;
@@ -26,8 +28,9 @@ public class Issue {
     public Issue(){
     }
 
-    public Issue(String value, String appVersion) {
+    public Issue(String value, String userKey, String appVersion) {
         this.value = value;
+        this.userKey = userKey;
         this.appVersion = appVersion;
         this.dateTime = LocalDateTime.now();
     }
@@ -46,6 +49,14 @@ public class Issue {
 
     public void setValue(String value) {
         this.value = value;
+    }
+
+    public String getUserKey() {
+        return userKey;
+    }
+
+    public void setUserKey(String userKey) {
+        this.userKey = userKey;
     }
 
     public String getAppVersion() {

@@ -1,4 +1,4 @@
-package com.urchin.release.mgt.config;
+package com.urchin.release.mgt.config.security;
 
 import com.urchin.release.mgt.config.properties.ActuatorProperties;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +13,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
 @EnableWebSecurity
@@ -57,8 +58,11 @@ public class SecurityConfig {
 
         @Override
         protected void configure(HttpSecurity http) throws Exception {
-            http.regexMatcher("^/api/.*").authorizeRequests()
-                    .regexMatchers("^/api/.*").permitAll()
+            http.regexMatcher("^/api/.*")
+                    .addFilterBefore(new UserKeyAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class)
+                    .authorizeRequests()
+                    .regexMatchers("^/api/.*")
+                    .fullyAuthenticated()
                     .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                     .and().csrf().disable();
         }
