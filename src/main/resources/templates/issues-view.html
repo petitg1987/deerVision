@@ -11,9 +11,9 @@
         <script src="/js/bootstrap.min.js"></script>
     </head>
     <body class="p-3 mb-2 bg-dark text-white">
-
         <div th:replace="fragments/menu :: menu">&nbsp;</div>
 
-        <div th:utext="${#strings.replace( #strings.replace( #strings.escapeXml(issueValue), '&#10;', '&lt;br /&gt;'), '&#9;', '&nbsp;&nbsp;&nbsp;&nbsp;')}" style="background-color: #2c3034;"></div>
+        <div th:utext="${#strings.replace( #strings.replace( #strings.escapeXml(issueValue), '&#10;', '&lt;br /&gt;'), '&#9;', '&nbsp;&nbsp;&nbsp;&nbsp;')}"
+             style="background-color: #2c3034; font-family: Consolas,monaco,monospace; font-size: 0.8em;"></div>
     </body>
 </html>
