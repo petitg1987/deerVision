@@ -60,8 +60,7 @@ public class IssueController {
     @RequestMapping(value = "/view", method = RequestMethod.GET)
     public String viewIssues(Model model, @Param(value="id") Long id) {
         Issue issue = issueService.findById(id);
-
-        model.addAttribute("issueValue", issue.getValue());
+        model.addAttribute("issue", issue);
 
         return "issues-view.html";
     }
