@@ -193,8 +193,7 @@ data "aws_ami" "ubuntu" {
   most_recent = true
   filter {
     name = "name"
-    #New Ubuntu 20.04: "ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-*". Doesn't work with code deploy script yet.
-    values = ["ubuntu/images/hvm-ssd/ubuntu-bionic-18.04-amd64-server-*"]
+    values = ["ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-*"]
   }
   filter {
     name = "virtualization-type"
@@ -335,7 +334,7 @@ resource "aws_instance" "rlmgt_instance" {
   user_data = base64encode(templatefile("${path.module}/instancesSetupScript.tmpl.sh", {
     maxRequestsBySecond = 5,
     maxRequestsBurst = 10,
-    maxRequestsBodySizeInKB = 150,
+    maxRequestsBodySizeInKB = 250,
     efsDnsName = aws_efs_file_system.rlmgt_efs.dns_name,
     logGroupName = "${var.appName}RelMgtLogsGroup",
     logStreamNamePrefix = "${var.appName}RelMgtLogsStream"

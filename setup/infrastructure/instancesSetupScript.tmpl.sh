@@ -4,7 +4,7 @@
 cd /home/ubuntu/ || exit
 sudo apt update
 sudo add-apt-repository -y ppa:certbot/certbot
-sudo apt install -y certbot python3-certbot-dns-route53 nginx ruby wget default-jre nfs-common cron
+sudo apt install -y certbot python3-certbot-dns-route53 nginx ruby wget nfs-common cron openjdk-16-jre
 
 #Create certificate (Let's encrypt)
 mkdir -p {letsencrypt/logs,letsencrypt/work,letsencrypt/config}
