@@ -10,7 +10,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="urchin-release-mgt" target="16" />
+      <module name="urchin-release-mgt" target="15" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
