@@ -1,18 +1,20 @@
-# UrchinReleaseMgt
-## Description
-Release management application for Urchin engine
+<h2 align="center">Deer Vision Website</h2>
 
-- Issues management:
-  - API to receive issues
-  - Web interface to see issues
-  
-- Binaries management:
-  - Web interface to see statistics of binaries
+# Features
+## Games
+List of games:
+- Photon Engineer
 
-## Install
-### Local
+## Administration
+Administration console containing:
+- API to receive issues
+- Web interface to see issues
+- Web interface to see usage statistics
+
+# Install
+## Local
 - Build Jar: `mvn clean package`
-- Launch Jar: `java -jar ./target/urchin-release-mgt-[VERSION].jar`
+- Launch Jar: `java -jar ./target/deer-vision-[VERSION].jar`
 
-### AWS
+## AWS
 - See [here](./setup/README.md)

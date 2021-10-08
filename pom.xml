@@ -3,13 +3,13 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.urchin</groupId>
-	<artifactId>urchin-release-mgt</artifactId>
+	<groupId>studio.deervision</groupId>
+	<artifactId>deer-vision</artifactId>
 	<version>1.0.0</version>
 	<packaging>jar</packaging>
 
-	<name>urchin-release-com.urchin.release.mgt</name>
-	<description>Urchin Release Management</description>
+	<name>deervision.studio</name>
+	<description>Deer Vision Website</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>

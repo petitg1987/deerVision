@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/urchin-release-mgt.iml" filepath="$PROJECT_DIR$/urchin-release-mgt.iml" />
+      <module fileurl="file://$PROJECT_DIR$/deerVision.iml" filepath="$PROJECT_DIR$/deerVision.iml" />
     </modules>
   </component>
 </project>

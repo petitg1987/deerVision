@@ -19,7 +19,7 @@ function buildPackage() {
     mvn clean package -f ../../pom.xml
 
     cd ../../target/
-    genericPackagePattern=(urchin-release-mgt-*.zip)
+    genericPackagePattern=(deer-vision-*.zip)
     genericPackageName="${genericPackagePattern[0]}"
     packageName=${appName}-${genericPackageName}
 
