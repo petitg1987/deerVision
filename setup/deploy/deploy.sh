@@ -2,29 +2,19 @@
 
 set -e
 cd "$(dirname "$0")"
-export AWS_DEFAULT_PROFILE=releasemgt
+export AWS_DEFAULT_PROFILE=deervision
 
-appName=$1
+appName="deervision"
+packageNamePrefix="deer-vision"
 packageName="uninitialized"
-
-function checkAppName() {
-    regexAppName="^[0-9a-z\-]+$";
-    if [[ ! "$appName" =~ $regexAppName ]]; then
-        echo "Application name not matching regex $regexAppName"
-        exit 1
-    fi
-}
 
 function buildPackage() {
     mvn clean package -f ../../pom.xml
 
     cd ../../target/
-    genericPackagePattern=(deer-vision-*.zip)
-    genericPackageName="${genericPackagePattern[0]}"
-    packageName=${appName}-${genericPackageName}
+    packageName="${packageNamePrefix}-*.zip"
 
-    cp ${genericPackageName} ${packageName}
-    echo "binary.aws-bucket-name: \"${appName}-releasemgt\"" > application-appinfo.yml
+    echo "binary.aws-bucket-name: \"${appName}\"" > application-appinfo.yml
     zip -r ${packageName} application-appinfo.yml
     rm application-appinfo.yml
     cd ../setup/deploy/
@@ -32,20 +22,18 @@ function buildPackage() {
 
 function copyPackageInS3() {
     packagePath="../../target/${packageName}"
-    echo "Copying '$packagePath' in S3 bucket '${appName}-releasemgt'"
-    aws s3 cp ${packagePath} s3://${appName}-releasemgt/releases/${packageName}
+    echo "Copying '$packagePath' in S3 bucket '${appName}'"
+    aws s3 cp ${packagePath} s3://${appName}/releases/${packageName}
 }
 
 function triggerCodeDeploy() {
     aws deploy create-deployment \
       --region eu-central-1 \
-      --application-name ${appName}RelMgtApp \
+      --application-name ${appName}App \
       --deployment-config-name CodeDeployDefault.AllAtOnce \
-      --deployment-group-name ${appName}RelMgtDeploymentGroup \
-      --s3-location bucket=${appName}-releasemgt,bundleType=zip,key=releases/${packageName}
+      --deployment-group-name ${appName}DeploymentGroup \
+      --s3-location bucket=${appName},bundleType=zip,key=releases/${packageName}
 }
-
-checkAppName
 
 buildPackage
 copyPackageInS3

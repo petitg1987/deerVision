@@ -4,34 +4,8 @@ set -e
 cd "$(dirname "$0")"
 
 actionName=$1
-appName=$2
-cidrPrefix=$3
-
-function checkAppName() {
-    regexAppName="^[0-9a-z\-]+$";
-    if [[ ! "$appName" =~ $regexAppName ]]; then
-        echo "Application name not matching regex $regexAppName"
-        exit 1
-    fi
-
-    if grep -q "${appName}" ./config/*; then
-        echo "Application name already used"
-        exit 1
-    fi
-}
-
-function checkCIDRPrefix() {
-    regexCIDRPrefix="^[0-9]+\.[0-9]+$";
-    if [[ ! "$cidrPrefix" =~ $regexCIDRPrefix ]]; then
-        echo "CIDR prefix not matching regex $regexCIDRPrefix"
-        exit 1
-    fi
-
-    if grep -q "${cidrPrefix}" ./config/*; then
-        echo "CIDR prefix already used"
-        exit 1
-    fi
-}
+appName="deervision"
+cidrPrefix="10.0"
 
 function switchWorkspace() {
     configFile=./config/${appName}.tfvars
@@ -43,9 +17,6 @@ function switchWorkspace() {
 }
 
 function createInfrastructure() {
-    checkAppName
-    checkCIDRPrefix
-
     printf "appName = \"$appName\"\ncidrPrefix = \"$cidrPrefix\"" > "./config/$appName.tfvars"
     git add ./config/${appName}.tfvars
     terraform workspace new ${appName}

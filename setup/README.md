@@ -1,24 +1,21 @@
 # Pre-requisites
 * AWS
-  * Create "IAM Group" named "release-mgt-group" having "AdministratorAccess" IAM policy
-  * Create "IAM User" named "release-mgt-user" with programmatic access and in "release-mgt-group" group
-  * Add the IAM user keys in `~/.aws/credentials` for "releasemgt" profile
-  * Create EC2 key pair named "releasemgt" and add files in `~/.ssh/`
-  * Create DNS "releasemgt.net" by using Route 53
+  * Create "IAM Group" named "deer-vision-group" having "AdministratorAccess" IAM policy
+  * Create "IAM User" named "deer-vision-user" with programmatic access and in "deer-vision-group" group
+  * Add the IAM user keys in `~/.aws/credentials` for "deervision" profile
+  * Create EC2 key pair named "deervision" and add file 'deervision.pem' with permission '600' in `~/.ssh/`
+  * Register domain "deervision.studio" by using Route 53
   * Delete the default VPC (optional)
 * Terraform: terraform >= v0.12 must be installed
 * Install AWS CLI: `snap install aws-cli`
 * Install Maven: `sudo apt install maven`
 
 # Manage infrastructure
-* Create infrastructure: `./infrastructure/infra.sh create [APP_NAME] [CIDR_PREFIX]`
-    * Example: `./infrastructure/infra.sh create laserriddle 10.0`
-* Update infrastructure: `./infrastructure/infra.sh update [APP_NAME]`
-    * Example: `./infrastructure/infra.sh update laserriddle`
-* Destroy infrastructure: `./infrastructure/infra.sh destroy [APP_NAME]`
-* Destroy infrastructure and configurations: `./infrastructure/infra.sh destroyAll [APP_NAME]`
+* Create infrastructure: `./infrastructure/infra.sh create`
+* Update infrastructure: `./infrastructure/infra.sh update`
+* Destroy infrastructure: `./infrastructure/infra.sh destroy`
+* Destroy infrastructure and configurations: `./infrastructure/infra.sh destroyAll`
 
 # Deploy the application
-* Execute: `./deploy/deploy.sh [APP_NAME]`
-    * Example: `./deploy/deploy.sh laserriddle`
-    * Check log on server: `ssh -i /home/greg/.ssh/releasemgt "ubuntu@[PUBLIC_IP]"`
+* Execute: `./deploy/deploy.sh`
+* Check log on server: `ssh -i /home/greg/.ssh/deervision.pem "ubuntu@[PUBLIC_IP]"`
