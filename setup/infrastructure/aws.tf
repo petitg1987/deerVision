@@ -370,16 +370,16 @@ resource "aws_route53_record" "infra_dns_record" {
   zone_id = data.aws_route53_zone.selected.zone_id
   name = ""
   type = "A"
-  ttl = "300"
+  ttl = "60"
   records = [aws_eip.infra_eip.public_ip]
 }
 
 resource "aws_route53_record" "infra_www_dns_record" {
   zone_id = data.aws_route53_zone.selected.zone_id
   name = "www"
-  type = "A"
-  ttl = "300"
-  records = [aws_eip.infra_eip.public_ip]
+  type = "CNAME"
+  ttl = "60"
+  records = ["deervision.studio"]
 }
 
 ##########################################################################################

@@ -8,8 +8,8 @@ sudo apt install -y certbot python3-certbot-dns-route53 nginx ruby wget nfs-comm
 
 #Create certificate (Let's encrypt)
 mkdir -p {letsencrypt/logs,letsencrypt/work,letsencrypt/config}
-sudo certbot -n --agree-tos -m deervision@gmail.com --logs-dir /home/ubuntu/letsencrypt/logs --work-dir /home/ubuntu/letsencrypt/work \
- --config-dir /home/ubuntu/letsencrypt/config certonly --dns-route53 -d *.deervision.studio
+sudo certbot -n --agree-tos -m petitg1987@gmail.com --logs-dir /home/ubuntu/letsencrypt/logs --work-dir /home/ubuntu/letsencrypt/work \
+ --config-dir /home/ubuntu/letsencrypt/config certonly --dns-route53 -d deervision.studio -d www.deervision.studio
 
 #Schedule renew certificate (Let's encrypt)
 echo -e "#"'!'"/bin/bash\n\ncertbot --logs-dir /home/ubuntu/letsencrypt/logs --work-dir /home/ubuntu/letsencrypt/work --config-dir /home/ubuntu/letsencrypt/config renew --dns-route53\nsudo service nginx reload" | sudo tee /etc/cron.daily/deervision-renew-cert
