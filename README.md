@@ -1,17 +1,14 @@
 <h2 align="center">Deer Vision Website</h2>
+https://deervision.studio
 
 # Features
-## Games
-List of games:
-- Photon Engineer
+- Games presentation:
+  - Photon Engineer
+- Administration console:
+  - Interface to manage issues
+  - Interface to see usage statistics
 
-## Administration
-Administration console containing:
-- API to receive issues
-- Web interface to see issues
-- Web interface to see usage statistics
-
-# Install
+# Deploy
 ## Local
 - Build Jar: `mvn clean package`
 - Launch Jar: `java -jar ./target/deer-vision-[VERSION].jar`
