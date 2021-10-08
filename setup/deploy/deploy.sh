@@ -5,15 +5,12 @@ cd "$(dirname "$0")"
 export AWS_DEFAULT_PROFILE=deervision
 
 appName="deervision"
-packageNamePrefix="deer-vision"
-packageName="uninitialized"
+packageName="deer-vision-1.0.0.zip"
 
 function buildPackage() {
     mvn clean package -f ../../pom.xml
 
     cd ../../target/
-    packageName="${packageNamePrefix}-*.zip"
-
     echo "binary.aws-bucket-name: \"${appName}\"" > application-appinfo.yml
     zip -r ${packageName} application-appinfo.yml
     rm application-appinfo.yml

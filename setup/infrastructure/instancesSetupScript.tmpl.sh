@@ -8,12 +8,12 @@ sudo apt install -y certbot python3-certbot-dns-route53 nginx ruby wget nfs-comm
 
 #Create certificate (Let's encrypt)
 mkdir -p {letsencrypt/logs,letsencrypt/work,letsencrypt/config}
-sudo certbot -n --agree-tos -m releasemgt@gmail.com --logs-dir /home/ubuntu/letsencrypt/logs --work-dir /home/ubuntu/letsencrypt/work \
- --config-dir /home/ubuntu/letsencrypt/config certonly --dns-route53 -d *.releasemgt.net
+sudo certbot -n --agree-tos -m deervision@gmail.com --logs-dir /home/ubuntu/letsencrypt/logs --work-dir /home/ubuntu/letsencrypt/work \
+ --config-dir /home/ubuntu/letsencrypt/config certonly --dns-route53 -d *.deervision.studio
 
 #Schedule renew certificate (Let's encrypt)
-echo -e "#"'!'"/bin/bash\n\ncertbot --logs-dir /home/ubuntu/letsencrypt/logs --work-dir /home/ubuntu/letsencrypt/work --config-dir /home/ubuntu/letsencrypt/config renew --dns-route53\nsudo service nginx reload" | sudo tee /etc/cron.daily/releasemgt-renew-cert
-sudo chmod +x /etc/cron.daily/releasemgt-renew-cert
+echo -e "#"'!'"/bin/bash\n\ncertbot --logs-dir /home/ubuntu/letsencrypt/logs --work-dir /home/ubuntu/letsencrypt/work --config-dir /home/ubuntu/letsencrypt/config renew --dns-route53\nsudo service nginx reload" | sudo tee /etc/cron.daily/deervision-renew-cert
+sudo chmod +x /etc/cron.daily/deervision-renew-cert
 
 #Setup Nginx
 echo -e "limit_req_zone \$binary_remote_addr zone=req_zone:500m rate=${maxRequestsBySecond}r/s;\n" \
@@ -21,8 +21,8 @@ echo -e "limit_req_zone \$binary_remote_addr zone=req_zone:500m rate=${maxReques
   "  listen 443;\n" \
   "  server_name _;\n" \
   "  ssl on;\n" \
-  "  ssl_certificate /home/ubuntu/letsencrypt/config/live/releasemgt.net/fullchain.pem;\n" \
-  "  ssl_certificate_key /home/ubuntu/letsencrypt/config/live/releasemgt.net/privkey.pem;\n" \
+  "  ssl_certificate /home/ubuntu/letsencrypt/config/live/deervision.studio/fullchain.pem;\n" \
+  "  ssl_certificate_key /home/ubuntu/letsencrypt/config/live/deervision.studio/privkey.pem;\n" \
   "  client_max_body_size ${maxRequestsBodySizeInKB}K;\n" \
   "  location / {\n"\
   "    limit_req zone=req_zone burst=${maxRequestsBurst} nodelay;\n" \
