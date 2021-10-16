@@ -15,7 +15,7 @@ https://deervision.studio
   - Build Jar: `mvn clean package`
   - Launch Jar: `java -jar ./target/deer-vision-[VERSION].jar`
 - Frontend:
-  - Move in backend folder: `cd deer-vision-frontend`
+  - Move in frontend folder: `cd deer-vision-frontend`
   - Execute: `yarn start`
 
 ## AWS
