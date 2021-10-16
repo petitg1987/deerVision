@@ -1,0 +1,396 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="59ccbe25-1296-40f1-861b-d5839b83a8d3" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ChangesViewManager">
+    <option name="groupingKeys">
+      <option value="directory" />
+    </option>
+  </component>
+  <component name="CodeInsightWorkspaceSettings">
+    <option name="optimizeImportsOnTheFly" value="true" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
+  <component name="JpbToolWindowState">
+    <option name="myId2FirstActivated">
+      <map>
+        <entry key="JPA Structure" value="true" />
+      </map>
+    </option>
+    <option name="myId2Visible">
+      <map>
+        <entry key="JPA Structure" value="false" />
+      </map>
+    </option>
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedIndex" value="2" />
+  </component>
+  <component name="ProjectId" id="1m0aMGu8PLJXWE2Q850aDBWnCI9" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="TF_FMT" value="false" />
+    <property name="TODO_SCOPE" value="All Places" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="project.structure.last.edited" value="SDKs" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+    <property name="settings.editor.selected.configurable" value="MavenSettings" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/resources/static/img/_source" />
+      <recent name="$PROJECT_DIR$/src/main/resources/static/img" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/deer-vision-backend" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <module />
+      <method />
+    </configuration>
+    <configuration default="true" type="Application" factoryName="Application">
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="JUnit" factoryName="JUnit">
+      <option name="TEST_OBJECT" value="class" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DeerVisionApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="deerVision" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="studio.deervision.DeerVisionApplication" />
+      <option name="ENABLE_LAUNCH_OPTIMIZATION" value="false" />
+      <option name="ACTIVE_PROFILES" value="dev" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="SHORTEN_COMMAND_LINE" value="NONE" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="TestNG">
+      <option name="TEST_OBJECT" value="CLASS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType">
+      <module name="" />
+      <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
+      <option name="PROGRAM_PARAMETERS" />
+      <predefined_log_file enabled="true" id="idea.log" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="59ccbe25-1296-40f1-861b-d5839b83a8d3" name="Default Changelist" comment="" />
+      <created>1608632914592</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1608632914592</updated>
+      <workItem from="1608632916906" duration="2137000" />
+      <workItem from="1608643452156" duration="1313000" />
+      <workItem from="1608729152144" duration="413000" />
+      <workItem from="1608730339157" duration="8955000" />
+      <workItem from="1608752181267" duration="177000" />
+      <workItem from="1608792732631" duration="3000" />
+      <workItem from="1622719009940" duration="27000" />
+      <workItem from="1623168955032" duration="15000" />
+      <workItem from="1623963055222" duration="91000" />
+      <workItem from="1624432493195" duration="99000" />
+      <workItem from="1624915708504" duration="1106000" />
+      <workItem from="1624916965016" duration="562000" />
+      <workItem from="1624988332234" duration="175000" />
+      <workItem from="1624988527818" duration="36000" />
+      <workItem from="1624994701876" duration="2416000" />
+      <workItem from="1625229707609" duration="7000" />
+      <workItem from="1630060130280" duration="48000" />
+      <workItem from="1630593010084" duration="6000" />
+      <workItem from="1630617119962" duration="430000" />
+      <workItem from="1630617685310" duration="153000" />
+      <workItem from="1631135774459" duration="7000" />
+      <workItem from="1632565166220" duration="783000" />
+      <workItem from="1632683275115" duration="7000" />
+      <workItem from="1633189094073" duration="133000" />
+      <workItem from="1633189269935" duration="89000" />
+      <workItem from="1633290756927" duration="10000" />
+      <workItem from="1633684160434" duration="59000" />
+      <workItem from="1633684770881" duration="196000" />
+      <workItem from="1633685042188" duration="623000" />
+      <workItem from="1633685675248" duration="9818000" />
+      <workItem from="1633697339283" duration="720000" />
+      <workItem from="1633723786419" duration="331000" />
+      <workItem from="1633889768253" duration="47000" />
+      <workItem from="1634391002070" duration="2574000" />
+      <workItem from="1634412508355" duration="63000" />
+      <workItem from="1634414045133" duration="976000" />
+    </task>
+    <task id="LOCAL-00001" summary="Upgrade libraries and accept issues with tab">
+      <created>1608634397792</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1608634397792</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Upgrade libraries and accept issues with tab">
+      <created>1608637782999</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1608637782999</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Upgrade libraries and accept issues with tab">
+      <created>1608647808806</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1608647808806</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Change font for issues view">
+      <created>1608729558561</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1608729558561</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Handle user key">
+      <created>1608744312817</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1608744312817</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Handle user key">
+      <created>1608745408474</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1608745408474</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Upgrade libraries + Java version + max POST request size + Ubuntu">
+      <created>1624997094804</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1624997094804</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Upgrade libraries">
+      <created>1630617495381</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1630617495381</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Upgrade libraries">
+      <created>1630617744249</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1630617744249</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Upgrade libraries">
+      <created>1630617753563</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1630617753563</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Upgrade libraries">
+      <created>1630617767023</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1630617767023</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Upgrade libraries">
+      <created>1630617832461</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1630617832461</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Renaming">
+      <created>1633686694482</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1633686694482</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Renaming">
+      <created>1633691213907</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1633691213907</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Renaming">
+      <created>1633693469769</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1633693469769</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Renaming">
+      <created>1633694560201</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1633694560201</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Renaming">
+      <created>1633696197324</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1633696197324</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Renaming">
+      <created>1633697216381</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1633697216381</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Renaming">
+      <created>1633697371276</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1633697371276</updated>
+    </task>
+    <task id="LOCAL-00020" summary="Add logo">
+      <created>1633698020950</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1633698020950</updated>
+    </task>
+    <task id="LOCAL-00021" summary="Add Authors file">
+      <created>1633724077656</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1633724077656</updated>
+    </task>
+    <task id="LOCAL-00022" summary="Update logo">
+      <created>1634391037135</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1634391037135</updated>
+    </task>
+    <task id="LOCAL-00023" summary="Move backend">
+      <created>1634414855716</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1634414855716</updated>
+    </task>
+    <task id="LOCAL-00024" summary="Move backend">
+      <created>1634414972317</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1634414972317</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ID_ORDER">
+      <list>
+        <option value="Default.Root" />
+        <option value="Default.Author" />
+        <option value="Default.Date" />
+        <option value="Default.Subject" />
+        <option value="Space.CommitStatus" />
+      </list>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Upgrade libraries and accept issues with tab" />
+    <MESSAGE value="Change font for issues view" />
+    <MESSAGE value="Handle user key" />
+    <MESSAGE value="Upgrade libraries + Java version + max POST request size + Ubuntu" />
+    <MESSAGE value="Upgrade libraries" />
+    <MESSAGE value="Renaming" />
+    <MESSAGE value="Add logo" />
+    <MESSAGE value="Add Authors file" />
+    <MESSAGE value="Update logo" />
+    <MESSAGE value="Move backend" />
+    <option name="LAST_COMMIT_MESSAGE" value="Move backend" />
+  </component>
+  <component name="XDebuggerManager">
+    <watches-manager>
+      <configuration name="SpringBootApplicationConfigurationType">
+        <watch expression="split[0]" language="JAVA" />
+      </configuration>
+    </watches-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>

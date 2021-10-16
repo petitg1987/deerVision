@@ -14,4 +14,4 @@ https://deervision.studio
 - Launch Jar: `java -jar ./target/deer-vision-[VERSION].jar`
 
 ## AWS
-- See [here](./setup/README.md)
+- See [here](../setup/README.md)
