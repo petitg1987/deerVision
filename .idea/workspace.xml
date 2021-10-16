@@ -4,26 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="59ccbe25-1296-40f1-861b-d5839b83a8d3" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/deer-vision-frontend/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/deer-vision-frontend/.idea/deer-vision-frontend.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/deer-vision-frontend/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/deer-vision-frontend/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/deer-vision-frontend/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/deer-vision-frontend/.idea/runConfigurations.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/deer-vision-frontend/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/deer-vision-backend/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/deer-vision-backend/TODO.md" beforeDir="false" afterPath="$PROJECT_DIR$/TODO.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/deer-vision-frontend/src/App.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/deer-vision-frontend/src/App.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/deer-vision-frontend/src/App.test.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/deer-vision-frontend/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/deer-vision-frontend/src/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/deer-vision-frontend/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/deer-vision-frontend/src/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/deer-vision-frontend/src/logo.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/deer-vision-frontend/src/reportWebVitals.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/deer-vision-frontend/src/setupTests.js" beforeDir="false" />
-    </list>
+    <list default="true" id="59ccbe25-1296-40f1-861b-d5839b83a8d3" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -87,7 +68,7 @@
     <property name="TODO_SCOPE" value="All Places" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/deer-vision-backend" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -190,7 +171,7 @@
       <workItem from="1633889768253" duration="47000" />
       <workItem from="1634391002070" duration="2574000" />
       <workItem from="1634412508355" duration="63000" />
-      <workItem from="1634414045133" duration="1287000" />
+      <workItem from="1634414045133" duration="1551000" />
     </task>
     <task id="LOCAL-00001" summary="Upgrade libraries and accept issues with tab">
       <created>1608634397792</created>
@@ -367,7 +348,35 @@
       <option name="project" value="LOCAL" />
       <updated>1634415114363</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="Add frontend">
+      <created>1634415351113</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1634415351113</updated>
+    </task>
+    <task id="LOCAL-00027" summary="Add frontend">
+      <created>1634415380322</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1634415380322</updated>
+    </task>
+    <task id="LOCAL-00028" summary="Add frontend">
+      <created>1634415482850</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1634415482850</updated>
+    </task>
+    <task id="LOCAL-00029" summary="Add frontend">
+      <created>1634415573012</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1634415573012</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -397,7 +406,8 @@
     <MESSAGE value="Add Authors file" />
     <MESSAGE value="Update logo" />
     <MESSAGE value="Move backend" />
-    <option name="LAST_COMMIT_MESSAGE" value="Move backend" />
+    <MESSAGE value="Add frontend" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add frontend" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
