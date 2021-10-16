@@ -11,7 +11,7 @@ https://deervision.studio
 # Deploy
 ## Local
 - Build Jar: `mvn clean package`
-- Launch Jar: `java -jar ./target/deer-vision-[VERSION].jar`
+- Launch Jar: `java -jar ./deer-vision-backend/target/deer-vision-[VERSION].jar`
 
 ## AWS
-- See [here](../setup/README.md)
+- See [here](setup/README.md)
