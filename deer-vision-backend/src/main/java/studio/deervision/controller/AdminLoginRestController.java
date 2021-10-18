@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import studio.deervision.config.properties.AdminProperties;
-import studio.deervision.dto.Token;
+import studio.deervision.dto.TokenDto;
 
 import java.util.Date;
 import java.util.List;
@@ -33,8 +33,8 @@ public class AdminLoginRestController {
 
     //curl -X POST http://localhost:5000/api/admin/login?password=dev
     @PostMapping("/admin/login")
-    public Token login(@RequestParam("password") String password) {
-        Token tokenDto = new Token();
+    public TokenDto login(@RequestParam("password") String password) {
+        TokenDto tokenDto = new TokenDto();
         if (!passwordEncoder.matches(password, adminProperties.getPassword())) {
             tokenDto.setValue("");
         } else {

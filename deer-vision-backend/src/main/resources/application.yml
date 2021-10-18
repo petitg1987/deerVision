@@ -25,6 +25,5 @@ admin:
   jwt-secret: "ter28CLTTHeTQM8ZSAhk"
 issue:
   version-pattern: ".*(\\d+[.]\\d+[.]\\d+).*"
-  chart-days: 15
 usage:
   chart-days: 15

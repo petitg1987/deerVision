@@ -8,7 +8,6 @@ import org.springframework.context.annotation.Configuration;
 public class IssueProperties {
 
     private String versionPattern;
-    private int chartDays;
 
     public String getVersionPattern() {
         return versionPattern;
@@ -16,13 +15,5 @@ public class IssueProperties {
 
     public void setVersionPattern(String versionPattern) {
         this.versionPattern = versionPattern;
-    }
-
-    public int getChartDays() {
-        return chartDays;
-    }
-
-    public void setChartDays(int chartDays) {
-        this.chartDays = chartDays;
     }
 }

@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import studio.deervision.config.properties.UsageProperties;
-import studio.deervision.dto.UsageInfo;
+import studio.deervision.dto.UsageDto;
 import studio.deervision.model.OperatingSystem;
 import studio.deervision.service.UsageService;
 
@@ -40,14 +40,14 @@ public class UsageRestController {
 
     //curl -H "Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJkdnNKV1QiLCJzdWIiOiJhZG1pbiIsImF1dGhvcml0aWVzIjpbIlJPTEVfVVNFUiJdLCJpYXQiOjE2MzQ1NzIzODgsImV4cCI6MTk0OTkzMjM4OH0.S-VnMofcbTMv4epZCT3Es1zezcvXsN4xL0gmkXca3vGHsXvwa5MB1puaw6Y8wBUZLLifvXLLGZUcYvYoDvLOWQ" http://localhost:5000/api/admin/usage | jq .
     @GetMapping(value = "/admin/usage")
-    public UsageInfo getUsage() {
-        UsageInfo usageInfo = new UsageInfo();
+    public UsageDto getUsage() {
+        UsageDto usageDto = new UsageDto();
 
         List<LocalDate> chartDates = retrieveChartsDates(usageProperties.getChartDays());
         LocalDate startDate = chartDates.get(0);
         LocalDate endDate = chartDates.get(chartDates.size() - 1);
 
-        usageInfo.setDates(chartDates.stream()
+        usageDto.setDates(chartDates.stream()
                 .map(ld -> ld.format(DateTimeFormatter.ofPattern(CHARTS_DATE_FORMAT)))
                 .collect(Collectors.toList()));
 
@@ -58,10 +58,10 @@ public class UsageRestController {
                     .sorted()
                     .map(mapAppUsages::get)
                     .collect(Collectors.toList());
-            usageInfo.addAppUsage(appId, appUsages);
+            usageDto.addAppUsage(appId, appUsages);
         }
 
-        return usageInfo;
+        return usageDto;
     }
 
     private List<LocalDate> retrieveChartsDates(int nbChartDays) {

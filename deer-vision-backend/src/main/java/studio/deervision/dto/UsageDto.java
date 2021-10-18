@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class UsageInfo {
+public class UsageDto {
 
     List<String> dates;
     Map<String, List<Long>> appIdUsages = new HashMap<>();

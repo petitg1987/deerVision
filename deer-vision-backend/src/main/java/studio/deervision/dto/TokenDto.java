@@ -1,6 +1,6 @@
 package studio.deervision.dto;
 
-public class Token {
+public class TokenDto {
 
     private String value;
 
