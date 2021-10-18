@@ -4,18 +4,21 @@ body {
 
 .header {
   background-color: #aaaaaa;
-  overflow: hidden; /* clear 'li' float: see https://css-tricks.com/all-about-floats/ */
+  overflow: hidden; /* clear float: see https://css-tricks.com/all-about-floats/ */
   margin: 0;
   padding: 0;
 }
 
-.header .menu, .header .menu-icon {
+.menu {
   list-style-type: none; /* remove bullets */
+}
+
+.menu, .menu-icon {
   margin: 0;
   padding: 0;
 }
 
-.header .logo, .header .nav-link, .header .menu-icon {
+.nav-logo, .nav-link, .menu-icon {
   display: block;
   color: #666;
   text-align: center;
@@ -23,12 +26,17 @@ body {
   text-decoration: none;
 }
 
-.header .logo {
+.nav-logo {
   float: left;
 }
 
-.header li, .header .menu-icon {
+.header li {
   float: right; /* display horizontally */
+}
+
+.menu-icon {
+  float: right;
+  display: none;
 }
 
 .header li a:hover {
@@ -36,9 +44,25 @@ body {
 }
 
 @media screen and (max-width: 600px) {
-  .header li, .header .menu-icon {
+  .menu-icon {
+    display: block;
+  }
+
+  .header li {
      float: none; /* display vertically */
      display: block;
      text-align: left;
+  }
+
+  .nav-left {
+    overflow: hidden; /* clear float: see https://css-tricks.com/all-about-floats/ */
+  }
+
+  .menu {
+    display: none;
+  }
+
+  .menu.responsive {
+    display: inline;
   }
 }
