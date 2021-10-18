@@ -18,7 +18,6 @@ class Index extends Component {
                             <li><Link to={'/about-us'} className="nav-link">About Us</Link></li>
                         </ul>
                     </header>
-                    <div className="clearFloat"/>
                     <div className="content">
                         <Switch>
                             <Route exact path='/' component={Home}/>
