@@ -1,9 +1,12 @@
 package studio.deervision.config.security;
 
-import io.jsonwebtoken.*;
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.JwtException;
+import io.jsonwebtoken.Jwts;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
+import studio.deervision.config.properties.AdminProperties;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
@@ -12,11 +15,15 @@ import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class JWTAuthorizationFilter implements Filter { //TODO not call !
+public class JWTAuthorizationFilter implements Filter {
 
     private final String HEADER = "Authorization";
     private final String PREFIX = "Bearer ";
-    private final String SECRET = "mySecretKey";
+    private final AdminProperties adminProperties;
+
+    public JWTAuthorizationFilter(AdminProperties adminProperties) {
+        this.adminProperties = adminProperties;
+    }
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws ServletException, IOException {
@@ -33,7 +40,7 @@ public class JWTAuthorizationFilter implements Filter { //TODO not call !
                     SecurityContextHolder.clearContext();
                 }
                 chain.doFilter(request, response);
-            } catch (ExpiredJwtException | UnsupportedJwtException | MalformedJwtException e) {
+            } catch (JwtException e) {
                 HttpServletResponse httpResponse = (HttpServletResponse) response;
                 httpResponse.setStatus(401);
                 httpResponse.getWriter().write("Invalid JWT: " + e.getMessage());
@@ -43,7 +50,7 @@ public class JWTAuthorizationFilter implements Filter { //TODO not call !
 
     private Claims validateToken(ServletRequest request) {
         String jwtToken = ((HttpServletRequest) request).getHeader(HEADER).replace(PREFIX, "");
-        return Jwts.parser().setSigningKey(SECRET.getBytes()).parseClaimsJws(jwtToken).getBody();
+        return Jwts.parser().setSigningKey(adminProperties.getJwtSecret().getBytes()).parseClaimsJws(jwtToken).getBody();
     }
 
     @SuppressWarnings({"unchecked"})

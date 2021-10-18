@@ -2,6 +2,7 @@ package studio.deervision.service;
 
 import studio.deervision.config.properties.IssueProperties;
 import studio.deervision.model.Issue;
+import studio.deervision.model.OperatingSystem;
 import studio.deervision.repository.IssueRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -29,16 +30,16 @@ public class IssueService {
         this.issueProperties = issueProperties;
     }
 
-    public void newIssue(String value, String userKey, String appVersion) {
+    public void newIssue(String value, String userKey, String appId, String appVersion, OperatingSystem operatingSystem) {
         if(value == null || "".equals(value)) {
             throw new IllegalArgumentException("Empty issue value received");
         }
-        String versionPattern = "^" + issueProperties.getVersionPattern() + "(-SNAPSHOT)?$";
+        String versionPattern = "^" + issueProperties.getVersionPattern() + "(-snapshot)?$";
         if(!Pattern.matches(versionPattern, appVersion)) {
             throw new IllegalArgumentException("Invalid application version: " + appVersion);
         }
 
-        Issue issue = new Issue(value, userKey, appVersion);
+        Issue issue = new Issue(value, userKey, appId, appVersion, operatingSystem);
         issueRepository.saveAndFlush(issue);
     }
 

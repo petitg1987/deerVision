@@ -21,17 +21,23 @@ public class Issue {
 
     private String userKey;
 
+    private String appId;
+
     private String appVersion;
+
+    private OperatingSystem operatingSystem;
 
     private LocalDateTime dateTime;
 
     public Issue(){
     }
 
-    public Issue(String value, String userKey, String appVersion) {
+    public Issue(String value, String userKey, String appId, String appVersion, OperatingSystem operatingSystem) {
         this.value = value;
         this.userKey = userKey;
+        this.appId = appId;
         this.appVersion = appVersion;
+        this.operatingSystem = operatingSystem;
         this.dateTime = LocalDateTime.now();
     }
 
@@ -59,12 +65,28 @@ public class Issue {
         this.userKey = userKey;
     }
 
+    public String getAppId() {
+        return appId;
+    }
+
+    public void setAppId(String appId) {
+        this.appId = appId;
+    }
+
     public String getAppVersion() {
         return appVersion;
     }
 
     public void setAppVersion(String appVersion) {
         this.appVersion = appVersion;
+    }
+
+    public OperatingSystem getOperatingSystem() {
+        return operatingSystem;
+    }
+
+    public void setOperatingSystem(OperatingSystem operatingSystem) {
+        this.operatingSystem = operatingSystem;
     }
 
     public LocalDateTime getDateTime() {
@@ -75,12 +97,12 @@ public class Issue {
         this.dateTime = dateTime;
     }
 
-    public String getDateTimeDisplay() {
+    public String getDateTimeDisplay() { //TODO us it in DTO
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH':'mm':'ss");
         return dateTime.format(dateTimeFormatter);
     }
 
-    public String getSampleValue() {
+    public String getSampleValue() { //TODO us it in DTO
         int maxLength = Math.min(value.length(), MAX_SAMPLE_VALUE_SIZE);
         return value.substring(0, maxLength);
     }

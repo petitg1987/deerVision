@@ -13,6 +13,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import studio.deervision.config.properties.ActuatorProperties;
+import studio.deervision.config.properties.AdminProperties;
 
 @Configuration
 @EnableWebSecurity
@@ -57,7 +58,7 @@ public class SecurityConfig {
 
         @Override
         protected void configure(HttpSecurity http) throws Exception {
-            http.authorizeRequests()
+            http.regexMatcher("^/api/admin/login.*").authorizeRequests()
                     .regexMatchers("^/api/admin/login.*").permitAll()
                     .and().csrf().disable();
         }
@@ -67,10 +68,17 @@ public class SecurityConfig {
     @Order(3)
     public static class APIAdminSecurity extends WebSecurityConfigurerAdapter {
 
+        private final AdminProperties adminProperties;
+
+        @Autowired
+        public APIAdminSecurity(AdminProperties adminProperties) {
+            this.adminProperties = adminProperties;
+        }
+
         @Override
         protected void configure(HttpSecurity http) throws Exception {
             http.regexMatcher("^/api/admin/.*")
-                    .addFilterAfter(new JWTAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class)
+                    .addFilterAfter(new JWTAuthorizationFilter(adminProperties), UsernamePasswordAuthenticationFilter.class)
                     .authorizeRequests()
                     .regexMatchers("^/api/admin/.*")
                     .fullyAuthenticated()
