@@ -2,23 +2,32 @@ body {
   margin: 0;
 }
 
-.header {
+.nav {
   background-color: #aaaaaa;
   overflow: hidden; /* clear float: see https://css-tricks.com/all-about-floats/ */
   margin: 0;
   padding: 0;
 }
 
-.menu {
-  list-style-type: none; /* remove bullets */
+.nav-logo {
+  float: left;
 }
 
-.menu, .menu-icon {
+.nav-menu {
+  list-style-type: none; /* remove bullets */
   margin: 0;
   padding: 0;
 }
 
-.nav-logo, .nav-link, .menu-icon {
+.nav-menu-link-container {
+  float: right; /* display horizontally */
+}
+
+.nav-menu-link-container a:hover {
+  background-color: #111;
+}
+
+.nav-logo, .nav-menu-link, .nav-menu-icon {
   display: block;
   color: #666;
   text-align: center;
@@ -26,29 +35,17 @@ body {
   text-decoration: none;
 }
 
-.nav-logo {
-  float: left;
-}
-
-.nav-link-container {
-  float: right; /* display horizontally */
-}
-
-.menu-icon {
-  float: right;
+.nav-menu-icon {
   display: none;
-}
-
-.nav-link-container a:hover {
-  background-color: #111;
+  float: right;
 }
 
 @media screen and (max-width: 600px) {
-  .menu-icon {
+  .nav-menu-icon {
     display: block;
   }
 
-  .nav-link-container {
+  .nav-menu-link-container {
      float: none; /* display vertically */
      display: block;
      text-align: left;
@@ -58,11 +55,11 @@ body {
     overflow: hidden; /* clear float: see https://css-tricks.com/all-about-floats/ */
   }
 
-  .menu {
+  .nav-menu {
     display: none;
   }
 
-  .menu.responsive {
+  .nav-menu.responsive {
     display: inline;
   }
 }
