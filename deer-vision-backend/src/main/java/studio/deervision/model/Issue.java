@@ -5,7 +5,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 @Entity
 public class Issue {
@@ -96,17 +95,5 @@ public class Issue {
     public void setDateTime(LocalDateTime dateTime) {
         this.dateTime = dateTime;
     }
-
-    public String getDateTimeDisplay() { //TODO us it in DTO
-        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH':'mm':'ss");
-        return dateTime.format(dateTimeFormatter);
-    }
-
-    public String getSampleValue() { //TODO us it in DTO
-        int maxLength = Math.min(value.length(), MAX_SAMPLE_VALUE_SIZE);
-        return value.substring(0, maxLength);
-    }
-
-
 
 }

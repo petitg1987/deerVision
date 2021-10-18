@@ -8,7 +8,6 @@ import org.springframework.context.annotation.Configuration;
 public class IssueProperties {
 
     private String versionPattern;
-    private int pageSize;
     private int chartDays;
 
     public String getVersionPattern() {
@@ -17,14 +16,6 @@ public class IssueProperties {
 
     public void setVersionPattern(String versionPattern) {
         this.versionPattern = versionPattern;
-    }
-
-    public int getPageSize() {
-        return pageSize;
-    }
-
-    public void setPageSize(int pageSize) {
-        this.pageSize = pageSize;
     }
 
     public int getChartDays() {

@@ -35,7 +35,7 @@ public class UsageRestController {
     @PostMapping(value="/usage")
     public void postUsage(@RequestParam("appId") String appId, @RequestParam("appVersion") String appVersion, @RequestParam("os") String os) {
         String userKey = (String)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        usageService.registerNewUsage(userKey, appId, appVersion, OperatingSystem.retrieveOperatingSystem(os));
+        usageService.registerNewUsage(userKey, appId, appVersion, OperatingSystem.toOperatingSystem(os));
     }
 
     //curl -H "Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJkdnNKV1QiLCJzdWIiOiJhZG1pbiIsImF1dGhvcml0aWVzIjpbIlJPTEVfVVNFUiJdLCJpYXQiOjE2MzQ1NzIzODgsImV4cCI6MTk0OTkzMjM4OH0.S-VnMofcbTMv4epZCT3Es1zezcvXsN4xL0gmkXca3vGHsXvwa5MB1puaw6Y8wBUZLLifvXLLGZUcYvYoDvLOWQ" http://localhost:5000/api/admin/usage | jq .

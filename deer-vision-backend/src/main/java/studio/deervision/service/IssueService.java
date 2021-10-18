@@ -1,22 +1,16 @@
 package studio.deervision.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import studio.deervision.config.properties.IssueProperties;
 import studio.deervision.model.Issue;
 import studio.deervision.model.OperatingSystem;
 import studio.deervision.repository.IssueRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.stereotype.Service;
+import studio.deervision.repository.LightIssue;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
 
 @Service
 public class IssueService {
@@ -43,8 +37,8 @@ public class IssueService {
         issueRepository.saveAndFlush(issue);
     }
 
-    public Page<Issue> findPaginated(Pageable pageable) {
-        return issueRepository.findAll(pageable);
+    public List<LightIssue> findAllOrderByDates() {
+        return issueRepository.findAllOrderByDates();
     }
 
     public Issue findById(Long id) {
@@ -54,14 +48,6 @@ public class IssueService {
 
     public void removeById(Long id) {
         issueRepository.deleteById(id);
-    }
-
-    public Map<LocalDate, Long> findIssuesGroupByDate(LocalDate startDate, LocalDate endDate) {
-        LocalDateTime startDateTime = startDate.atTime(LocalTime.MIN);
-        LocalDateTime endDateTime = endDate.atTime(LocalTime.MAX);
-
-        List<Issue> issues = issueRepository.findByDateTimeBetween(startDateTime, endDateTime);
-        return issues.stream().collect(Collectors.groupingBy(bva -> bva.getDateTime().toLocalDate(), Collectors.counting()));
     }
 
 }

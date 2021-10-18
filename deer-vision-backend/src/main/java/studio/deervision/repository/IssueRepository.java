@@ -1,15 +1,17 @@
 package studio.deervision.repository;
 
-import studio.deervision.model.Issue;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
+import studio.deervision.model.Issue;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Repository
 public interface IssueRepository extends JpaRepository<Issue, Long> {
 
-    List<Issue> findByDateTimeBetween(LocalDateTime startDateTime, LocalDateTime endDateTime);
+    @Query("SELECT i.id as id, i.userKey as userKey, i.appId as appId, i.appVersion as appVersion, i.operatingSystem as operatingSystem, " +
+            "i.dateTime as dateTime from Issue i ORDER BY i.dateTime DESC")
+    List<LightIssue> findAllOrderByDates();
 
 }

@@ -7,8 +7,11 @@ public enum OperatingSystem {
     WINDOWS,
     MAC_OS;
 
-    public static OperatingSystem retrieveOperatingSystem(String os){
-        String osString = CaseFormat.LOWER_HYPHEN.to(CaseFormat.UPPER_UNDERSCORE, os);
-        return OperatingSystem.valueOf(osString);
+    public static OperatingSystem toOperatingSystem(String osString){
+        return OperatingSystem.valueOf(CaseFormat.LOWER_HYPHEN.to(CaseFormat.UPPER_UNDERSCORE, osString));
+    }
+
+    public String toOperatingSystemString(){
+        return CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.LOWER_HYPHEN, this.name());
     }
 }
