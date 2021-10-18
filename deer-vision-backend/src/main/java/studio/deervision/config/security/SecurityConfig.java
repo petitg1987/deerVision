@@ -70,11 +70,10 @@ public class SecurityConfig {
         @Override
         protected void configure(HttpSecurity http) throws Exception {
             http.regexMatcher("^/api/admin/.*")
-                    .addFilterBefore(new JWTAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class)
+                    .addFilterAfter(new JWTAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class)
                     .authorizeRequests()
                     .regexMatchers("^/api/admin/.*")
                     .fullyAuthenticated()
-                  //  .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                     .and().csrf().disable();
         }
     }
@@ -90,7 +89,6 @@ public class SecurityConfig {
                     .authorizeRequests()
                     .regexMatchers("^/api/.*")
                     .fullyAuthenticated()
-                    .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                     .and().csrf().disable();
         }
     }
