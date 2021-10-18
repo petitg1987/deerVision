@@ -11,6 +11,11 @@ body {
 
 .nav-logo {
     float: left;
+    padding: 1px 4px;
+}
+
+.nav-logo-text {
+    float: left;
 }
 
 .nav-menu {
@@ -27,11 +32,11 @@ body {
     background-color: #101010;
 }
 
-.nav-logo, .nav-menu-link {
+.nav-logo-text, .nav-menu-link {
     display: block;
     color: #606060;
     text-align: center;
-    padding: 14px 16px;
+    padding: 14px 3px;
     text-decoration: none;
 }
 
