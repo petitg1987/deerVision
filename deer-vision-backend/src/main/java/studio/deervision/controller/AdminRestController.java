@@ -67,10 +67,10 @@ public class AdminRestController {
 
         List<String> appIds = usageService.findDistinctAppId();
         for(String appId : appIds) {
-            Map<LocalDate, Long> mapAppUsage = addMissingDates(usageService.findUsageBetweenDates(appId, startDate, endDate), chartDates);
-            List<Long> appUsages = mapAppUsage.keySet().stream()
+            Map<LocalDate, Long> mapAppUsages = addMissingDates(usageService.findUsagesBetweenDates(appId, startDate, endDate), chartDates);
+            List<Long> appUsages = mapAppUsages.keySet().stream()
                     .sorted()
-                    .map(mapAppUsage::get)
+                    .map(mapAppUsages::get)
                     .collect(Collectors.toList());
             usageInfo.addAppUsage(appId, appUsages);
         }

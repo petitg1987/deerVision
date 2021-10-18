@@ -15,6 +15,6 @@ public interface UsageRepository extends JpaRepository<Usage, Long> {
     List<String> findDistinctAppId();
 
     @Query("SELECT u from Usage u WHERE u.appId=?1 AND u.dateTime BETWEEN ?2 AND ?3")
-    List<Usage> findUsageBetweenDates(String appId, LocalDateTime startDateTime, LocalDateTime endDateTime);
+    List<Usage> findBetweenDates(String appId, LocalDateTime startDateTime, LocalDateTime endDateTime);
 
 }
