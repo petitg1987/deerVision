@@ -2,29 +2,28 @@ package studio.deervision.controller;
 
 import com.google.common.base.CaseFormat;
 import studio.deervision.model.OperatingSystem;
-import studio.deervision.service.BinaryService;
+import studio.deervision.service.UsageService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/binaries")
-public class BinaryRestController {
+@RequestMapping("/api/usage")
+public class UsageRestController {
 
-    private final BinaryService binaryService;
+    private final UsageService usageService;
 
     @Autowired
-    public BinaryRestController(BinaryService binaryService) {
-        this.binaryService = binaryService;
+    public UsageRestController(UsageService usageService) {
+        this.usageService = usageService;
     }
 
-    //curl -X POST -H "Content-Type: text/plain" -H "X-UserKey: 0-17" --data "1.0.0" http://localhost:5000/api/binaries/linux/version
-    @PostMapping(value="/{os}/version", consumes = MediaType.TEXT_PLAIN_VALUE)
-    public void postReleaseUsed(@PathVariable(name = "os") String os, @RequestBody String binaryVersion) {
+    //curl -X POST -H "X-UserKey: 0-17" "http://localhost:5000/api/usage?appId=photonEngineer&appVersion=1.0.0&os=linux"
+    @PostMapping(value="")
+    public void postUsage(@RequestParam("appId") String appId, @RequestParam("appVersion") String appVersion, @RequestParam("os") String os) {
         String userKey = (String)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         OperatingSystem operatingSystem = retrieveOperatingSystem(os);
-        binaryService.newAuditVersion(binaryVersion, userKey, operatingSystem);
+        usageService.registerNewUsage(userKey, appId, appVersion, operatingSystem);
     }
 
     private OperatingSystem retrieveOperatingSystem(String os){

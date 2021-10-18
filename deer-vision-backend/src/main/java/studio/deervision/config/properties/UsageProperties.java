@@ -4,8 +4,8 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@ConfigurationProperties(prefix = "binary")
-public class BinaryProperties {
+@ConfigurationProperties(prefix = "usage")
+public class UsageProperties {
 
     private int chartDays;
 

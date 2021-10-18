@@ -1,6 +1,5 @@
 package studio.deervision.controller;
 
-import com.google.common.base.CaseFormat;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,11 +8,11 @@ import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import studio.deervision.config.properties.AdminProperties;
-import studio.deervision.config.properties.BinaryProperties;
+import studio.deervision.config.properties.UsageProperties;
 import studio.deervision.dto.Token;
-import studio.deervision.dto.Usage;
+import studio.deervision.dto.UsageInfo;
 import studio.deervision.model.OperatingSystem;
-import studio.deervision.service.BinaryService;
+import studio.deervision.service.UsageService;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -25,24 +24,24 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/admin")
-public class AdminController {
+public class AdminRestController {
 
     private static final String CHARTS_DATE_FORMAT = "dd-MM-yyyy";
 
     private final PasswordEncoder passwordEncoder;
     private final AdminProperties adminProperties;
-    private final BinaryService binaryService;
-    private final BinaryProperties binaryProperties;
+    private final UsageService usageService;
+    private final UsageProperties usageProperties;
 
     @Autowired
-    public AdminController(AdminProperties adminProperties, PasswordEncoder passwordEncoder, BinaryService binaryService, BinaryProperties binaryProperties) {
+    public AdminRestController(AdminProperties adminProperties, PasswordEncoder passwordEncoder, UsageService binaryService, UsageProperties usageProperties) {
         this.adminProperties = adminProperties;
         this.passwordEncoder = passwordEncoder;
-        this.binaryService = binaryService;
-        this.binaryProperties = binaryProperties;
+        this.usageService = binaryService;
+        this.usageProperties = usageProperties;
     }
 
-    //curl -X POST -d "password=dev" http://localhost:5000/api/admin/login
+    //curl -X POST http://localhost:5000/api/admin/login?password=dev
     @PostMapping("login")
     public Token login(@RequestParam("password") String password) {
         Token tokenDto = new Token();
@@ -54,31 +53,32 @@ public class AdminController {
         return tokenDto;
     }
 
-    //curl -H "Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJkdnNKV1QiLCJzdWIiOiJhZG1pbiIsImF1dGhvcml0aWVzIjpbIlJPTEVfVVNFUiJdLCJpYXQiOjE2MzQ1NzIzODgsImV4cCI6MTk0OTkzMjM4OH0.S-VnMofcbTMv4epZCT3Es1zezcvXsN4xL0gmkXca3vGHsXvwa5MB1puaw6Y8wBUZLLifvXLLGZUcYvYoDvLOWQ" http://localhost:5000/api/admin/usage
+    //curl -H "Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJkdnNKV1QiLCJzdWIiOiJhZG1pbiIsImF1dGhvcml0aWVzIjpbIlJPTEVfVVNFUiJdLCJpYXQiOjE2MzQ1NzIzODgsImV4cCI6MTk0OTkzMjM4OH0.S-VnMofcbTMv4epZCT3Es1zezcvXsN4xL0gmkXca3vGHsXvwa5MB1puaw6Y8wBUZLLifvXLLGZUcYvYoDvLOWQ" http://localhost:5000/api/admin/usage | jq .
     @GetMapping(value = "/usage")
-    public Usage getUsage() { //TODO review...
-        Usage usage = new Usage();
+    public UsageInfo getUsage() {
+        UsageInfo usageInfo = new UsageInfo();
 
-        List<LocalDate> chartDates = retrieveChartsDates(binaryProperties.getChartDays());
+        List<LocalDate> chartDates = retrieveChartsDates(usageProperties.getChartDays());
         LocalDate startDate = chartDates.get(0);
         LocalDate endDate = chartDates.get(chartDates.size() - 1);
 
-        usage.setDates(chartDates.stream()
+        usageInfo.setDates(chartDates.stream()
                 .map(ld -> ld.format(DateTimeFormatter.ofPattern(CHARTS_DATE_FORMAT)))
                 .collect(Collectors.toList()));
 
-        for (OperatingSystem operatingSystem : OperatingSystem.values()) {
-            String operatingSystemString = CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, operatingSystem.name());
-            Map<LocalDate, Long> mapBinaryUsage = addMissingDates(binaryService.findBinaryVersionAuditsGroupByDate(operatingSystem, startDate, endDate), chartDates);
-            String key = "binaryUsage" + operatingSystemString + "ChartValues";
-            List<Long> values = mapBinaryUsage.keySet().stream()
-                    .sorted()
-                    .map(mapBinaryUsage::get)
-                    .collect(Collectors.toList());
-            usage.addOsUsages(key, values);
+        List<String> appIds = usageService.findDistinctAppId();
+        for(String appId : appIds) {
+            for (OperatingSystem operatingSystem : OperatingSystem.values()) {
+                Map<LocalDate, Long> mapUsage = addMissingDates(usageService.findUsageGroupByDate(appId, operatingSystem, startDate, endDate), chartDates);
+                List<Long> usages = mapUsage.keySet().stream()
+                        .sorted()
+                        .map(mapUsage::get)
+                        .collect(Collectors.toList());
+                usageInfo.addUsage(appId, operatingSystem, usages);
+            }
         }
 
-        return usage;
+        return usageInfo;
     }
 
     private String getJWTToken() {

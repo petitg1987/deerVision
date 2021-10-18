@@ -27,5 +27,5 @@ issue:
   version-pattern: ".*(\\d+[.]\\d+[.]\\d+).*"
   page-size: 11
   chart-days: 15
-binary:
+usage:
   chart-days: 15
