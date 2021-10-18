@@ -16,6 +16,7 @@ body {
 
 .nav-logo-text {
     float: left;
+    padding: 14px 3px;
 }
 
 .nav-menu {
@@ -36,8 +37,11 @@ body {
     display: block;
     color: #606060;
     text-align: center;
-    padding: 14px 3px;
     text-decoration: none;
+}
+
+.nav-menu-link {
+    padding: 14px 16px;
 }
 
 .nav-menu-icon {

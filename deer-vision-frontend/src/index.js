@@ -30,8 +30,10 @@ class Index extends Component {
                 <div>
                     <nav className="nav">
                         <div className="nav-logo-icon">
-                            <img className="nav-logo" src={studioLogoMini} alt="Studio Logo" width="45" height="45" />
-                            <Link to={'/'} className="nav-logo-text">Deer Vision Studio</Link>
+                            <Link to={'/'}>
+                                <img className="nav-logo" src={studioLogoMini} alt="Studio Logo" width="45" height="45" />
+                                <div className="nav-logo-text">Deer Vision Studio</div>
+                            </Link>
                             <Link to="#" className="nav-menu-icon" onClick={() => this.navMenuIconClick()}>
                                 <svg viewBox="0 0 100 80" width="23" height="18.4">
                                     <rect width="100" height="20" rx="8"/>
