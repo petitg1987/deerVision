@@ -9,13 +9,13 @@ body {
   padding: 0;
 }
 
-.header ul {
+.header .menu, .header .menu-icon {
   list-style-type: none; /* remove bullets */
   margin: 0;
   padding: 0;
 }
 
-.header .logo, .header li a {
+.header .logo, .header .nav-link, .header .menu-icon {
   display: block;
   color: #666;
   text-align: center;
@@ -27,10 +27,18 @@ body {
   float: left;
 }
 
-.header li {
+.header li, .header .menu-icon {
   float: right; /* display horizontally */
 }
 
 .header li a:hover {
   background-color: #111;
+}
+
+@media screen and (max-width: 600px) {
+  .header li, .header .menu-icon {
+     float: none; /* display vertically */
+     display: block;
+     text-align: left;
+  }
 }

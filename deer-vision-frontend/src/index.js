@@ -7,13 +7,30 @@ import AboutUs from './about-us';
 import './style.css';
 
 class Index extends Component {
+
+    menuIconClick() {
+        let x = document.getElementById("menu");
+        if (x.className === "topnav") {
+            x.className += " responsive";
+        } else {
+            x.className = "topnav";
+        }
+    }
+
     render() {
         return (
             <Router>
                 <div>
                     <header className="header">
                         <Link to={'/'} className="logo">Deer Vision Studio</Link>
-                        <ul>
+                        <Link to="#" className="menu-icon" onClick={() => this.menuIconClick()}>
+                            <svg viewBox="0 0 100 80" width="16" height="16">
+                                <rect width="100" height="20" rx="8"/>
+                                <rect y="30" width="100" height="20" rx="8"/>
+                                <rect y="60" width="100" height="20" rx="8"/>
+                            </svg>
+                        </Link>
+                        <ul className="menu">
                             <li><Link to={'/games'} className="nav-link">Our Games</Link></li>
                             <li><Link to={'/about-us'} className="nav-link">About Us</Link></li>
                         </ul>
