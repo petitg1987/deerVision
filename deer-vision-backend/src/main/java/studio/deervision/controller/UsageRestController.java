@@ -19,11 +19,11 @@ public class UsageRestController {
     }
 
     //curl -X POST -H "X-UserKey: 0-17" "http://localhost:5000/api/usage?appId=photonEngineer&appVersion=1.0.0&os=linux"
+    //curl -X POST -H "X-UserKey: 0-17" "http://localhost:5000/api/usage?appId=photonEngineer&appVersion=1.0.0&os=windows"
     @PostMapping(value="")
     public void postUsage(@RequestParam("appId") String appId, @RequestParam("appVersion") String appVersion, @RequestParam("os") String os) {
         String userKey = (String)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        OperatingSystem operatingSystem = retrieveOperatingSystem(os);
-        usageService.registerNewUsage(userKey, appId, appVersion, operatingSystem);
+        usageService.registerNewUsage(userKey, appId, appVersion, retrieveOperatingSystem(os));
     }
 
     private OperatingSystem retrieveOperatingSystem(String os){

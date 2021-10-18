@@ -3,7 +3,6 @@ package studio.deervision.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
-import studio.deervision.model.OperatingSystem;
 import studio.deervision.model.Usage;
 
 import java.time.LocalDateTime;
@@ -15,7 +14,7 @@ public interface UsageRepository extends JpaRepository<Usage, Long> {
     @Query("SELECT DISTINCT u.appId FROM Usage u")
     List<String> findDistinctAppId();
 
-    List<Usage> findByAppIdAndOperatingSystemAndDateTimeBetween(String appId, OperatingSystem operatingSystem,
-                                                                LocalDateTime startDateTime, LocalDateTime endDateTime);
+    @Query("SELECT u from Usage u WHERE u.appId=?1 AND u.dateTime BETWEEN ?2 AND ?3")
+    List<Usage> findUsageBetweenDates(String appId, LocalDateTime startDateTime, LocalDateTime endDateTime);
 
 }

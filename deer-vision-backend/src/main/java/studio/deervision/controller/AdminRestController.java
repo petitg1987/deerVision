@@ -11,7 +11,6 @@ import studio.deervision.config.properties.AdminProperties;
 import studio.deervision.config.properties.UsageProperties;
 import studio.deervision.dto.Token;
 import studio.deervision.dto.UsageInfo;
-import studio.deervision.model.OperatingSystem;
 import studio.deervision.service.UsageService;
 
 import java.time.LocalDate;
@@ -34,10 +33,10 @@ public class AdminRestController {
     private final UsageProperties usageProperties;
 
     @Autowired
-    public AdminRestController(AdminProperties adminProperties, PasswordEncoder passwordEncoder, UsageService binaryService, UsageProperties usageProperties) {
+    public AdminRestController(AdminProperties adminProperties, PasswordEncoder passwordEncoder, UsageService usageService, UsageProperties usageProperties) {
         this.adminProperties = adminProperties;
         this.passwordEncoder = passwordEncoder;
-        this.usageService = binaryService;
+        this.usageService = usageService;
         this.usageProperties = usageProperties;
     }
 
@@ -68,14 +67,12 @@ public class AdminRestController {
 
         List<String> appIds = usageService.findDistinctAppId();
         for(String appId : appIds) {
-            for (OperatingSystem operatingSystem : OperatingSystem.values()) {
-                Map<LocalDate, Long> mapUsage = addMissingDates(usageService.findUsageGroupByDate(appId, operatingSystem, startDate, endDate), chartDates);
-                List<Long> usages = mapUsage.keySet().stream()
-                        .sorted()
-                        .map(mapUsage::get)
-                        .collect(Collectors.toList());
-                usageInfo.addUsage(appId, operatingSystem, usages);
-            }
+            Map<LocalDate, Long> mapAppUsage = addMissingDates(usageService.findUsageBetweenDates(appId, startDate, endDate), chartDates);
+            List<Long> appUsages = mapAppUsage.keySet().stream()
+                    .sorted()
+                    .map(mapAppUsage::get)
+                    .collect(Collectors.toList());
+            usageInfo.addAppUsage(appId, appUsages);
         }
 
         return usageInfo;
