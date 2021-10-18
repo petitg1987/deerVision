@@ -1,0 +1,36 @@
+body {
+  margin: 0;
+}
+
+.header {
+  background-color: #aaaaaa;
+  overflow: hidden; /* clear 'li' float: see https://css-tricks.com/all-about-floats/ */
+  margin: 0;
+  padding: 0;
+}
+
+.header ul {
+  list-style-type: none; /* remove bullets */
+  margin: 0;
+  padding: 0;
+}
+
+.header .logo, .header li a {
+  display: block;
+  color: #666;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.header .logo {
+  float: left;
+}
+
+.header li {
+  float: right; /* display horizontally */
+}
+
+.header li a:hover {
+  background-color: #111;
+}

@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="59ccbe25-1296-40f1-861b-d5839b83a8d3" name="Default Changelist" comment="" />
+    <list default="true" id="59ccbe25-1296-40f1-861b-d5839b83a8d3" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -26,7 +28,7 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/deer-vision-frontend" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitSEFilterConfiguration">
     <file-type-list>
@@ -172,6 +174,8 @@
       <workItem from="1634391002070" duration="2574000" />
       <workItem from="1634412508355" duration="63000" />
       <workItem from="1634414045133" duration="1551000" />
+      <workItem from="1634420779639" duration="260000" />
+      <workItem from="1634544873575" duration="16000" />
     </task>
     <task id="LOCAL-00001" summary="Upgrade libraries and accept issues with tab">
       <created>1608634397792</created>
@@ -376,7 +380,21 @@
       <option name="project" value="LOCAL" />
       <updated>1634415573012</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="Update README.md">
+      <created>1634420916192</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1634420916192</updated>
+    </task>
+    <task id="LOCAL-00031" summary="Update README.md">
+      <created>1634420942673</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1634420942673</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -407,7 +425,8 @@
     <MESSAGE value="Update logo" />
     <MESSAGE value="Move backend" />
     <MESSAGE value="Add frontend" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add frontend" />
+    <MESSAGE value="Update README.md" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update README.md" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
