@@ -17,6 +17,11 @@ class Index extends Component {
         }
     }
 
+    menuLinkClick() {
+        let menu = document.getElementById("menuId");
+        menu.classList.remove("responsive");
+    }
+
     render() {
         return (
             <Router>
@@ -33,8 +38,8 @@ class Index extends Component {
                             </Link>
                         </div>
                         <ul className="menu" id="menuId">
-                            <li><Link to={'/games'} className="nav-link">Our Games</Link></li>
-                            <li><Link to={'/about-us'} className="nav-link">About Us</Link></li>
+                            <li><Link to={'/games'} className="nav-link" onClick={() => this.menuLinkClick()}>Our Games</Link></li>
+                            <li><Link to={'/about-us'} className="nav-link" onClick={() => this.menuLinkClick()}>About Us</Link></li>
                         </ul>
                     </header>
                     <div className="content">
