@@ -38,7 +38,7 @@ body {
 .nav-menu-icon {
     display: none;
     float: right;
-    padding: 10px 16px;
+    padding: 12px 16px;
 }
 
 @media screen and (max-width: 600px) {
@@ -50,7 +50,7 @@ body {
         float: none; /* display menu links vertically */
     }
 
-    .nav-left {
+    .nav-logo-icon {
         overflow: hidden; /* clear float to display menu links at the next line (https://css-tricks.com/all-about-floats/) */
     }
 

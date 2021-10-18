@@ -27,10 +27,10 @@ class Index extends Component {
             <Router>
                 <div>
                     <nav className="nav">
-                        <div className="nav-left">
+                        <div className="nav-logo-icon">
                             <Link to={'/'} className="nav-logo">Deer Vision Studio</Link>
                             <Link to="#" className="nav-menu-icon" onClick={() => this.navMenuIconClick()}>
-                                <svg viewBox="0 0 100 80" width="22" height="22">
+                                <svg viewBox="0 0 100 80" width="23" height="18.4">
                                     <rect width="100" height="20" rx="8"/>
                                     <rect y="30" width="100" height="20" rx="8"/>
                                     <rect y="60" width="100" height="20" rx="8"/>
