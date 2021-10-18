@@ -4,6 +4,7 @@ import {BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom';
 import Home from './home';
 import Games from './games';
 import AboutUs from './about-us';
+import Admin from './admin';
 import './style.css';
 
 class Index extends Component {
@@ -51,6 +52,7 @@ class Index extends Component {
                             <Route exact path='/' component={Home}/>
                             <Route path='/games' component={Games}/>
                             <Route path='/about-us' component={AboutUs}/>
+                            <Route path='/admin' component={Admin}/>
                         </Switch>
                     </div>
                 </div>
