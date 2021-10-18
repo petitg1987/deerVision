@@ -30,7 +30,7 @@ class Index extends Component {
                         <div className="nav-left">
                             <Link to={'/'} className="nav-logo">Deer Vision Studio</Link>
                             <Link to="#" className="nav-menu-icon" onClick={() => this.navMenuIconClick()}>
-                                <svg viewBox="0 0 100 80" width="16" height="16">
+                                <svg viewBox="0 0 100 80" width="22" height="22">
                                     <rect width="100" height="20" rx="8"/>
                                     <rect y="30" width="100" height="20" rx="8"/>
                                     <rect y="60" width="100" height="20" rx="8"/>

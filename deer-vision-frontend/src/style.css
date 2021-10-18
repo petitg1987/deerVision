@@ -1,65 +1,64 @@
 body {
-  margin: 0;
+    margin: 0;
 }
 
 .nav {
-  background-color: #aaaaaa;
-  overflow: hidden; /* clear float: see https://css-tricks.com/all-about-floats/ */
-  margin: 0;
-  padding: 0;
+    background-color: #aaaaaa;
+    overflow: hidden; /* clear float to display main content at the next line (https://css-tricks.com/all-about-floats/)  */
+    margin: 0;
+    padding: 0;
 }
 
 .nav-logo {
-  float: left;
+    float: left;
 }
 
 .nav-menu {
-  list-style-type: none; /* remove bullets */
-  margin: 0;
-  padding: 0;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
 }
 
 .nav-menu-link-container {
-  float: right; /* display horizontally */
+    float: right; /* display menu links horizontally */
 }
 
 .nav-menu-link-container a:hover {
-  background-color: #111;
+    background-color: #101010;
 }
 
-.nav-logo, .nav-menu-link, .nav-menu-icon {
-  display: block;
-  color: #666;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
+.nav-logo, .nav-menu-link {
+    display: block;
+    color: #606060;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
 }
 
 .nav-menu-icon {
-  display: none;
-  float: right;
+    display: none;
+    float: right;
+    padding: 10px 16px;
 }
 
 @media screen and (max-width: 600px) {
-  .nav-menu-icon {
-    display: block;
-  }
+    .nav-menu-icon {
+        display: block;
+    }
 
-  .nav-menu-link-container {
-     float: none; /* display vertically */
-     display: block;
-     text-align: left;
-  }
+    .nav-menu-link-container {
+        float: none; /* display menu links vertically */
+    }
 
-  .nav-left {
-    overflow: hidden; /* clear float: see https://css-tricks.com/all-about-floats/ */
-  }
+    .nav-left {
+        overflow: hidden; /* clear float to display menu links at the next line (https://css-tricks.com/all-about-floats/) */
+    }
 
-  .nav-menu {
-    display: none;
-  }
+    .nav-menu {
+        display: none;
+    }
 
-  .nav-menu.responsive {
-    display: inline;
-  }
+    .nav-menu.responsive {
+        display: block;
+    }
 }
