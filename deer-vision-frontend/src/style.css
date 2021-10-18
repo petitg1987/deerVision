@@ -30,7 +30,7 @@ body {
   float: left;
 }
 
-.header li {
+.nav-link-container {
   float: right; /* display horizontally */
 }
 
@@ -39,7 +39,7 @@ body {
   display: none;
 }
 
-.header li a:hover {
+.nav-link-container a:hover {
   background-color: #111;
 }
 
@@ -48,7 +48,7 @@ body {
     display: block;
   }
 
-  .header li {
+  .nav-link-container {
      float: none; /* display vertically */
      display: block;
      text-align: left;
