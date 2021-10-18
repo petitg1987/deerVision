@@ -24,7 +24,6 @@ public class AdminLoginRestController {
     private final PasswordEncoder passwordEncoder;
     private final AdminProperties adminProperties;
 
-
     @Autowired
     public AdminLoginRestController(AdminProperties adminProperties, PasswordEncoder passwordEncoder) {
         this.adminProperties = adminProperties;

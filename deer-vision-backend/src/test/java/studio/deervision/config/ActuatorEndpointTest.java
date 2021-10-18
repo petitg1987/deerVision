@@ -26,7 +26,7 @@ public class ActuatorEndpointTest {
     }
 
     @Test
-    public void checkSecure(){
+    public void checkSecure() {
         restAssured.get("actuator/health").then().statusCode(401);
     }
 
