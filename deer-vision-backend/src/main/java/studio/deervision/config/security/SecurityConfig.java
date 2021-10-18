@@ -1,6 +1,5 @@
 package studio.deervision.config.security;
 
-import studio.deervision.config.properties.ActuatorProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,8 +11,8 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import studio.deervision.config.properties.ActuatorProperties;
 
 @Configuration
 @EnableWebSecurity
@@ -54,6 +53,34 @@ public class SecurityConfig {
 
     @Configuration
     @Order(2)
+    public static class APIAdminLoginSecurity extends WebSecurityConfigurerAdapter {
+
+        @Override
+        protected void configure(HttpSecurity http) throws Exception {
+            http.authorizeRequests()
+                    .regexMatchers("^/api/admin/login.*").permitAll()
+                    .and().csrf().disable();
+        }
+    }
+
+    @Configuration
+    @Order(3)
+    public static class APIAdminSecurity extends WebSecurityConfigurerAdapter {
+
+        @Override
+        protected void configure(HttpSecurity http) throws Exception {
+            http.regexMatcher("^/api/admin/.*")
+                    .addFilterBefore(new JWTAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class)
+                    .authorizeRequests()
+                    .regexMatchers("^/api/admin/.*")
+                    .fullyAuthenticated()
+                  //  .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                    .and().csrf().disable();
+        }
+    }
+
+    @Configuration
+    @Order(4)
     public static class APIPublicSecurity extends WebSecurityConfigurerAdapter {
 
         @Override
@@ -65,28 +92,6 @@ public class SecurityConfig {
                     .fullyAuthenticated()
                     .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                     .and().csrf().disable();
-        }
-    }
-
-    @Configuration
-    @Order(3)
-    public static class WebAppSecurity extends WebSecurityConfigurerAdapter {
-
-        public final InMemoryUserDetailsManager inMemoryUserDetailsManager;
-
-        public WebAppSecurity(InMemoryUserDetailsManager inMemoryUserDetailsManager) {
-            this.inMemoryUserDetailsManager = inMemoryUserDetailsManager;
-        }
-
-        @Override
-        protected void configure(HttpSecurity http) throws Exception {
-            http
-                    .regexMatcher("^/(?!api/|actuator/).*").authorizeRequests()
-                    .regexMatchers("^/js/.*", "^/css/.*", "^/img/.*", "^/logout$").permitAll()
-                    .regexMatchers("^/(?!api/|actuator/).*").authenticated()
-                    .and().formLogin().loginPage("/login").permitAll()
-                    .and().logout().permitAll()
-                    .and().rememberMe().alwaysRemember(true).tokenValiditySeconds(365*24*60*60).userDetailsService(inMemoryUserDetailsManager);
         }
     }
 

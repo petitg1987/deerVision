@@ -1,3 +1,6 @@
 spring:
   datasource:
     url: "jdbc:h2:tcp://localhost:9191//home/greg/project/deerVision/deer-vision-backend/database/deerVisionDB;DB_CLOSE_ON_EXIT=FALSE"
+admin:
+  #Password: dev
+  password: "$2a$10$v57rk18UIta5zcVpisbEyuMUl9ejw6L5.8y3QHAbKKgMoRPSLdtaC"

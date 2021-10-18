@@ -5,9 +5,6 @@ management:
   endpoints.web.exposure.include: "*"
 spring:
   profiles.active: "appinfo"
-  security.user:
-    name: "admin"
-    password: "$2a$10$SRSz7BSfnjvUnX7/BJyLSufHJOS5z6mDvo4lzeQkVUdYqGYtEx2UG"
   datasource:
     url: "jdbc:h2:tcp://localhost:9191//home/ubuntu/efs/deerVisionDB;DB_CLOSE_ON_EXIT=FALSE"
     driverClassName: "org.h2.Driver"
@@ -23,6 +20,9 @@ spring:
     maxRequestSize: 1073741824
 actuator:
   password: "$2a$10$LP.C2c/pkgWQE2Z5x9JNNejYbh1lJ81au58xoUZa5ZnWh/4ROITfu"
+admin:
+  password: "$2a$10$SRSz7BSfnjvUnX7/BJyLSufHJOS5z6mDvo4lzeQkVUdYqGYtEx2UG"
+  jwt-secret: "ter28CLTTHeTQM8ZSAhk"
 issue:
   version-pattern: ".*(\\d+[.]\\d+[.]\\d+).*"
   page-size: 11
