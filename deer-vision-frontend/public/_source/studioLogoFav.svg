@@ -14,10 +14,10 @@
    version="1.1"
    id="svg8"
    inkscape:version="1.0.1 (3bc2e813f5, 2020-09-07)"
-   sodipodi:docname="studioLogo.svg"
-   inkscape:export-filename="/home/greg/DeerVisionStudio.png"
-   inkscape:export-xdpi="10.031677"
-   inkscape:export-ydpi="10.031677">
+   sodipodi:docname="studioLogoFav.svg"
+   inkscape:export-filename="/home/greg/project/deerVision/deer-vision-frontend/public//studioLogoFav.png"
+   inkscape:export-xdpi="10.0317"
+   inkscape:export-ydpi="10.0317">
   <defs
      id="defs2">
     <marker
@@ -519,7 +519,7 @@
      inkscape:cx="445.20943"
      inkscape:cy="287.54243"
      inkscape:document-units="mm"
-     inkscape:current-layer="g3557"
+     inkscape:current-layer="layer1"
      inkscape:document-rotation="0"
      showgrid="false"
      inkscape:window-width="1920"
@@ -560,16 +560,16 @@
        id="path962"
        cx="88.977409"
        cy="70.221695"
-       inkscape:export-filename="/home/greg/project/deerVision/src/main/resources/static/img/studioLogo.png"
-       inkscape:export-xdpi="89.868568"
-       inkscape:export-ydpi="89.868568"
+       inkscape:export-filename="/home/greg/project/deerVision/deer-vision-frontend/public/studioLogoFav.png"
+       inkscape:export-xdpi="5.7456036"
+       inkscape:export-ydpi="5.7456036"
        r="34.684372" />
     <g
        id="g1337"
        style="stroke:#00ffff;stroke-opacity:0.18184637"
-       inkscape:export-filename="/home/greg/project/deerVision/src/main/resources/static/img/DeerVisionStudio.png"
-       inkscape:export-xdpi="96"
-       inkscape:export-ydpi="96">
+       inkscape:export-filename="/home/greg/project/deerVision/deer-vision-frontend/public/studioLogoFav.png"
+       inkscape:export-xdpi="5.7456036"
+       inkscape:export-ydpi="5.7456036">
       <g
          id="g3557"
          style="fill:#ffcc00;fill-opacity:0;stroke:#00ffff;stroke-width:0.644699;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.18184637;filter:url(#filter4153)"
@@ -697,27 +697,17 @@
        style="line-height:1.25;font-family:'Latin Modern Sans';font-size:10.58333333px;-inkscape-font-specification:'Latin Modern Sans';white-space:pre;shape-inside:url(#rect7884);" />
     <text
        xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;font-size:10.5833px;line-height:0;font-family:BroshK;-inkscape-font-specification:'BroshK Medium';stroke-width:0.665;stroke-miterlimit:4;stroke-dasharray:none;stroke:none;"
-       x="89.877571"
-       y="53.070007"
+       style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;font-size:10.5833px;line-height:0;font-family:BroshK;-inkscape-font-specification:'BroshK Medium';stroke:none;stroke-width:0.665;stroke-miterlimit:4;stroke-dasharray:none"
+       x="90.075607"
+       y="81.320274"
        id="text939"
-       inkscape:export-filename="/home/greg/project/deerVision/src/main/resources/static/img/studioLogo.png"
-       inkscape:export-xdpi="89.868568"
-       inkscape:export-ydpi="89.868568"><tspan
+       inkscape:export-filename="/home/greg/project/deerVision/deer-vision-frontend/public/studioLogoFav.png"
+       inkscape:export-xdpi="5.7456036"
+       inkscape:export-ydpi="5.7456036"><tspan
          sodipodi:role="line"
-         x="89.877571"
-         y="53.070007"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:21.8722px;line-height:0.95;font-family:BroshK;-inkscape-font-specification:'BroshK Bold';text-align:center;text-anchor:middle;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.665;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;"
-         id="tspan941">Deer</tspan><tspan
-         sodipodi:role="line"
-         x="89.877571"
-         y="73.848595"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:21.8722px;line-height:0.95;font-family:BroshK;-inkscape-font-specification:'BroshK Bold';text-align:center;text-anchor:middle;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.665;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;"
-         id="tspan943">Vision</tspan><tspan
-         sodipodi:role="line"
-         x="89.877571"
-         y="94.62719"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:21.8722px;line-height:0.95;font-family:BroshK;-inkscape-font-specification:'BroshK Bold';text-align:center;text-anchor:middle;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.665;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;"
-         id="tspan968">Studio</tspan></text>
+         x="90.075607"
+         y="81.320274"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:45.8611px;line-height:0.95;font-family:BroshK;-inkscape-font-specification:'BroshK Bold';text-align:center;text-anchor:middle;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.665;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="tspan968">DVS</tspan></text>
   </g>
 </svg>
