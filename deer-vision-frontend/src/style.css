@@ -1,5 +1,6 @@
 body {
     margin: 0;
+    width: 100%;
 }
 
 .nav {
@@ -7,12 +8,13 @@ body {
     overflow: hidden; /* clear float to display main content at the next line (https://css-tricks.com/all-about-floats/)  */
     margin: 0;
     padding: 0;
+    width: 100%;
 }
 
 .nav-logo {
     float: left;
     padding-top: 1px;
-    padding-left: 140px;
+    padding-left: 10pc;
 }
 
 .nav-logo-text {
@@ -28,6 +30,11 @@ body {
 
 .nav-menu-link-container {
     float: right; /* display menu links horizontally */
+}
+
+.nav-spacing {
+    float: right; /* display menu links horizontally */
+    padding-left: 10pc;
 }
 
 .nav-menu-link-container a:hover {
@@ -51,13 +58,17 @@ body {
     padding: 20px 16px;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 800px) {
     .nav-hamburger-icon {
         display: block;
     }
 
     .nav-menu-link-container {
         float: none; /* display menu links vertically */
+    }
+
+    .nav-spacing {
+        display: none;
     }
 
     .nav-logo {
