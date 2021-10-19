@@ -29,12 +29,12 @@ class Index extends Component {
             <Router>
                 <div>
                     <nav className="nav">
-                        <div className="nav-logo-icon">
+                        <div className="nav-logo-and-hamburger">
                             <Link to={'/'}>
-                                <img className="nav-logo" src={studioLogoMini} alt="Studio Logo" width="45" height="45" />
+                                <img className="nav-logo" src={studioLogoMini} alt="Studio Logo" width="60" height="60" />
                                 <div className="nav-logo-text">Deer Vision Studio</div>
                             </Link>
-                            <Link to="#" className="nav-menu-icon" onClick={() => this.navMenuIconClick()}>
+                            <Link to="#" className="nav-hamburger-icon" onClick={() => this.navMenuIconClick()}>
                                 <svg viewBox="0 0 100 80" width="23" height="18.4">
                                     <rect width="100" height="20" rx="8"/>
                                     <rect y="30" width="100" height="20" rx="8"/>
@@ -50,6 +50,7 @@ class Index extends Component {
                                 <Link to={'/games'} className="nav-menu-link" onClick={() => this.navMenuLinkClick()}>Our Games</Link>
                             </li>
                         </ul>
+                        <div className="nav-right-spacing"/>
                     </nav>
                     <div className="content">
                         <Switch>
