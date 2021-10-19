@@ -7,7 +7,6 @@
     <list default="true" id="59ccbe25-1296-40f1-861b-d5839b83a8d3" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/deer-vision-backend/database/deerVisionDB.mv.db" beforeDir="false" afterPath="$PROJECT_DIR$/deer-vision-backend/database/deerVisionDB.mv.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/deer-vision-backend/src/main/assembly/scripts/validate.sh" beforeDir="false" afterPath="$PROJECT_DIR$/deer-vision-backend/src/main/assembly/scripts/validate.sh" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/setup/deploy/deploy.sh" beforeDir="false" afterPath="$PROJECT_DIR$/setup/deploy/deploy.sh" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/setup/infrastructure/aws.tf" beforeDir="false" afterPath="$PROJECT_DIR$/setup/infrastructure/aws.tf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/setup/infrastructure/terraform.tfstate.d/deervision/terraform.tfstate" beforeDir="false" afterPath="$PROJECT_DIR$/setup/infrastructure/terraform.tfstate.d/deervision/terraform.tfstate" afterDir="false" />
@@ -182,7 +181,7 @@
       <workItem from="1634414045133" duration="1551000" />
       <workItem from="1634420779639" duration="260000" />
       <workItem from="1634544873575" duration="16000" />
-      <workItem from="1634654158217" duration="1839000" />
+      <workItem from="1634654158217" duration="3091000" />
     </task>
     <task id="LOCAL-00001" summary="Upgrade libraries and accept issues with tab">
       <created>1608634397792</created>
@@ -401,7 +400,14 @@
       <option name="project" value="LOCAL" />
       <updated>1634420942673</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="Fix backend deploy">
+      <created>1634656052573</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1634656052573</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -433,7 +439,8 @@
     <MESSAGE value="Move backend" />
     <MESSAGE value="Add frontend" />
     <MESSAGE value="Update README.md" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update README.md" />
+    <MESSAGE value="Fix backend deploy" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix backend deploy" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>

@@ -466,10 +466,26 @@ resource "aws_s3_bucket_public_access_block" "infra_storage_access" {
 resource "aws_s3_bucket" "infra_storage_frontend" {
   bucket = "${var.appName}-frontend"
   acl = "public-read"
-  tags = {
-    Name = "${var.appName}Frontend"
-  }
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Sid       = "PublicReadGetObject"
+        Effect    = "Allow"
+        Principal = "*"
+        Action    = "s3:GetObject"
+        Resource = [
+          aws_s3_bucket.infra_storage_backend.arn,
+          "${aws_s3_bucket.infra_storage_backend.arn}/*",
+        ]
+      },
+    ]
+  })
   website {
     index_document = "index.html"
   }
+  tags = {
+    Name = "${var.appName}Frontend"
+  }
 }
+
