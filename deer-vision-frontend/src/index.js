@@ -11,7 +11,6 @@ class Index extends Component {
         return (
             <BrowserRouter>
                 <div>
-                    <div id="top-page"/>
                     <header>
                         <Navigation/>
                     </header>

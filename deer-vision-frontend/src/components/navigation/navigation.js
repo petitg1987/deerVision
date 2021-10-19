@@ -23,7 +23,7 @@ class Navigation extends Component {
         return (
             <nav className="nav">
                 <div className="nav-logo-and-hamburger">
-                    <Link to="#top-page">
+                    <Link to="/#">
                         <img className="nav-logo" src={studioLogoMini} alt="Studio Logo" width="60" height="60"/>
                         <div className="nav-logo-text">Deer Vision Studio</div>
                     </Link>
@@ -44,7 +44,7 @@ class Navigation extends Component {
                         <Link to="/#games" className="nav-menu-link" onClick={() => this.navMenuLinkClick()}>Games</Link>
                     </li>
                     <li className="nav-menu-link-container">
-                        <Link to="/#about-us" className="nav-menu-link" onClick={() => this.navMenuLinkClick()}>About Us</Link>
+                        <Link to="/#aboutUs" className="nav-menu-link" onClick={() => this.navMenuLinkClick()}>About Us</Link>
                     </li>
                 </ul>
             </nav>
