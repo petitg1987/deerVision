@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import {BrowserRouter, Switch, Route} from 'react-router-dom';
-import Main from './pages/main';
-import Admin from './pages/admin';
+import Main from './pages/main/main';
+import Admin from './pages/admin/admin';
 import Navigation from "./components/navigation/navigation";
 import './index.css';
 
