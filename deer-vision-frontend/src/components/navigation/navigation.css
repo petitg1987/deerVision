@@ -1,10 +1,5 @@
-body {
-    margin: 0;
-    width: 100%;
-}
-
 .nav {
-    background-color: #aaaaaa;
+    background-color: #cccccc;
     overflow: hidden; /* clear float to display main content at the next line (https://css-tricks.com/all-about-floats/)  */
     margin: 0;
     padding: 0;
@@ -38,12 +33,12 @@ body {
 }
 
 .nav-menu-link-container a:hover {
-    background-color: #101010;
+    background-color: #aaaaaa;
 }
 
 .nav-logo-text, .nav-menu-link {
     display: block;
-    color: #606060;
+    color: #000000;
     text-align: center;
     text-decoration: none;
 }
