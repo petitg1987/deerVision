@@ -21,8 +21,8 @@ echo -e "limit_req_zone \$binary_remote_addr zone=req_zone:500m rate=${maxReques
   "  listen 443;\n" \
   "  server_name _;\n" \
   "  ssl on;\n" \
-  "  ssl_certificate /home/ubuntu/letsencrypt/config/live/deervision.studio/fullchain.pem;\n" \
-  "  ssl_certificate_key /home/ubuntu/letsencrypt/config/live/deervision.studio/privkey.pem;\n" \
+  "  ssl_certificate /home/ubuntu/letsencrypt/config/live/backend.deervision.studio/fullchain.pem;\n" \
+  "  ssl_certificate_key /home/ubuntu/letsencrypt/config/live/backend.deervision.studio/privkey.pem;\n" \
   "  client_max_body_size ${maxRequestsBodySizeInKB}K;\n" \
   "  location / {\n"\
   "    limit_req zone=req_zone burst=${maxRequestsBurst} nodelay;\n" \

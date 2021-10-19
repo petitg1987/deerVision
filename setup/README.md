@@ -5,7 +5,7 @@
   * Add the IAM user keys in `~/.aws/credentials` for "deervision" profile
   * Create EC2 key pair named "deervision" and add file "deervision.pem" with permission '600' in `~/.ssh/`
   * Register domain "deervision.studio" by using Route 53 and enable "Transfer lock"
-  * In "N.Virgina" region : create and validate an ACM certificate for "deervision.studio"
+  * In "N.Virgina" region: create and validate an ACM certificate for "deervision.studio"
   * Delete the default VPC (optional)
 * Terraform: terraform >= v0.12 must be installed
 * Install AWS CLI: `snap install aws-cli`
