@@ -6,6 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="59ccbe25-1296-40f1-861b-d5839b83a8d3" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/deer-vision-backend/database/deerVisionDB.mv.db" beforeDir="false" afterPath="$PROJECT_DIR$/deer-vision-backend/database/deerVisionDB.mv.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/deer-vision-backend/src/main/assembly/scripts/validate.sh" beforeDir="false" afterPath="$PROJECT_DIR$/deer-vision-backend/src/main/assembly/scripts/validate.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/setup/deploy/deploy.sh" beforeDir="false" afterPath="$PROJECT_DIR$/setup/deploy/deploy.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/setup/infrastructure/aws.tf" beforeDir="false" afterPath="$PROJECT_DIR$/setup/infrastructure/aws.tf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/setup/infrastructure/terraform.tfstate.d/deervision/terraform.tfstate" beforeDir="false" afterPath="$PROJECT_DIR$/setup/infrastructure/terraform.tfstate.d/deervision/terraform.tfstate" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/setup/infrastructure/terraform.tfstate.d/deervision/terraform.tfstate.backup" beforeDir="false" afterPath="$PROJECT_DIR$/setup/infrastructure/terraform.tfstate.d/deervision/terraform.tfstate.backup" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -176,6 +182,7 @@
       <workItem from="1634414045133" duration="1551000" />
       <workItem from="1634420779639" duration="260000" />
       <workItem from="1634544873575" duration="16000" />
+      <workItem from="1634654158217" duration="1839000" />
     </task>
     <task id="LOCAL-00001" summary="Upgrade libraries and accept issues with tab">
       <created>1608634397792</created>

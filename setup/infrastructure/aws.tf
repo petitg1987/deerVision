@@ -383,6 +383,17 @@ resource "aws_route53_record" "infra_www_dns_record" {
 }
 
 ##########################################################################################
+# CLOUD WATCH
+##########################################################################################
+resource "aws_cloudwatch_log_group" "infra_cloudwatch_log_group" {
+  name = "${var.appName}LogsGroup" #Name must match with variable "logGroupName" defined above
+  retention_in_days = 60
+  tags = {
+    Application = var.appName
+  }
+}
+
+##########################################################################################
 # CODE DEPLOY
 ##########################################################################################
 resource "aws_iam_role" "infra_deployment_role" {
@@ -432,34 +443,33 @@ resource "aws_codedeploy_deployment_group" "infra_deployment_group" {
   }
 }
 
-##########################################################################################
-# CLOUD WATCH
-##########################################################################################
-resource "aws_cloudwatch_log_group" "infra_cloudwatch_log_group" {
-  name = "${var.appName}LogsGroup" #Name must match with variable "logGroupName" defined above
-  retention_in_days = 60
-  tags = {
-    Application = var.appName
-  }
-}
-
-##########################################################################################
-# STORAGE:
-#   - zip for code deploy in "releases/" folder
-##########################################################################################
-resource "aws_s3_bucket" "infra_storage" {
-  bucket = var.appName
+resource "aws_s3_bucket" "infra_storage_backend" {
+  bucket = "${var.appName}-backend"
   acl = "private"
   tags = {
-    Name = "${var.appName}Storage"
+    Name = "${var.appName}Backend"
     Application = var.appName
   }
 }
 
 resource "aws_s3_bucket_public_access_block" "infra_storage_access" {
-  bucket = aws_s3_bucket.infra_storage.id
+  bucket = aws_s3_bucket.infra_storage_backend.id
   block_public_acls = true
   block_public_policy = true
   ignore_public_acls = true
   restrict_public_buckets = true
+}
+
+##########################################################################################
+# STATIC FRONTEND ON S3
+##########################################################################################
+resource "aws_s3_bucket" "infra_storage_frontend" {
+  bucket = "${var.appName}-frontend"
+  acl = "public-read"
+  tags = {
+    Name = "${var.appName}Frontend"
+  }
+  website {
+    index_document = "index.html"
+  }
 }
