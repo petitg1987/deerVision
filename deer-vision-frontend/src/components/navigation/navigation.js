@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import {Link} from "react-router-dom";
 import studioLogoMini from "../../images/studioLogoMini.png";
+import { HashLink as Link } from 'react-router-hash-link';
 import './navigation.css';
 
 class Navigation extends Component {
@@ -23,9 +23,8 @@ class Navigation extends Component {
         return (
             <nav className="nav">
                 <div className="nav-logo-and-hamburger">
-                    <Link to={'/'}>
-                        <img className="nav-logo" src={studioLogoMini} alt="Studio Logo" width="60"
-                             height="60"/>
+                    <Link to="#top-page">
+                        <img className="nav-logo" src={studioLogoMini} alt="Studio Logo" width="60" height="60"/>
                         <div className="nav-logo-text">Deer Vision Studio</div>
                     </Link>
                     <Link to="#" className="nav-hamburger-icon" onClick={() => this.navMenuIconClick()}>
@@ -39,12 +38,13 @@ class Navigation extends Component {
                 <span className="nav-spacing">&nbsp;</span>
                 <ul className="nav-menu" id="nav-menu-id">
                     <li className="nav-menu-link-container">
-                        <Link to={'/about-us'} className="nav-menu-link"
-                              onClick={() => this.navMenuLinkClick()}>About Us</Link>
+                        <Link to="/#about-us" className="nav-menu-link" onClick={() => this.navMenuLinkClick()}>About Us</Link>
                     </li>
                     <li className="nav-menu-link-container">
-                        <Link to={'/games'} className="nav-menu-link"
-                              onClick={() => this.navMenuLinkClick()}>Our Games</Link>
+                        <Link to="/#games" className="nav-menu-link" onClick={() => this.navMenuLinkClick()}>Our Games</Link>
+                    </li>
+                    <li className="nav-menu-link-container">
+                        <Link to="/#news" className="nav-menu-link" onClick={() => this.navMenuLinkClick()}>News</Link>
                     </li>
                 </ul>
             </nav>
