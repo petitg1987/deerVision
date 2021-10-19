@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
-import Home from './home';
-import Games from './games';
-import AboutUs from './about-us';
-import Admin from './admin';
+import Home from './pages/home';
+import Games from './pages/games';
+import AboutUs from './pages/about-us';
+import Admin from './pages/admin';
 import Navigation from "./components/navigation/navigation";
 import './index.css';
 
