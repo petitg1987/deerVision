@@ -4,6 +4,7 @@ class Admin extends Component {
     render() {
         return (
             <div>
+                <h2>Admin</h2>
                 <form name="f" action="/login" method="post">
                     <fieldset>
                         {/*<div th:if="${param.error}" className="alert alert-danger">Invalid username and password.</div>*/}

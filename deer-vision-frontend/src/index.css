@@ -3,3 +3,9 @@ body {
     width: 100%;
     background-color: #e4e5eb;
 }
+
+header {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+}

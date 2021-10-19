@@ -29,9 +29,9 @@ class Navigation extends Component {
                     </Link>
                     <Link to="#" className="nav-hamburger-icon" onClick={() => this.navMenuIconClick()}>
                         <svg viewBox="0 0 100 80" width="23" height="18.4">
-                            <rect width="100" height="20" rx="8"/>
-                            <rect y="30" width="100" height="20" rx="8"/>
-                            <rect y="60" width="100" height="20" rx="8"/>
+                            <rect fill="#ffffff" y="0"  width="100" height="18" rx="8"/>
+                            <rect fill="#ffffff" y="30" width="100" height="18" rx="8"/>
+                            <rect fill="#ffffff" y="60" width="100" height="18" rx="8"/>
                         </svg>
                     </Link>
                 </div>
@@ -41,7 +41,7 @@ class Navigation extends Component {
                         <Link to="/#about-us" className="nav-menu-link" onClick={() => this.navMenuLinkClick()}>About Us</Link>
                     </li>
                     <li className="nav-menu-link-container">
-                        <Link to="/#games" className="nav-menu-link" onClick={() => this.navMenuLinkClick()}>Our Games</Link>
+                        <Link to="/#games" className="nav-menu-link" onClick={() => this.navMenuLinkClick()}>Games</Link>
                     </li>
                     <li className="nav-menu-link-container">
                         <Link to="/#news" className="nav-menu-link" onClick={() => this.navMenuLinkClick()}>News</Link>

@@ -1,5 +1,5 @@
 .nav {
-    background-color: #505159;
+    background-color: rgba(80, 81, 89, 0.95);
     overflow: hidden; /* clear float to display main content at the next line (https://css-tricks.com/all-about-floats/)  */
     margin: 0;
     padding: 0;
@@ -9,7 +9,7 @@
 .nav-logo {
     float: left;
     padding-top: 1px;
-    padding-left: 10pc;
+    padding-left: 5pc;
 }
 
 .nav-logo-text {
