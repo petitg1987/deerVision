@@ -452,7 +452,7 @@ resource "aws_s3_bucket" "infra_storage_backend" {
   }
 }
 
-resource "aws_s3_bucket_public_access_block" "infra_storage_access" {
+resource "aws_s3_bucket_public_access_block" "infra_storage_access_backend" {
   bucket = aws_s3_bucket.infra_storage_backend.id
   block_public_acls = true
   block_public_policy = true
@@ -466,26 +466,33 @@ resource "aws_s3_bucket_public_access_block" "infra_storage_access" {
 resource "aws_s3_bucket" "infra_storage_frontend" {
   bucket = "${var.appName}-frontend"
   acl = "public-read"
-  policy = jsonencode({
-    Version = "2012-10-17"
-    Statement = [
-      {
-        Sid       = "PublicReadGetObject"
-        Effect    = "Allow"
-        Principal = "*"
-        Action    = "s3:GetObject"
-        Resource = [
-          aws_s3_bucket.infra_storage_backend.arn,
-          "${aws_s3_bucket.infra_storage_backend.arn}/*",
-        ]
+  policy = <<EOF
+{
+  "Version": "2008-10-17",
+  "Statement": [
+    {
+      "Sid": "PublicReadForGetBucketObjects",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "*"
       },
-    ]
-  })
+      "Action": "s3:GetObject",
+      "Resource": "arn:aws:s3:::${var.appName}-frontend/*"
+    }
+  ]
+}
+EOF
   website {
     index_document = "index.html"
+    error_document = "index.html"
+  }
+  cors_rule {
+    allowed_headers = ["*"]
+    allowed_methods = ["GET", "POST"]
+    allowed_origins = ["*"]
+    max_age_seconds = 3000
   }
   tags = {
     Name = "${var.appName}Frontend"
   }
 }
-

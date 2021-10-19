@@ -1,3 +1,4 @@
 .idea/workspace.xml
 deer-vision-backend/target/
 /setup/infrastructure/.terraform/
+/setup/infrastructure/terraform.tfstate.d/deervision/.terraform.tfstate.lock.info

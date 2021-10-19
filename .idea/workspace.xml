@@ -5,9 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="59ccbe25-1296-40f1-861b-d5839b83a8d3" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/deer-vision-backend/database/deerVisionDB.mv.db" beforeDir="false" afterPath="$PROJECT_DIR$/deer-vision-backend/database/deerVisionDB.mv.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/setup/deploy/deploy.sh" beforeDir="false" afterPath="$PROJECT_DIR$/setup/deploy/deploy.sh" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/setup/infrastructure/aws.tf" beforeDir="false" afterPath="$PROJECT_DIR$/setup/infrastructure/aws.tf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/setup/infrastructure/terraform.tfstate.d/deervision/terraform.tfstate" beforeDir="false" afterPath="$PROJECT_DIR$/setup/infrastructure/terraform.tfstate.d/deervision/terraform.tfstate" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/setup/infrastructure/terraform.tfstate.d/deervision/terraform.tfstate.backup" beforeDir="false" afterPath="$PROJECT_DIR$/setup/infrastructure/terraform.tfstate.d/deervision/terraform.tfstate.backup" afterDir="false" />
@@ -181,7 +180,7 @@
       <workItem from="1634414045133" duration="1551000" />
       <workItem from="1634420779639" duration="260000" />
       <workItem from="1634544873575" duration="16000" />
-      <workItem from="1634654158217" duration="3091000" />
+      <workItem from="1634654158217" duration="5675000" />
     </task>
     <task id="LOCAL-00001" summary="Upgrade libraries and accept issues with tab">
       <created>1608634397792</created>
@@ -407,7 +406,14 @@
       <option name="project" value="LOCAL" />
       <updated>1634656052573</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="Add frontend deploy">
+      <created>1634657557215</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1634657557215</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -440,7 +446,8 @@
     <MESSAGE value="Add frontend" />
     <MESSAGE value="Update README.md" />
     <MESSAGE value="Fix backend deploy" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix backend deploy" />
+    <MESSAGE value="Add frontend deploy" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add frontend deploy" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
