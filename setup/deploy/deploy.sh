@@ -42,8 +42,10 @@ function buildFrontPackage() {
 
 function copyFrontendFilesInS3() {
     filesPath="../../deer-vision-frontend/build/"
+    echo "Removing files '$filesPath' from S3 bucket '${backendBucketName}'"
+    aws s3 rm --recursive s3://${frontendBucketName}/
     echo "Copying files '$filesPath' in S3 bucket '${backendBucketName}'"
-    aws s3 cp ${filesPath} s3://${frontendBucketName}/ --recursive
+    aws s3 cp --recursive --exclude "_source/*" ${filesPath} s3://${frontendBucketName}/
 }
 
 if [[ "$1" == "backend" ]]; then

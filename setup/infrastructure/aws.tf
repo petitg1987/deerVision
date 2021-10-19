@@ -520,7 +520,7 @@ resource "aws_cloudfront_distribution" "infra_s3_distribution" {
         forward = "none"
       }
     }
-    viewer_protocol_policy = "allow-all"
+    viewer_protocol_policy = "redirect-to-https"
     min_ttl = 0
     default_ttl = 3600
     max_ttl = 86400
@@ -538,6 +538,7 @@ resource "aws_cloudfront_distribution" "infra_s3_distribution" {
   }
   viewer_certificate {
     acm_certificate_arn = data.aws_acm_certificate.infra_acm_certificate.arn
+    minimum_protocol_version = "TLSv1.2_2019"
     ssl_support_method = "sni-only"
   }
 }
