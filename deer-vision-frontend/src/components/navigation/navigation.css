@@ -1,6 +1,6 @@
 .nav {
     background-color: rgba(80, 81, 89, 0.95);
-    overflow: hidden; /* clear float to display main content at the next line (https://css-tricks.com/all-about-floats/)  */
+    overflow: hidden; /* clear float property to display main content at the next line (https://css-tricks.com/all-about-floats/)  */
     margin: 0;
     padding: 0;
     width: 100%;
@@ -18,18 +18,19 @@
     font-weight: bold;
 }
 
-.nav-menu {
+.nav-menu-ul {
+    float: right; /* display menu links on the right */
     list-style-type: none;
     margin: 0;
     padding: 0;
 }
 
 .nav-menu-link-container {
-    float: right; /* display menu links horizontally */
+    float: left; /* display menu links horizontally */
 }
 
 .nav-spacing {
-    float: right; /* display menu links horizontally */
+    float: right;
     padding-left: 10pc;
 }
 
@@ -55,7 +56,16 @@
 }
 
 @media screen and (max-width: 800px) {
-    .nav-hamburger-icon {
+    .nav-logo {
+        padding-left: 1px;
+    }
+
+    .nav-menu-ul {
+        display: none;
+        float: none;
+    }
+
+    .nav-menu-ul.responsive {
         display: block;
     }
 
@@ -67,19 +77,11 @@
         display: none;
     }
 
-    .nav-logo {
-        padding-left: 1px;
+    .nav-hamburger-icon {
+        display: block;
     }
 
     .nav-logo-and-hamburger {
-        overflow: hidden; /* clear float to display menu links at the next line (https://css-tricks.com/all-about-floats/) */
-    }
-
-    .nav-menu {
-        display: none;
-    }
-
-    .nav-menu.responsive {
-        display: block;
+        overflow: hidden; /* clear float property to display menu links at the next line (https://css-tricks.com/all-about-floats/) */
     }
 }
