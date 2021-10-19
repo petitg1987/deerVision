@@ -53,4 +53,6 @@ if [[ "$1" == "backend" ]]; then
 elif [[ "$1" == "frontend" ]]; then
   buildFrontPackage
   copyFrontendFilesInS3
+else
+  echo "First parameter must be either 'backend' or 'frontend'"
 fi
