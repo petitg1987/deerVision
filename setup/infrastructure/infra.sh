@@ -5,7 +5,7 @@ cd "$(dirname "$0")"
 
 actionName=$1
 appName="deervision"
-cidrPrefix="10.0"
+domainName="deervision.studio"
 
 function switchWorkspace() {
     configFile=./config/${appName}.tfvars
@@ -17,7 +17,7 @@ function switchWorkspace() {
 }
 
 function createInfrastructure() {
-    printf "appName = \"$appName\"\ncidrPrefix = \"$cidrPrefix\"" > "./config/$appName.tfvars"
+    printf "appName = \"$appName\"\ndomainName = \"$domainName\"" > "./config/$appName.tfvars"
     git add ./config/${appName}.tfvars
     terraform workspace new ${appName}
 

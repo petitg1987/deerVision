@@ -1,2 +1,2 @@
 appName = "deervision"
-cidrPrefix = "10.0"
+domainName = "deervision.studio"

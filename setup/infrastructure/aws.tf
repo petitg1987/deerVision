@@ -6,8 +6,8 @@ variable "appName" {
   type = string
 }
 
-variable "cidrPrefix" {
-  description = "CIDR prefix (e.g.: 10.0)"
+variable "domainName" {
+  description = "Domain name"
   type = string
 }
 
@@ -33,6 +33,11 @@ provider "aws" {
   version = "~> 2.23"
 }
 
+provider "aws" {
+  alias = "virgina"
+  region = "us-east-1"
+}
+
 data "aws_iam_user" "infra_user" {
   user_name = "deer-vision-user"
 }
@@ -41,7 +46,7 @@ data "aws_iam_user" "infra_user" {
 # NETWORK & ACCESS
 ##########################################################################################
 resource "aws_vpc" "infra_vpc" {
-  cidr_block = "${var.cidrPrefix}.0.0/16"
+  cidr_block = "10.0.0.0/16"
   enable_dns_hostnames = true
   tags = {
     Name = "${var.appName}VPC"
@@ -72,7 +77,7 @@ resource "aws_route_table" "infra_route" {
 resource "aws_subnet" "infra_public_subnet" {
   count = length(var.availabilityZones)
   vpc_id = aws_vpc.infra_vpc.id
-  cidr_block = "${var.cidrPrefix}.${count.index}.0/24"
+  cidr_block = "10.0.${count.index}.0/24"
   map_public_ip_on_launch = true
   availability_zone = var.availabilityZones[count.index]
   tags = {
@@ -361,13 +366,13 @@ resource "aws_eip" "infra_eip" {
 ##########################################################################################
 # ROUTE 53
 ##########################################################################################
-data "aws_route53_zone" "selected" {
-  name = "deervision.studio."
+data "aws_route53_zone" "route53_domain_selected" {
+  name = "${var.domainName}."
   private_zone = false
 }
 
-resource "aws_route53_record" "infra_dns_record" {
-  zone_id = data.aws_route53_zone.selected.zone_id
+resource "aws_route53_record" "infra_dns_record_backend" {
+  zone_id = data.aws_route53_zone.route53_domain_selected.zone_id
   name = "backend"
   type = "A"
   ttl = "60"
@@ -486,5 +491,64 @@ EOF
   }
   tags = {
     Name = "${var.appName}Frontend"
+  }
+}
+
+data "aws_acm_certificate" "infra_acm_certificate" {
+  domain = var.domainName
+  statuses = ["ISSUED"]
+  provider = aws.virgina
+}
+
+resource "aws_cloudfront_distribution" "infra_s3_distribution" {
+  origin {
+    domain_name = aws_s3_bucket.infra_storage_frontend.bucket_regional_domain_name #example: deervision-frontend.s3.eu-central-1.amazonaws.com
+    origin_id   = "website"
+  }
+  enabled = true
+  is_ipv6_enabled = true
+  comment = "Managed by Terraform"
+  default_root_object = "index.html"
+  aliases = [var.domainName]
+  default_cache_behavior {
+    allowed_methods  = ["DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST", "PUT"]
+    cached_methods   = ["GET", "HEAD"]
+    target_origin_id = "website"
+    forwarded_values {
+      query_string = false
+      cookies {
+        forward = "none"
+      }
+    }
+    viewer_protocol_policy = "allow-all"
+    min_ttl = 0
+    default_ttl = 3600
+    max_ttl = 86400
+  }
+  price_class = "PriceClass_100"
+  restrictions {
+    geo_restriction {
+      restriction_type = "none"
+    }
+  }
+  custom_error_response {
+    error_code = 404
+    response_page_path = "/index.html"
+    response_code = 200
+  }
+  viewer_certificate {
+    acm_certificate_arn = data.aws_acm_certificate.infra_acm_certificate.arn
+    ssl_support_method = "sni-only"
+  }
+}
+
+resource "aws_route53_record" "infra_dns_record_front" {
+  zone_id = data.aws_route53_zone.route53_domain_selected.zone_id
+  name = ""
+  type = "A"
+  alias {
+    name = aws_cloudfront_distribution.infra_s3_distribution.domain_name
+    zone_id = aws_cloudfront_distribution.infra_s3_distribution.hosted_zone_id
+    evaluate_target_health = true
   }
 }
