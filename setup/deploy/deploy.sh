@@ -46,9 +46,11 @@ function copyFrontendFilesInS3() {
     aws s3 cp ${filesPath} s3://${frontendBucketName}/ --recursive
 }
 
-buildBackendPackage
-copyBackendPackageInS3
-triggerCodeDeploy
-
-buildFrontPackage
-copyFrontendFilesInS3
+if [[ "$1" == "backend" ]]; then
+  buildBackendPackage
+  copyBackendPackageInS3
+  triggerCodeDeploy
+elif [[ "$1" == "frontend" ]]; then
+  buildFrontPackage
+  copyFrontendFilesInS3
+fi

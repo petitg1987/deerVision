@@ -5,6 +5,7 @@
   * Add the IAM user keys in `~/.aws/credentials` for "deervision" profile
   * Create EC2 key pair named "deervision" and add file "deervision.pem" with permission '600' in `~/.ssh/`
   * Register domain "deervision.studio" by using Route 53 and enable "Transfer lock"
+  * In ACM: create and validate certificate for "deervision.studio"
   * Delete the default VPC (optional)
 * Terraform: terraform >= v0.12 must be installed
 * Install AWS CLI: `snap install aws-cli`
@@ -17,5 +18,8 @@
 * Destroy infrastructure and configurations: `./infrastructure/infra.sh destroyAll`
 
 # Deploy the application
-* Execute: `./deploy/deploy.sh`
-* Check log on server: `ssh -o "StrictHostKeyChecking=no" -i /home/greg/.ssh/deervision.pem "ubuntu@[PUBLIC_IP]"`
+* Backend:
+  * Execute: `./deploy/deploy.sh backend`
+  * Check log on server: `ssh -o "StrictHostKeyChecking=no" -i /home/greg/.ssh/deervision.pem "ubuntu@[PUBLIC_IP]"`
+* Frontend:
+  * Execute: `./deploy/deploy.sh frontend`

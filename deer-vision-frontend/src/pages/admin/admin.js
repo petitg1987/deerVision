@@ -6,7 +6,7 @@ class Admin extends Component {
     async handleSubmit(event) {
         event.preventDefault();
         try {
-            let fetchResult = await fetch('http://localhost:5000/api/admin/login?password=dev', {method: 'POST'}); //TODO use password
+            let fetchResult = await fetch('https://backend.deervision.studio/api/admin/login?password=dev', {method: 'POST'}); //TODO use password
             let jsonResult = await fetchResult.json();
             alert('Token: ' + jsonResult.value);
         } catch (e) {

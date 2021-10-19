@@ -368,15 +368,7 @@ data "aws_route53_zone" "selected" {
 
 resource "aws_route53_record" "infra_dns_record" {
   zone_id = data.aws_route53_zone.selected.zone_id
-  name = ""
-  type = "A"
-  ttl = "60"
-  records = [aws_eip.infra_eip.public_ip]
-}
-
-resource "aws_route53_record" "infra_www_dns_record" {
-  zone_id = data.aws_route53_zone.selected.zone_id
-  name = "www"
+  name = "backend"
   type = "A"
   ttl = "60"
   records = [aws_eip.infra_eip.public_ip]
@@ -484,7 +476,7 @@ resource "aws_s3_bucket" "infra_storage_frontend" {
 EOF
   website {
     index_document = "index.html"
-    error_document = "index.html"
+    error_document = "error404.html"
   }
   cors_rule {
     allowed_headers = ["*"]
