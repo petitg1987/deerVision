@@ -10,7 +10,8 @@
 
 .pres-text p::first-letter {
     font-weight: bold;
-    font-size: 1.5em;
+    font-size: 1.3em;
+    color: #e37405;
 }
 
 .pres-separator {
