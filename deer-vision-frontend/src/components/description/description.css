@@ -3,8 +3,7 @@
 }
 
 .desc-text p::first-letter {
-    font-weight: bold;
-    font-size: 1.3em;
+    font-size: 1.5em;
     color: #e37405;
 }
 
@@ -35,7 +34,7 @@
 
 @media (prefers-reduced-motion: no-preference) {
     .desc-text-p-anim-trigger {
-        animation: desc-text-p-anim 2.0s 1;
+        animation: desc-text-p-anim 1.5s 1;
         animation-fill-mode: forwards; /*leaves the animation in the state of the last frame */
     }
 }

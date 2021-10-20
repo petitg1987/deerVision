@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import SocialNetwork from "../../components/social-network/social-network";
-import Presentation from "../../components/presentation/presentation";
+import StudioPresentation from "../../components/studio-presentation/studio-presentation";
 
 class AboutUs extends Component {
     render() {
         return (
             <div>
                 <h2>About Us</h2>
-                <Presentation/>
+                <StudioPresentation/>
                 <br/><br/><br/>
                 <SocialNetwork/>
             </div>

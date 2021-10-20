@@ -1,9 +1,9 @@
 import React, {Component, Fragment} from 'react';
-import './presentation.css';
+import './studio-presentation.css';
 import studioLogo from "../../images/studioLogo.png";
 import Description from "../description/description";
 
-class Presentation extends Component {
+class StudioPresentation extends Component {
 
     render() {
         return (
@@ -27,4 +27,4 @@ class Presentation extends Component {
     }
 }
 
-export default Presentation;
+export default StudioPresentation;

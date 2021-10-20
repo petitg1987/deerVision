@@ -31,25 +31,17 @@ class SocialNetwork extends Component {
             <div className="network-container">
                 <div className="network-title">Join us on:</div>
                 <div className="network-links">
-                    <a href="https://discord.com/invite/XYZ1234" target="_blank" rel="noopener noreferrer">
-                        <div className="network-logo-wrapper">
-                            <img className="network-logo" src={discordLogo} alt="Discord Logo" width={this.logoSize} height={this.logoSize}/>
-                        </div>
+                    <a href="https://discord.com/invite/XYZ1234" target="_blank" rel="noopener noreferrer" className="network-logo-wrapper">
+                        <img className="network-logo" src={discordLogo} alt="Discord Logo" width={this.logoSize} height={this.logoSize}/>
                     </a>
-                    <a href="https://www.twitter.com/deervisionstudio" target="_blank" rel="noopener noreferrer">
-                        <div className="network-logo-wrapper">
-                            <img className="network-logo" src={twitterLogo} alt="Twitter Logo" width={this.logoSize} height={this.logoSize}/>
-                        </div>
+                    <a href="https://www.twitter.com/deervisionstudio" target="_blank" rel="noopener noreferrer" className="network-logo-wrapper">
+                        <img className="network-logo" src={twitterLogo} alt="Twitter Logo" width={this.logoSize} height={this.logoSize}/>
                     </a>
-                    <a href="https://www.reddit.com/r/deervisionstudio" target="_blank" rel="noopener noreferrer">
-                        <div className="network-logo-wrapper">
-                            <img className="network-logo" src={reeditLogo} alt="Reedit Logo" width={this.logoSize} height={this.logoSize}/>
-                        </div>
+                    <a href="https://www.reddit.com/r/deervisionstudio" target="_blank" rel="noopener noreferrer" className="network-logo-wrapper">
+                        <img className="network-logo" src={reeditLogo} alt="Reedit Logo" width={this.logoSize} height={this.logoSize}/>
                     </a>
-                    <a href="https://www.youtube.com/c/DeerVisionStudio" target="_blank" rel="noopener noreferrer">
-                        <div className="network-logo-wrapper">
-                            <img className="network-logo" src={youtubeLogo} alt="Youtube Logo" width={this.logoSize} height={this.logoSize}/>
-                        </div>
+                    <a href="https://www.youtube.com/c/DeerVisionStudio" target="_blank" rel="noopener noreferrer" className="network-logo-wrapper">
+                        <img className="network-logo" src={youtubeLogo} alt="Youtube Logo" width={this.logoSize} height={this.logoSize}/>
                     </a>
                 </div>
             </div>
