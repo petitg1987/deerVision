@@ -24,6 +24,11 @@ function createInfrastructure() {
     updateInfrastructure
 }
 
+function planInfrastructure() {
+    switchWorkspace
+    terraform plan -var-file=./config/${appName}.tfvars
+}
+
 function updateInfrastructure() {
     switchWorkspace
     terraform apply -auto-approve -var-file=./config/${appName}.tfvars
@@ -49,6 +54,8 @@ function destroyAllInfrastructure() {
 if [[ "$actionName" == "create" ]]; then
     createInfrastructure
     echo "INFRASTRUCTURE CREATED SUCCESSFULLY"
+elif [[ "$actionName" == "plan" ]]; then
+      planInfrastructure
 elif [[ "$actionName" == "update" ]]; then
     updateInfrastructure
     echo "INFRASTRUCTURE UPDATED SUCCESSFULLY"

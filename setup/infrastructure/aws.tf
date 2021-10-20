@@ -30,7 +30,7 @@ terraform {
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      version = "~> 2.23"
+      version = "~> 2.65"
     }
   }
 }
@@ -44,10 +44,6 @@ provider "aws" {
 provider "aws" {
   alias = "virgina"
   region = "us-east-1"
-}
-
-data "aws_iam_user" "user" {
-  user_name = "deer-vision-user"
 }
 
 ##########################################################################################
@@ -316,10 +312,7 @@ resource "aws_kms_key" "ebs_kms_key" {
             "Sid": "Enable IAM User Permissions",
             "Effect": "Allow",
             "Principal": {
-                "AWS": [
-                  "${data.aws_iam_role.AWSServiceRoleForAutoScaling.arn}",
-                  "${data.aws_iam_user.user.arn}"
-                ]
+                "AWS": "*"
             },
             "Action": "kms:*",
             "Resource": "*"
@@ -344,6 +337,13 @@ resource "aws_instance" "instance" {
   iam_instance_profile = aws_iam_instance_profile.instance_profile.name
   subnet_id = aws_subnet.public_subnet[0].id
   vpc_security_group_ids = [aws_security_group.instance_sg.id]
+  disable_api_termination = false
+  ebs_optimized = false
+  hibernation = false
+  monitoring = false
+  credit_specification {
+    cpu_credits = "standard"
+  }
   user_data = base64encode(templatefile("${path.module}/instancesSetupScript.tmpl.sh", {
     maxRequestsBySecond = 5,
     maxRequestsBurst = 10,
@@ -352,11 +352,10 @@ resource "aws_instance" "instance" {
     logGroupName = "${var.appName}LogsGroup",
     logStreamNamePrefix = "${var.appName}LogsStream"
   }))
-  ebs_block_device {
-    device_name = "/dev/sda1"
+  root_block_device {
     delete_on_termination = "true"
     encrypted = "true"
-    kms_key_id = aws_kms_key.ebs_kms_key.id
+    kms_key_id = aws_kms_key.ebs_kms_key.arn
     volume_size = 8
     volume_type = "gp2"
   }
