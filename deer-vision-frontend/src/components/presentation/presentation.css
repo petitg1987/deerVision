@@ -30,11 +30,6 @@
     filter: drop-shadow(7px 7px 2px #777777);
 }
 
-.pres-text p {
-    /* animation start */
-    opacity: 0.2;
-}
-
 .pres-text a:link,
 .pres-text a:visited,
 .pres-text a:hover,
@@ -47,15 +42,22 @@
     text-decoration-style: solid;
 }
 
-@keyframes pres-text-anim {
+.pres-text p {
+    /* animation start */
+    opacity: 0.2;
+    transform: translate(50px, 0);
+}
+
+@keyframes pres-text-p-anim {
     to {
         opacity: 1.0;
+        transform: translate(0px, 0);
     }
 }
 
 @media (prefers-reduced-motion: no-preference) {
     .pres-text-p-anim-trigger {
-        animation: pres-text-anim 1.5s 1;
+        animation: pres-text-p-anim 1.5s 1;
         animation-fill-mode: forwards; /*leaves the animation in the state of the last frame */
     }
 }
