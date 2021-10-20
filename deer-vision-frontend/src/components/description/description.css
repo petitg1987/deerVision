@@ -23,7 +23,7 @@
 .desc-text p {
     /* animation start */
     opacity: 0.2;
-    transform: translate(50px, 0);
+    transform: translate(70px, 0);
 }
 
 @keyframes desc-text-p-anim {
@@ -35,7 +35,7 @@
 
 @media (prefers-reduced-motion: no-preference) {
     .desc-text-p-anim-trigger {
-        animation: desc-text-p-anim 1.5s 1;
+        animation: desc-text-p-anim 2.0s 1;
         animation-fill-mode: forwards; /*leaves the animation in the state of the last frame */
     }
 }
