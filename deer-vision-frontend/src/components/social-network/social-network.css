@@ -17,11 +17,11 @@
 }
 
 @keyframes logo-anim {
-    0% {
+    from {
         transform: scale(0.6, 0.6);
         opacity: 0.0;
     }
-    100% {
+    to {
         transform: scale(1, 1);
         opacity: 1.0;
     }

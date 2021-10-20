@@ -1,0 +1,22 @@
+.pres-container {
+    text-align: center;
+}
+
+.pres-text {
+    display: inline-block;
+    text-align: left;
+    vertical-align: top;
+    max-width: 400px;
+}
+
+p::first-letter {
+    font-weight: bold;
+    font-size: 1.7em;
+}
+
+.pres-logo {
+    display: inline-block;
+    text-align: left;
+    vertical-align: top;
+    margin-top: 100px;
+}

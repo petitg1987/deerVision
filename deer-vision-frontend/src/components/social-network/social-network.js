@@ -3,14 +3,13 @@ import discordLogo from "../../images/discordLogo.png";
 import youtubeLogo from "../../images/youtubeLogo.png";
 import reeditLogo from "../../images/reeditLogo.png";
 import twitterLogo from "../../images/twitterLogo.png";
-import './network.css';
+import './social-network.css';
 
-class Network extends Component {
+class SocialNetwork extends Component {
 
     constructor(props) {
         super(props);
         this.logoSize = 50;
-
     }
 
     componentDidMount() {
@@ -50,4 +49,4 @@ class Network extends Component {
     }
 }
 
-export default Network;
+export default SocialNetwork;
