@@ -323,11 +323,15 @@ resource "aws_instance" "instance" {
 }
 
 resource "aws_ebs_volume" "ebs_volume" { //volume for the database (not destroyed on instance termination)
-  availability_zone = aws_instance.instance.availability_zone
+  availability_zone = aws_subnet.public_subnet[0].availability_zone
   encrypted = "true"
   kms_key_id = aws_kms_key.ebs_kms_key.arn
   size = 4
   type = "gp2"
+  multi_attach_enabled = false
+  tags = {
+    Application = var.appName
+  }
 }
 
 resource "aws_volume_attachment" "volume_attachment" {
