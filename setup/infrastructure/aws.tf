@@ -26,11 +26,19 @@ variable "availabilityZones" {
 ##########################################################################################
 # CREDENTIAL & LOCATION
 ##########################################################################################
+terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 2.23"
+    }
+  }
+}
+
 provider "aws" {
   region = var.region
   shared_credentials_file = "~/.aws/credentials"
   profile = "deervision"
-  version = "~> 2.23"
 }
 
 provider "aws" {
@@ -38,14 +46,14 @@ provider "aws" {
   region = "us-east-1"
 }
 
-data "aws_iam_user" "infra_user" {
+data "aws_iam_user" "user" {
   user_name = "deer-vision-user"
 }
 
 ##########################################################################################
 # NETWORK & ACCESS
 ##########################################################################################
-resource "aws_vpc" "infra_vpc" {
+resource "aws_vpc" "vpc" {
   cidr_block = "10.0.0.0/16"
   enable_dns_hostnames = true
   tags = {
@@ -54,19 +62,19 @@ resource "aws_vpc" "infra_vpc" {
   }
 }
 
-resource "aws_internet_gateway" "infra_igw" {
-  vpc_id = aws_vpc.infra_vpc.id
+resource "aws_internet_gateway" "igw" {
+  vpc_id = aws_vpc.vpc.id
   tags = {
     Name = "${var.appName}IGW"
     Application = var.appName
   }
 }
 
-resource "aws_route_table" "infra_route" {
-  vpc_id = aws_vpc.infra_vpc.id
+resource "aws_route_table" "route" {
+  vpc_id = aws_vpc.vpc.id
   route {
     cidr_block = "0.0.0.0/0"
-    gateway_id = aws_internet_gateway.infra_igw.id
+    gateway_id = aws_internet_gateway.igw.id
   }
   tags = {
     Name = "${var.appName}Route"
@@ -74,9 +82,9 @@ resource "aws_route_table" "infra_route" {
   }
 }
 
-resource "aws_subnet" "infra_public_subnet" {
+resource "aws_subnet" "public_subnet" {
   count = length(var.availabilityZones)
-  vpc_id = aws_vpc.infra_vpc.id
+  vpc_id = aws_vpc.vpc.id
   cidr_block = "10.0.${count.index}.0/24"
   map_public_ip_on_launch = true
   availability_zone = var.availabilityZones[count.index]
@@ -85,15 +93,15 @@ resource "aws_subnet" "infra_public_subnet" {
   }
 }
 
-resource "aws_route_table_association" "infra_route_association" {
+resource "aws_route_table_association" "route_association" {
   count = length(var.availabilityZones)
-  subnet_id = aws_subnet.infra_public_subnet[count.index].id
-  route_table_id = aws_route_table.infra_route.id
+  subnet_id = aws_subnet.public_subnet[count.index].id
+  route_table_id = aws_route_table.route.id
 }
 
-resource "aws_network_acl" "infra_network_acl" {
-  vpc_id = aws_vpc.infra_vpc.id
-  subnet_ids = aws_subnet.infra_public_subnet.*.id
+resource "aws_network_acl" "network_acl" {
+  vpc_id = aws_vpc.vpc.id
+  subnet_ids = aws_subnet.public_subnet.*.id
   ingress { #port for HTTPS (website request)
     rule_no = 100
     from_port = 443
@@ -159,7 +167,7 @@ resource "aws_network_acl" "infra_network_acl" {
 ##########################################################################################
 # EFS
 ##########################################################################################
-resource "aws_efs_file_system" "infra_efs" {
+resource "aws_efs_file_system" "efs" {
   creation_token = "${var.appName}EfsToken"
   tags = {
     Name = "${var.appName}EfsName"
@@ -167,15 +175,15 @@ resource "aws_efs_file_system" "infra_efs" {
   }
 }
 
-resource "aws_security_group" "infra_efs_sg" {
+resource "aws_security_group" "efs_sg" {
   name = "${var.appName}EfsSG"
   description = "Deer Vision EFS Security Group"
-  vpc_id = aws_vpc.infra_vpc.id
+  vpc_id = aws_vpc.vpc.id
   ingress {
     from_port = 0
     to_port = 0
     protocol = "-1"
-    security_groups = [aws_security_group.infra_instance_sg.id]
+    security_groups = [aws_security_group.instance_sg.id]
     description = "Instances can access to EFS"
   }
   tags = {
@@ -184,11 +192,11 @@ resource "aws_security_group" "infra_efs_sg" {
   }
 }
 
-resource "aws_efs_mount_target" "infra_efs_mount_target" {
+resource "aws_efs_mount_target" "efs_mount_target" {
   count = length(var.availabilityZones)
-  file_system_id = aws_efs_file_system.infra_efs.id
-  subnet_id = aws_subnet.infra_public_subnet[count.index].id
-  security_groups = [aws_security_group.infra_efs_sg.id]
+  file_system_id = aws_efs_file_system.efs.id
+  subnet_id = aws_subnet.public_subnet[count.index].id
+  security_groups = [aws_security_group.efs_sg.id]
 }
 
 ##########################################################################################
@@ -207,7 +215,7 @@ data "aws_ami" "ubuntu" {
   owners = ["099720109477"]
 }
 
-resource "aws_iam_role" "infra_instance_role" {
+resource "aws_iam_role" "instance_role" {
   name = "${var.appName}InstanceRole"
   description = "Allow EC2 instances to access to S3/SNS/SQS (code deploy agent) and Route53 (let's encrypt)"
   assume_role_policy = <<EOF
@@ -230,10 +238,10 @@ EOF
   }
 }
 
-resource "aws_security_group" "infra_instance_sg" {
+resource "aws_security_group" "instance_sg" {
   name = "${var.appName}InstanceSG"
   description = "Deer Vision Instance Security Group"
-  vpc_id = aws_vpc.infra_vpc.id
+  vpc_id = aws_vpc.vpc.id
   ingress {
     from_port = 22
     to_port = 22
@@ -252,7 +260,7 @@ resource "aws_security_group" "infra_instance_sg" {
     from_port = 2049
     to_port = 2049
     protocol = "tcp"
-    cidr_blocks = [aws_vpc.infra_vpc.cidr_block] #Alternative: use EFS security group
+    cidr_blocks = [aws_vpc.vpc.cidr_block] #Alternative: use EFS security group
     description = "EFS"
   }
   egress {
@@ -270,34 +278,34 @@ resource "aws_security_group" "infra_instance_sg" {
 
 resource "aws_iam_role_policy_attachment" "AmazonEC2RoleforAWSCodeDeploy" {
   policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonEC2RoleforAWSCodeDeploy"
-  role = aws_iam_role.infra_instance_role.name
+  role = aws_iam_role.instance_role.name
 }
 
 resource "aws_iam_role_policy_attachment" "AutoScalingNotificationAccessRole" {
   policy_arn = "arn:aws:iam::aws:policy/service-role/AutoScalingNotificationAccessRole"
-  role = aws_iam_role.infra_instance_role.name
+  role = aws_iam_role.instance_role.name
 }
 
 resource "aws_iam_role_policy_attachment" "CloudWatchAgentAdminPolicy" {
   policy_arn = "arn:aws:iam::aws:policy/CloudWatchAgentAdminPolicy"
-  role = aws_iam_role.infra_instance_role.name
+  role = aws_iam_role.instance_role.name
 }
 
 resource "aws_iam_role_policy_attachment" "AmazonRoute53FullAccess" {
   policy_arn = "arn:aws:iam::aws:policy/AmazonRoute53FullAccess"
-  role = aws_iam_role.infra_instance_role.name
+  role = aws_iam_role.instance_role.name
 }
 
-resource "aws_iam_instance_profile" "infra_instance_profile" {
+resource "aws_iam_instance_profile" "instance_profile" {
   name = "${var.appName}InstanceProfile"
-  role = aws_iam_role.infra_instance_role.name
+  role = aws_iam_role.instance_role.name
 }
 
 data "aws_iam_role" "AWSServiceRoleForAutoScaling" {
   name = "AWSServiceRoleForAutoScaling"
 }
 
-resource "aws_kms_key" "infra_ebs_kms_key" {
+resource "aws_kms_key" "ebs_kms_key" {
   description = "${var.appName} EBS KMS Key"
   policy = <<EOF
 {
@@ -310,7 +318,7 @@ resource "aws_kms_key" "infra_ebs_kms_key" {
             "Principal": {
                 "AWS": [
                   "${data.aws_iam_role.AWSServiceRoleForAutoScaling.arn}",
-                  "${data.aws_iam_user.infra_user.arn}"
+                  "${data.aws_iam_user.user.arn}"
                 ]
             },
             "Action": "kms:*",
@@ -324,23 +332,23 @@ EOF
   }
 }
 
-resource "aws_kms_alias" "infra_ebs_kms_key_alias" {
+resource "aws_kms_alias" "ebs_kms_key_alias" {
   name = "alias/${var.appName}EbsKmsKey"
-  target_key_id = aws_kms_key.infra_ebs_kms_key.key_id
+  target_key_id = aws_kms_key.ebs_kms_key.key_id
 }
 
-resource "aws_instance" "infra_instance" {
+resource "aws_instance" "instance" {
   ami = data.aws_ami.ubuntu.id
   instance_type = "t2.micro"
   key_name = "deervision"
-  iam_instance_profile = aws_iam_instance_profile.infra_instance_profile.name
-  subnet_id = aws_subnet.infra_public_subnet[0].id
-  vpc_security_group_ids = [aws_security_group.infra_instance_sg.id]
+  iam_instance_profile = aws_iam_instance_profile.instance_profile.name
+  subnet_id = aws_subnet.public_subnet[0].id
+  vpc_security_group_ids = [aws_security_group.instance_sg.id]
   user_data = base64encode(templatefile("${path.module}/instancesSetupScript.tmpl.sh", {
     maxRequestsBySecond = 5,
     maxRequestsBurst = 10,
     maxRequestsBodySizeInKB = 250,
-    efsDnsName = aws_efs_file_system.infra_efs.dns_name,
+    efsDnsName = aws_efs_file_system.efs.dns_name,
     logGroupName = "${var.appName}LogsGroup",
     logStreamNamePrefix = "${var.appName}LogsStream"
   }))
@@ -348,7 +356,7 @@ resource "aws_instance" "infra_instance" {
     device_name = "/dev/sda1"
     delete_on_termination = "true"
     encrypted = "true"
-    kms_key_id = aws_kms_key.infra_ebs_kms_key.id
+    kms_key_id = aws_kms_key.ebs_kms_key.id
     volume_size = 8
     volume_type = "gp2"
   }
@@ -358,31 +366,31 @@ resource "aws_instance" "infra_instance" {
   }
 }
 
-resource "aws_eip" "infra_eip" {
-  instance = aws_instance.infra_instance.id
+resource "aws_eip" "eip" {
+  instance = aws_instance.instance.id
   vpc = true
 }
 
 ##########################################################################################
 # ROUTE 53
 ##########################################################################################
-data "aws_route53_zone" "route53_domain_selected" {
+data "aws_route53_zone" "route53_zone_queried" {
   name = "${var.domainName}."
   private_zone = false
 }
 
-resource "aws_route53_record" "infra_dns_record_backend" {
-  zone_id = data.aws_route53_zone.route53_domain_selected.zone_id
+resource "aws_route53_record" "dns_record_backend" {
+  zone_id = data.aws_route53_zone.route53_zone_queried.zone_id
   name = "backend"
   type = "A"
   ttl = "60"
-  records = [aws_eip.infra_eip.public_ip]
+  records = [aws_eip.eip.public_ip]
 }
 
 ##########################################################################################
 # CLOUD WATCH
 ##########################################################################################
-resource "aws_cloudwatch_log_group" "infra_cloudwatch_log_group" {
+resource "aws_cloudwatch_log_group" "cloudwatch_log_group" {
   name = "${var.appName}LogsGroup" #Name must match with variable "logGroupName" defined above
   retention_in_days = 60
   tags = {
@@ -393,7 +401,7 @@ resource "aws_cloudwatch_log_group" "infra_cloudwatch_log_group" {
 ##########################################################################################
 # CODE DEPLOY
 ##########################################################################################
-resource "aws_iam_role" "infra_deployment_role" {
+resource "aws_iam_role" "deployment_role" {
   name = "${var.appName}CodeDeployRole"
   description = "Allow CodeDeploy service to access autoscale, EC2 and SNS"
   assume_role_policy = <<EOF
@@ -418,19 +426,19 @@ EOF
 
 resource "aws_iam_role_policy_attachment" "AWSCodeDeployRole" {
   policy_arn = "arn:aws:iam::aws:policy/service-role/AWSCodeDeployRole"
-  role = aws_iam_role.infra_deployment_role.name
+  role = aws_iam_role.deployment_role.name
 }
 
-resource "aws_codedeploy_app" "infra_codedeploy_app" {
+resource "aws_codedeploy_app" "codedeploy_app" {
   compute_platform = "Server"
   name = "${var.appName}App"
 }
 
-resource "aws_codedeploy_deployment_group" "infra_deployment_group" {
-  app_name = aws_codedeploy_app.infra_codedeploy_app.name
+resource "aws_codedeploy_deployment_group" "deployment_group" {
+  app_name = aws_codedeploy_app.codedeploy_app.name
   deployment_group_name = "${var.appName}DeploymentGroup"
   deployment_config_name = "CodeDeployDefault.AllAtOnce"
-  service_role_arn = aws_iam_role.infra_deployment_role.arn
+  service_role_arn = aws_iam_role.deployment_role.arn
   ec2_tag_set {
     ec2_tag_filter {
       key = "Application"
@@ -440,7 +448,7 @@ resource "aws_codedeploy_deployment_group" "infra_deployment_group" {
   }
 }
 
-resource "aws_s3_bucket" "infra_storage_backend" {
+resource "aws_s3_bucket" "storage_backend" {
   bucket = "${var.appName}-backend"
   acl = "private"
   tags = {
@@ -449,8 +457,8 @@ resource "aws_s3_bucket" "infra_storage_backend" {
   }
 }
 
-resource "aws_s3_bucket_public_access_block" "infra_storage_access_backend" {
-  bucket = aws_s3_bucket.infra_storage_backend.id
+resource "aws_s3_bucket_public_access_block" "storage_access_backend" {
+  bucket = aws_s3_bucket.storage_backend.id
   block_public_acls = true
   block_public_policy = true
   ignore_public_acls = true
@@ -460,7 +468,7 @@ resource "aws_s3_bucket_public_access_block" "infra_storage_access_backend" {
 ##########################################################################################
 # STATIC FRONTEND ON S3
 ##########################################################################################
-resource "aws_s3_bucket" "infra_storage_frontend" {
+resource "aws_s3_bucket" "storage_frontend" {
   bucket = "${var.appName}-frontend"
   acl = "public-read"
   policy = <<EOF
@@ -494,15 +502,15 @@ EOF
   }
 }
 
-data "aws_acm_certificate" "infra_acm_certificate" {
+data "aws_acm_certificate" "acm_certificate" {
   domain = var.domainName
   statuses = ["ISSUED"]
   provider = aws.virgina
 }
 
-resource "aws_cloudfront_distribution" "infra_s3_distribution" {
+resource "aws_cloudfront_distribution" "s3_distribution" {
   origin {
-    domain_name = aws_s3_bucket.infra_storage_frontend.bucket_regional_domain_name #example: deervision-frontend.s3.eu-central-1.amazonaws.com
+    domain_name = aws_s3_bucket.storage_frontend.bucket_regional_domain_name
     origin_id   = "website"
   }
   enabled = true
@@ -538,19 +546,19 @@ resource "aws_cloudfront_distribution" "infra_s3_distribution" {
     response_code = 200
   }
   viewer_certificate {
-    acm_certificate_arn = data.aws_acm_certificate.infra_acm_certificate.arn
+    acm_certificate_arn = data.aws_acm_certificate.acm_certificate.arn
     minimum_protocol_version = "TLSv1.2_2019"
     ssl_support_method = "sni-only"
   }
 }
 
-resource "aws_route53_record" "infra_dns_record_front" {
-  zone_id = data.aws_route53_zone.route53_domain_selected.zone_id
+resource "aws_route53_record" "dns_record_front" {
+  zone_id = data.aws_route53_zone.route53_zone_queried.zone_id
   name = ""
   type = "A"
   alias {
-    name = aws_cloudfront_distribution.infra_s3_distribution.domain_name
-    zone_id = aws_cloudfront_distribution.infra_s3_distribution.hosted_zone_id
+    name = aws_cloudfront_distribution.s3_distribution.domain_name
+    zone_id = aws_cloudfront_distribution.s3_distribution.hosted_zone_id
     evaluate_target_health = true
   }
 }
