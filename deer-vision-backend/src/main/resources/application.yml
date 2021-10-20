@@ -6,7 +6,7 @@ management:
 spring:
   profiles.active: "appinfo"
   datasource:
-    url: "jdbc:h2:tcp://localhost:9191//home/ubuntu/efs/deerVisionDB;DB_CLOSE_ON_EXIT=FALSE"
+    url: "jdbc:h2:tcp://localhost:9191//home/ubuntu/data/deerVisionDB;DB_CLOSE_ON_EXIT=FALSE"
     driverClassName: "org.h2.Driver"
     username: "sa"
     password:

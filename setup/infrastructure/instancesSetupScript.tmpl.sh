@@ -99,7 +99,12 @@ EOT
 sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a fetch-config -m ec2 -c file:/home/ubuntu/amazon-cloudwatch-agent.json -s
 sudo rm amazon-cloudwatch-agent.deb
 
-#Setup EFS
-sudo mkdir ./efs
-sudo mount -t nfs4 -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,noresvport ${efsDnsName}:/ ./efs
-sudo chown ubuntu:ubuntu -R ./efs
+#Mount (and format) volume
+checkVolume=$(sudo file -s /dev/xvdb)
+if [[ "$checkVolume" == "/dev/xvdb: data" ]]; then
+  #Volume is empty: format to ext4
+  sudo mkfs -t ext4 /dev/xvdb
+fi
+sudo mkdir ./data
+sudo mount /dev/xvdb /home/ubuntu/data
+sudo chown ubuntu:ubuntu -R ./data

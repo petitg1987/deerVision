@@ -161,41 +161,6 @@ resource "aws_network_acl" "network_acl" {
 }
 
 ##########################################################################################
-# EFS
-##########################################################################################
-resource "aws_efs_file_system" "efs" {
-  creation_token = "${var.appName}EfsToken"
-  tags = {
-    Name = "${var.appName}EfsName"
-    Application = var.appName
-  }
-}
-
-resource "aws_security_group" "efs_sg" {
-  name = "${var.appName}EfsSG"
-  description = "Deer Vision EFS Security Group"
-  vpc_id = aws_vpc.vpc.id
-  ingress {
-    from_port = 0
-    to_port = 0
-    protocol = "-1"
-    security_groups = [aws_security_group.instance_sg.id]
-    description = "Instances can access to EFS"
-  }
-  tags = {
-    Name = "${var.appName}InstanceSG"
-    Application = var.appName
-  }
-}
-
-resource "aws_efs_mount_target" "efs_mount_target" {
-  count = length(var.availabilityZones)
-  file_system_id = aws_efs_file_system.efs.id
-  subnet_id = aws_subnet.public_subnet[count.index].id
-  security_groups = [aws_security_group.efs_sg.id]
-}
-
-##########################################################################################
 # INSTANCES
 ##########################################################################################
 data "aws_ami" "ubuntu" {
@@ -251,13 +216,6 @@ resource "aws_security_group" "instance_sg" {
     protocol = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
     description = "HTTPS requests from Internet"
-  }
-  ingress {
-    from_port = 2049
-    to_port = 2049
-    protocol = "tcp"
-    cidr_blocks = [aws_vpc.vpc.cidr_block] #Alternative: use EFS security group
-    description = "EFS"
   }
   egress {
     from_port = 0
@@ -345,14 +303,13 @@ resource "aws_instance" "instance" {
     cpu_credits = "standard"
   }
   user_data = base64encode(templatefile("${path.module}/instancesSetupScript.tmpl.sh", {
-    maxRequestsBySecond = 5,
-    maxRequestsBurst = 10,
+    maxRequestsBySecond = 10,
+    maxRequestsBurst = 20,
     maxRequestsBodySizeInKB = 250,
-    efsDnsName = aws_efs_file_system.efs.dns_name,
     logGroupName = "${var.appName}LogsGroup",
     logStreamNamePrefix = "${var.appName}LogsStream"
   }))
-  root_block_device {
+  root_block_device { //volume for the OS (destroy with instance termination)
     delete_on_termination = "true"
     encrypted = "true"
     kms_key_id = aws_kms_key.ebs_kms_key.arn
@@ -363,6 +320,21 @@ resource "aws_instance" "instance" {
     Name = "${var.appName}Instance"
     Application = var.appName
   }
+}
+
+resource "aws_ebs_volume" "ebs_volume" { //volume for the database (not destroyed on instance termination)
+  availability_zone = aws_instance.instance.availability_zone
+  encrypted = "true"
+  kms_key_id = aws_kms_key.ebs_kms_key.arn
+  size = 4
+  type = "gp2"
+}
+
+resource "aws_volume_attachment" "volume_attachment" {
+  device_name = "/dev/sda2"
+  volume_id   = aws_ebs_volume.ebs_volume.id
+  instance_id = aws_instance.instance.id
+  force_detach = true
 }
 
 resource "aws_eip" "eip" {
