@@ -8,9 +8,9 @@ class Presentation extends Component {
         const observer = new IntersectionObserver(entries => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.classList.add('pres-text-anim-trigger');
+                    entry.target.classList.add('pres-text-p-anim-trigger');
                 } else {
-                    entry.target.classList.remove('pres-text-anim-trigger');
+                    entry.target.classList.remove('pres-text-p-anim-trigger');
                 }
             });
         });

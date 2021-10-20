@@ -9,18 +9,17 @@
 .network-logo {
     margin: 7px;
     filter: drop-shadow(5px 5px 2px #777777);
+
+    /* animation start */
+    transform: scale(0.6, 0.6);
+    opacity: 0.2;
 }
 
 .network-logo:hover {
-    transform: scale(1.1, 1.1);
-    filter: drop-shadow(7px 7px 2px #777777);
+    filter: contrast(1.6) drop-shadow(7px 7px 2px #777777);
 }
 
 @keyframes network-logo-anim {
-    from {
-        transform: scale(0.7, 0.7);
-        opacity: 0.3;
-    }
     to {
         transform: scale(1, 1);
         opacity: 1.0;
@@ -29,8 +28,7 @@
 
 @media (prefers-reduced-motion: no-preference) {
     .network-logo-anim-trigger {
-        animation-name: network-logo-anim;
-        animation-duration: 1.0s;
-        animation-iteration-count: 1;
+        animation: network-logo-anim 1.5s 1;
+        animation-fill-mode: forwards; /*leaves the animation in the state of the last frame */
     }
 }
