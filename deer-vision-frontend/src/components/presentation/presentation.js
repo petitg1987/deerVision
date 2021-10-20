@@ -23,10 +23,9 @@ class Presentation extends Component {
             <div className="pres-container">
                 <div className="pres-separator"/>
                 <div className="pres-text">
-                    <p>Binogure Studio is an independent video game studio based at Orthez (France). Our goal is to create brilliant, high quality games.</p>
-                    <p>We love free software, as in free beer but also as in freedom. It means that to make our games we only use FOSS software: Blender for 3D modeling or video editing; Krita and Inkscape for art and game assets; and Godot Engine to create a game.</p>
-                    <p>We sell games, and we sell games only. You won't see any ad in our games. And because we are all gamer, we won't ever create any pay2win game. Our economic model is based on the play2win mechanism.</p>
-                    <p>Since you get our games to play and not to gamble, you won't have to pay for loot-boxes containing random rewards. It might exist in some game, but you will get them for free.</p>
+                    <p>Deer Vision Studio is an independent studio, which develops video games. The studio is located in Belgium (Ardenne).</p>
+                    <p>Our philosophy is to publish high quality games and listen our community to constantly improve them in the right direction. It is always a real pleasure to discuss with you on our social networks (see links below).</p>
+                    <p>We like to create our games without any technical restrictions. This is why we have a home-made game engine named "Urchin Engine" that we have been developing for more than 10 years. The engine is free and open source: <a href="https://github.com/petitg1987/urchinEngine" target="_blank" rel="noopener noreferrer">GitHub</a></p>
                 </div>
                 <div className="pres-separator"/>
                 <div className="pres-logo">

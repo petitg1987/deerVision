@@ -10,7 +10,7 @@
 
 .pres-text p::first-letter {
     font-weight: bold;
-    font-size: 1.7em;
+    font-size: 1.5em;
 }
 
 .pres-separator {
@@ -33,6 +33,18 @@
 .pres-text p {
     /* animation start */
     opacity: 0.2;
+}
+
+.pres-text a:link,
+.pres-text a:visited,
+.pres-text a:hover,
+.pres-text a:active {
+    color: black;
+    text-decoration-style: dotted;
+}
+
+.pres-text a:hover {
+    text-decoration-style: solid;
 }
 
 @keyframes pres-text-anim {
