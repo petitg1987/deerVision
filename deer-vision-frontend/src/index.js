@@ -4,7 +4,7 @@ import {BrowserRouter, Switch, Route} from 'react-router-dom';
 import Navigation from "./components/navigation/navigation";
 import './index.css';
 
-const Main = React.lazy(() => import('./pages/main/main'))
+const Main = React.lazy(() => import('./pages/home/home'))
 const Admin = React.lazy(() => import('./pages/admin/admin'))
 
 class Index extends Component {
