@@ -3,6 +3,8 @@ import "../pages.css"
 import "./home.css"
 import photonEngineerLogo from "../../images/photon-engineer/logo.png";
 import photonEngineerSs1 from "../../images/photon-engineer/screenshot1.png";
+import photonEngineerSs2 from "../../images/photon-engineer/screenshot2.png";
+import photonEngineerSs3 from "../../images/photon-engineer/screenshot3.png";
 import Description from "../../components/description/description";
 import StudioPresentation from "../../components/studio-presentation/studio-presentation";
 import SocialNetwork from "../../components/social-network/social-network";
@@ -30,7 +32,9 @@ class Home extends Component {
                         }/>
                     </div>
                     <div className="pe-screenshots">
-                        <img src={photonEngineerSs1} alt="Twitter Logo" width="100%" height="100%"/>
+                        <img src={photonEngineerSs1} alt="PE Screenshot1" width="100%" height="100%"/>
+                        <img src={photonEngineerSs2} alt="PE Screenshot2" width="100%" height="100%"/>
+                        <img src={photonEngineerSs3} alt="PE Screenshot3" width="100%" height="100%"/>
                     </div>
                 </div>
 
