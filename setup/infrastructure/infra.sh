@@ -24,11 +24,6 @@ function createInfrastructure() {
     updateInfrastructure
 }
 
-function planInfrastructure() {
-    switchWorkspace
-    terraform plan -var-file=./config/${appName}.tfvars
-}
-
 function updateInfrastructure() {
     switchWorkspace
     terraform apply -auto-approve -var-file=./config/${appName}.tfvars
@@ -51,11 +46,20 @@ function destroyAllInfrastructure() {
     rm -f ./config/${appName}.tfvars
 }
 
+function seePlan() {
+    switchWorkspace
+    terraform plan -var-file=./config/${appName}.tfvars
+}
+
+function recreateInstance() {
+    switchWorkspace
+    terraform taint aws_instance.instance
+    updateInfrastructure
+}
+
 if [[ "$actionName" == "create" ]]; then
     createInfrastructure
     echo "INFRASTRUCTURE CREATED SUCCESSFULLY"
-elif [[ "$actionName" == "plan" ]]; then
-      planInfrastructure
 elif [[ "$actionName" == "update" ]]; then
     updateInfrastructure
     echo "INFRASTRUCTURE UPDATED SUCCESSFULLY"
@@ -65,6 +69,10 @@ elif [[ "$actionName" == "destroy" ]]; then
 elif [[ "$actionName" == "destroyAll" ]]; then
     destroyAllInfrastructure
     echo "INFRASTRUCTURE ALL DESTROYED"
+elif [[ "$actionName" == "plan" ]]; then
+      seePlan
+elif [[ "$actionName" == "recreateInstance" ]]; then
+      recreateInstance
 else
     echo "Unknown action $actionName"
     exit 1

@@ -13,10 +13,12 @@
 
 # Manage infrastructure
 * Create infrastructure: `./infrastructure/infra.sh create`
-* See plan infrastructure: `./infrastructure/infra.sh plan`
 * Update infrastructure: `./infrastructure/infra.sh update`
 * Destroy infrastructure: `./infrastructure/infra.sh destroy`
 * Destroy infrastructure and configurations: `./infrastructure/infra.sh destroyAll`
+* Others:
+  * See plan: `./infrastructure/infra.sh plan`
+  * Force instance re-creation: `./infrastructure/infra.sh recreateInstance`
 
 # Deploy the application
 * Backend:
