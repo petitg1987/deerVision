@@ -1,9 +1,9 @@
 h2 {
+    margin: 20px auto 40px;
     width: 175px;
-    margin: 20px auto auto auto;
     border: 1px solid #000000;
     text-align: center;
-    border-radius: 5px;
+    border-radius: 4px;
     filter: drop-shadow(3px 3px 3px #777777);
-    background-color: white;
+    background-color: #eeeeee;
 }
