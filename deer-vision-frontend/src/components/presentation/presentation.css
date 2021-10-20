@@ -1,22 +1,51 @@
 .pres-container {
-    text-align: center;
+    overflow: hidden;
 }
 
 .pres-text {
-    display: inline-block;
-    text-align: left;
-    vertical-align: top;
-    max-width: 400px;
+    float: left;
+    width: 35%;
 }
 
-p::first-letter {
+.pres-text p::first-letter {
     font-weight: bold;
     font-size: 1.7em;
 }
 
+.pres-separator {
+    float: left;
+    width: 10%;
+    height: 1px;
+}
+
 .pres-logo {
-    display: inline-block;
-    text-align: left;
-    vertical-align: top;
-    margin-top: 100px;
+    float: left;
+    width: 35%;
+    margin-top: 50px;
+    margin-bottom: 10px;
+}
+
+.pres-logo img {
+    filter: drop-shadow(7px 7px 2px #777777);
+}
+
+@media screen and (max-width: 800px) {
+    .pres-separator {
+        width: 2%;
+    }
+
+    .pres-text {
+        width: 96%;
+    }
+
+    .pres-logo {
+        text-align: center;
+        width: 100%;
+        margin-top: 5px;
+    }
+
+    .pres-logo img {
+        width: 40%;
+        height: auto;
+    }
 }
