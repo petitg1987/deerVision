@@ -13,6 +13,16 @@
     max-width: 600px;
 }
 
+.pe-screenshots {
+    margin: auto;
+    width: 80%;
+    max-width: 800px;
+}
+
+.pe-screenshots img {
+    border: 4px solid #666666;
+}
+
 @media screen and (max-width: 800px) {
     .pe-description {
         width: 94%;

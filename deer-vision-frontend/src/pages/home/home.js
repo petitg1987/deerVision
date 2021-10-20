@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import "../pages.css"
 import "./home.css"
 import photonEngineerLogo from "../../images/photon-engineer/logo.png";
+import photonEngineerSs1 from "../../images/photon-engineer/screenshot1.png";
 import Description from "../../components/description/description";
 import StudioPresentation from "../../components/studio-presentation/studio-presentation";
 import SocialNetwork from "../../components/social-network/social-network";
@@ -17,7 +18,9 @@ class Home extends Component {
                 <div id="games"/>
                 <h2>Our Games</h2>
                 <div className="pe-container">
-                    <img src={photonEngineerLogo} alt="Twitter Logo" width="301px" height="75px"/>
+                    <div className="pe-title">
+                        <img src={photonEngineerLogo} alt="Twitter Logo" width="300px" height="75px"/>
+                    </div>
                     <div className="pe-description">
                         <Description texts={
                             <Fragment>
@@ -25,6 +28,9 @@ class Home extends Component {
                                 <p>Your goal is to build an automated, efficient and optimized system which fit with the imposed constraints.</p>
                             </Fragment>
                         }/>
+                    </div>
+                    <div className="pe-screenshots">
+                        <img src={photonEngineerSs1} alt="Twitter Logo" width="100%" height="100%"/>
                     </div>
                 </div>
 
