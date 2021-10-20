@@ -15,8 +15,13 @@
     opacity: 0.2;
 }
 
-.network-logo:hover {
-    filter: contrast(1.6) drop-shadow(7px 7px 2px #777777);
+.network-logo-wrapper {
+    display: inline-block;
+}
+
+.network-logo-wrapper:hover {
+    filter: drop-shadow(7px 7px 2px #777777);
+    transform: scale(1.1, 1.1);
 }
 
 @keyframes network-logo-anim {
