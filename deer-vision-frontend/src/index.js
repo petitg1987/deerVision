@@ -1,10 +1,11 @@
-import React, {Component} from 'react';
+import React, {Component, Suspense} from 'react';
 import ReactDOM from 'react-dom';
 import {BrowserRouter, Switch, Route} from 'react-router-dom';
-import Main from './pages/main/main';
-import Admin from './pages/admin/admin';
 import Navigation from "./components/navigation/navigation";
 import './index.css';
+
+const Main = React.lazy(() => import('./pages/main/main'))
+const Admin = React.lazy(() => import('./pages/admin/admin'))
 
 class Index extends Component {
     render() {
@@ -15,10 +16,12 @@ class Index extends Component {
                         <Navigation/>
                     </header>
                     <div className="content">
-                        <Switch>
-                            <Route exact path='/' component={Main}/>
-                            <Route exact path='/admin' component={Admin}/>
-                        </Switch>
+                        <Suspense fallback={<div>Loading...</div>}>
+                            <Switch>
+                                <Route exact path='/' component={Main}/>
+                                <Route exact path='/admin' component={Admin}/>
+                            </Switch>
+                        </Suspense>
                     </div>
                 </div>
             </BrowserRouter>

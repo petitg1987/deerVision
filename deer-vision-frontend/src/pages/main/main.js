@@ -1,27 +1,20 @@
-import React, { Component, Suspense } from 'react';
+import React, { Component } from 'react';
+import Games from "./games";
+import News from "./news";
+import AboutUs from "./about-us";
 import "../pages.css"
 import "./main.css"
-
-const News = React.lazy(() => import('./news'));
-const Games = React.lazy(() => import('./games'));
-const AboutUs = React.lazy(() => import('./about-us'));
 
 class Main extends Component {
     render() {
         return (
             <div>
                 <div id="news"/>
-                <Suspense fallback={<div>News loading...</div>}>
-                    <News/>
-                </Suspense>
+                <News/>
                 <div id="games"/>
-                <Suspense fallback={<div>Games loading...</div>}>
-                    <Games/>
-                </Suspense>
+                <Games/>
                 <div id="aboutUs"/>
-                <Suspense fallback={<div>About loading...</div>}>
-                    <AboutUs/>
-                </Suspense>
+                <AboutUs/>
             </div>
         );
     }
