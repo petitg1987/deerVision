@@ -8,6 +8,7 @@ class AboutUs extends Component {
             <div>
                 <h2>About Us</h2>
                 <Presentation/>
+                <br/><br/><br/>
                 <SocialNetwork/>
             </div>
         );

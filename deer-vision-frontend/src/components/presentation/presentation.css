@@ -22,7 +22,7 @@
 .pres-logo {
     float: left;
     width: 35%;
-    margin-top: 50px;
+    margin-top: 30px;
     margin-bottom: 10px;
 }
 
@@ -33,7 +33,7 @@
 @keyframes pres-text-anim {
     0% {
         opacity: 0.2;
-        padding-left: 10px;
+        padding-top: 15px;
     }
     100% {
         opacity: 1;
