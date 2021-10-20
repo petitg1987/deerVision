@@ -8,6 +8,14 @@ const Main = React.lazy(() => import('./pages/main/main'))
 const Admin = React.lazy(() => import('./pages/admin/admin'))
 
 class Index extends Component {
+
+    constructor(props) {
+        super(props);
+
+        let date = new Date();
+        this.currentYear = date.getFullYear();
+    }
+
     render() {
         return (
             <BrowserRouter>
@@ -23,6 +31,9 @@ class Index extends Component {
                             </Switch>
                         </Suspense>
                     </div>
+                    <footer>
+                        <center><br/><small>&copy; Copyright {this.currentYear}, Deer Vision Studio</small><br/><br/></center>
+                    </footer>
                 </div>
             </BrowserRouter>
         );

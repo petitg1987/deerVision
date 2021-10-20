@@ -33,18 +33,16 @@
 @keyframes pres-text-anim {
     0% {
         opacity: 0.2;
-        padding-top: 15px;
     }
     100% {
         opacity: 1;
-        padding-left: 0;
     }
 }
 
 @media (prefers-reduced-motion: no-preference) {
     .pres-text-anim-trigger {
         animation-name: pres-text-anim;
-        animation-duration: 0.75s;
+        animation-duration: 1.0s;
         animation-iteration-count: 1;
     }
 }

@@ -18,8 +18,8 @@
 
 @keyframes network-logo-anim {
     from {
-        transform: scale(0.6, 0.6);
-        opacity: 0.0;
+        transform: scale(0.7, 0.7);
+        opacity: 0.3;
     }
     to {
         transform: scale(1, 1);
@@ -30,7 +30,7 @@
 @media (prefers-reduced-motion: no-preference) {
     .network-logo-anim-trigger {
         animation-name: network-logo-anim;
-        animation-duration: 0.75s;
+        animation-duration: 1.0s;
         animation-iteration-count: 1;
     }
 }
