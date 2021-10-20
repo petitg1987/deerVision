@@ -1,0 +1,41 @@
+.desc-text {
+    width: 100%;
+}
+
+.desc-text p::first-letter {
+    font-weight: bold;
+    font-size: 1.3em;
+    color: #e37405;
+}
+
+.desc-text a:link,
+.desc-text a:visited,
+.desc-text a:hover,
+.desc-text a:active {
+    color: black;
+    text-decoration-style: dotted;
+}
+
+.desc-text a:hover {
+    text-decoration-style: solid;
+}
+
+.desc-text p {
+    /* animation start */
+    opacity: 0.2;
+    transform: translate(50px, 0);
+}
+
+@keyframes desc-text-p-anim {
+    to {
+        opacity: 1.0;
+        transform: translate(0px, 0);
+    }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .desc-text-p-anim-trigger {
+        animation: desc-text-p-anim 1.5s 1;
+        animation-fill-mode: forwards; /*leaves the animation in the state of the last frame */
+    }
+}
