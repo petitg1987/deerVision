@@ -4,6 +4,20 @@ import studioLogo from "../../images/studioLogo.png";
 
 class Presentation extends Component {
 
+    componentDidMount() {
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('pres-text-anim-trigger');
+                } else {
+                    entry.target.classList.remove('pres-text-anim-trigger');
+                }
+            });
+        });
+        const paragraphes = document.querySelectorAll('.pres-text p');
+        paragraphes.forEach(e => observer.observe(e));
+    }
+
     render() {
         return (
             <div className="pres-container">

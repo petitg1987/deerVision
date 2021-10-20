@@ -17,9 +17,9 @@ class SocialNetwork extends Component {
             entries.forEach(entry => {
                 const networkLogos = entry.target.querySelectorAll('.network-logo');
                 if (entry.isIntersecting) {
-                    networkLogos.forEach(e => e.classList.add('network-logo-animation'));
+                    networkLogos.forEach(e => e.classList.add('network-logo-anim-trigger'));
                 } else {
-                    networkLogos.forEach(e => e.classList.remove('network-logo-animation'));
+                    networkLogos.forEach(e => e.classList.remove('network-logo-anim-trigger'));
                 }
             });
         });

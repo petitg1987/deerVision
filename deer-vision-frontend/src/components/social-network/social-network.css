@@ -16,7 +16,7 @@
     filter: drop-shadow(7px 7px 2px #777777);
 }
 
-@keyframes logo-anim {
+@keyframes network-logo-anim {
     from {
         transform: scale(0.6, 0.6);
         opacity: 0.0;
@@ -28,8 +28,8 @@
 }
 
 @media (prefers-reduced-motion: no-preference) {
-    .network-logo-animation {
-        animation-name: logo-anim;
+    .network-logo-anim-trigger {
+        animation-name: network-logo-anim;
         animation-duration: 0.75s;
         animation-iteration-count: 1;
     }

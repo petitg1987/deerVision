@@ -5,6 +5,7 @@
 .pres-text {
     float: left;
     width: 35%;
+    max-width: 600px;
 }
 
 .pres-text p::first-letter {
@@ -29,6 +30,25 @@
     filter: drop-shadow(7px 7px 2px #777777);
 }
 
+@keyframes pres-text-anim {
+    0% {
+        opacity: 0.2;
+        padding-left: 10px;
+    }
+    100% {
+        opacity: 1;
+        padding-left: 0;
+    }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .pres-text-anim-trigger {
+        animation-name: pres-text-anim;
+        animation-duration: 0.75s;
+        animation-iteration-count: 1;
+    }
+}
+
 @media screen and (max-width: 800px) {
     .pres-separator {
         width: 2%;
@@ -36,6 +56,7 @@
 
     .pres-text {
         width: 96%;
+        max-width: 800px;
     }
 
     .pres-logo {
