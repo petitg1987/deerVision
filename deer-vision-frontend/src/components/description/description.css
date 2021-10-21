@@ -20,11 +20,12 @@
 .desc-text a:visited,
 .desc-text a:hover,
 .desc-text a:active {
-    color: black;
-    text-decoration-style: dotted;
+    color: #007499;
+    text-decoration-style: solid;
 }
 
 .desc-text a:hover {
+    color: black;
     text-decoration-style: solid;
 }
 
