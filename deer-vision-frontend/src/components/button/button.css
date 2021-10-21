@@ -1,15 +1,15 @@
 .btn {
+    display: inline-block;
     width: 260px;
-    height: 45px;
+    line-height: 40px;
     text-align: center;
-    display: table-cell;
     vertical-align: middle;
     font-size: 18px;
     filter: drop-shadow(0px 1px 3px #777777);
     border: 4px solid #555555;
     color: #555555;
-    background-color: #e4e5eb;
     text-decoration: none;
+    margin-bottom: 10px;
 }
 
 .btn::after {
@@ -17,9 +17,9 @@
     content: "";
     width: 0;
     left: 50%;
-    height: 3px;
+    height: 2px;
     background-color: #e4e5eb;
-    bottom: 10px;
+    bottom: 8px;
     transition: all 0.4s ease-in-out;
 }
 
@@ -29,8 +29,8 @@
 }
 
 .btn:hover::after {
-    width: 100%;
-    left: 0;
+    width: 80%;
+    left: 10%;
 }
 
 .btn-text {
