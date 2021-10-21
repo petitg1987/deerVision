@@ -16,7 +16,10 @@ class Home extends Component {
                 {/*NEWS*/}
                 <div id="news"/>
                 <h2>News</h2>
-                <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+                <br/><br/><br/><br/>
+                <div className="home-horizontal-spacer"/>
+                Coming soon...
+                <br/><br/><br/><br/><br/><br/>
 
                 {/*GAMES*/}
                 <hr/>
@@ -34,8 +37,7 @@ class Home extends Component {
                         <Description>
                             <p>Photon Engineer is a <strong>puzzle/building game</strong>. Your goal is to build an automated, efficient and optimized system which fit with the imposed constraints.</p>
                             <p>Community links: <SocialNetwork logoSize={30} reeditGameUrl="https://www.reddit.com/r/PhotonEngineer/" onlyCommunityNetwork={true}/></p>
-                            <p>Key request for Youtubers, Streamers and press:
-                                <a href="https://woovit.com/widget/offer/photon-engineer" target="_blank" rel="noopener noreferrer">Woovit [soon]</a>, {/*TODO: update description/links*/}
+                            <p>Key request for Youtubers, Streamers and press: <a href="https://woovit.com/widget/offer/photon-engineer" target="_blank" rel="noopener noreferrer">Woovit [soon]</a>, {/*TODO: update description/links*/}
                                 <a href="https://www.keymailer.co/g/games/xyz1234" target="_blank" rel="noopener noreferrer">Keymailer [soon]</a></p> {/*TODO: update description/links*/}
                         </Description>
                     </div>

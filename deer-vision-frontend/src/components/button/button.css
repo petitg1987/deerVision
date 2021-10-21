@@ -35,7 +35,7 @@
 
 .btn-text {
     /* animation start */
-    transform: translate(0px, -20px);
+    transform: translate(0px, -15px);
 }
 
 @keyframes btn-text-anim {
