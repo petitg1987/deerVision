@@ -20,7 +20,7 @@
 }
 
 .network-logo-wrapper:hover {
-    filter: drop-shadow(7px 7px 2px #777777);
+    filter: drop-shadow(6px 6px 2px #777777);
     transform: scale(1.1, 1.1);
 }
 

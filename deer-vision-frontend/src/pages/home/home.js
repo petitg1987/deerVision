@@ -26,17 +26,14 @@ class Home extends Component {
                     <div className="home-vertical-spacer"/>
                     <div className="home-horizontal-spacer"/>
                     <div className="pe-title">
-                        <img src={photonEngineerLogo} alt="Twitter Logo" width="300px" height="75px"/>
+                        <img src={photonEngineerLogo} alt="Photon Engineer Logo" width="300px" height="75px"/>
                     </div>
                     <div className="home-vertical-spacer"/>
                     <div className="home-horizontal-spacer"/>
                     <div className="pe-description">
                         <Description>
                             <p>Photon Engineer is a <strong>puzzle/building game</strong>. Your goal is to build an automated, efficient and optimized system which fit with the imposed constraints.</p>
-                            <p>Community links: TODO</p>
-                            <p>Steam key request: Keymailer</p>
-                            <p>Steam key request: Keymailer</p>
-                            <p>Steam key request: Keymailer</p>
+                            <p>Community links: <SocialNetwork logoSize={30} reeditGameUrl="https://www.reddit.com/r/PhotonEngineer/" onlyCommunityNetwork={true}/></p>
                             <p>Steam key request: Keymailer</p>
                         </Description>
                     </div>
@@ -84,7 +81,7 @@ class Home extends Component {
                     </div>
                 </div>
                 <br/><br/><br/>
-                <SocialNetwork/>
+                <SocialNetwork logoSize={50} label="Join us on:" onlyCommunityNetwork={false}/>
             </div>
         );
     }
