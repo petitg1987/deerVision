@@ -4,6 +4,11 @@
     top: -85px;
 }
 
+.home-vertical-spacer {
+    clear: both;
+    height: 30px;
+}
+
 .home-horizontal-spacer {
     float: left;
     width: 10%;
@@ -35,7 +40,6 @@
 }
 
 .pe-screenshots {
-    clear: both;
     margin: auto;
     width: 80%;
     max-width: 800px;

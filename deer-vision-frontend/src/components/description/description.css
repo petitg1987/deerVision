@@ -7,6 +7,14 @@
     color: #007499;
 }
 
+.desc-text p:first-child {
+    margin-top: 0;
+}
+
+.desc-text p:last-child {
+    margin-bottom: 0;
+}
+
 .desc-text a:link,
 .desc-text a:visited,
 .desc-text a:hover,

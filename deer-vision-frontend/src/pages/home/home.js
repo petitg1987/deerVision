@@ -23,10 +23,12 @@ class Home extends Component {
                 <div id="games"/>
                 <h2>Our Games</h2>
                 <div className="pe-container">
+                    <div className="home-vertical-spacer"/>
                     <div className="home-horizontal-spacer"/>
                     <div className="pe-title">
                         <img src={photonEngineerLogo} alt="Twitter Logo" width="300px" height="75px"/>
                     </div>
+                    <div className="home-vertical-spacer"/>
                     <div className="home-horizontal-spacer"/>
                     <div className="pe-description">
                         <Description>
@@ -46,7 +48,7 @@ class Home extends Component {
                         <br/>
                         <Button text="AVAILABLE ON ITCH.IO" link="https://deep-vision.itch.io/photon-engineer"/>
                     </div>
-                    <br/>
+                    <div className="home-vertical-spacer"/>
                     <div className="pe-screenshots">
                         <Carousel autoPlay={false} showThumbs={false} infiniteLoop={false} showStatus={false}>
                             <div>
@@ -67,6 +69,7 @@ class Home extends Component {
                 <div id="aboutUs"/>
                 <h2>About Us</h2>
                 <div className="pres-container">
+                    <div className="home-vertical-spacer"/>
                     <div className="home-horizontal-spacer"/>
                     <div className="pres-description">
                         <Description>
