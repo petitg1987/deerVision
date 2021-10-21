@@ -29,7 +29,7 @@ class SocialNetwork extends Component {
 
     render() {
         let labelComponent;
-        if(this.props.label !== "") {
+        if(this.props.label && this.props.label !== "") {
             labelComponent = <div className="network-title">{this.props.label}</div>
         }
 

@@ -16,7 +16,7 @@ class Home extends Component {
                 {/*NEWS*/}
                 <div id="news"/>
                 <h2>News</h2>
-                <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+                <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
 
                 {/*GAMES*/}
                 <hr/>
@@ -34,29 +34,25 @@ class Home extends Component {
                         <Description>
                             <p>Photon Engineer is a <strong>puzzle/building game</strong>. Your goal is to build an automated, efficient and optimized system which fit with the imposed constraints.</p>
                             <p>Community links: <SocialNetwork logoSize={30} reeditGameUrl="https://www.reddit.com/r/PhotonEngineer/" onlyCommunityNetwork={true}/></p>
-                            <p>Steam key request: Keymailer</p>
+                            <p>Key request for Youtubers, Streamers and press:
+                                <a href="https://woovit.com/widget/offer/photon-engineer" target="_blank" rel="noopener noreferrer">Woovit</a>, {/*TODO: update links*/}
+                                <a href="https://www.keymailer.co/g/games/xyz1234" target="_blank" rel="noopener noreferrer">Keymailer</a></p> {/*TODO: update links*/}
                         </Description>
                     </div>
                     <div className="home-horizontal-spacer"/>
                     <div className="pe-btn-platform">
-                        <Button text="WATCH TRAILER" link="https://www.youtube.com/watch?v=XYZ1234"/>
+                        <Button text="WATCH TRAILER" link="https://www.youtube.com/watch?v=XYZ1234"/> {/*TODO: update links*/}
                         <br/>
-                        <Button text="AVAILABLE ON STEAM" link="https://store.steampowered.com/app/1234/Photon_Engineer/"/>
+                        <Button text="AVAILABLE ON STEAM" link="https://store.steampowered.com/app/1234/Photon_Engineer/"/> {/*TODO: update links*/}
                         <br/>
-                        <Button text="AVAILABLE ON ITCH.IO" link="https://deep-vision.itch.io/photon-engineer"/>
+                        <Button text="AVAILABLE ON ITCH.IO" link="https://deep-vision.itch.io/photon-engineer"/> {/*TODO: update links*/}
                     </div>
                     <div className="home-vertical-spacer"/>
                     <div className="pe-screenshots">
                         <Carousel autoPlay={false} showThumbs={false} infiniteLoop={false} showStatus={false}>
-                            <div>
                                 <img src="/photon-engineer/screenshot1.png" alt="Photon Engineer screenshot 1" />
-                            </div>
-                            <div>
                                 <img src="/photon-engineer/screenshot2.png" alt="Photon Engineer screenshot 2" />
-                            </div>
-                            <div>
                                 <img src="/photon-engineer/screenshot3.png" alt="Photon Engineer screenshot 3" />
-                            </div>
                         </Carousel>
                     </div>
                 </div>
