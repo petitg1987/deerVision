@@ -4,14 +4,14 @@
     top: -85px;
 }
 
-.home-separator {
+.home-horizontal-spacer {
     float: left;
     width: 10%;
     height: 1px;
 }
 
 @media screen and (max-width: 800px) {
-    .home-separator {
+    .home-horizontal-spacer {
         width: 2%;
     }
 }
@@ -35,7 +35,7 @@
 }
 
 .pe-screenshots {
-    overflow: hidden;
+    clear: both;
     margin: auto;
     width: 80%;
     max-width: 800px;
