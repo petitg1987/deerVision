@@ -1,5 +1,5 @@
 h2 {
-    margin: 20px auto 40px;
+    margin: 20px auto 0;
     width: 175px;
     font-size: 25px;
     border: 1px solid #000000;
@@ -7,4 +7,12 @@ h2 {
     border-radius: 4px;
     filter: drop-shadow(3px 3px 3px #777777);
     background-color: #eeeeee;
+}
+
+hr {
+    margin-top: 40px;
+    border: none;
+    background-color: #d5d5dd;
+    height: 2px;
+    width: 80%;
 }

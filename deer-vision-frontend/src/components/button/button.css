@@ -1,0 +1,12 @@
+.btn {
+    width: 280px;
+    height: 60px;
+    border: 4px solid #555555;
+    text-align: center;
+    display: table-cell;
+    vertical-align: middle;
+    font-size: 22px;
+    color: #555555;
+    filter: drop-shadow(0px 1px 3px #777777);
+    text-transform: uppercase;
+}
