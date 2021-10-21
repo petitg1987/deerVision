@@ -48,6 +48,12 @@ function copyFrontendFilesInS3() {
     aws s3 cp --recursive --exclude "_source/*" ${filesPath} s3://${frontendBucketName}/
 }
 
+function invalidCloudFrontCache() {
+    cloudDistributionId=$(aws cloudfront list-distributions | jq -r ".DistributionList.Items[0].Id")
+    echo "Invaliding cache for distribution id: ${cloudDistributionId}"
+    aws cloudfront create-invalidation --distribution-id ${cloudDistributionId} --paths "/*"
+}
+
 if [[ "$1" == "backend" ]]; then
   buildBackendPackage
   copyBackendPackageInS3
@@ -55,6 +61,7 @@ if [[ "$1" == "backend" ]]; then
 elif [[ "$1" == "frontend" ]]; then
   buildFrontPackage
   copyFrontendFilesInS3
+  invalidCloudFrontCache
 else
   echo "First parameter must be either 'backend' or 'frontend'"
 fi
