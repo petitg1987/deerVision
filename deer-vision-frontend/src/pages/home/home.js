@@ -77,7 +77,9 @@ class Home extends Component {
                     </div>
                 </div>
                 <br/><br/><br/>
-                <SocialNetwork logoSize={50} label="Join us on:" onlyCommunityNetwork={false}/>
+                <div className="soc-container">
+                    <SocialNetwork logoSize={50} label="Join us on:" onlyCommunityNetwork={false}/>
+                </div>
             </div>
         );
     }
