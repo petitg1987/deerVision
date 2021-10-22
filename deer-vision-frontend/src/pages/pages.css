@@ -16,3 +16,12 @@ hr {
     height: 2px;
     width: 80%;
 }
+
+.text-link:link, .text-link:visited, .text-link:hover, .text-link:active {
+    color: #007499;
+    text-decoration-style: solid;
+}
+
+.text-link:hover {
+    color: black;
+}

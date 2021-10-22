@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import "../pages.css"
 import "./admin.css"
+import { fetchWithTimeout } from "../../js/request"
 import { isJwtExpired } from 'jwt-check-expiration';
 
 //const backendUrl = "https://backend.deervision.studio/";
@@ -10,7 +11,8 @@ class Admin extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {pwdValue: '', jwtToken: '', logInFail: false};
+        this.state = {pwdValue: '', jwtToken: '', logInFail: false, logInFailReason: ''};
+
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
@@ -24,11 +26,12 @@ class Admin extends Component {
         return jwtToken && jwtToken !== '' && !isJwtExpired(jwtToken);
     }
 
-    logInFail() {
-        this.setState({logInFail: true});
+    logInFail(reason) {
+        this.setState({logInFail: true, logInFailReason: reason});
     }
 
-    logout() {
+    logOut(event) {
+        event.preventDefault();
         localStorage.removeItem('token');
         this.setState({jwtToken: ''});
     }
@@ -36,16 +39,17 @@ class Admin extends Component {
     async handleSubmit(event) {
         event.preventDefault();
         try {
-            let fetchResult = await fetch(backendUrl + 'api/admin/login?password=' + this.state.pwdValue, {method: 'POST'});
+            let fetchResult = await fetchWithTimeout(backendUrl + 'api/admin/login?password=' + this.state.pwdValue, {method: 'POST'});
             let jsonResult = await fetchResult.json();
             let jwtToken = jsonResult.value;
             if (jwtToken && jwtToken !== '') {
                 this.logIn(jwtToken);
             } else {
-                this.logInFail();
+                this.logInFail("wrong password");
             }
         } catch (e) {
             console.log(e);
+            this.logInFail("server unreachable");
         }
     }
 
@@ -56,7 +60,7 @@ class Admin extends Component {
     render() {
         let errorLoginMessage = '';
         if (this.state.logInFail) {
-            errorLoginMessage = <div className="errorMessage">Log in fail: wrong password</div>
+            errorLoginMessage = (<div className="errorMessage">Log in fail: {this.state.logInFailReason}</div>)
         }
 
         if (!this.isLogIn()) {
@@ -78,7 +82,7 @@ class Admin extends Component {
         return (
             <div>
                 <h2>Admin</h2>
-                <div>You are logged men</div>
+                <div><a href="/" onClick={evt => this.logOut(evt)}>Log out</a></div>
             </div>
         );
     }

@@ -12,23 +12,10 @@
     margin-top: 0;
 }
 
-.desc-text a:link,
-.desc-text a:visited,
-.desc-text a:hover,
-.desc-text a:active {
-    color: #007499;
-    text-decoration-style: solid;
-}
-
-.desc-text a:hover {
-    color: black;
-    text-decoration-style: solid;
-}
-
 .desc-text p {
     /* animation start */
     opacity: 0.2;
-    transform: translate(50px, 0);
+    transform: translate(30px, 0);
 }
 
 @keyframes desc-text-p-anim {
@@ -40,7 +27,7 @@
 
 @media (prefers-reduced-motion: no-preference) {
     .desc-text-p-anim-trigger {
-        animation: desc-text-p-anim 1.5s 1;
+        animation: desc-text-p-anim 1.0s 1;
         animation-fill-mode: forwards; /*leaves the animation in the state of the last frame */
     }
 }

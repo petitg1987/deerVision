@@ -37,13 +37,14 @@ class Home extends Component {
                         <Description>
                             <p>Photon Engineer is a <strong>puzzle/building game</strong>. Your goal is to build an automated, efficient and optimized system which fit with the imposed constraints.</p>
                             <p>Join the community: <SocialNetwork logoSize={30} reeditGameUrl="https://www.reddit.com/r/PhotonEngineer/" onlyCommunityNetwork={true}/></p>
-                            <p>Key request for Youtubers, Streamers and press: <a href="https://woovit.com/widget/offer/photon-engineer" target="_blank" rel="noopener noreferrer">Woovit [soon]</a>, {/*TODO: update description/links*/}
-                                <a href="https://www.keymailer.co/g/games/xyz1234" target="_blank" rel="noopener noreferrer">Keymailer [soon]</a></p> {/*TODO: update description/links*/}
+                            <p>Key request for Youtubers, Streamers and press (soon):{' '} {/*TODO: update description*/}
+                                <a className="text-link" href="https://woovit.com/widget/offer/photon-engineer" target="_blank" rel="noopener noreferrer">Woovit</a>, {/*TODO: update links*/}
+                                <a className="text-link" href="https://www.keymailer.co/g/games/xyz1234" target="_blank" rel="noopener noreferrer">Keymailer</a></p> {/*TODO: update links*/}
                         </Description>
                     </div>
                     <div className="home-horizontal-spacer"/>
                     <div className="pe-btn-platform">
-                        <Button text="WATCH TRAILER [SOON]" link="https://www.youtube.com/watch?v=XYZ1234"/> {/*TODO: update description/links*/}
+                        <Button text="TRAILER [SOON]" link="https://www.youtube.com/watch?v=XYZ1234"/> {/*TODO: update description/links*/}
                         <br/>
                         <Button text="BUY ON STEAM [SOON]" link="https://store.steampowered.com/app/1234/Photon_Engineer/"/> {/*TODO: update description/links*/}
                         <br/>
@@ -70,7 +71,7 @@ class Home extends Component {
                         <Description>
                             <p>Deer Vision Studio is an <strong>independent</strong> studio, which develops video games. The studio is located in Belgium (Ardennes).</p>
                             <p>Our philosophy is to publish high quality games and to <strong>listen our community</strong> to constantly improve our games in the right direction. Therefore, it is always a real pleasure to discuss with you on our social networks (see links below).</p>
-                            <p>We like to create our games without any restrictions. This is why we have a home-made game engine (<a href="https://github.com/petitg1987/urchinEngine" target="_blank" rel="noopener noreferrer" title="GitHub">Urchin Engine</a>) and we produce most of our assets. This gives us a full control over the game development process and the only limitations are our imagination!</p>
+                            <p>We like to create our games without any restrictions. This is why we have a home-made game engine (<a className="text-link" href="https://github.com/petitg1987/urchinEngine" target="_blank" rel="noopener noreferrer" title="GitHub">Urchin Engine</a>) and we produce most of our assets. This gives us a full control over the game development process and the only limitations are our imagination!</p>
                         </Description>
                     </div>
                     <div className="home-horizontal-spacer"/>

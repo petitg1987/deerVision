@@ -46,7 +46,7 @@
 
 @media (prefers-reduced-motion: no-preference) {
     .btn-text-anim-trigger {
-        animation: btn-text-anim 1.0s 1;
+        animation: btn-text-anim 1.5s 1;
         animation-fill-mode: forwards; /*leaves the animation in the state of the last frame */
     }
 }
