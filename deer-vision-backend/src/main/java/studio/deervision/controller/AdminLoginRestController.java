@@ -44,7 +44,7 @@ public class AdminLoginRestController {
 
     private String getJWTToken() {
         List<GrantedAuthority> grantedAuthorities = AuthorityUtils.commaSeparatedStringToAuthorityList("ROLE_USER");
-        String token = Jwts
+        return Jwts
                 .builder()
                 .setId("dvsJWT")
                 .setSubject("admin")
@@ -52,6 +52,5 @@ public class AdminLoginRestController {
                 .setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis() + 1000L * 60L * 60L * 24L * 365L * 10L))
                 .signWith(SignatureAlgorithm.HS512, adminProperties.getJwtSecret().getBytes()).compact();
-        return "Bearer " + token;
     }
 }
