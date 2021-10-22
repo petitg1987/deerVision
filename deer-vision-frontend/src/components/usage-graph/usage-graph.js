@@ -16,7 +16,7 @@ class UsageGraph extends Component {
 
     render() {
         return (
-            <div>{this.state.usageJson}</div>
+            <div>{JSON.stringify(this.state.usageJson)}</div>
         );
     }
 }
