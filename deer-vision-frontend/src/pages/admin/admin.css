@@ -5,3 +5,7 @@ fieldset {
 .error-message {
     color: red;
 }
+
+.logout {
+    text-align: center;
+}

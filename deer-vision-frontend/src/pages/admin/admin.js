@@ -70,7 +70,7 @@ class Admin extends Component {
         if (!this.isLogIn()) {
             return (
                 <div>
-                    <h2>Admin</h2>
+                    <h2>Log-in</h2>
                     <form onSubmit={this.handleSubmit}>
                         <fieldset>
                             {errorLoginMessage}
@@ -85,12 +85,18 @@ class Admin extends Component {
 
         return (
             <div>
-                <h2>Admin</h2>
-                <div className="horizontal-spacer"/>
-                <a className="text-link" href="/" onClick={evt => this.logOut(evt)}>Log out</a>
+                <h2>Usages</h2>
                 <div className="vertical-spacer"/>
-                <div className="horizontal-spacer"/>
-                <UsageGraph backendUrl={backendUrl} token={this.getToken()}/>
+                <div className="usage-container">
+                    <UsageGraph backendUrl={backendUrl} token={this.getToken()}/>
+                </div>
+
+                <h2>Errors</h2>
+
+                <div className="logout">
+                    <div className="vertical-spacer"/>
+                    <a className="text-link" href="/" onClick={evt => this.logOut(evt)}>Log out</a>
+                </div>
             </div>
         );
     }
