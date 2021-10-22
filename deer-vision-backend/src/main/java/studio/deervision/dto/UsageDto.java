@@ -1,13 +1,12 @@
 package studio.deervision.dto;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class UsageDto {
 
     List<String> dates;
-    Map<String, List<Long>> appIdUsages = new HashMap<>();
+    List<AppUsageDto> appUsages = new ArrayList<>();
 
     public List<String> getDates() {
         return dates;
@@ -17,11 +16,11 @@ public class UsageDto {
         this.dates = dates;
     }
 
-    public Map<String, List<Long>> getAppUsages() {
-        return appIdUsages;
+    public List<AppUsageDto> getAppUsages() {
+        return appUsages;
     }
 
-    public void addAppUsage(String appId, List<Long> appOsUsages) {
-        appIdUsages.put(appId, appOsUsages);
+    public void addAppUsage(AppUsageDto appUsage) {
+        this.appUsages.add(appUsage);
     }
 }

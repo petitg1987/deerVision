@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import studio.deervision.config.properties.UsageProperties;
+import studio.deervision.dto.AppUsageDto;
 import studio.deervision.dto.UsageDto;
 import studio.deervision.model.OperatingSystem;
 import studio.deervision.service.UsageService;
@@ -53,12 +54,12 @@ public class UsageRestController {
 
         List<String> appIds = usageService.findDistinctAppId();
         for(String appId : appIds) {
-            Map<LocalDate, Long> mapAppUsages = addMissingDates(usageService.findUsagesBetweenDates(appId, startDate, endDate), chartDates);
-            List<Long> appUsages = mapAppUsages.keySet().stream()
+            Map<LocalDate, Long> mapUsageCounts = addMissingDates(usageService.findUsagesBetweenDates(appId, startDate, endDate), chartDates);
+            List<Long> usageCounts = mapUsageCounts.keySet().stream()
                     .sorted()
-                    .map(mapAppUsages::get)
+                    .map(mapUsageCounts::get)
                     .collect(Collectors.toList());
-            usageDto.addAppUsage(appId, appUsages);
+            usageDto.addAppUsage(new AppUsageDto(appId, usageCounts));
         }
 
         return usageDto;
