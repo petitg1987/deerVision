@@ -24,6 +24,12 @@ class Issues extends Component {
         document.querySelector(".popup-background").classList.remove("popup-hide");
     }
 
+    closeIssue(event) {
+        event.preventDefault();
+        this.setState({issueError: ''});
+        document.querySelector(".popup-background").classList.add("popup-hide");
+    }
+
     async deleteIssue(event, issueId) {
         event.preventDefault();
         deleteWithToken(this.props.backendUrl + 'api/admin/issues/' + issueId, this.props.token)
@@ -92,7 +98,7 @@ class Issues extends Component {
                         <div dangerouslySetInnerHTML={{__html: this.state.issueError}}/>
                     </div>
                     <div className="popup-close">
-                        <a href="/" className="text-link">Close</a>
+                        <a className="text-link" href="/" onClick={evt => this.closeIssue(evt)}>Close</a>
                     </div>
                 </div>
 
