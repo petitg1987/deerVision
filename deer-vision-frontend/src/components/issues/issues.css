@@ -11,3 +11,8 @@ td, th {
     padding-right: 15px;
     padding-left: 2px;
 }
+
+th {
+    background-color: #555555;
+    color: #ffffff
+}

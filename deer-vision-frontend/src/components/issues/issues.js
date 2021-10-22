@@ -37,11 +37,9 @@ class Issues extends Component {
                     <td>View | Delete</td>
                 </tr>
             );
-        })
+        });
 
         this.setState({tableData: issuesData});
-
-        console.log(issuesJson);
     }
 
     render() {
@@ -51,8 +49,8 @@ class Issues extends Component {
                     <thead>
                         <tr>
                             <th>Date</th>
-                            <th>App name</th>
-                            <th>App version</th>
+                            <th>Name</th>
+                            <th>Version</th>
                             <th>OS</th>
                             <th>User key</th>
                             <th>Action</th>
