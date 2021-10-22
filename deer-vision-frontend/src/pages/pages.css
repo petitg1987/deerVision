@@ -1,12 +1,13 @@
 h2 {
-    margin: 20px auto 0;
-    width: 180px;
-    font-size: 25px;
-    border: 1px solid #000000;
+    margin: 40px auto 0;
+    width: 240px;
+    font-size: 30px;
     text-align: center;
-    border-radius: 4px;
-    filter: drop-shadow(3px 3px 3px #777777);
-    background-color: #eeeeee;
+    filter: drop-shadow(5px 5px 3px #777777);
+    color: #ffffff;
+    border-radius: 5px;
+    background-color: rgba(80, 81, 89, 0.95);
+    transform: rotate(3deg);
 }
 
 hr {

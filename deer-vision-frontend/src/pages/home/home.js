@@ -15,7 +15,7 @@ class Home extends Component {
             <div>
                 {/*GAMES*/}
                 <div id="games"/>
-                <h2>Our Games</h2>
+                <h2>OUR GAMES</h2>
                 <div className="pe-container">
                     <div className="vertical-spacer"/>
                     <div className="horizontal-spacer"/>
@@ -26,7 +26,7 @@ class Home extends Component {
                     <div className="horizontal-spacer"/>
                     <div className="pe-description">
                         <Description>
-                            <p>Photon Engineer is a <strong>puzzle/building game</strong>. Your goal is to build an automated, efficient and optimized system which fit with the imposed constraints.</p>
+                            <p>Photon Engineer is a <strong>puzzle / building game</strong>. Your goal is to build an automated, efficient and optimized system which fit with the imposed constraints.</p>
                             <p>Join the community:</p> <SocialNetwork logoSize={40} reeditGameUrl="https://www.reddit.com/r/PhotonEngineer/" onlyCommunityNetwork={true}/>
                             <p>Key request for Youtubers, Streamers and press (soon):{' '} {/*TODO: update description*/}
                                 <a className="text-link" href="https://woovit.com/widget/offer/photon-engineer" target="_blank" rel="noopener noreferrer">Woovit</a>, {/*TODO: update links*/}
@@ -56,7 +56,7 @@ class Home extends Component {
                 {/*ABOUT US*/}
                 <hr/>
                 <div id="aboutUs"/>
-                <h2>About Us</h2>
+                <h2>ABOUT US</h2>
                 <div className="pres-container">
                     <div className="vertical-spacer"/>
                     <div className="horizontal-spacer"/>
