@@ -23,6 +23,7 @@ actuator:
 admin:
   password: "$2a$10$SRSz7BSfnjvUnX7/BJyLSufHJOS5z6mDvo4lzeQkVUdYqGYtEx2UG"
   jwt-secret: "ter28CLTTHeTQM8ZSAhk"
+  allowed-origins: "http://127.0.0.1:3000, http://localhost:3000, https://deervision.studio"
 issue:
   version-pattern: ".*(\\d+[.]\\d+[.]\\d+).*"
 usage:
