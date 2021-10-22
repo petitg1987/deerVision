@@ -1,7 +1,8 @@
 <h2 align="center">Deer Vision Website</h2>
 https://deervision.studio
 
-# Features
+# Content
+- Studio presentation
 - Games presentation:
   - Photon Engineer
 - Administration console:
