@@ -24,7 +24,7 @@ public class IssueRestController {
         this.issueService = issueService;
     }
 
-    //curl -X POST -H "Content-Type: text/plain" -H "X-UserKey: 0-17" --data "Error \"description" "http://localhost:5000/api/issues?appId=photonEngineer&appVersion=1.0.0&os=linux"
+    //curl -X POST -H "Content-Type: text/plain" -H "X-UserKey: 0-17" --data "Error description" "http://localhost:5000/api/issues?appId=photonEngineer&appVersion=1.0.0&os=linux"
     //curl -X POST -H "Content-Type: text/plain" -H "X-UserKey: 0-17" --data-binary @test.txt "http://localhost:5000/api/issues?appId=photonEngineer&appVersion=1.0.0-snapshot&os=linux"
     @PostMapping(value = "/issues", consumes = MediaType.TEXT_PLAIN_VALUE)
     public void addIssue(@RequestBody String value, @RequestParam(value="appId") String appId, @RequestParam(value="appVersion") String appVersion, @RequestParam("os") String os) {
