@@ -17,10 +17,6 @@ th {
     color: #ffffff
 }
 
-.popup-visible {
-    display: block;
-}
-
 .popup-hide {
     display: none;
 }

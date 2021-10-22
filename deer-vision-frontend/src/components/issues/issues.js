@@ -21,7 +21,6 @@ class Issues extends Component {
             .replaceAll('\n', '<br />')
             .replaceAll('\t', '&nbsp;&nbsp;&nbsp;&nbsp;');
         this.setState({issueError: htmlValue});
-        document.querySelector(".popup-background").classList.add("popup-visible");
         document.querySelector(".popup-background").classList.remove("popup-hide");
     }
 
@@ -90,7 +89,7 @@ class Issues extends Component {
                 <div className="popup-background popup-hide">
                     <div className="popup-locator"/>
                     <div className="popup">
-                        <div dangerouslySetInnerHTML={{__html: this.state.issueError}}></div>
+                        <div dangerouslySetInnerHTML={{__html: this.state.issueError}}/>
                     </div>
                 </div>
 
