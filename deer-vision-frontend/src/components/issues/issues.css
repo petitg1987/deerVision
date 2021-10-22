@@ -14,7 +14,8 @@ td, th {
 
 th {
     background-color: #555555;
-    color: #ffffff
+    color: #ffffff;
+    height: 45px;
 }
 
 .popup-hide {
@@ -54,11 +55,11 @@ th {
 
 .popup-close {
     position: absolute;
-    background-color: #e4e5eb;
+    background-color: rgba(228, 229, 235, 0.8);
     padding: 5px;
     top: 12%;
     right: 10%;
-    border: 2px solid #555555;
+    border: 2px solid rgba(85, 85, 85, 0.8);
 }
 
 @media screen and (max-width: 800px) {

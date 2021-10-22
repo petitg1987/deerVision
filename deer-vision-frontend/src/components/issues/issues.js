@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import './issues.css';
 import {deleteWithToken, getWithToken} from "../../js/request";
+import seeIcon from "../../images/seeIcon.png";
+import deleteIcon from "../../images/deleteIcon.png";
 
 class Issues extends Component {
 
@@ -61,7 +63,14 @@ class Issues extends Component {
                     <td>{shortAppVersion}</td>
                     <td className="secondary-info">{osName}</td>
                     <td className="secondary-info">{shortUserKey}</td>
-                    <td><a className="text-link" href="/" onClick={evt => this.seeIssue(evt, issue.id)}>See</a> | <a className="text-link" href="/" onClick={evt => this.deleteIssue(evt, issue.id)}>Delete</a></td>
+                    <td>&nbsp;&nbsp;
+                        <a className="text-link" href="/" title="See" onClick={evt => this.seeIssue(evt, issue.id)}>
+                            <img src={seeIcon} alt="See Icon" width="25" height="25"/>
+                        </a>&nbsp;&nbsp;&nbsp;
+                        <a className="text-link" href="/" title="Delete" onClick={evt => this.deleteIssue(evt, issue.id)}>
+                            <img src={deleteIcon} alt="Delete Icon" width="25" height="25"/>
+                        </a>
+                    </td>
                 </tr>
             );
         });
@@ -74,17 +83,25 @@ class Issues extends Component {
     }
 
     render() {
+        if (this.state.tableData.length === 0) {
+            return (
+                <div>
+                    No issues
+                </div>
+            )
+        }
+
         return (
             <div>
                 <table>
                     <thead>
                         <tr>
                             <th>Date</th>
-                            <th>Name</th>
+                            <th>Application</th>
                             <th>Version</th>
                             <th className="secondary-info">OS</th>
                             <th className="secondary-info">User key</th>
-                            <th>Action</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -101,7 +118,6 @@ class Issues extends Component {
                         <a className="text-link" href="/" onClick={evt => this.closeIssue(evt)}>Close</a>
                     </div>
                 </div>
-
             </div>
         );
     }
