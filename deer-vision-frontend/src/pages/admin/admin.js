@@ -4,6 +4,7 @@ import "./admin.css"
 import {postRequest} from "../../js/request"
 import {isJwtExpired} from 'jwt-check-expiration';
 import UsageGraph from "../../components/usage-graph/usage-graph";
+import Issues from "../../components/issues/issues";
 
 //const backendUrl = "https://backend.deervision.studio/";
 const backendUrl = "http://127.0.0.1:5000/";
@@ -71,12 +72,13 @@ class Admin extends Component {
             return (
                 <div>
                     <h2>Log-in</h2>
+                    <div className="vertical-spacer"/>
                     <form onSubmit={this.handleSubmit}>
                         <fieldset>
                             {errorLoginMessage}
                             <label htmlFor="password">Password: </label>
                             <input type="password" name="password" id="password" autoCapitalize="none" value={this.state.pwdValue} onChange={evt => this.updateInputValue(evt)}/>
-                            <br/>
+                            <br/><br/>
                             <button type="submit">Log in</button>
                         </fieldset>
                     </form>
@@ -91,7 +93,10 @@ class Admin extends Component {
                     <UsageGraph backendUrl={backendUrl} token={this.getToken()}/>
                 </div>
 
-                <h2>Errors</h2>
+                <h2>Issues</h2>
+                <div className="issues-container">
+                    <Issues backendUrl={backendUrl} token={this.getToken()}/>
+                </div>
 
                 <div className="logout">
                     <div className="vertical-spacer"/>
