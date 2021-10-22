@@ -94,6 +94,7 @@ class Admin extends Component {
                     <UsageGraph backendUrl={backendUrl} token={this.getToken()}/>
                 </div>
 
+                <hr/>
                 <h2>Issues</h2>
                 <div className="issues-container">
                     <div className="vertical-spacer"/>
@@ -103,7 +104,9 @@ class Admin extends Component {
 
                 <div className="logout-container">
                     <div className="vertical-spacer"/>
-                    <a className="text-link" href="/" onClick={evt => this.logOut(evt)}>Log out</a>
+                    <small>
+                        <a className="text-link" href="/" onClick={evt => this.logOut(evt)}>Log out</a>
+                    </small>
                 </div>
             </div>
         );

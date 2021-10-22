@@ -17,8 +17,55 @@ th {
     color: #ffffff
 }
 
+.popup-visible {
+    display: block;
+}
+
+.popup-hide {
+    display: none;
+}
+
+.popup-background {
+    background: rgba(0, 0, 0, .4);
+    cursor: pointer;
+    height: 100%;
+    position: fixed;
+    text-align: center;
+    top: 0;
+    width: 100%;
+    z-index: 200;
+}
+
+.popup-locator {
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+}
+
+.popup {
+    cursor: text;
+    background-color: #ffffff;
+    box-shadow: 10px 10px 60px #555555;
+    display: inline-block;
+    height: 75%;
+    vertical-align: middle;
+    width: 80%;
+    position: relative;
+    padding: 15px 15px;
+    overflow: scroll;
+    text-align: left;
+    font-family: Courier New, serif;
+    font-size: 12px;
+}
+
 @media screen and (max-width: 800px) {
-    .secondaryInfo {
+    .secondary-info {
         display: none;
     }
+
+    .popup {
+        font-size: 10px;
+    }
 }
+
+

@@ -6,16 +6,29 @@ class Issues extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {tableData: []};
+        this.state = {tableData: [], issueError: ''};
     }
 
-    async deleteDone() {
-        await this.refreshIssues();
+    async seeIssue(event, issueId) {
+        event.preventDefault();
+        let issuesJson = await getWithToken(this.props.backendUrl + 'api/admin/issues/' + issueId, this.props.token);
+        let htmlValue = issuesJson.value
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;")
+            .replaceAll('\n', '<br />')
+            .replaceAll('\t', '&nbsp;&nbsp;&nbsp;&nbsp;');
+        this.setState({issueError: htmlValue});
+        document.querySelector(".popup-background").classList.add("popup-visible");
+        document.querySelector(".popup-background").classList.remove("popup-hide");
     }
 
     async deleteIssue(event, issueId) {
         event.preventDefault();
-        deleteWithToken(this.props.backendUrl + 'api/admin/issues/' + issueId, this.props.token).then(() => this.deleteDone());
+        deleteWithToken(this.props.backendUrl + 'api/admin/issues/' + issueId, this.props.token)
+            .then(async () => {await this.refreshIssues()});
     }
 
     async refreshIssues() {
@@ -41,9 +54,9 @@ class Issues extends Component {
                     <td>{issue.dateTime}</td>
                     <td>{appName}</td>
                     <td>{shortAppVersion}</td>
-                    <td className="secondaryInfo">{osName}</td>
-                    <td className="secondaryInfo">{shortUserKey}</td>
-                    <td>View | <a className="text-link" href="/" onClick={evt => this.deleteIssue(evt, issue.id)}>Delete</a></td>
+                    <td className="secondary-info">{osName}</td>
+                    <td className="secondary-info">{shortUserKey}</td>
+                    <td><a className="text-link" href="/" onClick={evt => this.seeIssue(evt, issue.id)}>See</a> | <a className="text-link" href="/" onClick={evt => this.deleteIssue(evt, issue.id)}>Delete</a></td>
                 </tr>
             );
         });
@@ -64,8 +77,8 @@ class Issues extends Component {
                             <th>Date</th>
                             <th>Name</th>
                             <th>Version</th>
-                            <th className="secondaryInfo">OS</th>
-                            <th className="secondaryInfo">User key</th>
+                            <th className="secondary-info">OS</th>
+                            <th className="secondary-info">User key</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -73,6 +86,14 @@ class Issues extends Component {
                         {this.state.tableData}
                     </tbody>
                 </table>
+
+                <div className="popup-background popup-hide">
+                    <div className="popup-locator"/>
+                    <div className="popup">
+                        <div dangerouslySetInnerHTML={{__html: this.state.issueError}}></div>
+                    </div>
+                </div>
+
             </div>
         );
     }
