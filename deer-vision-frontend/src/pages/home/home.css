@@ -4,23 +4,6 @@
     top: -85px;
 }
 
-.home-vertical-spacer {
-    clear: both;
-    height: 30px;
-}
-
-.home-horizontal-spacer {
-    float: left;
-    width: 10%;
-    height: 1px;
-}
-
-@media screen and (max-width: 800px) {
-    .home-horizontal-spacer {
-        width: 2%;
-    }
-}
-
 /* Games */
 .pe-container {
     overflow: hidden;

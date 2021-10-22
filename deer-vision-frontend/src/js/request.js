@@ -11,3 +11,20 @@ export async function fetchWithTimeout(resource, options = {}) {
     clearTimeout(id);
     return response;
 }
+
+export async function postRequest(resource) {
+    let fetchResult = await fetchWithTimeout(resource, {
+        method: 'POST'
+    });
+    return await fetchResult.json();
+}
+
+export async function getWithToken(resource, token) {
+    let fetchResult = await fetchWithTimeout(resource, {
+        method: 'GET',
+        headers: new Headers({
+            'Authorization': 'Bearer ' + token,
+        })
+    });
+    return await fetchResult.json();
+}

@@ -25,3 +25,20 @@ hr {
 .text-link:hover {
     color: black;
 }
+
+.vertical-spacer {
+    clear: both;
+    height: 30px;
+}
+
+.horizontal-spacer {
+    float: left;
+    width: 10%;
+    height: 1px;
+}
+
+@media screen and (max-width: 800px) {
+    .horizontal-spacer {
+        width: 2%;
+    }
+}

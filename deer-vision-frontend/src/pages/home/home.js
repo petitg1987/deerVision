@@ -17,7 +17,7 @@ class Home extends Component {
                 <div id="news"/>
                 <h2>News</h2>
                 <br/><br/><br/><br/>
-                <div className="home-horizontal-spacer"/>
+                <div className="horizontal-spacer"/>
                 Coming soon...
                 <br/><br/><br/><br/><br/><br/>
 
@@ -26,13 +26,13 @@ class Home extends Component {
                 <div id="games"/>
                 <h2>Our Games</h2>
                 <div className="pe-container">
-                    <div className="home-vertical-spacer"/>
-                    <div className="home-horizontal-spacer"/>
+                    <div className="vertical-spacer"/>
+                    <div className="horizontal-spacer"/>
                     <div className="pe-title">
                         <img src={photonEngineerLogo} alt="Photon Engineer Logo" width="300px" height="75px"/>
                     </div>
-                    <div className="home-vertical-spacer"/>
-                    <div className="home-horizontal-spacer"/>
+                    <div className="vertical-spacer"/>
+                    <div className="horizontal-spacer"/>
                     <div className="pe-description">
                         <Description>
                             <p>Photon Engineer is a <strong>puzzle/building game</strong>. Your goal is to build an automated, efficient and optimized system which fit with the imposed constraints.</p>
@@ -42,7 +42,7 @@ class Home extends Component {
                                 <a className="text-link" href="https://www.keymailer.co/g/games/xyz1234" target="_blank" rel="noopener noreferrer">Keymailer</a></p> {/*TODO: update links*/}
                         </Description>
                     </div>
-                    <div className="home-horizontal-spacer"/>
+                    <div className="horizontal-spacer"/>
                     <div className="pe-btn-platform">
                         <Button text="TRAILER [SOON]" link="https://www.youtube.com/watch?v=XYZ1234"/> {/*TODO: update description/links*/}
                         <br/>
@@ -50,7 +50,7 @@ class Home extends Component {
                         <br/>
                         <Button text="BUY ON ITCH.IO [SOON]" link="https://deervision.itch.io/photon-engineer"/> {/*TODO: update description*/}
                     </div>
-                    <div className="home-vertical-spacer"/>
+                    <div className="vertical-spacer"/>
                     <div className="pe-screenshots">
                         <Carousel autoPlay={false} showThumbs={false} infiniteLoop={false} showStatus={false}>
                                 <img src="/photon-engineer/screenshot1.png" alt="Photon Engineer screenshot 1" />
@@ -65,8 +65,8 @@ class Home extends Component {
                 <div id="aboutUs"/>
                 <h2>About Us</h2>
                 <div className="pres-container">
-                    <div className="home-vertical-spacer"/>
-                    <div className="home-horizontal-spacer"/>
+                    <div className="vertical-spacer"/>
+                    <div className="horizontal-spacer"/>
                     <div className="pres-description">
                         <Description>
                             <p>Deer Vision Studio is an <strong>independent</strong> studio, which develops video games. The studio is located in Belgium (Ardennes).</p>
@@ -74,7 +74,7 @@ class Home extends Component {
                             <p>We like to create our games without any restrictions. This is why we have a home-made game engine (<a className="text-link" href="https://github.com/petitg1987/urchinEngine" target="_blank" rel="noopener noreferrer" title="GitHub">Urchin Engine</a>) and we produce most of our assets. This gives us a full control over the game development process and the only limitations are our imagination!</p>
                         </Description>
                     </div>
-                    <div className="home-horizontal-spacer"/>
+                    <div className="horizontal-spacer"/>
                     <div className="pres-logo">
                         <img src={studioLogo} alt="Studio Logo" width="300" height="300"/>
                     </div>

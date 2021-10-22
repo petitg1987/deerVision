@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
 import "../pages.css"
 import "./admin.css"
-import { fetchWithTimeout } from "../../js/request"
-import { isJwtExpired } from 'jwt-check-expiration';
+import {postRequest} from "../../js/request"
+import {isJwtExpired} from 'jwt-check-expiration';
+import UsageGraph from "../../components/usage-graph/usage-graph";
 
 //const backendUrl = "https://backend.deervision.studio/";
 const backendUrl = "http://127.0.0.1:5000/";
@@ -21,8 +22,12 @@ class Admin extends Component {
         this.setState({logInFail: false, jwtToken: jwtToken});
     }
 
+    getToken() {
+        return localStorage.getItem('token');
+    }
+
     isLogIn() {
-        let jwtToken = localStorage.getItem('token');
+        let jwtToken = this.getToken();
         return jwtToken && jwtToken !== '' && !isJwtExpired(jwtToken);
     }
 
@@ -39,8 +44,7 @@ class Admin extends Component {
     async handleSubmit(event) {
         event.preventDefault();
         try {
-            let fetchResult = await fetchWithTimeout(backendUrl + 'api/admin/login?password=' + this.state.pwdValue, {method: 'POST'});
-            let jsonResult = await fetchResult.json();
+            let jsonResult = await postRequest(backendUrl + 'api/admin/login?password=' + this.state.pwdValue);
             let jwtToken = jsonResult.value;
             if (jwtToken && jwtToken !== '') {
                 this.logIn(jwtToken);
@@ -60,7 +64,7 @@ class Admin extends Component {
     render() {
         let errorLoginMessage = '';
         if (this.state.logInFail) {
-            errorLoginMessage = (<div className="errorMessage">Log in fail: {this.state.logInFailReason}</div>)
+            errorLoginMessage = (<div className="error-message">Log in fail: {this.state.logInFailReason}</div>)
         }
 
         if (!this.isLogIn()) {
@@ -82,7 +86,11 @@ class Admin extends Component {
         return (
             <div>
                 <h2>Admin</h2>
-                <div><a href="/" onClick={evt => this.logOut(evt)}>Log out</a></div>
+                <div className="horizontal-spacer"/>
+                <a className="text-link" href="/" onClick={evt => this.logOut(evt)}>Log out</a>
+                <div className="vertical-spacer"/>
+                <div className="horizontal-spacer"/>
+                <UsageGraph backendUrl={backendUrl} token={this.getToken()}/>
             </div>
         );
     }
