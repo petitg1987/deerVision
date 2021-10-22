@@ -28,3 +28,12 @@ export async function getWithToken(resource, token) {
     });
     return await fetchResult.json();
 }
+
+export async function deleteWithToken(resource, token) {
+    return await fetchWithTimeout(resource, {
+        method: 'DELETE',
+        headers: new Headers({
+            'Authorization': 'Bearer ' + token,
+        })
+    });
+}

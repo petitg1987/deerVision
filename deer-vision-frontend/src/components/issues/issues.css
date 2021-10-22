@@ -8,11 +8,17 @@ table {
 
 td, th {
     border: 1px solid #000000;
-    padding-right: 15px;
+    padding-right: 10px;
     padding-left: 2px;
 }
 
 th {
     background-color: #555555;
     color: #ffffff
+}
+
+@media screen and (max-width: 800px) {
+    .secondaryInfo {
+        display: none;
+    }
 }

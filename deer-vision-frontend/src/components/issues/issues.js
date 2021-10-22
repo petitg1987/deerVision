@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import './issues.css';
-import {getWithToken} from "../../js/request";
+import {deleteWithToken, getWithToken} from "../../js/request";
 
 class Issues extends Component {
 
@@ -9,7 +9,16 @@ class Issues extends Component {
         this.state = {tableData: []};
     }
 
-    async componentDidMount() {
+    async deleteDone() {
+        await this.refreshIssues();
+    }
+
+    async deleteIssue(event, issueId) {
+        event.preventDefault();
+        deleteWithToken(this.props.backendUrl + 'api/admin/issues/' + issueId, this.props.token).then(() => this.deleteDone());
+    }
+
+    async refreshIssues() {
         let issuesJson = await getWithToken(this.props.backendUrl + 'api/admin/issues', this.props.token);
 
         let issuesData = [];
@@ -32,14 +41,18 @@ class Issues extends Component {
                     <td>{issue.dateTime}</td>
                     <td>{appName}</td>
                     <td>{shortAppVersion}</td>
-                    <td>{osName}</td>
-                    <td>{shortUserKey}</td>
-                    <td>View | Delete</td>
+                    <td className="secondaryInfo">{osName}</td>
+                    <td className="secondaryInfo">{shortUserKey}</td>
+                    <td>View | <a className="text-link" href="/" onClick={evt => this.deleteIssue(evt, issue.id)}>Delete</a></td>
                 </tr>
             );
         });
 
         this.setState({tableData: issuesData});
+    }
+
+    async componentDidMount() {
+        await this.refreshIssues();
     }
 
     render() {
@@ -51,8 +64,8 @@ class Issues extends Component {
                             <th>Date</th>
                             <th>Name</th>
                             <th>Version</th>
-                            <th>OS</th>
-                            <th>User key</th>
+                            <th className="secondaryInfo">OS</th>
+                            <th className="secondaryInfo">User key</th>
                             <th>Action</th>
                         </tr>
                     </thead>
