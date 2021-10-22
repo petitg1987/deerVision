@@ -23,7 +23,6 @@ th {
 
 .popup-background {
     background: rgba(0, 0, 0, .4);
-    cursor: pointer;
     height: 100%;
     position: fixed;
     text-align: center;
@@ -39,7 +38,6 @@ th {
 }
 
 .popup {
-    cursor: text;
     background-color: #ffffff;
     box-shadow: 10px 10px 60px #555555;
     display: inline-block;
@@ -52,6 +50,15 @@ th {
     text-align: left;
     font-family: Courier New, serif;
     font-size: 12px;
+}
+
+.popup-close {
+    position: absolute;
+    background-color: #e4e5eb;
+    padding: 5px;
+    top: 12%;
+    right: 10%;
+    border: 2px solid #555555;
 }
 
 @media screen and (max-width: 800px) {

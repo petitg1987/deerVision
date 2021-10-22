@@ -91,6 +91,9 @@ class Issues extends Component {
                     <div className="popup">
                         <div dangerouslySetInnerHTML={{__html: this.state.issueError}}/>
                     </div>
+                    <div className="popup-close">
+                        <a href="/" className="text-link">Close</a>
+                    </div>
                 </div>
 
             </div>
