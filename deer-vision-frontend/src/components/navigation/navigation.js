@@ -38,10 +38,7 @@ class Navigation extends Component {
                 <div className="nav-spacing">&nbsp;</div>
                 <ul className="nav-menu-ul" id="nav-menu-id">
                     <li className="nav-menu-link-container">
-                        <Link to="/#news" className="nav-menu-link" onClick={() => this.navMenuLinkClick()}>News</Link>
-                    </li>
-                    <li className="nav-menu-link-container">
-                        <Link to="/#games" className="nav-menu-link" onClick={() => this.navMenuLinkClick()}>Games</Link>
+                        <Link to="/#games" className="nav-menu-link" onClick={() => this.navMenuLinkClick()}>Our Games</Link>
                     </li>
                     <li className="nav-menu-link-container">
                         <Link to="/#aboutUs" className="nav-menu-link" onClick={() => this.navMenuLinkClick()}>About Us</Link>

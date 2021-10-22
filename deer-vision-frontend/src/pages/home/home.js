@@ -13,16 +13,7 @@ class Home extends Component {
     render() {
         return (
             <div>
-                {/*NEWS*/}
-                <div id="news"/>
-                <h2>News</h2>
-                <br/><br/><br/><br/>
-                <div className="horizontal-spacer"/>
-                Coming soon...
-                <br/><br/><br/><br/><br/><br/>
-
                 {/*GAMES*/}
-                <hr/>
                 <div id="games"/>
                 <h2>Our Games</h2>
                 <div className="pe-container">
@@ -52,6 +43,7 @@ class Home extends Component {
                         <Button text="BUY ON ITCH.IO [SOON]" link="https://deervision.itch.io/photon-engineer"/> {/*TODO: update description*/}
                     </div>
                     <div className="vertical-spacer"/>
+                    <div className="horizontal-spacer"/>
                     <div className="pe-screenshots">
                         <Carousel autoPlay={false} showThumbs={false} infiniteLoop={false} showStatus={false}>
                                 <img src="/photon-engineer/screenshot1.png" alt="Photon Engineer screenshot 1" />
@@ -72,7 +64,7 @@ class Home extends Component {
                         <Description>
                             <p>Deer Vision Studio is an <strong>independent</strong> studio, which develops video games. The studio is located in Belgium (Ardennes).</p>
                             <p>Our philosophy is to publish high quality games and to <strong>listen our community</strong> to constantly improve our games in the right direction. Therefore, it is always a real pleasure to discuss with you on our social networks (see links below).</p>
-                            <p>We like to create our games without any restrictions. This is why we have a home-made game engine (<a className="text-link" href="https://github.com/petitg1987/urchinEngine" target="_blank" rel="noopener noreferrer" title="GitHub">Urchin Engine</a>) and we produce most of our assets. This gives us a full control over the game development process and the only limitations are our imagination!</p>
+                            <p>We like to create our games without any restrictions. This is why we have a home-made game engine (<a className="text-link" href="https://github.com/petitg1987/urchinEngine" target="_blank" rel="noopener noreferrer" title="Git Hub">Urchin Engine</a>) and we produce most of our assets. This gives us a full control over the game development process and the only limitations are our imagination!</p>
                         </Description>
                     </div>
                     <div className="horizontal-spacer"/>

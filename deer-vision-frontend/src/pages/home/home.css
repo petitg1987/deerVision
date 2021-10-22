@@ -23,9 +23,9 @@
 }
 
 .pe-screenshots {
-    margin: auto;
-    width: 80%;
-    max-width: 800px;
+    float: left;
+    width: 90%;
+    max-width: 1100px;
 }
 
 .pe-screenshots img {
