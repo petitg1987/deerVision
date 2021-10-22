@@ -95,6 +95,8 @@ class Admin extends Component {
 
                 <h2>Issues</h2>
                 <div className="issues-container">
+                    <div className="vertical-spacer"/>
+                    <div className="horizontal-spacer"/>
                     <Issues backendUrl={backendUrl} token={this.getToken()}/>
                 </div>
 
