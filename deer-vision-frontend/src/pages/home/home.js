@@ -31,7 +31,6 @@ class Home extends Component {
                             <p>Key request for Youtubers, Streamers and press (soon):{' '} {/*TODO: update description*/}
                                 <a className="text-link" href="https://woovit.com/widget/offer/photon-engineer" target="_blank" rel="noopener noreferrer">Woovit</a>, {/*TODO: update links*/}
                                 <a className="text-link" href="https://www.keymailer.co/g/games/xyz1234" target="_blank" rel="noopener noreferrer">Keymailer</a></p> {/*TODO: update links*/}
-
                         </Description>
                     </div>
                     <div className="horizontal-spacer"/>

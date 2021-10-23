@@ -565,21 +565,18 @@
        inkscape:export-ydpi="89.868568"
        r="34.684372" />
     <g
-       id="g1337"
-       style="stroke:#00ffff;stroke-opacity:0.18184637"
+       id="g3557"
+       style="fill:#ffcc00;fill-opacity:0;stroke:#00ffff;stroke-width:0.644699;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.181846;filter:url(#filter4153)"
+       transform="matrix(2.4427409,0.04910544,0.05556451,3.1276483,-30.415436,-477.10961)"
        inkscape:export-filename="/home/greg/project/deerVision/src/main/resources/static/img/DeerVisionStudio.png"
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96">
       <g
-         id="g3557"
-         style="fill:#ffcc00;fill-opacity:0;stroke:#00ffff;stroke-width:0.644699;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.18184637;filter:url(#filter4153)"
-         transform="matrix(2.4427409,0.04910544,0.05556451,3.1276483,-91.269603,-477.10961)"
-         inkscape:export-filename="/home/greg/project/deerVision/src/main/resources/static/img/DeerVisionStudio.png"
-         inkscape:export-xdpi="96"
-         inkscape:export-ydpi="96">
+         id="g981"
+         transform="translate(-25.354567,0.39807762)">
         <path
            id="rect874"
-           style="fill:#ffcc00;fill-opacity:0;stroke:#00ffff;stroke-width:0.458305;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:6.21543;stroke-opacity:0.18184637"
+           style="fill:#ffcc00;fill-opacity:0;stroke:#00ffff;stroke-width:0.458305;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:6.21543;stroke-opacity:0.181846"
            d="m 66.783789,181.15912 0.661915,-1.81034 2.691712,2.83289 -1.798989,1.32979 z"
            sodipodi:nodetypes="ccccc"
            inkscape:export-filename="/home/greg/project/deerVision/src/main/resources/static/img/studioLogo.png"
@@ -587,7 +584,7 @@
            inkscape:export-ydpi="89.868568" />
         <path
            id="rect876"
-           style="fill:#ffcc00;fill-opacity:0;stroke:#00ffff;stroke-width:0.458305;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:6.21543;stroke-opacity:0.18184637"
+           style="fill:#ffcc00;fill-opacity:0;stroke:#00ffff;stroke-width:0.458305;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:6.21543;stroke-opacity:0.181846"
            inkscape:transform-center-x="0.89062331"
            inkscape:transform-center-y="1.8470252"
            d="m 61.722614,176.49324 5.723092,2.85554 -0.661916,1.81034 -6.843829,-3.68532 z"
@@ -597,7 +594,7 @@
            inkscape:export-ydpi="89.868568" />
         <path
            id="rect881"
-           style="fill:#ffcc00;fill-opacity:0;stroke:#00ffff;stroke-width:0.458305;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:6.21543;stroke-opacity:0.18184637"
+           style="fill:#ffcc00;fill-opacity:0;stroke:#00ffff;stroke-width:0.458305;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:6.21543;stroke-opacity:0.181846"
            d="m 57.812087,172.36316 0.849236,-0.4604 3.061292,4.59048 -1.782654,0.98056 z"
            sodipodi:nodetypes="ccccc"
            inkscape:export-filename="/home/greg/project/deerVision/src/main/resources/static/img/studioLogo.png"
@@ -605,7 +602,7 @@
            inkscape:export-ydpi="89.868568" />
         <path
            id="rect887"
-           style="fill:#ffcc00;fill-opacity:0;stroke:#00ffff;stroke-width:0.458305;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:6.21543;stroke-opacity:0.18184637"
+           style="fill:#ffcc00;fill-opacity:0;stroke:#00ffff;stroke-width:0.458305;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:6.21543;stroke-opacity:0.181846"
            d="m 61.089421,168.78018 0.601949,0.54308 -1.246835,5.21874 -0.923547,-1.34139 z"
            sodipodi:nodetypes="ccccc"
            inkscape:export-filename="/home/greg/project/deerVision/src/main/resources/static/img/studioLogo.png"
@@ -613,7 +610,7 @@
            inkscape:export-ydpi="89.868568" />
         <path
            id="rect887-6"
-           style="fill:#ffcc00;fill-opacity:0;stroke:#00ffff;stroke-width:0.458305;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:6.21543;stroke-opacity:0.18184637"
+           style="fill:#ffcc00;fill-opacity:0;stroke:#00ffff;stroke-width:0.458305;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:6.21543;stroke-opacity:0.181846"
            d="m 63.974187,174.17032 1.143016,0.57555 -1.040915,2.86665 -1.131609,-0.60845 z"
            sodipodi:nodetypes="ccccc"
            inkscape:export-filename="/home/greg/project/deerVision/src/main/resources/static/img/studioLogo.png"
@@ -621,7 +618,7 @@
            inkscape:export-ydpi="89.868568" />
         <path
            id="rect905"
-           style="fill:#ffcc00;fill-opacity:0;stroke:#00ffff;stroke-width:0.458305;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:6.21543;stroke-opacity:0.18184637"
+           style="fill:#ffcc00;fill-opacity:0;stroke:#00ffff;stroke-width:0.458305;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:6.21543;stroke-opacity:0.181846"
            d="m 64.848386,171.51731 0.520352,0.15003 -0.251535,3.07853 -1.143016,-0.57555 z"
            sodipodi:nodetypes="ccccc"
            inkscape:export-filename="/home/greg/project/deerVision/src/main/resources/static/img/studioLogo.png"
@@ -629,7 +626,7 @@
            inkscape:export-ydpi="89.868568" />
         <path
            id="rect874-7"
-           style="fill:#ffcc00;fill-opacity:0;stroke:#00ffff;stroke-width:0.458305;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:6.21543;stroke-opacity:0.18184637"
+           style="fill:#ffcc00;fill-opacity:0;stroke:#00ffff;stroke-width:0.458305;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:6.21543;stroke-opacity:0.181846"
            d="m 73.460485,181.15452 -0.660067,-1.80943 -2.663002,2.83658 1.786499,1.32732 z"
            sodipodi:nodetypes="ccccc"
            inkscape:export-filename="/home/greg/project/deerVision/src/main/resources/static/img/studioLogo.png"
@@ -637,7 +634,7 @@
            inkscape:export-ydpi="89.868568" />
         <path
            id="rect876-5"
-           style="fill:#ffcc00;fill-opacity:0;stroke:#00ffff;stroke-width:0.458305;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:6.21543;stroke-opacity:0.18184637"
+           style="fill:#ffcc00;fill-opacity:0;stroke:#00ffff;stroke-width:0.458305;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:6.21543;stroke-opacity:0.181846"
            inkscape:transform-center-x="-0.88307262"
            inkscape:transform-center-y="1.8470242"
            d="m 78.469057,176.48171 -5.668639,2.86338 0.660067,1.80943 6.778148,-3.69469 z"
@@ -647,7 +644,7 @@
            inkscape:export-ydpi="89.868568" />
         <path
            id="rect881-3"
-           style="fill:#ffcc00;fill-opacity:0;stroke:#00ffff;stroke-width:0.458305;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:6.21543;stroke-opacity:0.18184637"
+           style="fill:#ffcc00;fill-opacity:0;stroke:#00ffff;stroke-width:0.458305;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:6.21543;stroke-opacity:0.181846"
            d="m 82.337846,172.34627 -0.84299,-0.45923 -3.025801,4.59467 1.769578,0.97812 z"
            sodipodi:nodetypes="ccccc"
            inkscape:export-filename="/home/greg/project/deerVision/src/main/resources/static/img/studioLogo.png"
@@ -655,7 +652,7 @@
            inkscape:export-ydpi="89.868568" />
         <path
            id="rect887-5"
-           style="fill:#ffcc00;fill-opacity:0;stroke:#00ffff;stroke-width:0.458305;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:6.21543;stroke-opacity:0.18184637"
+           style="fill:#ffcc00;fill-opacity:0;stroke:#00ffff;stroke-width:0.458305;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:6.21543;stroke-opacity:0.181846"
            d="m 79.080854,168.76779 -0.595716,0.54391 1.247107,5.21702 0.912931,-1.34267 z"
            sodipodi:nodetypes="ccccc"
            inkscape:export-filename="/home/greg/project/deerVision/src/main/resources/static/img/studioLogo.png"
@@ -663,7 +660,7 @@
            inkscape:export-ydpi="89.868568" />
         <path
            id="rect887-6-6"
-           style="fill:#ffcc00;fill-opacity:0;stroke:#00ffff;stroke-width:0.458305;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:6.21543;stroke-opacity:0.18184637"
+           style="fill:#ffcc00;fill-opacity:0;stroke:#00ffff;stroke-width:0.458305;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:6.21543;stroke-opacity:0.181846"
            d="m 76.231746,174.16188 -1.13213,0.57712 1.038048,2.86521 1.12075,-0.61 z"
            sodipodi:nodetypes="ccccc"
            inkscape:export-filename="/home/greg/project/deerVision/src/main/resources/static/img/studioLogo.png"
@@ -671,7 +668,7 @@
            inkscape:export-ydpi="89.868568" />
         <path
            id="rect905-2"
-           style="fill:#ffcc00;fill-opacity:0;stroke:#00ffff;stroke-width:0.458305;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:6.21543;stroke-opacity:0.18184637"
+           style="fill:#ffcc00;fill-opacity:0;stroke:#00ffff;stroke-width:0.458305;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:6.21543;stroke-opacity:0.181846"
            d="m 75.359445,171.51007 -0.515628,0.15074 0.255799,3.07819 1.13213,-0.57712 z"
            sodipodi:nodetypes="ccccc"
            inkscape:export-filename="/home/greg/project/deerVision/src/main/resources/static/img/studioLogo.png"
