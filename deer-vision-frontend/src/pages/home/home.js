@@ -44,7 +44,7 @@ class Home extends Component {
                     <div className="vertical-spacer"/>
                     <div className="horizontal-spacer"/>
                     <div className="pe-screenshots">
-                        <Carousel autoPlay={false} showThumbs={false} infiniteLoop={false} showStatus={false}>
+                        <Carousel autoPlay={false} showThumbs={false} infiniteLoop={false} showStatus={false} preventMovementUntilSwipeScrollTolerance={true} swipeScrollTolerance={50}>
                                 <img src="/photon-engineer/screenshot1.png" alt="Photon Engineer screenshot 1" />
                                 <img src="/photon-engineer/screenshot2.png" alt="Photon Engineer screenshot 2" />
                                 <img src="/photon-engineer/screenshot3.png" alt="Photon Engineer screenshot 3" />

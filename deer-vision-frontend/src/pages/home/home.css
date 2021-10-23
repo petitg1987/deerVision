@@ -38,6 +38,10 @@
         max-width: 800px;
     }
 
+    .pe-screenshots {
+        width: 100%;
+    }
+
     .pe-btn-platform {
         text-align: center;
         width: 100%;
