@@ -17,6 +17,7 @@ https://deervision.studio
   - Launch Jar: `java -jar ./target/deer-vision-[VERSION].jar`
 - Frontend:
   - Move in frontend folder: `cd deer-vision-frontend`
+  - Execute (one shot): `yarn install`
   - Execute: `yarn start`
 
 ## AWS
