@@ -61,7 +61,7 @@
 
 @media screen and (max-width: 800px) {
     .nav-logo {
-        padding-left: 1px;
+        padding-left: 0;
     }
 
     .nav-menu-ul {
