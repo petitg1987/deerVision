@@ -24,14 +24,14 @@ class Navigation extends Component {
             <nav className="nav">
                 <div className="nav-logo-and-hamburger">
                     <Link to="/#">
-                        <img className="nav-logo" src={studioLogoMini} alt="Studio Logo" width="60" height="60"/>
+                        <img className="nav-logo" src={studioLogoMini} alt="Studio Logo" width="61" height="61"/>
                         <div className="nav-logo-text">Deer Vision Studio</div>
                     </Link>
                     <Link to="#" className="nav-hamburger-icon" onClick={() => this.navMenuIconClick()}>
-                        <svg viewBox="0 0 100 80" width="23" height="18.4">
-                            <rect fill="#ffffff" y="0"  width="100" height="18" rx="8"/>
-                            <rect fill="#ffffff" y="30" width="100" height="18" rx="8"/>
-                            <rect fill="#ffffff" y="60" width="100" height="18" rx="8"/>
+                        <svg viewBox="0 0 100 100" width="23" height="21">
+                            <rect fill="#ffffff" y="0"  width="100" height="21" rx="8"/>
+                            <rect fill="#ffffff" y="39" width="100" height="21" rx="8"/>
+                            <rect fill="#ffffff" y="79" width="100" height="21" rx="8"/>
                         </svg>
                     </Link>
                 </div>

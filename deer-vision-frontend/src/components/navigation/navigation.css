@@ -8,13 +8,12 @@
 
 .nav-logo {
     float: left;
-    padding-top: 1px;
     padding-left: 6pc;
 }
 
 .nav-logo-text {
     float: left;
-    padding: 22px 5px;
+    padding: 20px 10px;
     font-weight: bold;
 }
 
@@ -46,13 +45,18 @@
 }
 
 .nav-menu-link {
-    padding: 22px 16px;
+    padding: 20px 16px;
 }
 
 .nav-hamburger-icon {
     display: none;
     float: right;
-    padding: 20px 16px;
+    padding: 20px 12px;
+    margin: 0;
+}
+
+.nav-hamburger-icon svg {
+    display: block;
 }
 
 @media screen and (max-width: 800px) {
