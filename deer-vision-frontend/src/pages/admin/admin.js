@@ -6,8 +6,8 @@ import {isJwtExpired} from 'jwt-check-expiration';
 import UsageGraph from "../../components/usage-graph/usage-graph";
 import Issues from "../../components/issues/issues";
 
-//const backendUrl = "https://backend.deervision.studio/";
-const backendUrl = "http://127.0.0.1:5000/";
+const backendUrl = "https://backend.deervision.studio/";
+//const backendUrl = "http://127.0.0.1:5000/";
 
 class Admin extends Component {
 
@@ -73,6 +73,7 @@ class Admin extends Component {
                 <div>
                     <h2>Log-in</h2>
                     <div className="vertical-spacer"/>
+                    <div className="horizontal-spacer"/>
                     <form onSubmit={this.handleSubmit}>
                         <fieldset>
                             {errorLoginMessage}
@@ -94,7 +95,6 @@ class Admin extends Component {
                     <UsageGraph backendUrl={backendUrl} token={this.getToken()}/>
                 </div>
 
-                <hr/>
                 <h2>Issues</h2>
                 <div className="issues-container">
                     <div className="vertical-spacer"/>

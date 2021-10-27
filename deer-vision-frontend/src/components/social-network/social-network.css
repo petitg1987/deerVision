@@ -9,7 +9,7 @@
 
 .network-logo {
     margin: 7px;
-    filter: drop-shadow(5px 5px 2px #777777);
+    filter: drop-shadow(5px 5px 2px #202020);
 
     /* animation start */
     transform: scale(0.6, 0.6);
@@ -21,7 +21,7 @@
 }
 
 .network-logo-wrapper:hover {
-    filter: drop-shadow(6px 6px 2px #777777);
+    filter: drop-shadow(6px 6px 2px #202020);
     transform: scale(1.1, 1.1);
 }
 

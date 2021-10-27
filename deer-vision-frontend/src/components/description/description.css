@@ -5,7 +5,7 @@
 .desc-text p::first-letter {
     font-weight: bold;
     font-size: 1.3em;
-    color: #007499;
+    color: #0089b5;
 }
 
 .desc-text p:first-child {

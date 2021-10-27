@@ -3,10 +3,10 @@ h2 {
     width: 90%;
     font-size: 25px;
     text-align: center;
-    color: #ffffff;
-    background-color: rgba(80, 81, 89, 0.4);
-    border-bottom: 2px solid #007499;
-    border-top: 2px solid #007499;
+    color: #505050;
+    background-color: #a0a0a0;
+    border-bottom: 4px solid #0089b5;
+    border-radius: 25px;
 }
 
 hr {
@@ -18,12 +18,12 @@ hr {
 }
 
 .text-link:link, .text-link:visited, .text-link:hover, .text-link:active {
-    color: #007499;
+    color: #0089b5;
     text-decoration-style: solid;
 }
 
 .text-link:hover {
-    color: black;
+    color: #ffffff;
 }
 
 .vertical-spacer {

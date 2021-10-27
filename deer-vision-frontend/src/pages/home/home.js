@@ -16,15 +16,15 @@ class Home extends Component {
                 {/*GAMES*/}
                 <div id="games"/>
                 <h2>{"OUR GAMES"}</h2>
-                <div className="pe-container">
+                <div className="game-container">
                     <div className="vertical-spacer"/>
                     <div className="horizontal-spacer"/>
-                    <div className="pe-title">
-                        <img src={photonEngineerLogo} alt="Photon Engineer Logo" width="300px" height="75px"/>
+                    <div>
+                        <img src={photonEngineerLogo} className="pe-logo" alt="Photon Engineer Logo" width="300px" height="75px"/>
                     </div>
                     <div className="vertical-spacer"/>
                     <div className="horizontal-spacer"/>
-                    <div className="pe-description">
+                    <div className="game-description">
                         <Description>
                             <p>Photon Engineer is a <strong>puzzle / building game</strong>. Your goal is to build an automated, efficient and optimized system which fit with the imposed constraints.</p>
                             <p>Join the community:</p> <SocialNetwork logoSize={40} reeditGameUrl="https://www.reddit.com/r/PhotonEngineer/" onlyCommunityNetwork={true}/>
@@ -34,7 +34,7 @@ class Home extends Component {
                         </Description>
                     </div>
                     <div className="horizontal-spacer"/>
-                    <div className="pe-btn-platform">
+                    <div className="game-btn-platform">
                         <Button text="TRAILER [SOON]" link="https://www.youtube.com/watch?v=XYZ1234"/> {/*TODO: update description/links*/}
                         <br/>
                         <Button text="BUY ON STEAM [SOON]" link="https://store.steampowered.com/app/1234/Photon_Engineer/"/> {/*TODO: update description/links*/}
@@ -43,7 +43,7 @@ class Home extends Component {
                     </div>
                     <div className="vertical-spacer"/>
                     <div className="horizontal-spacer"/>
-                    <div className="pe-screenshots">
+                    <div className="game-screenshots">
                         <Carousel autoPlay={false} showThumbs={false} infiniteLoop={false} showStatus={false} preventMovementUntilSwipeScrollTolerance={true} swipeScrollTolerance={50}>
                                 <img src="/photon-engineer/screenshot1.png" alt="Photon Engineer screenshot 1" />
                                 <img src="/photon-engineer/screenshot2.png" alt="Photon Engineer screenshot 2" />

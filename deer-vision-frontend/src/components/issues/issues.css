@@ -39,8 +39,8 @@ th {
 }
 
 .popup {
-    background-color: #ffffff;
-    box-shadow: 10px 10px 60px #555555;
+    background-color: #404040;
+    box-shadow: 10px 10px 60px #202020;
     display: inline-block;
     height: 75%;
     vertical-align: middle;
@@ -55,11 +55,11 @@ th {
 
 .popup-close {
     position: absolute;
-    background-color: rgba(228, 229, 235, 0.8);
+    background-color: #505050;
     padding: 5px;
     top: 12%;
     right: 10%;
-    border: 2px solid rgba(85, 85, 85, 0.8);
+    border: 2px solid #808080;
 }
 
 @media screen and (max-width: 800px) {
