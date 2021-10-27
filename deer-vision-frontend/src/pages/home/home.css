@@ -42,7 +42,7 @@
 }
 
 .pe-logo {
-    filter: contrast(1.4);
+    filter: saturate(140%);
 }
 
 /* About Us */
