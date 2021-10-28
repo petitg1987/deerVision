@@ -63,13 +63,19 @@ class Issues extends Component {
                     <td>{shortAppVersion}</td>
                     <td className="secondary-info">{osName}</td>
                     <td className="secondary-info">{shortUserKey}</td>
-                    <td>&nbsp;&nbsp;
-                        <a className="text-link" href="/" title="See" onClick={evt => this.seeIssue(evt, issue.id)}>
-                            <img src={seeIcon} alt="See Icon" width="25" height="25"/>
-                        </a>&nbsp;&nbsp;&nbsp;
-                        <a className="text-link" href="/" title="Delete" onClick={evt => this.deleteIssue(evt, issue.id)}>
-                            <img src={deleteIcon} alt="Delete Icon" width="25" height="25"/>
-                        </a>
+                    <td>
+                        <div className="issues-actions">
+                            <div className="issues-action">
+                                <a className="text-link" href="/" title="See" onClick={evt => this.seeIssue(evt, issue.id)}>
+                                    <img src={seeIcon} alt="See Icon" width="25" height="25"/>
+                                </a>
+                            </div>
+                            <div className="issues-action">
+                                <a className="text-link" href="/" title="Delete" onClick={evt => this.deleteIssue(evt, issue.id)}>
+                                    <img src={deleteIcon} alt="Delete Icon" width="25" height="25"/>
+                                </a>
+                            </div>
+                        </div>
                     </td>
                 </tr>
             );
