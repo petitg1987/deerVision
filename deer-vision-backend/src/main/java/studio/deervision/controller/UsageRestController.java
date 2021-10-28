@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
 @RequestMapping("/api")
 public class UsageRestController {
 
-    private static final String CHARTS_DATE_FORMAT = "dd-MM-yyyy";
+    private static final String CHARTS_DATE_FORMAT = "dd/MM";
 
     private final UsageService usageService;
     private final UsageProperties usageProperties;

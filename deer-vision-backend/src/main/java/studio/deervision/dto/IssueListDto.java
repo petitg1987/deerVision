@@ -18,7 +18,7 @@ public class IssueListDto {
         this.userKey = lightIssue.getUserKey();
         this.appId = lightIssue.getAppId();
         this.appVersion = lightIssue.getAppVersion();
-        this.dateTime = DateTimeFormatter.ofPattern("dd/MM/yyyy HH':'mm':'ss").format(lightIssue.getDateTime());
+        this.dateTime = DateTimeFormatter.ofPattern("dd/MM/yy HH':'mm':'ss").format(lightIssue.getDateTime());
         this.operatingSystem = lightIssue.getOperatingSystem().toOperatingSystemString();
     }
 
