@@ -23,6 +23,10 @@
 # Deploy the application
 * Backend:
   * Execute: `./deploy/deploy.sh backend`
-  * Check log on server: `ssh -o "StrictHostKeyChecking=no" -i /home/greg/.ssh/deervision.pem "ubuntu@[PUBLIC_IP]"`
+  * Check log on server:
+    ```bash
+    EC2_PUBLIC_IP=$(aws ec2 describe-addresses | jq -r '.Addresses[0].PublicIp')
+    ssh -o "StrictHostKeyChecking=no" -i /home/greg/.ssh/deervision.pem "ubuntu@${EC2_PUBLIC_IP}"
+    ```
 * Frontend:
   * Execute: `./deploy/deploy.sh frontend`
