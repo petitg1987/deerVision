@@ -1,5 +1,5 @@
 .nav {
-    background-color: rgba(50, 50, 50, 0.95);
+    background-color: rgba(50, 50, 60, 0.95);
     overflow: hidden; /* clear float property to display main content at the next line (https://css-tricks.com/all-about-floats/)  */
     margin: 0;
     padding: 0;
@@ -34,7 +34,7 @@
 }
 
 .nav-menu-link-container a:hover {
-    background-color: #505050;
+    background-color: #50505d;
 }
 
 .nav-logo-text, .nav-menu-link {

@@ -8,12 +8,13 @@ table {
 
 td, th {
     border: 1px solid #000000;
+    background-color: #40404d;
     padding-right: 7px;
     padding-left: 7px;
 }
 
 th {
-    background-color: #555555;
+    background-color: #50505d;
     color: #ffffff;
     height: 45px;
 }
@@ -49,7 +50,7 @@ th {
 }
 
 .popup {
-    background-color: #404040;
+    background-color: #40404d;
     box-shadow: 10px 10px 60px #202020;
     display: inline-block;
     height: 75%;
@@ -65,7 +66,7 @@ th {
 
 .popup-close {
     position: absolute;
-    background-color: #505050;
+    background-color: #50505d;
     padding: 5px;
     top: 12%;
     right: 10%;

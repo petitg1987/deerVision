@@ -1,5 +1,5 @@
 /* Common */
-#games, #news, #aboutUs {
+#games, #about-us {
     position: relative;
     top: -105px;
 }
@@ -42,7 +42,7 @@
 }
 
 .pe-logo {
-    filter: saturate(140%);
+    filter: saturate(130%);
 }
 
 /* About Us */

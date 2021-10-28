@@ -24,7 +24,7 @@
 }
 
 .btn:hover {
-    background-color: #505050;
+    background-color: #50505d;
 }
 
 .btn:hover::after {
