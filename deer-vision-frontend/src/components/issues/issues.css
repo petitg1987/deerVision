@@ -51,25 +51,26 @@ th {
 
 .popup {
     background-color: #40404d;
-    box-shadow: 10px 10px 60px #202020;
+    box-shadow: 5px 5px 10px #202020;
     display: inline-block;
     height: 75%;
     vertical-align: middle;
     width: 80%;
     position: relative;
-    padding: 15px 15px;
+    padding: 5px 5px;
     overflow: scroll;
     text-align: left;
     font-family: Courier New, serif;
     font-size: 12px;
+    border: 1px dotted #909090;
 }
 
 .popup-close {
     position: absolute;
     background-color: #50505d;
     padding: 5px;
-    top: 12%;
-    right: 10%;
+    top: 13%;
+    right: 11%;
     border: 2px solid #808080;
 }
 
