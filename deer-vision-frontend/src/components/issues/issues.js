@@ -21,6 +21,7 @@ class Issues extends Component {
             .replace(/"/g, "&quot;")
             .replace(/'/g, "&#039;")
             .replaceAll('\n', '<br />')
+            .replaceAll('  ', '&nbsp;&nbsp;')
             .replaceAll('\t', '&nbsp;&nbsp;&nbsp;&nbsp;');
         this.setState({issueError: htmlValue});
         document.querySelector(".popup-background").classList.remove("popup-hide");
