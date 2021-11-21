@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import studioLogoMini from "../../images/studioLogoMini.png";
+import studioLogoMini from "../../images/studioLogoMini.webp";
 import { HashLink as Link } from 'react-router-hash-link';
 import './navigation.css';
 

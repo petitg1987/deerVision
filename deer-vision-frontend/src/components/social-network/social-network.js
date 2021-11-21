@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
-import discordLogo from "../../images/discordLogo.png";
-import youtubeLogo from "../../images/youtubeLogo.png";
-import reeditLogo from "../../images/reeditLogo.png";
-import twitterLogo from "../../images/twitterLogo.png";
+import discordLogo from "../../images/discordLogo.webp";
+import youtubeLogo from "../../images/youtubeLogo.webp";
+import reeditLogo from "../../images/reeditLogo.webp";
+import twitterLogo from "../../images/twitterLogo.webp";
 import './social-network.css';
 import uniqueId from 'lodash/uniqueId'
 

@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import "../pages.css"
 import "./home.css"
-import photonEngineerLogo from "../../images/photon-engineer/logo.png";
+import photonEngineerLogo from "../../images/photon-engineer/logo.webp";
 import Description from "../../components/description/description";
 import SocialNetwork from "../../components/social-network/social-network";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from 'react-responsive-carousel';
 import Button from "../../components/button/button";
-import studioLogo from "../../images/studioLogo.png";
+import studioLogo from "../../images/studioLogo.webp";
 
 class Home extends Component {
     render() {
@@ -45,9 +45,9 @@ class Home extends Component {
                     <div className="horizontal-spacer"/>
                     <div className="game-screenshots">
                         <Carousel autoPlay={false} showThumbs={false} infiniteLoop={false} showStatus={false} preventMovementUntilSwipeScrollTolerance={true} swipeScrollTolerance={50}>
-                                <img src="/photon-engineer/screenshot1.png" alt="Photon Engineer screenshot 1" />
-                                <img src="/photon-engineer/screenshot2.png" alt="Photon Engineer screenshot 2" />
-                                <img src="/photon-engineer/screenshot3.png" alt="Photon Engineer screenshot 3" />
+                                <img src="/photon-engineer/screenshot1.webp" alt="Photon Engineer screenshot 1" />
+                                <img src="/photon-engineer/screenshot2.webp" alt="Photon Engineer screenshot 2" />
+                                <img src="/photon-engineer/screenshot3.webp" alt="Photon Engineer screenshot 3" />
                         </Carousel>
                     </div>
                 </div>

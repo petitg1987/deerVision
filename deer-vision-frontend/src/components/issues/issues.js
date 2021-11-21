@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import './issues.css';
 import {deleteWithToken, getWithToken} from "../../js/request";
-import seeIcon from "../../images/seeIcon.png";
-import deleteIcon from "../../images/deleteIcon.png";
+import seeIcon from "../../images/seeIcon.webp";
+import deleteIcon from "../../images/deleteIcon.webp";
 
 class Issues extends Component {
 
