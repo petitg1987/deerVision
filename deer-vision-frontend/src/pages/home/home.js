@@ -45,9 +45,9 @@ class Home extends Component {
                     <div className="horizontal-spacer"/>
                     <div className="game-screenshots">
                         <Carousel autoPlay={false} showThumbs={false} infiniteLoop={false} showStatus={false} preventMovementUntilSwipeScrollTolerance={true} swipeScrollTolerance={50}>
-                                <img src="/photon-engineer/screenshot1.webp" alt="Photon Engineer screenshot 1" />
-                                <img src="/photon-engineer/screenshot2.webp" alt="Photon Engineer screenshot 2" />
-                                <img src="/photon-engineer/screenshot3.webp" alt="Photon Engineer screenshot 3" />
+                                <img src="/photon-engineer/screenshot1_619p.webp" alt="Photon Engineer screenshot 1" width="1100" height="619" />
+                                <img src="/photon-engineer/screenshot2_619p.webp" alt="Photon Engineer screenshot 2" width="1100" height="619" />
+                                <img src="/photon-engineer/screenshot3_619p.webp" alt="Photon Engineer screenshot 3" width="1100" height="619" />
                         </Carousel>
                     </div>
                 </div>

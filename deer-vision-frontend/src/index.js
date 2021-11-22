@@ -2,9 +2,9 @@ import React, {Component, Suspense} from 'react';
 import ReactDOM from 'react-dom';
 import {BrowserRouter, Switch, Route} from 'react-router-dom';
 import Navigation from "./components/navigation/navigation";
+import Home from './pages/home/home';
 import './index.css';
 
-const Main = React.lazy(() => import('./pages/home/home'))
 const Admin = React.lazy(() => import('./pages/admin/admin'))
 
 class Index extends Component {
@@ -26,7 +26,7 @@ class Index extends Component {
                     <div className="content">
                         <Suspense fallback={<div>Loading...</div>}>
                             <Switch>
-                                <Route exact path='/' component={Main}/>
+                                <Route exact path='/' component={Home}/>
                                 <Route exact path='/admin' component={Admin}/>
                             </Switch>
                         </Suspense>
