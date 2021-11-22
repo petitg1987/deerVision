@@ -29,6 +29,10 @@
     border: 2px solid #ffffff;
 }
 
+.game-screenshots img {
+    height: auto;
+}
+
 @media screen and (max-width: 800px) {
     .game-description {
         width: 94%;
