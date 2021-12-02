@@ -15,7 +15,7 @@ class Home extends Component {
             <div>
                 {/*GAMES*/}
                 <div id="games"/>
-                <h2>OUR GAMES:</h2>
+                <h2>OUR GAMES</h2>
                 <div className="game-container">
                     <div className="vertical-spacer"/>
                     <div className="horizontal-spacer"/>
@@ -56,7 +56,7 @@ class Home extends Component {
                 {/*ABOUT US*/}
                 <div className="vertical-spacer"/>
                 <div id="about-us"/>
-                <h2>ABOUT US:</h2>
+                <h2>ABOUT US</h2>
                 <div className="pres-container">
                     <div className="vertical-spacer"/>
                     <div className="horizontal-spacer"/>

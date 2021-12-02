@@ -47,6 +47,8 @@
 
 .pe-logo {
     filter: saturate(130%);
+    position: relative;
+    left: -2%;
 }
 
 /* About Us */
@@ -72,6 +74,10 @@
 }
 
 @media screen and (max-width: 800px) {
+    .pe-logo {
+        left: 0;
+    }
+
     .pres-description {
         width: 94%;
         max-width: 800px;

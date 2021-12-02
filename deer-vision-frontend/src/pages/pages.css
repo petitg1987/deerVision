@@ -1,12 +1,11 @@
 h2 {
     margin: 40px auto 10px;
-    width: 60%;
+    width: 90%;
     font-size: 22px;
     text-align: center;
-    color: #50505d;
-    background-color: #a0a0ac;
+    color: #ffffff;
+    border-top: 4px solid #0089b5;
     border-bottom: 4px solid #0089b5;
-    border-radius: 25px;
 }
 
 hr {
@@ -40,9 +39,5 @@ hr {
 @media screen and (max-width: 800px) {
     .horizontal-spacer {
         width: 2%;
-    }
-
-    h2 {
-        width: 90%;
     }
 }
