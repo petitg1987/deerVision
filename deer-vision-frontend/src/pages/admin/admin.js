@@ -88,7 +88,7 @@ class Admin extends Component {
 
         return (
             <div>
-                <h2>Usages:</h2>
+                <h2>Usages</h2>
                 <div className="usage-container">
                     <div className="vertical-spacer"/>
                     <div className="horizontal-spacer"/>
@@ -96,7 +96,7 @@ class Admin extends Component {
                 </div>
 
                 <div className="vertical-spacer"/>
-                <h2>Issues:</h2>
+                <h2>Issues</h2>
                 <div className="issues-container">
                     <div className="vertical-spacer"/>
                     <div className="horizontal-spacer"/>
