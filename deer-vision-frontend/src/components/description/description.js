@@ -13,8 +13,8 @@ class Description extends Component {
                 }
             });
         });
-        const paragraphes = document.querySelectorAll('.desc-text p');
-        paragraphes.forEach(e => observer.observe(e));
+        const paragraphs = document.querySelectorAll('.desc-text p');
+        paragraphs.forEach(e => observer.observe(e));
     }
 
     render() {

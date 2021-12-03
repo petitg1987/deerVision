@@ -3,6 +3,7 @@ import './issues.css';
 import {deleteWithToken, getWithToken} from "../../js/request";
 import seeIcon from "../../images/seeIcon.webp";
 import deleteIcon from "../../images/deleteIcon.webp";
+import Description from "../description/description";
 
 class Issues extends Component {
 
@@ -93,7 +94,9 @@ class Issues extends Component {
         if (this.state.tableData.length === 0) {
             return (
                 <div>
-                    No issues
+                    <Description>
+                        <p>No issues</p>
+                    </Description>
                 </div>
             )
         }
