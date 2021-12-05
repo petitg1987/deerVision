@@ -5,7 +5,6 @@ import photonEngineerLogo from "../../images/photon-engineer/logo.webp";
 import Description from "../../components/description/description";
 import SocialNetwork from "../../components/social-network/social-network";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
-import { Carousel } from 'react-responsive-carousel';
 import Button from "../../components/button/button";
 import studioLogo from "../../images/studioLogo.webp";
 
@@ -44,17 +43,20 @@ class Home extends Component {
                     <div className="vertical-spacer"/>
                     <div className="horizontal-spacer"/>
                     <div className="game-screenshots">
-                        <Carousel autoPlay={false} showThumbs={false} infiniteLoop={false} showStatus={false} preventMovementUntilSwipeScrollTolerance={true} swipeScrollTolerance={50}>
-                                <img src="/photon-engineer/screenshot1_619p.webp" alt="Photon Engineer screenshot 1" width="1100" height="619" />
-                                <img src="/photon-engineer/screenshot2_619p.webp" alt="Photon Engineer screenshot 2" width="1100" height="619" />
-                                <img src="/photon-engineer/screenshot3_619p.webp" alt="Photon Engineer screenshot 3" width="1100" height="619" />
-                        </Carousel>
+                        <div className="game-screenshot">
+                            <img src="/photon-engineer/screenshot1_619p.webp" alt="Photon Engineer screenshot 1" width="1100" height="619" />
+                        </div>
+                        <div className="game-screenshot">
+                            <img src="/photon-engineer/screenshot2_619p.webp" alt="Photon Engineer screenshot 2" width="1100" height="619" />
+                        </div>
+                        <div className="game-screenshot">
+                            <img src="/photon-engineer/screenshot3_619p.webp" alt="Photon Engineer screenshot 3" width="1100" height="619" />
+                        </div>
                     </div>
                 </div>
                 {/*<hr/>*/}
 
                 {/*ABOUT US*/}
-                <div className="vertical-spacer"/>
                 <div id="about-us"/>
                 <h2>ABOUT US</h2>
                 <div className="pres-container">

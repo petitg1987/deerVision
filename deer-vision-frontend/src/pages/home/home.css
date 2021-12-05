@@ -24,13 +24,20 @@
 
 .game-screenshots {
     float: left;
-    width: 95%;
-    max-width: 1100px;
-    border: 2px solid #ffffff;
+    position: relative;
 }
 
-.game-screenshots img {
+.game-screenshot {
+    width: calc(100% - 4px);
+    max-width: 1100px;
+    border: 2px solid #ffffff;
+    margin-bottom: 15px;
+}
+
+.game-screenshot img {
     height: auto;
+    width: 100%;
+    padding: 0;
 }
 
 @media screen and (max-width: 800px) {
