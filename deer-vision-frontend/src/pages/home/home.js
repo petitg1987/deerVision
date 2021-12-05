@@ -4,7 +4,6 @@ import "./home.css"
 import photonEngineerLogo from "../../images/photon-engineer/logo.webp";
 import Description from "../../components/description/description";
 import SocialNetwork from "../../components/social-network/social-network";
-import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import Button from "../../components/button/button";
 import studioLogo from "../../images/studioLogo.webp";
 
