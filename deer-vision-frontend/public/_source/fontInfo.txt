@@ -1,3 +1,4 @@
 Name: Broshk
 Type: 100% free
 Source: https://www.dafont.com/broshk.font
+Setup: sudo cp BroshK.ttf /usr/share/fonts/
