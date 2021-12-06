@@ -3,6 +3,20 @@ import studioLogoMini from "../../images/studioLogoMini.webp";
 import { HashLink as Link } from 'react-router-hash-link';
 import './navigation.css';
 
+let prevScrollPos = window.pageYOffset;
+window.onscroll = function() {
+    if (window.matchMedia("(max-width: 800px)").matches) {
+        let currentScrollPos = window.pageYOffset;
+        if (prevScrollPos > currentScrollPos + 2 || document.scrollTop === 0) {
+            document.getElementById("nav-id").style.opacity = "1.0";
+            prevScrollPos = currentScrollPos;
+        } else if (prevScrollPos < currentScrollPos - 10) {
+            document.getElementById("nav-id").style.opacity = "0.0";
+            prevScrollPos = currentScrollPos;
+        }
+    }
+}
+
 class Navigation extends Component {
 
     navMenuIconClick(evt) {
@@ -22,7 +36,7 @@ class Navigation extends Component {
 
     render() {
         return (
-            <nav className="nav">
+            <nav className="nav" id="nav-id">
                 <div className="nav-logo-and-hamburger">
                     <a href="/#">
                         <img className="nav-logo" src={studioLogoMini} alt="Studio Logo" width="61" height="61"/>
