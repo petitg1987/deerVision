@@ -1,6 +1,6 @@
 import React, {Component, Suspense} from 'react';
 import ReactDOM from 'react-dom';
-import {BrowserRouter, Switch, Route} from 'react-router-dom';
+import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import Navigation from "./components/navigation/navigation";
 import Home from './pages/home/home';
 import './index.css';
@@ -25,10 +25,10 @@ class Index extends Component {
                     </header>
                     <div className="content">
                         <Suspense fallback={<div>Loading...</div>}>
-                            <Switch>
-                                <Route exact path='/' component={Home}/>
-                                <Route exact path='/admin' component={Admin}/>
-                            </Switch>
+                            <Routes>
+                                <Route exact path='/' element={<Home/>}/>
+                                <Route exact path='/admin' element={<Admin/>}/>
+                            </Routes>
                         </Suspense>
                     </div>
                     <footer>
