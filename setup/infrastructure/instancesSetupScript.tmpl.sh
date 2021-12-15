@@ -4,7 +4,7 @@
 cd /home/ubuntu/ || exit
 sudo apt update
 sudo add-apt-repository -y ppa:certbot/certbot
-sudo apt install -y certbot python3-certbot-dns-route53 nginx ruby wget nfs-common cron openjdk-16-jre
+sudo apt install -y certbot python3-certbot-dns-route53 nginx ruby wget nfs-common cron openjdk-17-jre
 
 #Mount (and format) volume
 sudo mkdir ./data
