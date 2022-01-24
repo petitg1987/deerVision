@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import "../pages.css"
 import "./privacy.css"
 import Description from "../../components/description/description";
+import SocialNetwork from "../../components/social-network/social-network";
 
 class PrivacyPolicy extends Component {
 
@@ -14,53 +15,75 @@ class PrivacyPolicy extends Component {
                     <div className="horizontal-spacer"/>
                     <div className="pp-description">
                         <Description>
-                            <div className={"sub-title"}>Types of information collected:</div>
-                            <div className={"sub-category"}>Personal information:</div>
+                            <p>Last update: 24th of January 2022</p>
+                        </Description>
+                        <div className={"sub-title"}>Types of information collected:</div>
+                        <div className={"sub-category"}>Personal information:</div>
+                        <Description>
                             <p>
                                 Definition: personal information is information that would allow to identify or contact you, including, for example, your full name, address, telephone number, or email address.
                                 <br/><br/>
                                 Personal information collected:
-                                <ul>
-                                    <li><i>None</i></li>
-                                </ul>
                             </p>
-                            <div className={"sub-category"}>Non-personal information:</div>
+                        </Description>
+                        <ul>
+                            <li><i>None</i></li>
+                        </ul>
+                        <div className={"sub-category"}>Non-personal information:</div>
+                        <Description>
                             <p>
                                 Definition: non-personal information means information that cannot be used to identify a specific user.
                                 <br/><br/>
                                 Non-personal information collected:
-                                <ul>
-                                    <li>Game usage statistics</li>
-                                    <li>Crash logs (including: graphics card name, CPU name, total memory and operating system name)</li>
-                                </ul>
                             </p>
+                        </Description>
+                        <ul>
+                            <li>Game usage statistics</li>
+                            <li>Crash logs (including: game logs, game settings, graphics card name, CPU name, total memory and operating system name)</li>
+                        </ul>
 
-                            <div className={"sub-title"}>How information collected becomes in use:</div>
-                            <p>The company may use and collect non-personal information to provide and improve the service. The company reserves the right to process non-personal information collected from users. These may include:
-                                <ul>
-                                    <li>Tracking usage patterns and analyzing trends of users</li>
-                                    <li>Technical problem resolution</li>
-                                    <li>Searching user statistics and provision of leaderboard</li>
-                                </ul>
-                            </p>
+                        <div className={"sub-title"}>How information collected becomes in use:</div>
+                        <Description>
+                            <p>The company may use and collect non-personal information to provide and improve the service. The company reserves the right to process non-personal information collected from users. These may include:</p>
+                        </Description>
+                        <ul>
+                            <li>Tracking usage patterns and analyzing trends of users</li>
+                            <li>Technical problem resolution</li>
+                            <li>Searching user statistics and provision of leaderboard</li>
+                        </ul>
 
-                            <div className={"sub-title"}>Retention of your data:</div>
+                        <div className={"sub-title"}>Retention of your data:</div>
+                        <Description>
                             <p>The company will retain your information only for as long as is necessary for the purposes set out in this privacy policy.</p>
+                        </Description>
 
-
-                            <div className={"sub-title"}>How we protect information collected:</div>
+                        <div className={"sub-title"}>How we protect information collected:</div>
+                        <Description>
                             <p>The company is committed to provide safeguards with the information collected to ensure that the information is not lost, stolen, exposed, altered or damaged. However, it is difficult to guarantee complete protection of all information. Hence, you should acknowledge that complete protection of information cannot be guaranteed if you choose to use our services.</p>
+                        </Description>
 
-                            <div className={"sub-title"}>Who has access to the information:</div>
-                            <p>Only the employees of the company can access to the collected information. The information is not shared with third parties.</p>
+                        <div className={"sub-title"}>Who has access to the information:</div>
+                        <Description>
+                            <p>Only the company can access to the collected information. The information is not shared with third parties.</p>
+                        </Description>
 
-                            <div className={"sub-title"}>Your rights:</div>
+                        <div className={"sub-title"}>Your rights:</div>
+                        <Description>
                             <p>
                                 As there is no personal information collected, the personal information removal request is meaningless.
                                 <br/>
                                 All our games provide settings to disable the collection of no-personal information.
                             </p>
                         </Description>
+                        <div className={"sub-title"}>Amendments:</div>
+                        <Description>
+                            <p>We reserve the right to modify this privacy policy at any time, so please review it frequently. If we make material changes to this policy, we will also revise the "last update" date at the top of this privacy policy. Your continued use of our games will signify your acceptance of the changes to our privacy policy.</p>
+                        </Description>
+                        <div className={"sub-title"}>Contact:</div>
+                        <Description>
+                            <p>For any questions relating to the privacy policy, please contact us via private messages on one of these platforms:</p>
+                        </Description>
+                        <SocialNetwork logoSize={40} onlyCommunityNetwork={true}/>
                     </div>
                 </div>
 
