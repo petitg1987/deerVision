@@ -71,7 +71,7 @@ class Admin extends Component {
         if (!this.isLogIn()) {
             return (
                 <div>
-                    <h2>Log-in:</h2>
+                    <h2>Log-in</h2>
                     <div className="vertical-spacer"/>
                     <div className="horizontal-spacer"/>
                     <form onSubmit={this.handleSubmit}>
