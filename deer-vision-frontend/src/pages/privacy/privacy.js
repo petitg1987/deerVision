@@ -9,7 +9,7 @@ class Privacy extends Component {
     render() {
         return (
             <div>
-                <h2>Games privacy policy</h2>
+                <h2>Privacy Policy: Games</h2>
                 <div className="pp-container">
                     <div className="vertical-spacer"/>
                     <div className="horizontal-spacer"/>
@@ -87,7 +87,7 @@ class Privacy extends Component {
                     </div>
                 </div>
 
-                <h2>Website privacy policy</h2>
+                <h2>Privacy Policy: Website</h2>
                 <div className="pp-container">
                     <div className="vertical-spacer"/>
                     <div className="horizontal-spacer"/>
