@@ -65,10 +65,10 @@ class PrivacyPolicy extends Component {
                 </div>
 
                 <h2>Website privacy policy</h2>
-                <div>
+                <div className="pp-container">
                     <div className="vertical-spacer"/>
                     <div className="horizontal-spacer"/>
-                    <div>
+                    <div className="pp-description">
                         <Description>
                             <p>This website does not collect any data and do not use cookies.</p>
                         </Description>
