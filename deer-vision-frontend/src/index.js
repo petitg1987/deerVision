@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import Navigation from "./components/navigation/navigation";
 import Home from './pages/home/home';
-import PrivacyPolicy from "./pages/privacy/privacy";
+import Privacy from "./pages/privacy/privacy";
 import './index.css';
 
 const Admin = React.lazy(() => import('./pages/admin/admin'))
@@ -29,12 +29,12 @@ class Index extends Component {
                             <Routes>
                                 <Route exact path='/' element={<Home/>}/>
                                 <Route exact path='/admin' element={<Admin/>}/>
-                                <Route exact path='/privacy-policy' element={<PrivacyPolicy/>}/>
+                                <Route exact path='/privacy' element={<Privacy/>}/>
                             </Routes>
                         </Suspense>
                     </div>
                     <footer>
-                        <center><br/><small>&copy; {this.currentYear}, Deer Vision Studio | <a className={"text-link"} href={"/privacy-policy"}>Privacy Policy</a></small><br/><br/></center>
+                        <center><br/><small>&copy; {this.currentYear}, Deer Vision Studio | <a className={"text-link"} href={"/privacy"}>privacy</a></small><br/><br/></center>
                     </footer>
                 </div>
             </BrowserRouter>

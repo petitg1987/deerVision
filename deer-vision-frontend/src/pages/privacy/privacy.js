@@ -4,7 +4,7 @@ import "./privacy.css"
 import Description from "../../components/description/description";
 import SocialNetwork from "../../components/social-network/social-network";
 
-class PrivacyPolicy extends Component {
+class Privacy extends Component {
 
     render() {
         return (
@@ -101,4 +101,4 @@ class PrivacyPolicy extends Component {
     }
 }
 
-export default PrivacyPolicy;
+export default Privacy;
