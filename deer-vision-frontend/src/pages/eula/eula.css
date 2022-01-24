@@ -22,3 +22,10 @@
     text-decoration: underline;
     padding-top: 8px;
 }
+
+@media screen and (max-width: 800px) {
+    .eula-description {
+        width: 94%;
+        max-width: 800px;
+    }
+}

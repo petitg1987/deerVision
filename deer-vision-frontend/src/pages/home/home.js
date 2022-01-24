@@ -41,7 +41,7 @@ class Home extends Component {
                     </div>
                     <div className="vertical-spacer"/>
                     <div className="horizontal-spacer"/>
-                    <div className="game-screenshots">
+                    <div className="game-screenshots"> {/*TODO: update/add screenshots*/}
                         <div className="game-screenshot">
                             <img src="/photon-engineer/screenshot1_1440p.webp" alt="Photon Engineer screenshot 1" width="1100" height="619" />
                         </div>
