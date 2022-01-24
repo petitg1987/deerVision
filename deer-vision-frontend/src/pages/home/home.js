@@ -43,13 +43,13 @@ class Home extends Component {
                     <div className="horizontal-spacer"/>
                     <div className="game-screenshots">
                         <div className="game-screenshot">
-                            <img src="/photon-engineer/screenshot1_619p.webp" alt="Photon Engineer screenshot 1" width="1100" height="619" />
+                            <img src="/photon-engineer/screenshot1_1440p.webp" alt="Photon Engineer screenshot 1" width="1100" height="619" />
                         </div>
                         <div className="game-screenshot">
-                            <img src="/photon-engineer/screenshot2_619p.webp" alt="Photon Engineer screenshot 2" width="1100" height="619" />
+                            <img src="/photon-engineer/screenshot2_1440p.webp" alt="Photon Engineer screenshot 2" width="1100" height="619" />
                         </div>
                         <div className="game-screenshot">
-                            <img src="/photon-engineer/screenshot3_619p.webp" alt="Photon Engineer screenshot 3" width="1100" height="619" />
+                            <img src="/photon-engineer/screenshot3_1440p.webp" alt="Photon Engineer screenshot 3" width="1100" height="619" />
                         </div>
                     </div>
                 </div>
