@@ -34,7 +34,7 @@ class Index extends Component {
                         </Suspense>
                     </div>
                     <footer>
-                        <center><br/><small>&copy; Copyright {this.currentYear}, Deer Vision Studio | <a className={"text-link"} href={"/privacy-policy"}>Privacy Policy</a></small><br/><br/></center>
+                        <center><br/><small>&copy; {this.currentYear}, Deer Vision Studio | <a className={"text-link"} href={"/privacy-policy"}>Privacy Policy</a></small><br/><br/></center>
                     </footer>
                 </div>
             </BrowserRouter>

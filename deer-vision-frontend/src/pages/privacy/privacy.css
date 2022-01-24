@@ -8,22 +8,17 @@
 }
 
 .sub-title {
-    left: -2%;
     position: relative;
     font-size: 18px;
+    font-weight: bold;
     text-decoration: underline overline;
+    padding-top: 15px;
 }
 
 .sub-category {
-    left: -1%;
     position: relative;
     font-size: 13px;
     font-weight: bold;
     text-decoration: underline;
-    padding-top: 10px;
-}
-
-.pp-container lu {
-    left: 6%;
-    position: relative;
+    padding-top: 8px;
 }
