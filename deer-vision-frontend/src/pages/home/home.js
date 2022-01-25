@@ -35,10 +35,10 @@ class Home extends Component {
                                 <SocialNetwork logoSize={40} reeditGameUrl="https://www.reddit.com/r/PhotonEngineer/" onlyCommunityNetwork={true}/>
                             </div>
 
-                            <p>Key request for Youtubers, Streamers and press (soon): {/*TODO: update description*/}</p>
+                            <p>Key request for Youtubers, Streamers and press:</p>
                             <ul>
-                                <li><a className="text-link" href="https://woovit.com/widget/offer/photon-engineer" target="_blank" rel="noopener noreferrer">Woovit</a></li> {/*TODO: update links*/}
-                                <li><a className="text-link" href="https://www.keymailer.co/g/games/xyz1234" target="_blank" rel="noopener noreferrer">Keymailer</a></li> {/*TODO: update links*/}
+                                <li><a className="text-link" href="https://woovit.com/widget/offer/photon-engineer" target="_blank" rel="noopener noreferrer">Woovit</a> (soon)</li> {/*TODO: update description/links*/}
+                                <li><a className="text-link" href="https://www.keymailer.co/g/games/xyz1234" target="_blank" rel="noopener noreferrer">Keymailer</a> (soon)</li> {/*TODO: update description/links*/}
                             </ul>
                         </Description>
                     </div>
