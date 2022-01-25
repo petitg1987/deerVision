@@ -40,6 +40,7 @@ class Index extends Component {
                         </Suspense>
                     </div>
                     <footer>
+                        <br/>
                         <div className="soc-container">
                             <SocialNetwork logoSize={50} label="Join us on:" onlyCommunityNetwork={false}/>
                         </div>
