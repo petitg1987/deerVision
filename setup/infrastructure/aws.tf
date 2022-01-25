@@ -30,7 +30,7 @@ terraform {
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      version = "~> 2.65"
+      version = "~> 3.38"
     }
   }
 }
@@ -569,7 +569,7 @@ resource "aws_ses_receipt_rule" "receipt_email_to_sns" {
   scan_enabled = true
   sns_action {
     topic_arn = data.aws_sns_topic.contact_topic.arn
-#    encoding = "Base64"
+    encoding = "Base64"
     position = 0
   }
   provider = aws.virgina
