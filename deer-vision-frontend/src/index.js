@@ -43,7 +43,11 @@ class Index extends Component {
                         <div className="soc-container">
                             <SocialNetwork logoSize={50} label="Join us on:" onlyCommunityNetwork={false}/>
                         </div>
-                        <center><br/><small>&copy; {this.currentYear}, Deer Vision Studio | <a className={"text-link"} href={"/privacy"} title={"Privacy Policy"}>Privacy</a> | <a className={"text-link"} href={"/eula"} title={"End User License Agreement"}>EULA</a></small><br/><br/></center>
+                        <center>
+                            <small>&copy; {this.currentYear}, Deer Vision Studio | <a className={"text-link"} href={"/privacy"} title={"Privacy Policy"}>Privacy</a> | <a className={"text-link"} href={"/eula"} title={"End User License Agreement"}>EULA</a></small>
+                            <br/>
+                            <br/>
+                        </center>
                     </footer>
                 </div>
             </BrowserRouter>

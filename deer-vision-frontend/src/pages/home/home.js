@@ -44,6 +44,7 @@ class Home extends Component {
                     </div>
                     <div className="horizontal-spacer"/>
                     <div className="game-btn-platform">
+                        <br/>
                         <Button text="TRAILER [SOON]" link="https://www.youtube.com/watch?v=XYZ1234" squareLogo={youtubeSquareLogo}/> {/*TODO: update description/links*/}
                         <br/>
                         <Button text="BUY ON STEAM [SOON]" link="https://store.steampowered.com/app/1234/Photon_Engineer/" squareLogo={steamSquareLogo}/> {/*TODO: update description/links*/}
