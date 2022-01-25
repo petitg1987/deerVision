@@ -26,9 +26,9 @@ class Home extends Component {
                         <Description> {/*TODO: update game description*/}
                             <p>About the game:</p>
                             <ul>
-                                <li>Photon Engineer is a first-person <strong>puzzle game</strong>. Your goal is to build different types of blocks (mirror, pusher, merger...) efficiently to solve the challenges that await you.</li>
                                 <li>In year 2075, a space probe saw strange platforms floating in space near to Jupiter. The government decided to finance a space mission to send you on these platforms to elucidate the mystery.</li>
-                            </ul>
+                                <li>Photon Engineer is a first-person <strong>puzzle game</strong>. Your goal is to build different types of blocks (mirror, pusher, merger...) efficiently to solve the challenges that await you.</li>
+                             </ul>
 
                             <p>Join the community:</p>
                             <SocialNetwork logoSize={40} reeditGameUrl="https://www.reddit.com/r/PhotonEngineer/" onlyCommunityNetwork={true}/>
