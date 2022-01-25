@@ -53,10 +53,10 @@ class Navigation extends Component {
                 <div className="nav-spacing">&nbsp;</div>
                 <ul className="nav-menu-ul" id="nav-menu-id">
                     <li className="nav-menu-link-container">
-                        <Link to="/#games" className="nav-menu-link" onClick={() => this.navMenuLinkClick()}>Our Games</Link>
+                        <Link to="/" className="nav-menu-link" onClick={() => this.navMenuLinkClick()}>Our Games</Link>
                     </li>
                     <li className="nav-menu-link-container">
-                        <Link to="/#about-us" className="nav-menu-link" onClick={() => this.navMenuLinkClick()}>About Us</Link>
+                        <Link to="/about" className="nav-menu-link" onClick={() => this.navMenuLinkClick()}>About Us</Link>
                     </li>
                 </ul>
             </nav>

@@ -28,13 +28,17 @@
 }
 
 .btn:hover::after {
-    width: 80%;
-    left: 10%;
+    width: 88%;
+    left: 6%;
 }
 
 .btn-text {
     /* animation start */
-    transform: translate(0px, -15px);
+    transform: translate(0px, -10px);
+}
+
+.btn-text img {
+    vertical-align: -2px;
 }
 
 @keyframes btn-text-anim {

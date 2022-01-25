@@ -1,13 +1,7 @@
 body {
     margin: 0;
     width: 100%;
-    background: repeating-linear-gradient(
-            -45deg,
-            #40404d,
-            #40404d 4px,
-            #42424f 4px,
-            #42424f 8px
-    );
+    background: repeating-linear-gradient(-45deg, #40404d, #40404d 4px, #42424f 4px, #42424f 8px);
     font-family: Verdana, sans-serif;
     font-size: 15px;
     color: #ffffff;
@@ -19,4 +13,16 @@ header {
     top: 0;
     z-index: 100;
     width: 100%;
+}
+
+.content {
+    background: repeating-linear-gradient(-45deg, #40404d, #40404d 4px, #42424f 4px, #42424f 8px);
+}
+
+footer {
+    background-color: #616175;
+}
+
+.soc-container {
+    text-align: center;
 }

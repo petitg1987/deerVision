@@ -13,14 +13,14 @@ class Button extends Component {
                 }
             });
         });
-        const paragraphes = document.querySelectorAll('.btn-text');
-        paragraphes.forEach(e => observer.observe(e));
+        const paragraphs = document.querySelectorAll('.btn-text');
+        paragraphs.forEach(e => observer.observe(e));
     }
 
     render() {
         return (
             <a href={this.props.link} target="_blank" rel="noopener noreferrer" className="btn">
-                <div className="btn-text">{this.props.text}</div>
+                <div className="btn-text"><img alt="Logo" src={this.props.squareLogo} width="20" height="20"/> {this.props.text}</div>
             </a>
         );
     }
