@@ -17,6 +17,15 @@ class Privacy extends Component {
                         <Description>
                             <p>Last update: 24th of January 2022</p>
                         </Description>
+
+                        <div className={"sub-title"}>Definitions:</div>
+                        <Description>
+                            <p>For the purposes of this Privacy Policy:</p>
+                            <ul>
+                                <li><strong>Company</strong> (referred to as either "the Company", "We", "Us" or "Our" in this Agreement) refers to Deer Vision Studio.</li>
+                            </ul>
+                        </Description>
+
                         <div className={"sub-title"}>Types of information collected:</div>
                         <div className={"sub-category"}>Personal information:</div>
                         <Description>
@@ -44,7 +53,7 @@ class Privacy extends Component {
 
                         <div className={"sub-title"}>How information collected becomes in use:</div>
                         <Description>
-                            <p>The company may use and collect non-personal information to provide and improve the service. The company reserves the right to process non-personal information collected from users. These may include:</p>
+                            <p>The Company may use and collect non-personal information to provide and improve the service. The Company reserves the right to process non-personal information collected from users. These may include:</p>
                         </Description>
                         <ul>
                             <li>Tracking usage patterns and analyzing trends of users</li>
@@ -54,17 +63,17 @@ class Privacy extends Component {
 
                         <div className={"sub-title"}>Retention of your data:</div>
                         <Description>
-                            <p>The company will retain your information only for as long as is necessary for the purposes set out in this privacy policy.</p>
+                            <p>The Company will retain your information only for as long as is necessary for the purposes set out in this privacy policy.</p>
                         </Description>
 
                         <div className={"sub-title"}>How we protect information collected:</div>
                         <Description>
-                            <p>The company is committed to provide safeguards with the information collected to ensure that the information is not lost, stolen, exposed, altered or damaged. However, it is difficult to guarantee complete protection of all information. Hence, you should acknowledge that complete protection of information cannot be guaranteed if you choose to use our services.</p>
+                            <p>The Company is committed to provide safeguards with the information collected to ensure that the information is not lost, stolen, exposed, altered or damaged. However, it is difficult to guarantee complete protection of all information. Hence, you should acknowledge that complete protection of information cannot be guaranteed if you choose to use our services.</p>
                         </Description>
 
                         <div className={"sub-title"}>Who has access to the information:</div>
                         <Description>
-                            <p>Only the company can access to the collected information. The information is not shared with third parties.</p>
+                            <p>Only the Company can access to the collected information. The information is not shared with third parties.</p>
                         </Description>
 
                         <div className={"sub-title"}>Your rights:</div>
