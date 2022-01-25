@@ -21,7 +21,7 @@ class Privacy extends Component {
                         <div className={"sub-category"}>Personal information:</div>
                         <Description>
                             <p>
-                                Definition: personal information is information that would allow identifying or contact you, including, for example, your full name, address, telephone number, IP address, or email address.
+                                Personal information is information that would allow identifying or contact you, including, for example, your full name, address, telephone number, IP address, or email address.
                                 <br/><br/>
                                 Personal information collected:
                             </p>
@@ -32,7 +32,7 @@ class Privacy extends Component {
                         <div className={"sub-category"}>Non-personal information:</div>
                         <Description>
                             <p>
-                                Definition: non-personal information means information that cannot be used to identify a specific user.
+                                Non-personal information means information that cannot be used to identify a specific user.
                                 <br/><br/>
                                 Non-personal information collected:
                             </p>
