@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import "../pages.css"
 import "./privacy.css"
 import Description from "../../components/description/description";
-import SocialNetwork from "../../components/social-network/social-network";
 
 class Privacy extends Component {
 
@@ -34,10 +33,11 @@ class Privacy extends Component {
                                 <br/><br/>
                                 Personal information collected:
                             </p>
+                            <ul>
+                                <li><i>None</i></li>
+                            </ul>
                         </Description>
-                        <ul>
-                            <li><i>None</i></li>
-                        </ul>
+
                         <div className={"sub-category"}>Non-personal information:</div>
                         <Description>
                             <p>
@@ -45,21 +45,21 @@ class Privacy extends Component {
                                 <br/><br/>
                                 Non-personal information collected:
                             </p>
+                            <ul>
+                                <li>Game usage statistics</li>
+                                <li>Crash logs (including: game logs, game settings, graphics card name, CPU name, total memory and operating system name)</li>
+                            </ul>
                         </Description>
-                        <ul>
-                            <li>Game usage statistics</li>
-                            <li>Crash logs (including: game logs, game settings, graphics card name, CPU name, total memory and operating system name)</li>
-                        </ul>
 
                         <div className={"sub-title"}>How information collected becomes in use:</div>
                         <Description>
                             <p>The Company may use and collect non-personal information to provide and improve the service. The Company reserves the right to process non-personal information collected from users. These may include:</p>
+                            <ul>
+                                <li>Tracking usage patterns and analyzing trends of users</li>
+                                <li>Technical problem resolution</li>
+                                <li>Searching user statistics and provision of leaderboard</li>
+                            </ul>
                         </Description>
-                        <ul>
-                            <li>Tracking usage patterns and analyzing trends of users</li>
-                            <li>Technical problem resolution</li>
-                            <li>Searching user statistics and provision of leaderboard</li>
-                        </ul>
 
                         <div className={"sub-title"}>Retention of your data:</div>
                         <Description>
@@ -84,15 +84,16 @@ class Privacy extends Component {
                                 All our games provide settings to disable the collection of no-personal information.
                             </p>
                         </Description>
+
                         <div className={"sub-title"}>Amendments:</div>
                         <Description>
                             <p>We reserve the right to modify this privacy policy at any time, so please review it frequently. If we make material changes to this policy, we will also revise the "last update" date at the top of this privacy policy. Your continued use of our games will signify your acceptance of the changes to our privacy policy.</p>
                         </Description>
+
                         <div className={"sub-title"}>Contact:</div>
                         <Description>
-                            <p>For any questions relating to the privacy policy, please contact us via private messages on one of these platforms:</p>
+                            <p>For any questions relating to the privacy policy, please contact us at <a className={"text-link"} href={"mailto:contact@deervision.studio"}>contact@deervision.studio</a></p>
                         </Description>
-                        <SocialNetwork logoSize={40} onlyCommunityNetwork={true}/>
                     </div>
                 </div>
 

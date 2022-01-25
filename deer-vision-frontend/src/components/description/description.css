@@ -8,24 +8,24 @@
     color: #0089b5;
 }
 
-.desc-text p:first-child {
+.desc-text:first-child {
     margin-top: 0;
 }
 
-.desc-text p {
+.desc-text {
     /* animation start */
     opacity: 0.2;
 }
 
-@keyframes desc-text-p-anim {
+@keyframes desc-text-anim {
     to {
         opacity: 1.0;
     }
 }
 
 @media (prefers-reduced-motion: no-preference) {
-    .desc-text-p-anim-trigger {
-        animation: desc-text-p-anim 1.5s 1;
+    .desc-text-anim-trigger {
+        animation: desc-text-anim 1.5s 1;
         animation-fill-mode: forwards; /*leaves the animation in the state of the last frame */
     }
 }

@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import "../pages.css"
 import "./eula.css"
 import Description from "../../components/description/description";
-import SocialNetwork from "../../components/social-network/social-network";
 
 class Eula extends Component {
 
@@ -75,9 +74,8 @@ class Eula extends Component {
 
                         <div className={"sub-title"}>Contact:</div>
                         <Description>
-                            <p>For any questions relating to the Agreement, please contact us via private messages on one of these platforms:</p>
+                            <p>For any questions relating to the Agreement, please contact us at <a className={"text-link"} href={"mailto:contact@deervision.studio"}>contact@deervision.studio</a></p>
                         </Description>
-                        <SocialNetwork logoSize={40} onlyCommunityNetwork={true}/>
                     </div>
                 </div>
             </div>)

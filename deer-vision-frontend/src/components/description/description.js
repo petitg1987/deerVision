@@ -7,14 +7,14 @@ class Description extends Component {
         const observer = new IntersectionObserver(entries => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.classList.add('desc-text-p-anim-trigger');
+                    entry.target.classList.add('desc-text-anim-trigger');
                 } else {
-                    entry.target.classList.remove('desc-text-p-anim-trigger');
+                    entry.target.classList.remove('desc-text-anim-trigger');
                 }
             });
         });
-        const paragraphs = document.querySelectorAll('.desc-text p');
-        paragraphs.forEach(e => observer.observe(e));
+        const descText = document.querySelectorAll('.desc-text');
+        descText.forEach(e => observer.observe(e));
     }
 
     render() {
