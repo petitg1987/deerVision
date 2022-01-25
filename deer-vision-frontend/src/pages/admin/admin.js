@@ -107,6 +107,8 @@ class Admin extends Component {
                     <div className="vertical-spacer"/>
                     <small>
                         <a className="text-link" href="/" onClick={evt => this.logOut(evt)}>Log out</a>
+                        <br/>
+                        <br/>
                     </small>
                 </div>
             </div>
