@@ -24,11 +24,20 @@ class Home extends Component {
                     <div className="horizontal-spacer"/>
                     <div className="game-description">
                         <Description> {/*TODO: update game description*/}
-                            <p>Photon Engineer is a <strong>puzzle / building game</strong>. Your goal is to build an automated, efficient and optimized system which fit with the imposed constraints.</p>
-                            <p>Join the community:</p> <SocialNetwork logoSize={40} reeditGameUrl="https://www.reddit.com/r/PhotonEngineer/" onlyCommunityNetwork={true}/>
-                            <p>Key request for Youtubers, Streamers and press (soon):{' '} {/*TODO: update description*/}
-                                <a className="text-link" href="https://woovit.com/widget/offer/photon-engineer" target="_blank" rel="noopener noreferrer">Woovit</a>, {/*TODO: update links*/}
-                                <a className="text-link" href="https://www.keymailer.co/g/games/xyz1234" target="_blank" rel="noopener noreferrer">Keymailer</a></p> {/*TODO: update links*/}
+                            <p>About the game:</p>
+                            <ul>
+                                <li>Photon Engineer is a first-person <strong>puzzle game</strong>. Your goal is to build different types of blocks (mirror, pusher, merger...) efficiently to solve the challenges that await you.</li>
+                                <li>In year 2075, a space probe saw strange platforms floating in space near to Jupiter. The government decided to finance a space mission to send you on these platforms to elucidate the mystery.</li>
+                            </ul>
+
+                            <p>Join the community:</p>
+                            <SocialNetwork logoSize={40} reeditGameUrl="https://www.reddit.com/r/PhotonEngineer/" onlyCommunityNetwork={true}/>
+
+                            <p>Key request for Youtubers, Streamers and press (soon): {/*TODO: update description*/}</p>
+                            <ul>
+                                <li><a className="text-link" href="https://woovit.com/widget/offer/photon-engineer" target="_blank" rel="noopener noreferrer">Woovit</a></li> {/*TODO: update links*/}
+                                <li><a className="text-link" href="https://www.keymailer.co/g/games/xyz1234" target="_blank" rel="noopener noreferrer">Keymailer</a></li> {/*TODO: update links*/}
+                            </ul>
                         </Description>
                     </div>
                     <div className="horizontal-spacer"/>
