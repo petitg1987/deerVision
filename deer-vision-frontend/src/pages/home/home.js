@@ -31,7 +31,9 @@ class Home extends Component {
                              </ul>
 
                             <p>Join the community:</p>
-                            <SocialNetwork logoSize={40} reeditGameUrl="https://www.reddit.com/r/PhotonEngineer/" onlyCommunityNetwork={true}/>
+                            <div className="game-soc-container">
+                                <SocialNetwork logoSize={40} reeditGameUrl="https://www.reddit.com/r/PhotonEngineer/" onlyCommunityNetwork={true}/>
+                            </div>
 
                             <p>Key request for Youtubers, Streamers and press (soon): {/*TODO: update description*/}</p>
                             <ul>
