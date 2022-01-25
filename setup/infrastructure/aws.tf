@@ -537,3 +537,48 @@ resource "aws_route53_record" "dns_record_front" {
     evaluate_target_health = true
   }
 }
+
+##########################################################################################
+# CONTACT EMAIL USING SNS
+##########################################################################################
+resource "aws_ses_email_identity" "email_registration" {
+  email = "contact@${var.domainName}"
+  provider = aws.virgina
+}
+
+resource "aws_ses_receipt_rule_set" "contact_rule_set" {
+  rule_set_name = "contact-receipt-rules"
+  provider = aws.virgina
+}
+
+resource "aws_ses_active_receipt_rule_set" "contact_active_rule_set" {
+  rule_set_name = aws_ses_receipt_rule_set.contact_rule_set.rule_set_name
+  provider = aws.virgina
+}
+
+data "aws_sns_topic" "contact_topic" {
+  name = "contact-email-topic"
+  provider = aws.virgina
+}
+
+resource "aws_ses_receipt_rule" "receipt_email_to_sns" {
+  name = "receipt_email_to_sns"
+  rule_set_name = aws_ses_receipt_rule_set.contact_rule_set.rule_set_name
+  recipients = ["contact@${var.domainName}"]
+  enabled = true
+  scan_enabled = true
+  sns_action {
+    topic_arn = data.aws_sns_topic.contact_topic.arn
+#    encoding = "Base64"
+    position = 0
+  }
+  provider = aws.virgina
+}
+
+resource "aws_route53_record" "dns_mx_record" {
+  zone_id = data.aws_route53_zone.route53_zone_queried.zone_id
+  name = "deervision.studio"
+  type = "MX"
+  ttl = "60"
+  records = ["10 inbound-smtp.us-east-1.amazonaws.com"]
+}
