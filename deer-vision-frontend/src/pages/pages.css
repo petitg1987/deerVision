@@ -36,6 +36,22 @@ hr {
     height: 1px;
 }
 
+.sub-title {
+    position: relative;
+    font-size: 18px;
+    font-weight: bold;
+    text-decoration: underline;
+    padding-top: 15px;
+}
+
+.sub-category {
+    position: relative;
+    font-size: 12px;
+    font-weight: bold;
+    text-decoration: underline;
+    padding-top: 8px;
+}
+
 @media screen and (max-width: 800px) {
     .horizontal-spacer {
         width: 2%;

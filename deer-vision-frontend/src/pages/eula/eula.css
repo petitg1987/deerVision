@@ -7,22 +7,6 @@
     max-width: 800px;
 }
 
-.sub-title {
-    position: relative;
-    font-size: 18px;
-    font-weight: bold;
-    text-decoration: underline overline;
-    padding-top: 15px;
-}
-
-.sub-category {
-    position: relative;
-    font-size: 13px;
-    font-weight: bold;
-    text-decoration: underline;
-    padding-top: 8px;
-}
-
 @media screen and (max-width: 800px) {
     .eula-description {
         width: 94%;
