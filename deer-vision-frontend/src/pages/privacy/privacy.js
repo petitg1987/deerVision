@@ -46,8 +46,8 @@ class Privacy extends Component {
                                 Non-personal information collected:
                             </p>
                             <ul>
-                                <li>Game usage statistics</li>
-                                <li>Crash logs (including: game logs, game settings, graphics card name, CPU name, total memory and operating system name)</li>
+                                <li>Game statistics (examples: new game started, game progression)</li>
+                                <li>Crash logs (including: game logs, game settings and system information)</li>
                             </ul>
                         </Description>
 
