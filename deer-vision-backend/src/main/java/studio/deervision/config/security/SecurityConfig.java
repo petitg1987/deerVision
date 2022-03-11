@@ -94,7 +94,7 @@ public class SecurityConfig {
         @Override
         protected void configure(HttpSecurity http) throws Exception {
             http.regexMatcher("^/api/.*")
-                    .addFilterBefore(new UserKeyAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class)
+                    .addFilterBefore(new SystemKeyAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class)
                     .authorizeRequests()
                     .regexMatchers("^/api/.*")
                     .fullyAuthenticated()

@@ -10,7 +10,7 @@ import java.util.List;
 @Repository
 public interface IssueRepository extends JpaRepository<Issue, Long> {
 
-    @Query("SELECT i.id as id, i.userKey as userKey, i.appId as appId, i.appVersion as appVersion, i.operatingSystem as operatingSystem, " +
+    @Query("SELECT i.id as id, i.systemKey as systemKey, i.appId as appId, i.appVersion as appVersion, i.operatingSystem as operatingSystem, " +
             "i.dateTime as dateTime from Issue i ORDER BY i.dateTime DESC")
     List<LightIssue> findAllOrderByDates();
 

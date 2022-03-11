@@ -23,8 +23,8 @@ public class UsageService {
         this.usageRepository = usageRepository;
     }
 
-    public void registerNewUsage(String userKey, String appId, String appVersion, OperatingSystem operatingSystem) {
-        usageRepository.saveAndFlush(new Usage(userKey, appId, appVersion, operatingSystem));
+    public void registerNewUsage(String systemKey, String appId, String appVersion, OperatingSystem operatingSystem) {
+        usageRepository.saveAndFlush(new Usage(systemKey, appId, appVersion, operatingSystem));
     }
 
     public List<String> findDistinctAppId() {

@@ -12,7 +12,7 @@ public class Usage {
     @GeneratedValue
     private Long id;
 
-    private String userKey;
+    private String systemKey;
 
     private String appId;
 
@@ -25,8 +25,8 @@ public class Usage {
     public Usage(){
     }
 
-    public Usage(String userKey, String appId, String appVersion, OperatingSystem operatingSystem) {
-        this.userKey = userKey;
+    public Usage(String systemKey, String appId, String appVersion, OperatingSystem operatingSystem) {
+        this.systemKey = systemKey;
         this.appId = appId;
         this.appVersion = appVersion;
         this.operatingSystem = operatingSystem;
@@ -41,12 +41,12 @@ public class Usage {
         this.id = id;
     }
 
-    public String getUserKey() {
-        return userKey;
+    public String getSystemKey() {
+        return systemKey;
     }
 
-    public void setUserKey(String userKey) {
-        this.userKey = userKey;
+    public void setSystemKey(String systemKey) {
+        this.systemKey = systemKey;
     }
 
     public String getAppId() {

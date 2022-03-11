@@ -18,7 +18,7 @@ public class Issue {
     @Lob
     private String value;
 
-    private String userKey;
+    private String systemKey;
 
     private String appId;
 
@@ -31,9 +31,9 @@ public class Issue {
     public Issue(){
     }
 
-    public Issue(String value, String userKey, String appId, String appVersion, OperatingSystem operatingSystem) {
+    public Issue(String value, String systemKey, String appId, String appVersion, OperatingSystem operatingSystem) {
         this.value = value;
-        this.userKey = userKey;
+        this.systemKey = systemKey;
         this.appId = appId;
         this.appVersion = appVersion;
         this.operatingSystem = operatingSystem;
@@ -56,12 +56,12 @@ public class Issue {
         this.value = value;
     }
 
-    public String getUserKey() {
-        return userKey;
+    public String getSystemKey() {
+        return systemKey;
     }
 
-    public void setUserKey(String userKey) {
-        this.userKey = userKey;
+    public void setSystemKey(String systemKey) {
+        this.systemKey = systemKey;
     }
 
     public String getAppId() {

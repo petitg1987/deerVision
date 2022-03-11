@@ -5,13 +5,13 @@ import org.springframework.security.core.GrantedAuthority;
 
 import java.util.Collection;
 
-public class UserKeyAuthenticationToken extends AbstractAuthenticationToken {
+public class SystemKeyAuthenticationToken extends AbstractAuthenticationToken {
 
-    private final String userKey;
+    private final String systemKey;
 
-    public UserKeyAuthenticationToken(String userKey, Collection<? extends GrantedAuthority> authorities) {
+    public SystemKeyAuthenticationToken(String systemKey, Collection<? extends GrantedAuthority> authorities) {
         super(authorities);
-        this.userKey = userKey;
+        this.systemKey = systemKey;
         setAuthenticated(true);
     }
 
@@ -22,6 +22,6 @@ public class UserKeyAuthenticationToken extends AbstractAuthenticationToken {
 
     @Override
     public Object getPrincipal() {
-        return userKey;
+        return systemKey;
     }
 }
