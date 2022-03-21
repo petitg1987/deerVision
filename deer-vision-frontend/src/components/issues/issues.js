@@ -53,7 +53,7 @@ class Issues extends Component {
             let osName = issue.operatingSystem
                 .replace('-', ' ')
                 .replace(/^./, (str) => str.toUpperCase());
-            let shortUserKey = parseInt(issue.userKey
+            let shortSystemKey = parseInt(issue.systemKey
                 .replace(/-.*$/, ''))
                 .toString(36)
                 .toUpperCase()
@@ -64,7 +64,7 @@ class Issues extends Component {
                     <td>{appName}</td>
                     <td>{shortAppVersion}</td>
                     <td className="secondary-info">{osName}</td>
-                    <td className="secondary-info">{shortUserKey}</td>
+                    <td className="secondary-info">{shortSystemKey}</td>
                     <td>
                         <div className="issues-actions">
                             <div className="issues-action">
