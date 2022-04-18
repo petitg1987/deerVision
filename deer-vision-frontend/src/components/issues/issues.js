@@ -110,7 +110,7 @@ class Issues extends Component {
                             <th>Application</th>
                             <th>Version</th>
                             <th className="secondary-info">OS</th>
-                            <th className="secondary-info">System key</th>
+                            <th className="secondary-info">Key</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
