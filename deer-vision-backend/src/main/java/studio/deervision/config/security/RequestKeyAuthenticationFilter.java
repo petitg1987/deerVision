@@ -10,21 +10,21 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.math.BigInteger;
 
-public class SystemKeyAuthenticationFilter implements Filter {
+public class RequestKeyAuthenticationFilter implements Filter {
 
-    public static final String SYSTEM_KEY_HEADER = "X-SystemKey";
+    public static final String REQUEST_KEY_HEADER = "X-Key";
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         if (request instanceof HttpServletRequest && response instanceof HttpServletResponse) {
-            String systemKey = ((HttpServletRequest) request).getHeader(SYSTEM_KEY_HEADER);
-            if (isSystemKeyValid(systemKey)) {
-                SystemKeyAuthenticationToken apiToken = new SystemKeyAuthenticationToken(systemKey, AuthorityUtils.NO_AUTHORITIES);
+            String requestKey = ((HttpServletRequest) request).getHeader(REQUEST_KEY_HEADER);
+            if (isRequestKeyValid(requestKey)) {
+                RequestKeyAuthenticationToken apiToken = new RequestKeyAuthenticationToken(requestKey, AuthorityUtils.NO_AUTHORITIES);
                 SecurityContextHolder.getContext().setAuthentication(apiToken);
             } else {
                 HttpServletResponse httpResponse = (HttpServletResponse) response;
                 httpResponse.setStatus(401);
-                httpResponse.getWriter().write("Invalid user key: " + systemKey);
+                httpResponse.getWriter().write("Invalid key: " + requestKey);
                 return;
             }
         }
@@ -32,12 +32,12 @@ public class SystemKeyAuthenticationFilter implements Filter {
         chain.doFilter(request, response);
     }
 
-    private boolean isSystemKeyValid(String systemKey) {
-        if (!StringUtils.hasLength(systemKey)) {
+    private boolean isRequestKeyValid(String requestKey) {
+        if (!StringUtils.hasLength(requestKey)) {
             return false;
         }
 
-        String[] split = systemKey.split("-");
+        String[] split = requestKey.split("-");
         if(split.length != 2) {
             return false;
         }

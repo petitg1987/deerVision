@@ -7,7 +7,7 @@ import java.time.format.DateTimeFormatter;
 public class IssueListDto {
 
     private final Long id;
-    private final String systemKey;
+    private final String requestKey;
     private final String appId;
     private final String appVersion;
     private final String dateTime;
@@ -15,7 +15,7 @@ public class IssueListDto {
 
     public IssueListDto(LightIssue lightIssue) {
         this.id = lightIssue.getId();
-        this.systemKey = lightIssue.getSystemKey();
+        this.requestKey = lightIssue.getRequestKey();
         this.appId = lightIssue.getAppId();
         this.appVersion = lightIssue.getAppVersion();
         this.dateTime = DateTimeFormatter.ofPattern("dd/MM/yy HH':'mm':'ss").format(lightIssue.getDateTime());
@@ -26,8 +26,8 @@ public class IssueListDto {
         return id;
     }
 
-    public String getSystemKey() {
-        return systemKey;
+    public String getRequestKey() {
+        return requestKey;
     }
 
     public String getAppId() {

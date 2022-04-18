@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 
 public interface LightIssue {
     Long getId();
-    String getSystemKey();
+    String getRequestKey();
     String getAppId();
     String getAppVersion();
     OperatingSystem getOperatingSystem();

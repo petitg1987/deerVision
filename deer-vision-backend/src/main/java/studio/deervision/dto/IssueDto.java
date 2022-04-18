@@ -8,7 +8,7 @@ public class IssueDto {
 
     private final Long id;
     private final String value;
-    private final String systemKey;
+    private final String requestKey;
     private final String appId;
     private final String appVersion;
     private final String dateTime;
@@ -17,7 +17,7 @@ public class IssueDto {
     public IssueDto(Issue issue) {
         this.id = issue.getId();
         this.value = issue.getValue();
-        this.systemKey = issue.getSystemKey();
+        this.requestKey = issue.getRequestKey();
         this.appId = issue.getAppId();
         this.appVersion = issue.getAppVersion();
         this.dateTime = DateTimeFormatter.ofPattern("dd/MM/yyyy HH':'mm':'ss").format(issue.getDateTime());
@@ -32,8 +32,8 @@ public class IssueDto {
         return value;
     }
 
-    public String getSystemKey() {
-        return systemKey;
+    public String getRequestKey() {
+        return requestKey;
     }
 
     public String getAppId() {

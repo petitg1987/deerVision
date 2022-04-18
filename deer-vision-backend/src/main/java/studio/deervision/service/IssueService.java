@@ -24,7 +24,7 @@ public class IssueService {
         this.issueProperties = issueProperties;
     }
 
-    public void newIssue(String value, String systemKey, String appId, String appVersion, OperatingSystem operatingSystem) {
+    public void newIssue(String value, String requestKey, String appId, String appVersion, OperatingSystem operatingSystem) {
         if(value == null || "".equals(value)) {
             throw new IllegalArgumentException("Empty issue value received");
         }
@@ -33,7 +33,7 @@ public class IssueService {
             throw new IllegalArgumentException("Invalid application version: " + appVersion);
         }
 
-        Issue issue = new Issue(value, systemKey, appId, appVersion, operatingSystem);
+        Issue issue = new Issue(value, requestKey, appId, appVersion, operatingSystem);
         issueRepository.saveAndFlush(issue);
     }
 

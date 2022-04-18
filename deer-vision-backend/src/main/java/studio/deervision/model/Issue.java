@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 @Entity
 public class Issue {
 
-    private static final int MAX_SAMPLE_VALUE_SIZE = 150;
+    private static final int MAX_SAMPLE_VALUE_SIZE = 150; //TODO remove ?
 
     @Id
     @GeneratedValue
@@ -18,7 +18,7 @@ public class Issue {
     @Lob
     private String value;
 
-    private String systemKey;
+    private String requestKey;
 
     private String appId;
 
@@ -31,9 +31,9 @@ public class Issue {
     public Issue(){
     }
 
-    public Issue(String value, String systemKey, String appId, String appVersion, OperatingSystem operatingSystem) {
+    public Issue(String value, String requestKey, String appId, String appVersion, OperatingSystem operatingSystem) {
         this.value = value;
-        this.systemKey = systemKey;
+        this.requestKey = requestKey;
         this.appId = appId;
         this.appVersion = appVersion;
         this.operatingSystem = operatingSystem;
@@ -56,12 +56,12 @@ public class Issue {
         this.value = value;
     }
 
-    public String getSystemKey() {
-        return systemKey;
+    public String getRequestKey() {
+        return requestKey;
     }
 
-    public void setSystemKey(String systemKey) {
-        this.systemKey = systemKey;
+    public void setRequestKey(String requestKey) {
+        this.requestKey = requestKey;
     }
 
     public String getAppId() {

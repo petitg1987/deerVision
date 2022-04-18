@@ -1,6 +1,6 @@
 package studio.deervision.controller;
 
-import studio.deervision.config.security.SystemKeyAuthenticationFilter;
+import studio.deervision.config.security.RequestKeyAuthenticationFilter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.AsyncHandlerInterceptor;
@@ -14,9 +14,9 @@ public class ApiRestLoggerInterceptor implements AsyncHandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
-        String systemKey = request.getHeader(SystemKeyAuthenticationFilter.SYSTEM_KEY_HEADER);
-        systemKey = systemKey == null ? "[no system key]" : systemKey;
-        LOGGER.info("API request from {} / {} on URI {}", request.getRemoteAddr(), systemKey, request.getRequestURI());
+        String requestKey = request.getHeader(RequestKeyAuthenticationFilter.REQUEST_KEY_HEADER);
+        requestKey = requestKey == null ? "[no request key]" : requestKey;
+        LOGGER.info("API request from {} / {} on URI {}", request.getRemoteAddr(), requestKey, request.getRequestURI());
         return true;
     }
 
