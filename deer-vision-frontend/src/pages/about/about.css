@@ -15,10 +15,6 @@
     margin-bottom: 10px;
 }
 
-.pres-logo img {
-    filter: drop-shadow(7px 7px 2px #202020);
-}
-
 @media screen and (max-width: 800px) {
     .pe-logo {
         left: 0;

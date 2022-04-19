@@ -1,25 +1,36 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <svg
-   xmlns:osb="http://www.openswatchbook.org/uri/2009/osb"
-   xmlns:dc="http://purl.org/dc/elements/1.1/"
-   xmlns:cc="http://creativecommons.org/ns#"
-   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-   xmlns:svg="http://www.w3.org/2000/svg"
-   xmlns="http://www.w3.org/2000/svg"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    width="210mm"
    height="297mm"
    viewBox="0 0 210 297"
    version="1.1"
    id="svg8"
-   inkscape:version="1.0.1 (3bc2e813f5, 2020-09-07)"
+   inkscape:version="1.1.1 (3bf5ae0d25, 2021-09-20)"
    sodipodi:docname="studioLogo.svg"
    inkscape:export-filename="/home/greg/DeerVisionStudio.png"
    inkscape:export-xdpi="10.031677"
-   inkscape:export-ydpi="10.031677">
+   inkscape:export-ydpi="10.031677"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:cc="http://creativecommons.org/ns#">
   <defs
      id="defs2">
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient996">
+      <stop
+         style="stop-color:#007499;stop-opacity:1;"
+         offset="0"
+         id="stop992" />
+      <stop
+         style="stop-color:#003b5e;stop-opacity:1"
+         offset="1"
+         id="stop994" />
+    </linearGradient>
     <marker
        style="overflow:visible"
        id="marker1280"
@@ -76,7 +87,7 @@
        id="rect7878" />
     <linearGradient
        id="linearGradient7436"
-       osb:paint="solid">
+       inkscape:swatch="solid">
       <stop
          style="stop-color:#a14b00;stop-opacity:1;"
          offset="0"
@@ -84,7 +95,7 @@
     </linearGradient>
     <linearGradient
        id="linearGradient5486"
-       osb:paint="solid">
+       inkscape:swatch="solid">
       <stop
          style="stop-color:#a14b00;stop-opacity:1;"
          offset="0"
@@ -112,7 +123,11 @@
     <filter
        style="color-interpolation-filters:sRGB;"
        inkscape:label="Drop Shadow"
-       id="filter4153">
+       id="filter4153"
+       x="-0.18548442"
+       y="-0.30854835"
+       width="1.4117423"
+       height="1.6849229">
       <feFlood
          flood-opacity="0.498039"
          flood-color="rgb(0,0,0)"
@@ -507,36 +522,231 @@
          in2="result2"
          id="feBlend1682" />
     </filter>
+    <radialGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient996"
+       id="radialGradient998"
+       cx="88.977409"
+       cy="70.221695"
+       fx="88.977409"
+       fy="70.221695"
+       r="35.329372"
+       gradientUnits="userSpaceOnUse" />
+    <filter
+       style="color-interpolation-filters:sRGB;"
+       inkscape:label="Blur"
+       id="filter1424"
+       x="-0.023137222"
+       y="-0.023137222"
+       width="1.0462744"
+       height="1.0462744">
+      <feGaussianBlur
+         stdDeviation="0.40000000000000002 0.40000000000000002"
+         result="blur"
+         id="feGaussianBlur1422" />
+    </filter>
+    <filter
+       style="color-interpolation-filters:sRGB;"
+       inkscape:label="Drop Shadow"
+       id="filter3432"
+       x="-0.019128717"
+       y="-0.031819432"
+       width="1.0504895"
+       height="1.0839871">
+      <feFlood
+         flood-opacity="0.592157"
+         flood-color="rgb(0,0,0)"
+         result="flood"
+         id="feFlood3422" />
+      <feComposite
+         in="flood"
+         in2="SourceGraphic"
+         operator="in"
+         result="composite1"
+         id="feComposite3424" />
+      <feGaussianBlur
+         in="composite1"
+         stdDeviation="0.1"
+         result="blur"
+         id="feGaussianBlur3426" />
+      <feOffset
+         dx="0.3"
+         dy="0.3"
+         result="offset"
+         id="feOffset3428" />
+      <feComposite
+         in="SourceGraphic"
+         in2="offset"
+         operator="over"
+         result="composite2"
+         id="feComposite3430" />
+    </filter>
+    <radialGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient996"
+       id="radialGradient998-9"
+       cx="88.977409"
+       cy="70.221695"
+       fx="88.977409"
+       fy="70.221695"
+       r="35.329372"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="translate(104.4953,-1.4615124)" />
+    <filter
+       style="color-interpolation-filters:sRGB"
+       inkscape:label="Blur"
+       id="filter1424-2"
+       x="-0.023137222"
+       y="-0.023137222"
+       width="1.0462744"
+       height="1.0462744">
+      <feGaussianBlur
+         stdDeviation="0.40000000000000002 0.40000000000000002"
+         result="blur"
+         id="feGaussianBlur1422-3" />
+    </filter>
+    <filter
+       style="color-interpolation-filters:sRGB"
+       inkscape:label="Drop Shadow"
+       id="filter3432-7"
+       x="-0.019128717"
+       y="-0.031819432"
+       width="1.0504895"
+       height="1.0839871">
+      <feFlood
+         flood-opacity="0.592157"
+         flood-color="rgb(0,0,0)"
+         result="flood"
+         id="feFlood3422-5" />
+      <feComposite
+         in="flood"
+         in2="SourceGraphic"
+         operator="in"
+         result="composite1"
+         id="feComposite3424-9" />
+      <feGaussianBlur
+         in="composite1"
+         stdDeviation="0.1"
+         result="blur"
+         id="feGaussianBlur3426-2" />
+      <feOffset
+         dx="0.3"
+         dy="0.3"
+         result="offset"
+         id="feOffset3428-2" />
+      <feComposite
+         in="SourceGraphic"
+         in2="offset"
+         operator="over"
+         result="composite2"
+         id="feComposite3430-8" />
+    </filter>
+    <filter
+       style="color-interpolation-filters:sRGB;"
+       inkscape:label="Drop Shadow"
+       id="filter21353"
+       x="-0.014771492"
+       y="-0.014857433"
+       width="1.0356978"
+       height="1.0359055">
+      <feFlood
+         flood-opacity="0.592157"
+         flood-color="rgb(0,0,0)"
+         result="flood"
+         id="feFlood21343" />
+      <feComposite
+         in="flood"
+         in2="SourceGraphic"
+         operator="out"
+         result="composite1"
+         id="feComposite21345" />
+      <feGaussianBlur
+         in="composite1"
+         stdDeviation="0.3"
+         result="blur"
+         id="feGaussianBlur21347" />
+      <feOffset
+         dx="0.3"
+         dy="0.3"
+         result="offset"
+         id="feOffset21349" />
+      <feComposite
+         in="offset"
+         in2="SourceGraphic"
+         operator="atop"
+         result="composite2"
+         id="feComposite21351" />
+    </filter>
+    <filter
+       style="color-interpolation-filters:sRGB;"
+       inkscape:label="Drop Shadow"
+       id="filter21383"
+       x="-0.014109708"
+       y="-0.034224677"
+       width="1.0340985"
+       height="1.0827096">
+      <feFlood
+         flood-opacity="0.592157"
+         flood-color="rgb(0,0,0)"
+         result="flood"
+         id="feFlood21373" />
+      <feComposite
+         in="flood"
+         in2="SourceGraphic"
+         operator="out"
+         result="composite1"
+         id="feComposite21375" />
+      <feGaussianBlur
+         in="composite1"
+         stdDeviation="0.3"
+         result="blur"
+         id="feGaussianBlur21377" />
+      <feOffset
+         dx="0.3"
+         dy="0.3"
+         result="offset"
+         id="feOffset21379" />
+      <feComposite
+         in="offset"
+         in2="SourceGraphic"
+         operator="atop"
+         result="composite2"
+         id="feComposite21381" />
+    </filter>
   </defs>
   <sodipodi:namedview
      id="base"
-     pagecolor="#000000"
+     pagecolor="#00be00"
      bordercolor="#666666"
      borderopacity="1.0"
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
-     inkscape:zoom="2.2653057"
-     inkscape:cx="445.20943"
-     inkscape:cy="287.54243"
+     inkscape:zoom="3.203626"
+     inkscape:cx="501.46303"
+     inkscape:cy="240.6648"
      inkscape:document-units="mm"
-     inkscape:current-layer="g3557"
+     inkscape:current-layer="layer1"
      inkscape:document-rotation="0"
      showgrid="false"
-     inkscape:window-width="1920"
-     inkscape:window-height="1030"
+     inkscape:window-width="3840"
+     inkscape:window-height="2051"
      inkscape:window-x="0"
      inkscape:window-y="0"
-     inkscape:window-maximized="1" />
+     inkscape:window-maximized="1"
+     inkscape:pagecheckerboard="0"
+     showborder="false"
+     showguides="true"
+     inkscape:guide-bbox="true">
+    <sodipodi:guide
+       position="193.42275,242.24369"
+       orientation="1,0"
+       id="guide20217" />
+  </sodipodi:namedview>
   <metadata
      id="metadata5">
     <rdf:RDF>
       <cc:Work
-         rdf:about="">
-        <dc:format>image/svg+xml</dc:format>
-        <dc:type
-           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
-      </cc:Work>
+         rdf:about="" />
     </rdf:RDF>
   </metadata>
   <g
@@ -556,165 +766,118 @@
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:25.4px;line-height:0.6;font-family:BroshK;-inkscape-font-specification:BroshK;text-align:start;text-anchor:start;fill:#a14b00;fill-opacity:1;stroke:#050000;stroke-width:0.353;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
          id="tspan982" /></text>
     <circle
-       style="fill:#007499;fill-rule:evenodd;stroke:#feffff;stroke-width:1.29;stroke-linejoin:round;stroke-opacity:1;fill-opacity:1;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:2.64600004"
+       style="fill:url(#radialGradient998);fill-rule:evenodd;stroke:none;stroke-width:1.29;stroke-linejoin:round;stroke-opacity:1;fill-opacity:1;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:2.64600004"
        id="path962"
        cx="88.977409"
        cy="70.221695"
-       inkscape:export-filename="/home/greg/project/deerVision/src/main/resources/static/img/studioLogo.png"
-       inkscape:export-xdpi="89.868568"
-       inkscape:export-ydpi="89.868568"
+       inkscape:export-filename="/home/greg/studioLogo.png"
+       inkscape:export-xdpi="104.99"
+       inkscape:export-ydpi="104.99"
+       r="34.684372" />
+    <circle
+       style="fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#b2ffff;stroke-width:1.29;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:2.646;stroke-opacity:1;filter:url(#filter1424)"
+       id="path962-5"
+       cx="88.763504"
+       cy="70.33548"
+       inkscape:export-filename="/home/greg/studioLogo.png"
+       inkscape:export-xdpi="104.99"
+       inkscape:export-ydpi="104.99"
        r="34.684372" />
     <g
        id="g3557"
-       style="fill:#ffcc00;fill-opacity:0;stroke:#00ffff;stroke-width:0.644699;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.181846;filter:url(#filter4153)"
+       style="fill:#ffcc00;fill-opacity:0;stroke:#00ffff;stroke-width:0.644699;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.181846;filter:url(#filter3432)"
        transform="matrix(2.4427409,0.04910544,0.05556451,3.1276483,-30.415436,-477.10961)"
-       inkscape:export-filename="/home/greg/project/deerVision/src/main/resources/static/img/DeerVisionStudio.png"
-       inkscape:export-xdpi="96"
-       inkscape:export-ydpi="96">
-      <g
-         id="g981"
-         transform="translate(-25.354567,0.39807762)">
-        <path
-           id="rect874"
-           style="fill:#ffcc00;fill-opacity:0;stroke:#00ffff;stroke-width:0.458305;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:6.21543;stroke-opacity:0.181846"
-           d="m 66.783789,181.15912 0.661915,-1.81034 2.691712,2.83289 -1.798989,1.32979 z"
-           sodipodi:nodetypes="ccccc"
-           inkscape:export-filename="/home/greg/project/deerVision/src/main/resources/static/img/studioLogo.png"
-           inkscape:export-xdpi="89.868568"
-           inkscape:export-ydpi="89.868568" />
-        <path
-           id="rect876"
-           style="fill:#ffcc00;fill-opacity:0;stroke:#00ffff;stroke-width:0.458305;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:6.21543;stroke-opacity:0.181846"
-           inkscape:transform-center-x="0.89062331"
-           inkscape:transform-center-y="1.8470252"
-           d="m 61.722614,176.49324 5.723092,2.85554 -0.661916,1.81034 -6.843829,-3.68532 z"
-           sodipodi:nodetypes="ccccc"
-           inkscape:export-filename="/home/greg/project/deerVision/src/main/resources/static/img/studioLogo.png"
-           inkscape:export-xdpi="89.868568"
-           inkscape:export-ydpi="89.868568" />
-        <path
-           id="rect881"
-           style="fill:#ffcc00;fill-opacity:0;stroke:#00ffff;stroke-width:0.458305;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:6.21543;stroke-opacity:0.181846"
-           d="m 57.812087,172.36316 0.849236,-0.4604 3.061292,4.59048 -1.782654,0.98056 z"
-           sodipodi:nodetypes="ccccc"
-           inkscape:export-filename="/home/greg/project/deerVision/src/main/resources/static/img/studioLogo.png"
-           inkscape:export-xdpi="89.868568"
-           inkscape:export-ydpi="89.868568" />
-        <path
-           id="rect887"
-           style="fill:#ffcc00;fill-opacity:0;stroke:#00ffff;stroke-width:0.458305;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:6.21543;stroke-opacity:0.181846"
-           d="m 61.089421,168.78018 0.601949,0.54308 -1.246835,5.21874 -0.923547,-1.34139 z"
-           sodipodi:nodetypes="ccccc"
-           inkscape:export-filename="/home/greg/project/deerVision/src/main/resources/static/img/studioLogo.png"
-           inkscape:export-xdpi="89.868568"
-           inkscape:export-ydpi="89.868568" />
-        <path
-           id="rect887-6"
-           style="fill:#ffcc00;fill-opacity:0;stroke:#00ffff;stroke-width:0.458305;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:6.21543;stroke-opacity:0.181846"
-           d="m 63.974187,174.17032 1.143016,0.57555 -1.040915,2.86665 -1.131609,-0.60845 z"
-           sodipodi:nodetypes="ccccc"
-           inkscape:export-filename="/home/greg/project/deerVision/src/main/resources/static/img/studioLogo.png"
-           inkscape:export-xdpi="89.868568"
-           inkscape:export-ydpi="89.868568" />
-        <path
-           id="rect905"
-           style="fill:#ffcc00;fill-opacity:0;stroke:#00ffff;stroke-width:0.458305;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:6.21543;stroke-opacity:0.181846"
-           d="m 64.848386,171.51731 0.520352,0.15003 -0.251535,3.07853 -1.143016,-0.57555 z"
-           sodipodi:nodetypes="ccccc"
-           inkscape:export-filename="/home/greg/project/deerVision/src/main/resources/static/img/studioLogo.png"
-           inkscape:export-xdpi="89.868568"
-           inkscape:export-ydpi="89.868568" />
-        <path
-           id="rect874-7"
-           style="fill:#ffcc00;fill-opacity:0;stroke:#00ffff;stroke-width:0.458305;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:6.21543;stroke-opacity:0.181846"
-           d="m 73.460485,181.15452 -0.660067,-1.80943 -2.663002,2.83658 1.786499,1.32732 z"
-           sodipodi:nodetypes="ccccc"
-           inkscape:export-filename="/home/greg/project/deerVision/src/main/resources/static/img/studioLogo.png"
-           inkscape:export-xdpi="89.868568"
-           inkscape:export-ydpi="89.868568" />
-        <path
-           id="rect876-5"
-           style="fill:#ffcc00;fill-opacity:0;stroke:#00ffff;stroke-width:0.458305;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:6.21543;stroke-opacity:0.181846"
-           inkscape:transform-center-x="-0.88307262"
-           inkscape:transform-center-y="1.8470242"
-           d="m 78.469057,176.48171 -5.668639,2.86338 0.660067,1.80943 6.778148,-3.69469 z"
-           sodipodi:nodetypes="ccccc"
-           inkscape:export-filename="/home/greg/project/deerVision/src/main/resources/static/img/studioLogo.png"
-           inkscape:export-xdpi="89.868568"
-           inkscape:export-ydpi="89.868568" />
-        <path
-           id="rect881-3"
-           style="fill:#ffcc00;fill-opacity:0;stroke:#00ffff;stroke-width:0.458305;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:6.21543;stroke-opacity:0.181846"
-           d="m 82.337846,172.34627 -0.84299,-0.45923 -3.025801,4.59467 1.769578,0.97812 z"
-           sodipodi:nodetypes="ccccc"
-           inkscape:export-filename="/home/greg/project/deerVision/src/main/resources/static/img/studioLogo.png"
-           inkscape:export-xdpi="89.868568"
-           inkscape:export-ydpi="89.868568" />
-        <path
-           id="rect887-5"
-           style="fill:#ffcc00;fill-opacity:0;stroke:#00ffff;stroke-width:0.458305;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:6.21543;stroke-opacity:0.181846"
-           d="m 79.080854,168.76779 -0.595716,0.54391 1.247107,5.21702 0.912931,-1.34267 z"
-           sodipodi:nodetypes="ccccc"
-           inkscape:export-filename="/home/greg/project/deerVision/src/main/resources/static/img/studioLogo.png"
-           inkscape:export-xdpi="89.868568"
-           inkscape:export-ydpi="89.868568" />
-        <path
-           id="rect887-6-6"
-           style="fill:#ffcc00;fill-opacity:0;stroke:#00ffff;stroke-width:0.458305;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:6.21543;stroke-opacity:0.181846"
-           d="m 76.231746,174.16188 -1.13213,0.57712 1.038048,2.86521 1.12075,-0.61 z"
-           sodipodi:nodetypes="ccccc"
-           inkscape:export-filename="/home/greg/project/deerVision/src/main/resources/static/img/studioLogo.png"
-           inkscape:export-xdpi="89.868568"
-           inkscape:export-ydpi="89.868568" />
-        <path
-           id="rect905-2"
-           style="fill:#ffcc00;fill-opacity:0;stroke:#00ffff;stroke-width:0.458305;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:6.21543;stroke-opacity:0.181846"
-           d="m 75.359445,171.51007 -0.515628,0.15074 0.255799,3.07819 1.13213,-0.57712 z"
-           sodipodi:nodetypes="ccccc"
-           inkscape:export-filename="/home/greg/project/deerVision/src/main/resources/static/img/studioLogo.png"
-           inkscape:export-xdpi="89.868568"
-           inkscape:export-ydpi="89.868568" />
-      </g>
+       inkscape:export-filename="/home/greg/studioLogo.png"
+       inkscape:export-xdpi="104.99"
+       inkscape:export-ydpi="104.99">
+      <path
+         id="rect905-2"
+         style="fill:#ffcc00;fill-opacity:0;stroke:#00ffff;stroke-width:0.458305;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:6.21543;stroke-opacity:0.181846"
+         d="m 50.004878,171.90815 -0.515628,0.15074 0.255799,3.07819 1.13213,-0.57712 z m 0.872301,2.65181 -1.13213,0.57712 1.038048,2.86521 1.12075,-0.61 z m 2.849108,-5.39409 -0.595716,0.54391 1.247107,5.21702 0.912931,-1.34267 z m 3.256992,3.57848 -0.84299,-0.45923 -3.025801,4.59467 1.769578,0.97812 z m -3.868789,4.13544 -5.668639,2.86338 0.660067,1.80943 6.778148,-3.69469 z m -5.008572,4.67281 -0.660067,-1.80943 -2.663002,2.83658 1.786499,1.32732 z m -8.612099,-9.63721 0.520352,0.15003 -0.251535,3.07853 -1.143016,-0.57555 z m -0.874199,2.65301 1.143016,0.57555 -1.040915,2.86665 -1.131609,-0.60845 z m -2.884766,-5.39014 0.601949,0.54308 -1.246835,5.21874 -0.923547,-1.34139 z m -3.277334,3.58298 0.849236,-0.4604 3.061292,4.59048 -1.782654,0.98056 z m 3.910527,4.13008 5.723092,2.85554 -0.661916,1.81034 -6.843829,-3.68532 z m 5.061175,4.66588 0.661915,-1.81034 2.691712,2.83289 -1.798989,1.32979 z" />
     </g>
     <text
        xml:space="preserve"
        id="text938"
-       style="fill:black;fill-opacity:1;line-height:1.25;stroke:none;font-family:'Liberation Mono';font-style:normal;font-weight:normal;font-size:10.58333333px;white-space:pre;shape-inside:url(#rect940);-inkscape-font-specification:'Liberation Mono';font-stretch:normal;font-variant:normal;" />
+       style="fill:black;fill-opacity:1;line-height:1.25;stroke:none;font-family:'Liberation Mono';font-style:normal;font-weight:normal;font-size:10.58333333px;white-space:pre;shape-inside:url(#rect940);-inkscape-font-specification:'Liberation Mono';font-stretch:normal;font-variant:normal" />
     <text
        xml:space="preserve"
        id="text5406"
-       style="line-height:1.25;font-family:'Latin Modern Sans';font-size:10.58333333px;-inkscape-font-specification:'Latin Modern Sans';white-space:pre;shape-inside:url(#rect5408);" />
+       style="line-height:1.25;font-family:'Latin Modern Sans';font-size:10.58333333px;-inkscape-font-specification:'Latin Modern Sans';white-space:pre;shape-inside:url(#rect5408)" />
     <text
        xml:space="preserve"
        id="text7876"
-       style="line-height:1.25;font-family:'Latin Modern Sans';font-size:10.58333333px;-inkscape-font-specification:'Latin Modern Sans';white-space:pre;shape-inside:url(#rect7878);" />
+       style="line-height:1.25;font-family:'Latin Modern Sans';font-size:10.58333333px;-inkscape-font-specification:'Latin Modern Sans';white-space:pre;shape-inside:url(#rect7878)" />
     <text
        xml:space="preserve"
        id="text7882"
-       style="line-height:1.25;font-family:'Latin Modern Sans';font-size:10.58333333px;-inkscape-font-specification:'Latin Modern Sans';white-space:pre;shape-inside:url(#rect7884);" />
+       style="line-height:1.25;font-family:'Latin Modern Sans';font-size:10.58333333px;-inkscape-font-specification:'Latin Modern Sans';white-space:pre;shape-inside:url(#rect7884)" />
     <text
        xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;font-size:10.5833px;line-height:0;font-family:BroshK;-inkscape-font-specification:'BroshK Medium';stroke-width:0.665;stroke-miterlimit:4;stroke-dasharray:none;stroke:none;"
+       style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;font-size:10.5833px;line-height:0.85;font-family:BroshK;-inkscape-font-specification:'BroshK Medium';stroke:none;stroke-width:0.665;stroke-miterlimit:4;stroke-dasharray:none;filter:url(#filter21353)"
        x="89.877571"
-       y="53.070007"
+       y="56.24501"
        id="text939"
-       inkscape:export-filename="/home/greg/project/deerVision/src/main/resources/static/img/studioLogo.png"
-       inkscape:export-xdpi="89.868568"
-       inkscape:export-ydpi="89.868568"><tspan
+       inkscape:export-filename="/home/greg/studioLogo.png"
+       inkscape:export-xdpi="104.99"
+       inkscape:export-ydpi="104.99"><tspan
          sodipodi:role="line"
          x="89.877571"
-         y="53.070007"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:21.8722px;line-height:0.95;font-family:BroshK;-inkscape-font-specification:'BroshK Bold';text-align:center;text-anchor:middle;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.665;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;"
+         y="56.24501"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:21.8722px;font-family:BroshK;-inkscape-font-specification:'BroshK Bold';text-align:center;text-anchor:middle;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.665;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
          id="tspan941">Deer</tspan><tspan
          sodipodi:role="line"
          x="89.877571"
-         y="73.848595"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:21.8722px;line-height:0.95;font-family:BroshK;-inkscape-font-specification:'BroshK Bold';text-align:center;text-anchor:middle;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.665;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;"
+         y="74.83638"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:21.8722px;font-family:BroshK;-inkscape-font-specification:'BroshK Bold';text-align:center;text-anchor:middle;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.665;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
          id="tspan943">Vision</tspan><tspan
          sodipodi:role="line"
          x="89.877571"
-         y="94.62719"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:21.8722px;line-height:0.95;font-family:BroshK;-inkscape-font-specification:'BroshK Bold';text-align:center;text-anchor:middle;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.665;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;"
+         y="93.42775"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:21.8722px;font-family:BroshK;-inkscape-font-specification:'BroshK Bold';text-align:center;text-anchor:middle;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.665;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
          id="tspan968">Studio</tspan></text>
+    <circle
+       style="fill:url(#radialGradient998-9);fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1.29;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:2.646;stroke-opacity:1"
+       id="path962-9"
+       cx="193.4727"
+       cy="68.760185"
+       inkscape:export-filename="/home/greg/logoStudioMini.png"
+       inkscape:export-xdpi="179.17999"
+       inkscape:export-ydpi="179.17999"
+       r="34.684372" />
+    <circle
+       style="fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#b2ffff;stroke-width:1.29;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:2.646;stroke-opacity:1;filter:url(#filter1424-2)"
+       id="path962-5-7"
+       cx="193.2588"
+       cy="68.87397"
+       inkscape:export-filename="/home/greg/logoStudioMini.png"
+       inkscape:export-xdpi="179.17999"
+       inkscape:export-ydpi="179.17999"
+       r="34.684372" />
+    <g
+       id="g3557-3"
+       style="fill:#ffcc00;fill-opacity:0;stroke:#00ffff;stroke-width:0.644699;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.181846;filter:url(#filter3432-7)"
+       transform="matrix(2.4427409,0.04910544,0.05556451,3.1276483,74.079866,-478.57112)"
+       inkscape:export-filename="/home/greg/logoStudioMini.png"
+       inkscape:export-xdpi="179.17999"
+       inkscape:export-ydpi="179.17999">
+      <path
+         id="rect905-2-6"
+         style="fill:#ffcc00;fill-opacity:0;stroke:#00ffff;stroke-width:0.458305;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:6.21543;stroke-opacity:0.181846"
+         d="m 50.004878,171.90815 -0.515628,0.15074 0.255799,3.07819 1.13213,-0.57712 z m 0.872301,2.65181 -1.13213,0.57712 1.038048,2.86521 1.12075,-0.61 z m 2.849108,-5.39409 -0.595716,0.54391 1.247107,5.21702 0.912931,-1.34267 z m 3.256992,3.57848 -0.84299,-0.45923 -3.025801,4.59467 1.769578,0.97812 z m -3.868789,4.13544 -5.668639,2.86338 0.660067,1.80943 6.778148,-3.69469 z m -5.008572,4.67281 -0.660067,-1.80943 -2.663002,2.83658 1.786499,1.32732 z m -8.612099,-9.63721 0.520352,0.15003 -0.251535,3.07853 -1.143016,-0.57555 z m -0.874199,2.65301 1.143016,0.57555 -1.040915,2.86665 -1.131609,-0.60845 z m -2.884766,-5.39014 0.601949,0.54308 -1.246835,5.21874 -0.923547,-1.34139 z m -3.277334,3.58298 0.849236,-0.4604 3.061292,4.59048 -1.782654,0.98056 z m 3.910527,4.13008 5.723092,2.85554 -0.661916,1.81034 -6.843829,-3.68532 z m 5.061175,4.66588 0.661915,-1.81034 2.691712,2.83289 -1.798989,1.32979 z" />
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;font-size:40.5694px;line-height:0;font-family:BroshK;-inkscape-font-specification:'BroshK Medium';stroke:none;stroke-width:0.665;stroke-miterlimit:4;stroke-dasharray:none;filter:url(#filter21383)"
+       x="193.16525"
+       y="78.424026"
+       id="text939-1"
+       inkscape:export-filename="/home/greg/logoStudioMini.png"
+       inkscape:export-xdpi="179.17999"
+       inkscape:export-ydpi="179.17999"><tspan
+         sodipodi:role="line"
+         x="193.16525"
+         y="78.424026"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:40.5694px;line-height:0.95;font-family:BroshK;-inkscape-font-specification:'BroshK Bold';text-align:center;text-anchor:middle;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.665;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="tspan968-3">DVS</tspan></text>
   </g>
 </svg>
