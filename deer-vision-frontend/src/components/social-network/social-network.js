@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import discordLogo from "../../images/discordLogo.webp";
 import youtubeLogo from "../../images/youtubeLogo.webp";
-import reeditLogo from "../../images/reeditLogo.webp";
 import twitterLogo from "../../images/twitterLogo.webp";
 import './social-network.css';
 import uniqueId from 'lodash/uniqueId'
@@ -33,13 +32,6 @@ class SocialNetwork extends Component {
             labelComponent = <div className="network-title">{this.props.label}</div>
         }
 
-        let reeditComponent;
-        if (this.props.reeditGameUrl && this.props.reeditGameUrl !== "") {
-            reeditComponent = <a href={this.props.reeditGameUrl} target="_blank" rel="noopener noreferrer" className="network-logo-wrapper">
-                <img className="network-logo" src={reeditLogo} alt="Reedit Logo" width={this.props.logoSize} height={this.props.logoSize}/>
-            </a>;
-        }
-
         let noCommunityComponents;
         if (!this.props.onlyCommunityNetwork) {
             noCommunityComponents = <a href="https://www.youtube.com/channel/UC1MNRfIXqQPB8dQtU94PpdQ" target="_blank" rel="noopener noreferrer" className="network-logo-wrapper">
@@ -57,7 +49,6 @@ class SocialNetwork extends Component {
                     <a href="https://twitter.com/deer_vision" target="_blank" rel="noopener noreferrer" className="network-logo-wrapper">
                         <img className="network-logo" src={twitterLogo} alt="Twitter Logo" width={this.props.logoSize} height={this.props.logoSize}/>
                     </a>
-                    {reeditComponent}
                     {noCommunityComponents}
                 </div>
             </div>

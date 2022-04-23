@@ -42,7 +42,7 @@ class Index extends Component {
                     <footer>
                         <br/>
                         <div className="soc-container">
-                            <SocialNetwork logoSize={48} label="Join us on:" onlyCommunityNetwork={false}/>
+                            <SocialNetwork logoSize={48} label="Social networks:" onlyCommunityNetwork={false}/>
                         </div>
                         <center>
                             <small>&copy; {this.currentYear}, Deer Vision Studio | <a className={"text-link"} href={"/privacy"} title={"Privacy Policy"}>Privacy</a> | <a className={"text-link"} href={"/eula"} title={"End User License Agreement"}>EULA</a></small>

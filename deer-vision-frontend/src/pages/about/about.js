@@ -3,20 +3,22 @@ import "../pages.css"
 import "./about.css"
 import Description from "../../components/description/description";
 import studioLogo from "../../images/studioLogo.webp";
+import gregProfile from "../../images/gregProfile.webp";
 
 class About extends Component {
     render() {
         return (
             <div>
-                <h2>About Us</h2>
+                <h2>About</h2>
                 <div className="pres-container">
                     <div className="vertical-spacer"/>
                     <div className="horizontal-spacer"/>
                     <div className="pres-description">
                         <Description>
-                            <p>Deer Vision Studio is an <strong>independent</strong> studio, which develops video games. The studio is located in Belgium (Ardennes).</p>
-                            <p>Our philosophy is to publish high quality games and to <strong>listen our community</strong> to constantly improve our games in the right direction. Therefore, it is always a real pleasure to discuss with you on our social networks (see links below).</p>
-                            <p>We like to create our games without any restrictions. This is why we have a home-made game engine (<a className="text-link" href="https://github.com/petitg1987/urchinEngine" target="_blank" rel="noopener noreferrer" title="Git Hub">Urchin Engine</a>) and we produce most of our assets. This gives us a full control over the game development process and the only limitations are our imagination!</p>
+                            <p><img src={gregProfile} alt="Greg profile" width="150" height="186" className="pres-profile"/></p>
+                            <p>My name is Grégory Petit and I'm a <strong>solo game developer</strong> located in Belgium. Deer Vision Studio is the company name used to publish and sell the games.</p>
+                            <p>My philosophy is to publish high quality games and <strong>listen the community</strong> to constantly improve them in the right direction.</p>
+                            <p>I like to create my games without any restrictions. This is why I'm developing my own game engine (<a className="text-link" href="https://github.com/petitg1987/urchinEngine" target="_blank" rel="noopener noreferrer" title="Git Hub">Urchin Engine</a>) and I produce most of the assets. This gives me a full control over the game development process and the only limit is my imagination!</p>
                         </Description>
                     </div>
                     <div className="horizontal-spacer"/>

@@ -2,6 +2,12 @@
     overflow: hidden;
 }
 
+.pres-profile {
+    float : left;
+    margin-right: 15px;
+    margin-bottom: 6px;
+}
+
 .pres-description {
     float: left;
     width: 35%;

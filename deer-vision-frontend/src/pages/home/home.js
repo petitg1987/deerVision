@@ -13,7 +13,7 @@ class Home extends Component {
     render() {
         return (
             <div>
-                <h2>Our Games</h2>
+                <h2>Games</h2>
                 <div className="game-container">
                     <div className="vertical-spacer"/>
                     <div className="horizontal-spacer"/>
@@ -32,7 +32,7 @@ class Home extends Component {
 
                             <p>Join the community:</p>
                             <div className="game-soc-container">
-                                <SocialNetwork logoSize={40} reeditGameUrl="https://www.reddit.com/r/PhotonEngineer/" onlyCommunityNetwork={true}/>
+                                <SocialNetwork logoSize={40} onlyCommunityNetwork={true}/>
                             </div>
 
                             <p>Key request for Youtubers, Streamers and press:</p>
