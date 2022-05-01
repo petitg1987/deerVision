@@ -7,8 +7,10 @@ import org.springframework.stereotype.Service;
 import studio.deervision.config.properties.AppProperties;
 import studio.deervision.exception.ApplicationException;
 import studio.deervision.model.pe.LevelCompletionTime;
+import studio.deervision.repository.LevelCompletionTimeRange;
 import studio.deervision.repository.LevelCompletionTimeRepository;
 
+import java.util.List;
 import java.util.regex.Pattern;
 
 @Service
@@ -36,6 +38,14 @@ public class LevelService {
             return;
         }
         levelCompletionTimeRepository.saveAndFlush(new LevelCompletionTime(requestKey, appVersion, levelId, completionTimeInSec));
+    }
+
+    public List<LevelCompletionTimeRange> getLevelCompletionTimeRanges(int levelId) {
+        return levelCompletionTimeRepository.findCompletionTimeGroupByMinute(levelId);
+    }
+
+    public List<Integer> getLevelIds() {
+        return levelCompletionTimeRepository.findDistinctByLevelId();
     }
 
 }
