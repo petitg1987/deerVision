@@ -21,7 +21,7 @@ public class LevelRestController {
 
     //curl -X POST -H "Content-Type: text/plain" -H "X-Key: 0-17" --data "3" "http://localhost:5000/api/pe/level/0/completionTime?appId=photonEngineer&appVersion=1.0.0"
     @PostMapping(value = "/pe/level/{id}/completionTime", consumes = MediaType.TEXT_PLAIN_VALUE)
-    public ResponseEntity<String> levelCompletionTime(@PathVariable("id") Long levelId, @RequestBody String value, @RequestParam("appId") String appId, @RequestParam(value="appVersion") String appVersion) {
+    public ResponseEntity<String> levelCompletionTime(@PathVariable("id") Integer levelId, @RequestBody String value, @RequestParam("appId") String appId, @RequestParam(value="appVersion") String appVersion) {
         String requestKey = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         long completionTimeInSec;
         try {

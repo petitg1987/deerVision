@@ -22,7 +22,8 @@ public class Usage {
 
     private LocalDateTime dateTime;
 
-    public Usage(){
+    public Usage() {
+
     }
 
     public Usage(String requestKey, String appId, String appVersion, OperatingSystem operatingSystem) {
