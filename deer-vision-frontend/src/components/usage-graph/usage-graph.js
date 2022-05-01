@@ -6,7 +6,7 @@ import Chart from 'chart.js/auto';
 class UsageGraph extends Component {
 
     async componentDidMount() {
-        let usageJson = await getWithToken(this.props.backendUrl + 'api/admin/usage', this.props.token);
+        let usageJson = await getWithToken(this.props.backendUrl + 'api/admin/usage?retrieveDays=30', this.props.token);
         let ctx = document.getElementById("applicationsUsageChart");
 
         let datesTab = usageJson.dates;
