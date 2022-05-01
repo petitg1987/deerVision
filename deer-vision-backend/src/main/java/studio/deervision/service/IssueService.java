@@ -2,7 +2,9 @@ package studio.deervision.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import studio.deervision.config.properties.IssueProperties;
+import studio.deervision.config.properties.AppProperties;
+import studio.deervision.exception.ApplicationException;
+import studio.deervision.exception.IssueException;
 import studio.deervision.model.Issue;
 import studio.deervision.model.OperatingSystem;
 import studio.deervision.repository.IssueRepository;
@@ -16,21 +18,19 @@ import java.util.regex.Pattern;
 public class IssueService {
 
     private final IssueRepository issueRepository;
-    private final IssueProperties issueProperties;
+    private final AppProperties appProperties;
 
     @Autowired
-    public IssueService(IssueRepository issueRepository, IssueProperties issueProperties) {
+    public IssueService(IssueRepository issueRepository, AppProperties appProperties) {
         this.issueRepository = issueRepository;
-        this.issueProperties = issueProperties;
+        this.appProperties = appProperties;
     }
 
-    public void newIssue(String value, String requestKey, String appId, String appVersion, OperatingSystem operatingSystem) {
-        if(value == null || "".equals(value)) {
-            throw new IllegalArgumentException("Empty issue value received");
-        }
-        String versionPattern = "^" + issueProperties.getVersionPattern() + "(-snapshot)?$";
-        if(!Pattern.matches(versionPattern, appVersion)) {
-            throw new IllegalArgumentException("Invalid application version: " + appVersion);
+    public void newIssue(String value, String requestKey, String appId, String appVersion, OperatingSystem operatingSystem) throws ApplicationException, IssueException {
+        if (value == null || "".equals(value)) {
+            throw new IssueException("Empty issue value received");
+        } else if (!Pattern.matches(appProperties.getVersionPattern(), appVersion)) {
+            throw new ApplicationException("Invalid application version: " + appVersion);
         }
 
         Issue issue = new Issue(value, requestKey, appId, appVersion, operatingSystem);

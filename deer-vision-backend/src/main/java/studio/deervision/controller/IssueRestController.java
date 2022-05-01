@@ -8,6 +8,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import studio.deervision.dto.IssueDto;
 import studio.deervision.dto.IssueListDto;
+import studio.deervision.exception.ApplicationException;
+import studio.deervision.exception.IssueException;
 import studio.deervision.model.OperatingSystem;
 import studio.deervision.repository.LightIssue;
 import studio.deervision.service.IssueService;
@@ -33,7 +35,7 @@ public class IssueRestController {
         String requestKey = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         try {
             issueService.newIssue(value, requestKey, appId, appVersion, OperatingSystem.toOperatingSystem(os));
-        } catch (IllegalArgumentException e) {
+        } catch (ApplicationException | IssueException e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }
         return ResponseEntity.ok(null);

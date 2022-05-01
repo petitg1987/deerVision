@@ -9,8 +9,6 @@ import java.time.LocalDateTime;
 @Entity
 public class Issue {
 
-    private static final int MAX_SAMPLE_VALUE_SIZE = 150; //TODO remove ?
-
     @Id
     @GeneratedValue
     private Long id;

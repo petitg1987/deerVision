@@ -6,6 +6,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
+import studio.deervision.exception.ApplicationException;
 import studio.deervision.service.pe.LevelService;
 
 @RestController
@@ -29,7 +30,11 @@ public class LevelRestController {
         } catch (NumberFormatException e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }
-        levelService.registerLevelCompletionTime(requestKey, appId, appVersion, levelId, completionTimeInSec);
+        try {
+            levelService.registerLevelCompletionTime(requestKey, appId, appVersion, levelId, completionTimeInSec);
+        } catch (ApplicationException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
         return ResponseEntity.ok(null);
     }
 
