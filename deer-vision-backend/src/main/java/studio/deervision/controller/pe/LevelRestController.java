@@ -6,17 +6,12 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
-import studio.deervision.dto.AppUsageDto;
-import studio.deervision.dto.UsageDto;
 import studio.deervision.exception.ApplicationException;
 import studio.deervision.repository.LevelCompletionTimeRange;
 import studio.deervision.service.pe.LevelService;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+import java.util.Comparator;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api")
@@ -49,15 +44,37 @@ public class LevelRestController {
 
     //curl -H "Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJkdnNKV1QiLCJzdWIiOiJhZG1pbiIsImF1dGhvcml0aWVzIjpbIlJPTEVfVVNFUiJdLCJpYXQiOjE2MzQ1NzIzODgsImV4cCI6MTk0OTkzMjM4OH0.S-VnMofcbTMv4epZCT3Es1zezcvXsN4xL0gmkXca3vGHsXvwa5MB1puaw6Y8wBUZLLifvXLLGZUcYvYoDvLOWQ" http://localhost:5000/api/admin/levels/completionTime?levelId=0 | jq .
     @GetMapping(value = "/admin/levels/completionTime")
-    public List<LevelCompletionTimeRange> getLevelCompletionTimeRanges(@RequestParam("levelId") Integer levelId) {
-        return levelService.getLevelCompletionTimeRanges(levelId);
-        //TODO add missing minutes !
+    public List<LevelCompletionTimeRange> getLevelCompletionTimeGroupByMinute(@RequestParam("levelId") Integer levelId) {
+        List<LevelCompletionTimeRange> completionTimeGroupByMinute =  levelService.getLevelCompletionTimeGroupByMinute(levelId);
+        addMissingMinutes(completionTimeGroupByMinute);
+        return completionTimeGroupByMinute;
     }
 
     //curl -H "Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJkdnNKV1QiLCJzdWIiOiJhZG1pbiIsImF1dGhvcml0aWVzIjpbIlJPTEVfVVNFUiJdLCJpYXQiOjE2MzQ1NzIzODgsImV4cCI6MTk0OTkzMjM4OH0.S-VnMofcbTMv4epZCT3Es1zezcvXsN4xL0gmkXca3vGHsXvwa5MB1puaw6Y8wBUZLLifvXLLGZUcYvYoDvLOWQ" http://localhost:5000/api/admin/levels/id
     @GetMapping(value = "/admin/levels/id")
     public List<Integer> getLevelIds() {
         return levelService.getLevelIds();
+    }
+
+    void addMissingMinutes(List<LevelCompletionTimeRange> completionTimeGroupByMinute) {
+        for (int minute = 0; minute <= LevelService.MAX_COMPLETION_TIME_MIN; ++minute) {
+            boolean minuteExist = false;
+            for (LevelCompletionTimeRange lctr : completionTimeGroupByMinute) {
+                minuteExist = minuteExist || lctr.getMinute() == minute;
+            }
+            if (!minuteExist) {
+                final int missingMinute = minute;
+                completionTimeGroupByMinute.add(new LevelCompletionTimeRange() {
+                    public Integer getMinute() {
+                        return missingMinute;
+                    }
+                    public Integer getQuantity() {
+                        return 0;
+                    }
+                });
+            }
+        }
+        completionTimeGroupByMinute.sort(Comparator.comparing(LevelCompletionTimeRange::getMinute));
     }
 
 }

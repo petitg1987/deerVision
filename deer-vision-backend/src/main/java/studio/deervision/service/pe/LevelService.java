@@ -16,8 +16,8 @@ import java.util.regex.Pattern;
 @Service
 public class LevelService {
 
+    public static final int MAX_COMPLETION_TIME_MIN = 40;
     private static final Logger LOGGER = LoggerFactory.getLogger(LevelService.class);
-    private static final int MAX_COMPLETION_TIME = 60 * 40;
 
     private final LevelCompletionTimeRepository levelCompletionTimeRepository;
     private final AppProperties appProperties;
@@ -33,14 +33,14 @@ public class LevelService {
             throw new ApplicationException("Invalid application id: " + appId);
         } else if (!Pattern.matches(appProperties.getVersionPattern(), appVersion)) {
             throw new ApplicationException("Invalid application version: " + appVersion);
-        } else if (completionTimeInSec > MAX_COMPLETION_TIME) {
+        } else if (Math.round(completionTimeInSec / 60.0) > MAX_COMPLETION_TIME_MIN) {
             LOGGER.info("Ignore completion of {} seconds in level {} for request key: {}", completionTimeInSec, levelId, requestKey);
             return;
         }
         levelCompletionTimeRepository.saveAndFlush(new LevelCompletionTime(requestKey, appVersion, levelId, completionTimeInSec));
     }
 
-    public List<LevelCompletionTimeRange> getLevelCompletionTimeRanges(int levelId) {
+    public List<LevelCompletionTimeRange> getLevelCompletionTimeGroupByMinute(int levelId) {
         return levelCompletionTimeRepository.findCompletionTimeGroupByMinute(levelId);
     }
 
