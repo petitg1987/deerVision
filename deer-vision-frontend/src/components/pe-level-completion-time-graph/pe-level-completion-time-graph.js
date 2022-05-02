@@ -51,6 +51,7 @@ class PeLevelCompletionTimeGraph extends Component {
                 animation: true,
                 scales: {
                     y: {
+                        min: 0,
                         ticks: {
                             stepSize: 1
                         }
