@@ -14,4 +14,6 @@ public interface IssueRepository extends JpaRepository<Issue, Long> {
             "i.dateTime as dateTime from Issue i ORDER BY i.dateTime DESC")
     List<LightIssue> findAllOrderByDates();
 
+    void deleteByRequestKey(String requestKey);
+
 }

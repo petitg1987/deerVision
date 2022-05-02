@@ -50,4 +50,8 @@ public class IssueService {
         issueRepository.deleteById(id);
     }
 
+    public void removeByRequestKey(String requestKey) {
+        issueRepository.deleteByRequestKey(requestKey);
+    }
+
 }

@@ -14,6 +14,7 @@ import studio.deervision.service.UsageService;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -58,7 +59,7 @@ public class UsageRestController {
                 .collect(Collectors.toList()));
 
         List<String> appIds = usageService.findDistinctAppId();
-        for(String appId : appIds) {
+        for (String appId : appIds) {
             Map<LocalDate, Long> mapUsageCounts = addMissingDates(usageService.findUsagesBetweenDates(appId, startDate, endDate, includeSnapshot, uniqueCount), chartDates);
             List<Long> usageCounts = mapUsageCounts.keySet().stream()
                     .sorted()
@@ -68,6 +69,18 @@ public class UsageRestController {
         }
 
         return usageDto;
+    }
+
+    //curl -H "Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJkdnNKV1QiLCJzdWIiOiJhZG1pbiIsImF1dGhvcml0aWVzIjpbIlJPTEVfVVNFUiJdLCJpYXQiOjE2MzQ1NzIzODgsImV4cCI6MTk0OTkzMjM4OH0.S-VnMofcbTMv4epZCT3Es1zezcvXsN4xL0gmkXca3vGHsXvwa5MB1puaw6Y8wBUZLLifvXLLGZUcYvYoDvLOWQ" "http://localhost:5000/api/admin/usage/totalRequestKeys" | jq .
+    @GetMapping(value = "/admin/usage/totalRequestKeys")
+    public Map<String, Long> getTotalRequestKeys() {
+        Map<String, Long> totalRequestKeys = new HashMap<>();
+        List<String> appIds = usageService.findDistinctAppId();
+        for (String appId : appIds) {
+            Long numRequestKeys = usageService.countDistinctRequestKeys(appId);
+            totalRequestKeys.put(appId, numRequestKeys);
+        }
+        return totalRequestKeys;
     }
 
     private List<LocalDate> retrieveChartsDates(int nbChartDays) {

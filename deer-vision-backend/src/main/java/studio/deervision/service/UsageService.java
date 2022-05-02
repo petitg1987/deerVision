@@ -50,6 +50,10 @@ public class UsageService {
         return usageDates.stream().collect(Collectors.toMap(UsageCount::getUsageDate, UsageCount::getUsageCount));
     }
 
+    public Long countDistinctRequestKeys(String appId) {
+        return usageRepository.countDistinctRequestKeys(appId);
+    }
+
     private LocalDateTime toStartDateTime(LocalDate startDate) {
         return startDate.atTime(LocalTime.MIN);
     }

@@ -22,7 +22,7 @@ class PeLevelCompletionTimeGraph extends Component {
     }
 
     async refreshChart() {
-        let ctx = document.getElementById("applicationsPeLevelCompletionTimeChart");
+        let ctx = document.getElementById("peLevelCompletionTimeChart");
         let lctJson = await getWithToken(this.props.backendUrl + 'api/admin/levels/' + this.state.levelSelected + '/completionTimes?includeSnapshot=' + this.state.includeSnapshotVal, this.props.token);
 
         let minutesTab = [];
@@ -99,7 +99,7 @@ class PeLevelCompletionTimeGraph extends Component {
             <div className="levelCompletionTimeChart">
                 <select id="levelsSelect" onChange={this.handleLevelChange} value={this.state.levelSelected}/>
                 <input type="checkbox" id="levelCompletionTimeIncludeSnap" onChange={this.handleVersionChange} checked={this.state.includeSnapshotVal}/><label htmlFor="levelCompletionTimeIncludeSnap">Snapshot</label>
-                <canvas id="applicationsPeLevelCompletionTimeChart"/>
+                <canvas id="peLevelCompletionTimeChart"/>
             </div>
         );
     }
