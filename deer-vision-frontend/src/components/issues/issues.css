@@ -16,7 +16,7 @@ td, th {
 th {
     background-color: #50505d;
     color: #ffffff;
-    height: 45px;
+    height: 30px;
 }
 
 .issues-actions {
@@ -25,7 +25,7 @@ th {
 
 .issues-action {
     display: inline-block;
-    margin: 3px;
+    margin: 2px;
     vertical-align: middle;
 }
 

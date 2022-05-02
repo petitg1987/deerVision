@@ -3,7 +3,6 @@ import './issues.css';
 import {deleteWithToken, getWithToken} from "../../js/request";
 import seeIcon from "../../images/seeIcon.webp";
 import deleteIcon from "../../images/deleteIcon.webp";
-import Description from "../description/description";
 
 class Issues extends Component {
 
@@ -69,12 +68,12 @@ class Issues extends Component {
                         <div className="issues-actions">
                             <div className="issues-action">
                                 <a className="text-link" href="/" title="See" onClick={evt => this.seeIssue(evt, issue.id)}>
-                                    <img src={seeIcon} alt="See Icon" width="25" height="25"/>
+                                    <img src={seeIcon} alt="See Icon" width="20" height="20"/>
                                 </a>
                             </div>
                             <div className="issues-action">
                                 <a className="text-link" href="/" title="Delete" onClick={evt => this.deleteIssue(evt, issue.id)}>
-                                    <img src={deleteIcon} alt="Delete Icon" width="25" height="25"/>
+                                    <img src={deleteIcon} alt="Delete Icon" width="20" height="20"/>
                                 </a>
                             </div>
                         </div>
