@@ -18,7 +18,7 @@ class About extends Component {
                             <p><img src={gregProfile} alt="Greg profile" width="150" height="186" className="pres-profile"/></p>
                             <p>My name is Grégory Petit and I'm a <strong>solo game developer</strong> located in Belgium. Deer Vision Studio is the company name used to publish and sell the games.</p>
                             <p>My philosophy is to publish high quality games and <strong>listen the community</strong> to constantly improve them in the right direction.</p>
-                            <p>I like to create my games without any restrictions. This is why I'm developing my own game engine (<a className="text-link" href="https://github.com/petitg1987/urchinEngine" target="_blank" rel="noopener noreferrer" title="Git Hub">Urchin Engine</a>) and I produce most of the assets. This gives me a full control over the game development process and the only limit is my imagination!</p>
+                            <p>I like to create my games without any restrictions. That is why I developed my own game engine (<a className="text-link" href="https://github.com/petitg1987/urchinEngine" target="_blank" rel="noopener noreferrer" title="Git Hub">Urchin Engine</a>) and I produce most of the game assets. This gives me a full control over the game development process and the only limit is my imagination!</p>
                         </Description>
                     </div>
                     <div className="horizontal-spacer"/>
