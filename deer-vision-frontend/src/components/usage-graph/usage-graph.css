@@ -1,5 +1,5 @@
-.chart {
-    display: block;
+.usageChart {
+    float: left;
     width: 100%;
     max-width: 600px;
     height: 50%;

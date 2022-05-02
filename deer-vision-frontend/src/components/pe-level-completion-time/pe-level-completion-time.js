@@ -77,11 +77,9 @@ class PeLevelCompletionTime extends Component {
 
     render() {
         return (
-            <div>
-                <div>
-                    <select name="levelsSelect" id ="levelsSelect" onChange={this.handleChange} value={this.state.levelSelected}/>
-                    <canvas className="chart" id="applicationsPeLevelCompletionTimeChart"/>
-                </div>
+            <div className="levelCompletionTimeChart">
+                <select id="levelsSelect" onChange={this.handleChange} value={this.state.levelSelected}/>
+                <canvas id="applicationsPeLevelCompletionTimeChart"/>
             </div>
         );
     }
