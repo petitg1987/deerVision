@@ -3,6 +3,7 @@ import './issues.css';
 import {deleteWithToken, getWithToken} from "../../js/request";
 import seeIcon from "../../images/seeIcon.webp";
 import deleteIcon from "../../images/deleteIcon.webp";
+import deleteUserIcon from "../../images/deleteUserIcon.webp";
 
 class Issues extends Component {
 
@@ -36,6 +37,12 @@ class Issues extends Component {
     async deleteIssue(event, issueId) {
         event.preventDefault();
         deleteWithToken(this.props.backendUrl + 'api/admin/issues/' + issueId, this.props.token)
+            .then(async () => {await this.refreshIssues()});
+    }
+
+    async deleteUserIssue(event, requestKey) {
+        event.preventDefault();
+        deleteWithToken(this.props.backendUrl + 'api/admin/issues?requestKey=' + requestKey, this.props.token)
             .then(async () => {await this.refreshIssues()});
     }
 
@@ -74,6 +81,11 @@ class Issues extends Component {
                             <div className="issues-action">
                                 <a className="text-link" href="/" title="Delete" onClick={evt => this.deleteIssue(evt, issue.id)}>
                                     <img src={deleteIcon} alt="Delete Icon" width="20" height="20"/>
+                                </a>
+                            </div>
+                            <div className="issues-action">
+                                <a className="text-link" href="/" title="Delete all issues of this user" onClick={evt => this.deleteUserIssue(evt, issue.requestKey)}>
+                                    <img src={deleteUserIcon} alt="Delete User Icon" width="20" height="20"/>
                                 </a>
                             </div>
                         </div>
