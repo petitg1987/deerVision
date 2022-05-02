@@ -91,20 +91,13 @@ class Issues extends Component {
     }
 
     render() {
-        if (this.state.tableData.length === 0) {
-            return (
-                <div>
-                    <Description>
-                        <p>No issues</p>
-                    </Description>
-                </div>
-            )
-        }
-
         return (
             <div>
                 <table>
                     <thead>
+                        <tr>
+                            <th colSpan={6}>Issues</th>
+                        </tr>
                         <tr>
                             <th>Date</th>
                             <th>Application</th>

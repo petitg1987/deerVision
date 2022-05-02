@@ -5,6 +5,7 @@ import {postRequest} from "../../js/request"
 import {isJwtExpired} from 'jwt-check-expiration';
 import UsageGraph from "../../components/usage-graph/usage-graph";
 import Issues from "../../components/issues/issues";
+import PeLevelCompletionTime from "../../components/pe-level-completion-time/pe-level-completion-time";
 
 const backendUrl = "https://backend.deervision.studio/";
 //const backendUrl = "http://127.0.0.1:5000/";
@@ -88,19 +89,26 @@ class Admin extends Component {
 
         return (
             <div>
-                <h2>Usages</h2>
-                <div className="usage-container">
+                <h2>General</h2>
+                <div className="graph-container">
                     <div className="vertical-spacer"/>
                     <div className="horizontal-spacer"/>
                     <UsageGraph backendUrl={backendUrl} token={this.getToken()}/>
                 </div>
 
                 <div className="vertical-spacer"/>
-                <h2>Issues</h2>
                 <div className="issues-container">
                     <div className="vertical-spacer"/>
                     <div className="horizontal-spacer"/>
                     <Issues backendUrl={backendUrl} token={this.getToken()}/>
+                </div>
+
+                <div className="vertical-spacer"/>
+                <h2>Photon Engineer</h2>
+                <div className="graph-container">
+                    <div className="vertical-spacer"/>
+                    <div className="horizontal-spacer"/>
+                    <PeLevelCompletionTime backendUrl={backendUrl} token={this.getToken()}/>
                 </div>
 
                 <div className="logout-container">

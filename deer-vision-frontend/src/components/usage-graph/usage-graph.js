@@ -40,7 +40,8 @@ class UsageGraph extends Component {
                         display: true
                     },
                     title: {
-                        display: false,
+                        display: true,
+                        text: "Usage"
                     }
                 }
             }

@@ -42,12 +42,12 @@ public class LevelRestController {
         return ResponseEntity.ok(null);
     }
 
-    //curl -H "Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJkdnNKV1QiLCJzdWIiOiJhZG1pbiIsImF1dGhvcml0aWVzIjpbIlJPTEVfVVNFUiJdLCJpYXQiOjE2MzQ1NzIzODgsImV4cCI6MTk0OTkzMjM4OH0.S-VnMofcbTMv4epZCT3Es1zezcvXsN4xL0gmkXca3vGHsXvwa5MB1puaw6Y8wBUZLLifvXLLGZUcYvYoDvLOWQ" http://localhost:5000/api/admin/levels/0/completionTime | jq .
-    @GetMapping(value = "/admin/levels/{levelId}/completionTime")
-    public List<LevelCompletionTimeRange> getLevelCompletionTimeGroupByMinute(@PathVariable("levelId") Integer levelId) {
-        List<LevelCompletionTimeRange> completionTimeGroupByMinute =  levelService.getLevelCompletionTimeGroupByMinute(levelId);
-        addMissingMinutes(completionTimeGroupByMinute);
-        return completionTimeGroupByMinute;
+    //curl -H "Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJkdnNKV1QiLCJzdWIiOiJhZG1pbiIsImF1dGhvcml0aWVzIjpbIlJPTEVfVVNFUiJdLCJpYXQiOjE2MzQ1NzIzODgsImV4cCI6MTk0OTkzMjM4OH0.S-VnMofcbTMv4epZCT3Es1zezcvXsN4xL0gmkXca3vGHsXvwa5MB1puaw6Y8wBUZLLifvXLLGZUcYvYoDvLOWQ" http://localhost:5000/api/admin/levels/0/completionTimes | jq .
+    @GetMapping(value = "/admin/levels/{levelId}/completionTimes")
+    public List<LevelCompletionTimeRange> getLevelCompletionTimesGroupByMinute(@PathVariable("levelId") Integer levelId) {
+        List<LevelCompletionTimeRange> completionTimesGroupByMinute =  levelService.getLevelCompletionTimesGroupByMinute(levelId);
+        addMissingMinutes(completionTimesGroupByMinute);
+        return completionTimesGroupByMinute;
     }
 
     //curl -H "Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJkdnNKV1QiLCJzdWIiOiJhZG1pbiIsImF1dGhvcml0aWVzIjpbIlJPTEVfVVNFUiJdLCJpYXQiOjE2MzQ1NzIzODgsImV4cCI6MTk0OTkzMjM4OH0.S-VnMofcbTMv4epZCT3Es1zezcvXsN4xL0gmkXca3vGHsXvwa5MB1puaw6Y8wBUZLLifvXLLGZUcYvYoDvLOWQ" http://localhost:5000/api/admin/levels/ids
