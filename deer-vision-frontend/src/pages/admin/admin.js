@@ -6,6 +6,7 @@ import {isJwtExpired} from 'jwt-check-expiration';
 import UsageGraph from "../../components/usage-graph/usage-graph";
 import Issues from "../../components/issues/issues";
 import PeLevelCompletionTimeGraph from "../../components/pe-level-completion-time-graph/pe-level-completion-time-graph";
+import TotalPlayer from "../../components/total-player/total-player";
 
 const backendUrl = "https://backend.deervision.studio/";
 //const backendUrl = "http://127.0.0.1:5000/";
@@ -89,7 +90,15 @@ class Admin extends Component {
 
         return (
             <div>
-                <h2>All Games</h2>
+                <h2>Common</h2>
+                <h3>Total Players</h3>
+                <div>
+                    <div className="vertical-spacer"/>
+                    <div className="horizontal-spacer"/>
+                    <TotalPlayer backendUrl={backendUrl} token={this.getToken()}/>
+                </div>
+
+                <div className="vertical-spacer"/>
                 <h3>Usage</h3>
                 <div className="graph-container">
                     <div className="vertical-spacer"/>
