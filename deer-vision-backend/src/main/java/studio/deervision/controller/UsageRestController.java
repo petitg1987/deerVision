@@ -44,9 +44,9 @@ public class UsageRestController {
         return ResponseEntity.ok(null);
     }
 
-    //curl -H "Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJkdnNKV1QiLCJzdWIiOiJhZG1pbiIsImF1dGhvcml0aWVzIjpbIlJPTEVfVVNFUiJdLCJpYXQiOjE2MzQ1NzIzODgsImV4cCI6MTk0OTkzMjM4OH0.S-VnMofcbTMv4epZCT3Es1zezcvXsN4xL0gmkXca3vGHsXvwa5MB1puaw6Y8wBUZLLifvXLLGZUcYvYoDvLOWQ" "http://localhost:5000/api/admin/usage?retrieveDays=15&ignoreSnapshot=false" | jq .
+    //curl -H "Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJkdnNKV1QiLCJzdWIiOiJhZG1pbiIsImF1dGhvcml0aWVzIjpbIlJPTEVfVVNFUiJdLCJpYXQiOjE2MzQ1NzIzODgsImV4cCI6MTk0OTkzMjM4OH0.S-VnMofcbTMv4epZCT3Es1zezcvXsN4xL0gmkXca3vGHsXvwa5MB1puaw6Y8wBUZLLifvXLLGZUcYvYoDvLOWQ" "http://localhost:5000/api/admin/usage?retrieveDays=15&includeSnapshot=true" | jq .
     @GetMapping(value = "/admin/usage")
-    public UsageDto getUsage(@RequestParam("retrieveDays") Integer retrieveDays, @RequestParam("ignoreSnapshot") Boolean ignoreSnapshot) {
+    public UsageDto getUsage(@RequestParam("retrieveDays") Integer retrieveDays, @RequestParam("includeSnapshot") Boolean includeSnapshot) {
         UsageDto usageDto = new UsageDto();
 
         List<LocalDate> chartDates = retrieveChartsDates(retrieveDays);
@@ -59,7 +59,7 @@ public class UsageRestController {
 
         List<String> appIds = usageService.findDistinctAppId();
         for(String appId : appIds) {
-            Map<LocalDate, Long> mapUsageCounts = addMissingDates(usageService.findUsagesBetweenDates(appId, startDate, endDate, ignoreSnapshot), chartDates);
+            Map<LocalDate, Long> mapUsageCounts = addMissingDates(usageService.findUsagesBetweenDates(appId, startDate, endDate, includeSnapshot), chartDates);
             List<Long> usageCounts = mapUsageCounts.keySet().stream()
                     .sorted()
                     .map(mapUsageCounts::get)

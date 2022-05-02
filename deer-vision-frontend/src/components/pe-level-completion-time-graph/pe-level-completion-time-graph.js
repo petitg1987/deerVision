@@ -7,7 +7,7 @@ class PeLevelCompletionTimeGraph extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {levelSelected: '0', ignoreSnapshotVal: true};
+        this.state = {levelSelected: '0', includeSnapshotVal: false};
         this.statChart = null;
         this.handleLevelChange = this.handleLevelChange.bind(this);
         this.handleVersionChange = this.handleVersionChange.bind(this);
@@ -18,12 +18,12 @@ class PeLevelCompletionTimeGraph extends Component {
     }
 
     handleVersionChange(event) {
-        this.setState({ignoreSnapshotVal: event.target.checked}, this.refreshChart);
+        this.setState({includeSnapshotVal: event.target.checked}, this.refreshChart);
     }
 
     async refreshChart() {
         let ctx = document.getElementById("applicationsPeLevelCompletionTimeChart");
-        let lctJson = await getWithToken(this.props.backendUrl + 'api/admin/levels/' + this.state.levelSelected + '/completionTimes?ignoreSnapshot=' + this.state.ignoreSnapshotVal, this.props.token);
+        let lctJson = await getWithToken(this.props.backendUrl + 'api/admin/levels/' + this.state.levelSelected + '/completionTimes?includeSnapshot=' + this.state.includeSnapshotVal, this.props.token);
 
         let minutesTab = [];
         let playerQuantityTab = [];
@@ -98,7 +98,7 @@ class PeLevelCompletionTimeGraph extends Component {
         return (
             <div className="levelCompletionTimeChart">
                 <select id="levelsSelect" onChange={this.handleLevelChange} value={this.state.levelSelected}/>
-                <input type="checkbox" id="levelCTIgnoreSnap" onChange={this.handleVersionChange} checked={this.state.ignoreSnapshotVal}/><label htmlFor="levelCTIgnoreSnap">Ignore snapshot</label>
+                <input type="checkbox" id="levelCompletionTimeIncludeSnap" onChange={this.handleVersionChange} checked={this.state.includeSnapshotVal}/><label htmlFor="levelCompletionTimeIncludeSnap">Snapshot</label>
                 <canvas id="applicationsPeLevelCompletionTimeChart"/>
             </div>
         );

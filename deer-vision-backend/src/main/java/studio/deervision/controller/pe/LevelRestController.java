@@ -42,10 +42,10 @@ public class LevelRestController {
         return ResponseEntity.ok(null);
     }
 
-    //curl -H "Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJkdnNKV1QiLCJzdWIiOiJhZG1pbiIsImF1dGhvcml0aWVzIjpbIlJPTEVfVVNFUiJdLCJpYXQiOjE2MzQ1NzIzODgsImV4cCI6MTk0OTkzMjM4OH0.S-VnMofcbTMv4epZCT3Es1zezcvXsN4xL0gmkXca3vGHsXvwa5MB1puaw6Y8wBUZLLifvXLLGZUcYvYoDvLOWQ" "http://localhost:5000/api/admin/levels/0/completionTimes?ignoreSnapshot=false" | jq .
+    //curl -H "Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJkdnNKV1QiLCJzdWIiOiJhZG1pbiIsImF1dGhvcml0aWVzIjpbIlJPTEVfVVNFUiJdLCJpYXQiOjE2MzQ1NzIzODgsImV4cCI6MTk0OTkzMjM4OH0.S-VnMofcbTMv4epZCT3Es1zezcvXsN4xL0gmkXca3vGHsXvwa5MB1puaw6Y8wBUZLLifvXLLGZUcYvYoDvLOWQ" "http://localhost:5000/api/admin/levels/0/completionTimes?includeSnapshot=true" | jq .
     @GetMapping(value = "/admin/levels/{levelId}/completionTimes")
-    public List<LevelCompletionTimeRange> getLevelCompletionTimesGroupByMinute(@PathVariable("levelId") Integer levelId, @RequestParam("ignoreSnapshot") Boolean ignoreSnapshot) {
-        List<LevelCompletionTimeRange> completionTimesGroupByMinute = levelService.getLevelCompletionTimesGroupByMinute(levelId, ignoreSnapshot);
+    public List<LevelCompletionTimeRange> getLevelCompletionTimesGroupByMinute(@PathVariable("levelId") Integer levelId, @RequestParam("includeSnapshot") Boolean includeSnapshot) {
+        List<LevelCompletionTimeRange> completionTimesGroupByMinute = levelService.getLevelCompletionTimesGroupByMinute(levelId, includeSnapshot);
         addMissingMinutes(completionTimesGroupByMinute);
         return completionTimesGroupByMinute;
     }

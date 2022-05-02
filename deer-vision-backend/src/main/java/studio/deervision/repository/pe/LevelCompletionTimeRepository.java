@@ -11,9 +11,9 @@ import java.util.List;
 public interface LevelCompletionTimeRepository extends JpaRepository<LevelCompletionTime, Long> {
 
     @Query("SELECT ROUND(lct.completionTime / 60.0) as minute, count(lct.completionTime) as quantity FROM LevelCompletionTime lct WHERE lct.levelId=?1 " +
-            "AND (false=?2 OR lct.appVersion not like '%snapshot') " +
+            "AND (true=?2 OR lct.appVersion not like '%snapshot') " +
             "GROUP BY ROUND(lct.completionTime / 60.0)")
-    List<LevelCompletionTimeRange> findCompletionTimesGroupByMinute(int levelId, boolean ignoreSnapshot);
+    List<LevelCompletionTimeRange> findCompletionTimesGroupByMinute(int levelId, boolean includeSnapshot);
 
     @Query("SELECT DISTINCT lct.levelId FROM LevelCompletionTime lct")
     List<Integer> findDistinctByLevelId();

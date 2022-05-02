@@ -7,7 +7,7 @@ class UsageGraph extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {dayValueSelected: '15', ignoreSnapshotVal: true};
+        this.state = {dayValueSelected: '15', includeSnapshotVal: false};
         this.usageChart = null;
         this.handleDaysChange = this.handleDaysChange.bind(this);
         this.handleVersionChange = this.handleVersionChange.bind(this);
@@ -18,11 +18,11 @@ class UsageGraph extends Component {
     }
 
     handleVersionChange(event) {
-        this.setState({ignoreSnapshotVal: event.target.checked}, this.refreshChart);
+        this.setState({includeSnapshotVal: event.target.checked}, this.refreshChart);
     }
 
     async refreshChart() {
-        let usageJson = await getWithToken(this.props.backendUrl + 'api/admin/usage?retrieveDays=' + this.state.dayValueSelected + "&ignoreSnapshot=" + this.state.ignoreSnapshotVal, this.props.token);
+        let usageJson = await getWithToken(this.props.backendUrl + 'api/admin/usage?retrieveDays=' + this.state.dayValueSelected + "&includeSnapshot=" + this.state.includeSnapshotVal, this.props.token);
         let ctx = document.getElementById("applicationsUsageChart");
 
         let datesTab = usageJson.dates;
@@ -88,7 +88,7 @@ class UsageGraph extends Component {
                     <option value="60">Last 60 days</option>
                     <option value="90">Last 90 days</option>
                 </select>
-                <input type="checkbox" id="usageIgnoreSnap" onChange={this.handleVersionChange} checked={this.state.ignoreSnapshotVal}/><label htmlFor="usageIgnoreSnap">Ignore snapshot</label>
+                <input type="checkbox" id="usageIncludeSnap" onChange={this.handleVersionChange} checked={this.state.includeSnapshotVal}/><label htmlFor="usageIncludeSnap">Snapshot</label>
                 <canvas id="applicationsUsageChart"/>
             </div>
         );
