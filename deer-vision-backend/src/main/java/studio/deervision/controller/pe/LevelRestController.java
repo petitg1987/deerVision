@@ -7,7 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import studio.deervision.exception.ApplicationException;
-import studio.deervision.repository.LevelCompletionTimeRange;
+import studio.deervision.repository.pe.LevelCompletionTimeRange;
 import studio.deervision.service.pe.LevelService;
 
 import java.util.Comparator;

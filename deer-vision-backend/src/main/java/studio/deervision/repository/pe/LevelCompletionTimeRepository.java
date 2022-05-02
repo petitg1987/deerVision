@@ -1,4 +1,4 @@
-package studio.deervision.repository;
+package studio.deervision.repository.pe;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -11,7 +11,7 @@ import java.util.List;
 public interface LevelCompletionTimeRepository extends JpaRepository<LevelCompletionTime, Long> {
 
     @Query("SELECT ROUND(lct.completionTime / 60.0) as minute, count(lct.completionTime) as quantity FROM LevelCompletionTime lct WHERE lct.levelId=?1 " +
-            "AND (false=?2 OR lct.appVersion like '%snapshot') " +
+            "AND (false=?2 OR lct.appVersion not like '%snapshot') " +
             "GROUP BY ROUND(lct.completionTime / 60.0)")
     List<LevelCompletionTimeRange> findCompletionTimesGroupByMinute(int levelId, boolean ignoreSnapshot);
 

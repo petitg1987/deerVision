@@ -7,8 +7,8 @@ import org.springframework.stereotype.Service;
 import studio.deervision.config.properties.AppProperties;
 import studio.deervision.exception.ApplicationException;
 import studio.deervision.model.pe.LevelCompletionTime;
-import studio.deervision.repository.LevelCompletionTimeRange;
-import studio.deervision.repository.LevelCompletionTimeRepository;
+import studio.deervision.repository.pe.LevelCompletionTimeRange;
+import studio.deervision.repository.pe.LevelCompletionTimeRepository;
 
 import java.util.List;
 import java.util.regex.Pattern;
