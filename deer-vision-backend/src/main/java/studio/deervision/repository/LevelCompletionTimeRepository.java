@@ -16,4 +16,6 @@ public interface LevelCompletionTimeRepository extends JpaRepository<LevelComple
 
     @Query("SELECT DISTINCT lct.levelId FROM LevelCompletionTime lct")
     List<Integer> findDistinctByLevelId();
+
+    long countByRequestKeyAndLevelId(String requestKey, Integer levelId);
 }
