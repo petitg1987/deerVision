@@ -7,19 +7,23 @@ class PeLevelCompletionTimeGraph extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {levelSelected: '0'};
+        this.state = {levelSelected: '0', ignoreSnapshotVal: true};
         this.statChart = null;
-        this.handleChange = this.handleChange.bind(this);
+        this.handleLevelChange = this.handleLevelChange.bind(this);
+        this.handleVersionChange = this.handleVersionChange.bind(this);
     }
 
-    handleChange(event) {
-        this.setState({levelSelected: event.target.value});
-        this.refreshChart(event.target.value).then(() => {});
+    handleLevelChange(event) {
+        this.setState({levelSelected: event.target.value}, this.refreshChart);
     }
 
-    async refreshChart(levelSelected) {
+    handleVersionChange(event) {
+        this.setState({ignoreSnapshotVal: event.target.checked}, this.refreshChart);
+    }
+
+    async refreshChart() {
         let ctx = document.getElementById("applicationsPeLevelCompletionTimeChart");
-        let lctJson = await getWithToken(this.props.backendUrl + 'api/admin/levels/' + levelSelected + '/completionTimes', this.props.token);
+        let lctJson = await getWithToken(this.props.backendUrl + 'api/admin/levels/' + this.state.levelSelected + '/completionTimes?ignoreSnapshot=' + this.state.ignoreSnapshotVal, this.props.token);
 
         let minutesTab = [];
         let playerQuantityTab = [];
@@ -72,20 +76,29 @@ class PeLevelCompletionTimeGraph extends Component {
     async componentDidMount() {
         let levelsSelector = document.getElementById("levelsSelect");
         let levelIdsJson = await getWithToken(this.props.backendUrl + 'api/admin/levels/ids', this.props.token);
+
+        let option = document.createElement("option");
+        option.text = "Level 0";
+        option.value = "0";
+        levelsSelector.add(option);
+
         levelIdsJson.forEach(levelNumber => {
-            let option = document.createElement("option");
-            option.text = "Level " + levelNumber;
-            option.value = levelNumber;
-            levelsSelector.add(option);
+            if (levelNumber !== 0) {
+                let option = document.createElement("option");
+                option.text = "Level " + levelNumber;
+                option.value = levelNumber;
+                levelsSelector.add(option);
+            }
         });
 
-        this.refreshChart(levelIdsJson[0]).then(() => {});
+        this.refreshChart().then(() => {});
     }
 
     render() {
         return (
             <div className="levelCompletionTimeChart">
-                <select id="levelsSelect" onChange={this.handleChange} value={this.state.levelSelected}/>
+                <select id="levelsSelect" onChange={this.handleLevelChange} value={this.state.levelSelected}/>
+                <input type="checkbox" id="levelCTIgnoreSnap" onChange={this.handleVersionChange} checked={this.state.ignoreSnapshotVal}/><label htmlFor="levelCTIgnoreSnap">Ignore snapshot</label>
                 <canvas id="applicationsPeLevelCompletionTimeChart"/>
             </div>
         );

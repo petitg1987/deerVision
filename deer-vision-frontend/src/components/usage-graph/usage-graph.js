@@ -7,18 +7,22 @@ class UsageGraph extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {dayValueSelected: '15'};
+        this.state = {dayValueSelected: '15', ignoreSnapshotVal: true};
         this.usageChart = null;
-        this.handleChange = this.handleChange.bind(this);
+        this.handleDaysChange = this.handleDaysChange.bind(this);
+        this.handleVersionChange = this.handleVersionChange.bind(this);
     }
 
-    handleChange(event) {
-        this.setState({dayValueSelected: event.target.value});
-        this.refreshChart(event.target.value).then(() => {});
+    handleDaysChange(event) {
+        this.setState({dayValueSelected: event.target.value}, this.refreshChart);
     }
 
-    async refreshChart(dayValueSelected) {
-        let usageJson = await getWithToken(this.props.backendUrl + 'api/admin/usage?retrieveDays=' + dayValueSelected, this.props.token);
+    handleVersionChange(event) {
+        this.setState({ignoreSnapshotVal: event.target.checked}, this.refreshChart);
+    }
+
+    async refreshChart() {
+        let usageJson = await getWithToken(this.props.backendUrl + 'api/admin/usage?retrieveDays=' + this.state.dayValueSelected + "&ignoreSnapshot=" + this.state.ignoreSnapshotVal, this.props.token);
         let ctx = document.getElementById("applicationsUsageChart");
 
         let datesTab = usageJson.dates;
@@ -72,18 +76,19 @@ class UsageGraph extends Component {
     }
 
     async componentDidMount() {
-        this.refreshChart(this.state.dayValueSelected).then(() => {});
+        this.refreshChart().then(() => {});
     }
 
     render() {
         return (
             <div className="usageChart">
-                <select id="daysSelect" onChange={this.handleChange} value={this.state.dayValueSelected}>
+                <select id="daysSelect" onChange={this.handleDaysChange} value={this.state.dayValueSelected}>
                     <option value="15">Last 15 days</option>
                     <option value="30">Last 30 days</option>
                     <option value="60">Last 60 days</option>
                     <option value="90">Last 90 days</option>
                 </select>
+                <input type="checkbox" id="usageIgnoreSnap" onChange={this.handleVersionChange} checked={this.state.ignoreSnapshotVal}/><label htmlFor="usageIgnoreSnap">Ignore snapshot</label>
                 <canvas id="applicationsUsageChart"/>
             </div>
         );
