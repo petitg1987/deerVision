@@ -43,8 +43,8 @@ public class LevelService {
         levelCompletionTimeRepository.saveAndFlush(new LevelCompletionTime(requestKey, appVersion, levelId, completionTimeInSec));
     }
 
-    public List<LevelCompletionTimeRange> getLevelCompletionTimesGroupByMinute(int levelId) {
-        return levelCompletionTimeRepository.findCompletionTimesGroupByMinute(levelId);
+    public List<LevelCompletionTimeRange> getLevelCompletionTimesGroupByMinute(int levelId, boolean ignoreSnapshot) {
+        return levelCompletionTimeRepository.findCompletionTimesGroupByMinute(levelId, ignoreSnapshot);
     }
 
     public List<Integer> getLevelIds() {

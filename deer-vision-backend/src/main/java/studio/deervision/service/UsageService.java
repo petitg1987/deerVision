@@ -39,8 +39,8 @@ public class UsageService {
         return usageRepository.findDistinctAppId();
     }
 
-    public Map<LocalDate, Long> findUsagesBetweenDates(String appId, LocalDate startDate, LocalDate endDate) {
-        List<Usage> usages = usageRepository.findBetweenDates(appId, toStartDateTime(startDate), toEndDateTime(endDate));
+    public Map<LocalDate, Long> findUsagesBetweenDates(String appId, LocalDate startDate, LocalDate endDate, boolean ignoreSnapshot) {
+        List<Usage> usages = usageRepository.findBetweenDates(appId, toStartDateTime(startDate), toEndDateTime(endDate), ignoreSnapshot);
         return usages.stream().collect(Collectors.groupingBy(bva -> bva.getDateTime().toLocalDate(), Collectors.counting()));
     }
 
