@@ -4,6 +4,7 @@ import studio.deervision.config.properties.AppProperties;
 import studio.deervision.exception.ApplicationException;
 import studio.deervision.model.OperatingSystem;
 import studio.deervision.model.Usage;
+import studio.deervision.repository.UsageCount;
 import studio.deervision.repository.UsageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -39,9 +40,14 @@ public class UsageService {
         return usageRepository.findDistinctAppId();
     }
 
-    public Map<LocalDate, Long> findUsagesBetweenDates(String appId, LocalDate startDate, LocalDate endDate, boolean includeSnapshot) {
-        List<Usage> usages = usageRepository.findBetweenDates(appId, toStartDateTime(startDate), toEndDateTime(endDate), includeSnapshot);
-        return usages.stream().collect(Collectors.groupingBy(bva -> bva.getDateTime().toLocalDate(), Collectors.counting()));
+    public Map<LocalDate, Long> findUsagesBetweenDates(String appId, LocalDate startDate, LocalDate endDate, boolean includeSnapshot, boolean uniqueCount) {
+        List<UsageCount> usageDates;
+        if (uniqueCount) {
+            usageDates = usageRepository.findBetweenDatesUnique(appId, toStartDateTime(startDate), toEndDateTime(endDate), includeSnapshot);
+        } else {
+            usageDates = usageRepository.findBetweenDates(appId, toStartDateTime(startDate), toEndDateTime(endDate), includeSnapshot);
+        }
+        return usageDates.stream().collect(Collectors.toMap(UsageCount::getUsageDate, UsageCount::getUsageCount));
     }
 
     private LocalDateTime toStartDateTime(LocalDate startDate){
