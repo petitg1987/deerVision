@@ -43,18 +43,18 @@ public class UsageService {
     public Map<LocalDate, Long> findUsagesBetweenDates(String appId, LocalDate startDate, LocalDate endDate, boolean includeSnapshot, boolean uniqueCount) {
         List<UsageCount> usageDates;
         if (uniqueCount) {
-            usageDates = usageRepository.findBetweenDatesUnique(appId, toStartDateTime(startDate), toEndDateTime(endDate), includeSnapshot);
+            usageDates = usageRepository.findUsageCountBetweenDatesUnique(appId, toStartDateTime(startDate), toEndDateTime(endDate), includeSnapshot);
         } else {
-            usageDates = usageRepository.findBetweenDates(appId, toStartDateTime(startDate), toEndDateTime(endDate), includeSnapshot);
+            usageDates = usageRepository.findUsageCountBetweenDates(appId, toStartDateTime(startDate), toEndDateTime(endDate), includeSnapshot);
         }
         return usageDates.stream().collect(Collectors.toMap(UsageCount::getUsageDate, UsageCount::getUsageCount));
     }
 
-    private LocalDateTime toStartDateTime(LocalDate startDate){
+    private LocalDateTime toStartDateTime(LocalDate startDate) {
         return startDate.atTime(LocalTime.MIN);
     }
 
-    private LocalDateTime toEndDateTime(LocalDate endDate){
+    private LocalDateTime toEndDateTime(LocalDate endDate) {
         return endDate.atTime(LocalTime.MAX);
     }
 }

@@ -7,10 +7,11 @@ class UsageGraph extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {dayValueSelected: '15', includeSnapshotVal: false};
+        this.state = {dayValueSelected: '15', includeSnapshotVal: false, uniqueCountVal: false};
         this.usageChart = null;
         this.handleDaysChange = this.handleDaysChange.bind(this);
         this.handleVersionChange = this.handleVersionChange.bind(this);
+        this.handleCountChange = this.handleCountChange.bind(this);
     }
 
     handleDaysChange(event) {
@@ -21,8 +22,12 @@ class UsageGraph extends Component {
         this.setState({includeSnapshotVal: event.target.checked}, this.refreshChart);
     }
 
+    handleCountChange(event) {
+        this.setState({uniqueCountVal: event.target.checked}, this.refreshChart);
+    }
+
     async refreshChart() {
-        let usageJson = await getWithToken(this.props.backendUrl + 'api/admin/usage?retrieveDays=' + this.state.dayValueSelected + "&includeSnapshot=" + this.state.includeSnapshotVal, this.props.token);
+        let usageJson = await getWithToken(this.props.backendUrl + 'api/admin/usage?retrieveDays=' + this.state.dayValueSelected + "&includeSnapshot=" + this.state.includeSnapshotVal + "&uniqueCount=" + this.state.uniqueCountVal, this.props.token);
         let ctx = document.getElementById("applicationsUsageChart");
 
         let datesTab = usageJson.dates;
@@ -89,6 +94,7 @@ class UsageGraph extends Component {
                     <option value="90">Last 90 days</option>
                 </select>
                 <input type="checkbox" id="usageIncludeSnap" onChange={this.handleVersionChange} checked={this.state.includeSnapshotVal}/><label htmlFor="usageIncludeSnap">Snapshot</label>
+                <input type="checkbox" id="usageUniqueCount" onChange={this.handleCountChange} checked={this.state.uniqueCountVal}/><label htmlFor="usageUniqueCount">Unique Count</label>
                 <canvas id="applicationsUsageChart"/>
             </div>
         );
