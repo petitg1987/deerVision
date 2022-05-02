@@ -10,6 +10,7 @@ import studio.deervision.model.OperatingSystem;
 import studio.deervision.repository.IssueRepository;
 import studio.deervision.repository.LightIssue;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 import java.util.regex.Pattern;
@@ -46,10 +47,12 @@ public class IssueService {
         return issue.orElseThrow(() -> new IllegalArgumentException("Error to find issue with ID : " + id));
     }
 
+    @Transactional
     public void removeById(Long id) {
         issueRepository.deleteById(id);
     }
 
+    @Transactional
     public void removeByRequestKey(String requestKey) {
         issueRepository.deleteByRequestKey(requestKey);
     }
