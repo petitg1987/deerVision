@@ -5,8 +5,20 @@ import Chart from 'chart.js/auto';
 
 class UsageGraph extends Component {
 
-    async refreshChart() {
-        let usageJson = await getWithToken(this.props.backendUrl + 'api/admin/usage?retrieveDays=30', this.props.token);
+    constructor(props) {
+        super(props);
+        this.state = {dayValueSelected: '15'};
+        this.usageChart = null;
+        this.handleChange = this.handleChange.bind(this);
+    }
+
+    handleChange(event) {
+        this.setState({dayValueSelected: event.target.value});
+        this.refreshChart(event.target.value).then(() => {});
+    }
+
+    async refreshChart(dayValueSelected) {
+        let usageJson = await getWithToken(this.props.backendUrl + 'api/admin/usage?retrieveDays=' + dayValueSelected, this.props.token);
         let ctx = document.getElementById("applicationsUsageChart");
 
         let datesTab = usageJson.dates;
@@ -26,7 +38,11 @@ class UsageGraph extends Component {
             appsUsageCountTab.push(dataset);
         })
 
-        new Chart(ctx, {
+        if (this.usageChart) {
+            this.usageChart.destroy();
+        }
+
+        this.usageChart = new Chart(ctx, {
             type: 'line',
             data: {
                 labels: datesTab,
@@ -40,8 +56,7 @@ class UsageGraph extends Component {
                         display: true
                     },
                     title: {
-                        display: true,
-                        text: "Usage"
+                        display: false,
                     }
                 }
             }
@@ -49,12 +64,18 @@ class UsageGraph extends Component {
     }
 
     async componentDidMount() {
-        this.refreshChart().then(() => {});
+        this.refreshChart(this.state.dayValueSelected).then(() => {});
     }
 
     render() {
         return (
             <div className="usageChart">
+                <select id="daysSelect" onChange={this.handleChange} value={this.state.dayValueSelected}>
+                    <option value="15">Last 15 days</option>
+                    <option value="30">Last 30 days</option>
+                    <option value="60">Last 60 days</option>
+                    <option value="90">Last 90 days</option>
+                </select>
                 <canvas id="applicationsUsageChart"/>
             </div>
         );

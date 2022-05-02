@@ -89,7 +89,8 @@ class Admin extends Component {
 
         return (
             <div>
-                <h2>General</h2>
+                <h2>All Games</h2>
+                <h3>Usage</h3>
                 <div className="graph-container">
                     <div className="vertical-spacer"/>
                     <div className="horizontal-spacer"/>
@@ -97,6 +98,7 @@ class Admin extends Component {
                 </div>
 
                 <div className="vertical-spacer"/>
+                <h3>Issues</h3>
                 <div className="issues-container">
                     <div className="vertical-spacer"/>
                     <div className="horizontal-spacer"/>
@@ -105,6 +107,7 @@ class Admin extends Component {
 
                 <div className="vertical-spacer"/>
                 <h2>Photon Engineer</h2>
+                <h3>Level Completion Time</h3>
                 <div className="graph-container">
                     <div className="vertical-spacer"/>
                     <div className="horizontal-spacer"/>

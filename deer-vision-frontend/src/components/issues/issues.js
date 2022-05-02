@@ -95,9 +95,6 @@ class Issues extends Component {
                 <table>
                     <thead>
                         <tr>
-                            <th colSpan={6}>Issues</th>
-                        </tr>
-                        <tr>
                             <th>Date</th>
                             <th>Application</th>
                             <th>Version</th>

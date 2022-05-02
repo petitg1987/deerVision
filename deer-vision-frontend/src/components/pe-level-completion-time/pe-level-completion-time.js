@@ -54,8 +54,7 @@ class PeLevelCompletionTime extends Component {
                         display: false
                     },
                     title: {
-                        display: true,
-                        text: "Level Completion Time"
+                        display: false,
                     }
                 }
             }
