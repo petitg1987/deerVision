@@ -5,7 +5,7 @@ import {postRequest} from "../../js/request"
 import {isJwtExpired} from 'jwt-check-expiration';
 import UsageGraph from "../../components/usage-graph/usage-graph";
 import Issues from "../../components/issues/issues";
-import PeLevelCompletionTime from "../../components/pe-level-completion-time/pe-level-completion-time";
+import PeLevelCompletionTimeGraph from "../../components/pe-level-completion-time-graph/pe-level-completion-time-graph";
 
 const backendUrl = "https://backend.deervision.studio/";
 //const backendUrl = "http://127.0.0.1:5000/";
@@ -111,7 +111,7 @@ class Admin extends Component {
                 <div className="graph-container">
                     <div className="vertical-spacer"/>
                     <div className="horizontal-spacer"/>
-                    <PeLevelCompletionTime backendUrl={backendUrl} token={this.getToken()}/>
+                    <PeLevelCompletionTimeGraph backendUrl={backendUrl} token={this.getToken()}/>
                 </div>
 
                 <div className="logout-container">

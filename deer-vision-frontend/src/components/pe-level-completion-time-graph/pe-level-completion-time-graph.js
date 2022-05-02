@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
-import './pe-level-completion-time.css';
+import './pe-level-completion-time-graph.css';
 import {getWithToken} from "../../js/request";
 import Chart from 'chart.js/auto';
 
-class PeLevelCompletionTime extends Component {
+class PeLevelCompletionTimeGraph extends Component {
 
     constructor(props) {
         super(props);
@@ -84,4 +84,4 @@ class PeLevelCompletionTime extends Component {
     }
 }
 
-export default PeLevelCompletionTime;
+export default PeLevelCompletionTimeGraph;
