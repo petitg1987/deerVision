@@ -22,7 +22,7 @@ class TotalPlayer extends Component {
     render() {
         return (
             <div className="totalPlayers">
-                Total unique players:
+                Unique players:
                 <ul id="listTotalPlayers" />
             </div>
         );

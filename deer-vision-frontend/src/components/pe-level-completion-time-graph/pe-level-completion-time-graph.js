@@ -97,7 +97,7 @@ class PeLevelCompletionTimeGraph extends Component {
     render() {
         return (
             <div className="levelCompletionTimeChart">
-                <select id="levelsSelect" onChange={this.handleLevelChange} value={this.state.levelSelected}/>
+                <select id="levelsSelect" onChange={this.handleLevelChange} value={this.state.levelSelected}/>&nbsp;&nbsp;
                 <input type="checkbox" id="levelCompletionTimeIncludeSnap" onChange={this.handleVersionChange} checked={this.state.includeSnapshotVal}/><label htmlFor="levelCompletionTimeIncludeSnap">Snapshot</label>
                 <canvas id="peLevelCompletionTimeChart"/>
             </div>

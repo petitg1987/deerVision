@@ -92,8 +92,8 @@ class UsageGraph extends Component {
                     <option value="30">Last 30 days</option>
                     <option value="60">Last 60 days</option>
                     <option value="90">Last 90 days</option>
-                </select>
-                <input type="checkbox" id="usageIncludeSnap" onChange={this.handleVersionChange} checked={this.state.includeSnapshotVal}/><label htmlFor="usageIncludeSnap">Snapshot</label>
+                </select>&nbsp;&nbsp;
+                <input type="checkbox" id="usageIncludeSnap" onChange={this.handleVersionChange} checked={this.state.includeSnapshotVal}/><label htmlFor="usageIncludeSnap">Snapshot</label>&nbsp;&nbsp;
                 <input type="checkbox" id="usageUniqueCount" onChange={this.handleCountChange} checked={this.state.uniqueCountVal}/><label htmlFor="usageUniqueCount">Unique</label>
                 <canvas id="applicationsUsageChart"/>
             </div>

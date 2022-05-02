@@ -91,7 +91,7 @@ class Admin extends Component {
         return (
             <div>
                 <h2>Common</h2>
-                <h3>Total players</h3>
+                <h3>Players</h3>
                 <div>
                     <div className="vertical-spacer"/>
                     <div className="horizontal-spacer"/>
