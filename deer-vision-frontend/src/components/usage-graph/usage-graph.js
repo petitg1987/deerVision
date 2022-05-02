@@ -51,6 +51,13 @@ class UsageGraph extends Component {
             options: {
                 maintainAspectRatio: true,
                 animation: true,
+                scales: {
+                    y: {
+                        ticks: {
+                            stepSize: 1
+                        }
+                    }
+                },
                 plugins: {
                     legend: {
                         display: true

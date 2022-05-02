@@ -22,14 +22,14 @@ class PeLevelCompletionTimeGraph extends Component {
         let lctJson = await getWithToken(this.props.backendUrl + 'api/admin/levels/' + levelSelected + '/completionTimes', this.props.token);
 
         let minutesTab = [];
-        let completionTimeTab = [];
+        let playerQuantityTab = [];
         lctJson.forEach(lvlCompTime => {
-            minutesTab.push(lvlCompTime.minute);
-            completionTimeTab.push(lvlCompTime.quantity);
+            minutesTab.push(lvlCompTime.minute + " min");
+            playerQuantityTab.push(lvlCompTime.quantity);
         });
 
         let dataset = {
-            data: completionTimeTab,
+            data: playerQuantityTab,
             borderColor: "#7bd000",
             backgroundColor : "#7bd000",
             fill: true,
@@ -49,6 +49,13 @@ class PeLevelCompletionTimeGraph extends Component {
             options: {
                 maintainAspectRatio: true,
                 animation: true,
+                scales: {
+                    y: {
+                        ticks: {
+                            stepSize: 1
+                        }
+                    }
+                },
                 plugins: {
                     legend: {
                         display: false
