@@ -1,10 +1,9 @@
 package studio.deervision.model.pe;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
+@Table(indexes = @Index(name = "index_levelId", columnList = "levelId"))
 public class LevelCompletionTime {
 
     @Id

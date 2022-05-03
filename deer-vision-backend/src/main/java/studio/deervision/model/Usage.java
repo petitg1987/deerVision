@@ -1,11 +1,10 @@
 package studio.deervision.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
+@Table(indexes = @Index(name = "index_dateTime", columnList = "dateTime"))
 public class Usage {
 
     @Id
