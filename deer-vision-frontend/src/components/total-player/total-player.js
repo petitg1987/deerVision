@@ -6,7 +6,7 @@ class TotalPlayer extends Component {
 
     async componentDidMount() {
         let ulTotalPlayer = document.getElementById("listTotalPlayers");
-        let totalRequestKeyJson = await getWithToken(this.props.backendUrl + 'api/admin/usage/totalRequestKeys', this.props.token);
+        let totalRequestKeyJson = await getWithToken(this.props.backendUrl + 'api/admin/usage/total-request-keys', this.props.token);
         for (let appNameKey in totalRequestKeyJson) {
             let appName = appNameKey
                 .replace(/([A-Z])/g, ' $1') //insert a space before all caps
@@ -14,7 +14,6 @@ class TotalPlayer extends Component {
 
             let liElement = document.createElement("li");
             liElement.innerHTML = appName + ": <em>" + totalRequestKeyJson[appNameKey] + "</em>";
-          //  liElement.appendChild(document.createTextNode(appName + ": <em>" + totalRequestKeyJson[appNameKey] + "</em>"));
             ulTotalPlayer.appendChild(liElement);
         }
     }
