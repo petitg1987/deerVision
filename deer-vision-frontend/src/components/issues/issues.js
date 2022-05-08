@@ -42,8 +42,10 @@ class Issues extends Component {
 
     async deleteUserIssue(event, requestKey) {
         event.preventDefault();
-        deleteWithToken(this.props.backendUrl + 'api/admin/issues?requestKey=' + requestKey, this.props.token)
-            .then(async () => {await this.refreshIssues()});
+        if (window.confirm("Are you sure you want to delete all issues of this user ?") === true) {
+             deleteWithToken(this.props.backendUrl + 'api/admin/issues?requestKey=' + requestKey, this.props.token)
+                 .then(async () => {await this.refreshIssues()});
+        }
     }
 
     async refreshIssues() {
@@ -83,7 +85,7 @@ class Issues extends Component {
                                     <img src={deleteIcon} alt="Delete Icon" width="20" height="20"/>
                                 </a>
                             </div>
-                            <div className="issues-action secondary-info">
+                            <div className="issues-action">
                                 <a className="text-link" href="/" title="Delete all issues of this user" onClick={evt => this.deleteUserIssue(evt, issue.requestKey)}>
                                     <img src={deleteUserIcon} alt="Delete User Icon" width="20" height="20"/>
                                 </a>
