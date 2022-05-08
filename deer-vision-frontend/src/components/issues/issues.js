@@ -80,12 +80,12 @@ class Issues extends Component {
                                     <img src={seeIcon} alt="See Icon" width="20" height="20"/>
                                 </a>
                             </div>
-                            <div className="issues-action secondary-info">
+                            <div className="issues-action">
                                 <a className="text-link" href="/" title="Delete" onClick={evt => this.deleteIssue(evt, issue.id)}>
                                     <img src={deleteIcon} alt="Delete Icon" width="20" height="20"/>
                                 </a>
                             </div>
-                            <div className="issues-action">
+                            <div className="issues-action secondary-info">
                                 <a className="text-link" href="/" title="Delete all issues of this user" onClick={evt => this.deleteUserIssue(evt, issue.requestKey)}>
                                     <img src={deleteUserIcon} alt="Delete User Icon" width="20" height="20"/>
                                 </a>
