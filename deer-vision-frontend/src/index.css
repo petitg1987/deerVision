@@ -1,5 +1,9 @@
-body {
+* {
     margin: 0;
+    padding: 0;
+}
+
+body {
     width: 100%;
     background: repeating-linear-gradient(-45deg, #40404d, #40404d 4px, #42424f 4px, #42424f 8px);
     font-family: Verdana, sans-serif;
@@ -13,6 +17,15 @@ header {
     top: 0;
     z-index: 100;
     width: 100%;
+}
+
+ul {
+    padding-left: 40px;
+}
+
+p {
+    margin-top: 1em;
+    margin-bottom: 1em;
 }
 
 .content {
