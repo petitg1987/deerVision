@@ -10,8 +10,6 @@ class Eula extends Component {
             <div>
                 <h2>End User License Agreement: Games</h2>
                 <div className="eula-container">
-                    <div className="vertical-spacer"/>
-                    <div className="horizontal-spacer"/>
                     <div className="eula-description">
                         <Description>
                             <p>Last update: 24th of January 2022</p>

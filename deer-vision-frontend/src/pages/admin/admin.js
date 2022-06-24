@@ -74,8 +74,6 @@ class Admin extends Component {
             return (
                 <div>
                     <h2>Log-in</h2>
-                    <div className="vertical-spacer"/>
-                    <div className="horizontal-spacer"/>
                     <form onSubmit={this.handleSubmit}>
                         <fieldset>
                             {errorLoginMessage}
@@ -91,44 +89,30 @@ class Admin extends Component {
         return (
             <div>
                 <h2>Common</h2>
-                <h3>Players</h3>
-                <div>
-                    <div className="vertical-spacer"/>
-                    <div className="horizontal-spacer"/>
+                <div className="sub-title">Players</div>
+                <div className="admin-container">
                     <TotalPlayer backendUrl={backendUrl} token={this.getToken()}/>
                 </div>
 
-                <div className="vertical-spacer"/>
-                <h3>Usage</h3>
-                <div className="graph-container">
-                    <div className="vertical-spacer"/>
-                    <div className="horizontal-spacer"/>
+                <div className="sub-title">Usage</div>
+                <div className="admin-container">
                     <UsageGraph backendUrl={backendUrl} token={this.getToken()}/>
                 </div>
 
-                <div className="vertical-spacer"/>
-                <h3>Issues</h3>
-                <div className="issues-container">
-                    <div className="vertical-spacer"/>
-                    <div className="horizontal-spacer"/>
+                <div className="sub-title">Issues</div>
+                <div className="admin-container">
                     <Issues backendUrl={backendUrl} token={this.getToken()}/>
                 </div>
 
-                <div className="vertical-spacer"/>
                 <h2>Photon Engineer</h2>
-                <h3>Level Completion Time</h3>
-                <div className="graph-container">
-                    <div className="vertical-spacer"/>
-                    <div className="horizontal-spacer"/>
+                <div className="sub-title">Level Completion Time</div>
+                <div className="admin-container">
                     <PeLevelCompletionTimeGraph backendUrl={backendUrl} token={this.getToken()}/>
                 </div>
 
                 <div className="logout-container">
-                    <div className="vertical-spacer"/>
                     <small>
                         <a className="text-link" href="/" onClick={evt => this.logOut(evt)}>Log out</a>
-                        <br/>
-                        <br/>
                     </small>
                 </div>
             </div>

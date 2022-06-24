@@ -6,15 +6,11 @@ fieldset {
     color: red;
 }
 
-.logout-container {
-    text-align: center;
+.admin-container {
+    padding-top: 10px;
 }
 
-h3 {
-    margin: 0 auto 5px;
-    width: 90%;
-    font-size: 18px;
+.logout-container {
     text-align: center;
-    text-decoration: underline;
-    color: #ffffff;
+    padding: 20px 0 10px 0;
 }
