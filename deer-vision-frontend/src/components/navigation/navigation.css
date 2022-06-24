@@ -58,6 +58,9 @@
 
 .nav-logo-text, .nav-link {
     color: #ffffff;
+}
+
+.nav-logo, .nav-link {
     text-decoration: none;
 }
 
