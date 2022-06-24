@@ -38,24 +38,31 @@
 
 .nav-links-ul {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     list-style-type: none;
     padding: 0;
 }
 
-.nav-link-li a:hover {
+.nav-link-li, .nav-link-li a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 61px;
+}
+
+.nav-link-li:hover {
     background-color: #50505d;
 }
 
 .nav-logo-text, .nav-link {
     color: #ffffff;
-    text-align: center;
     text-decoration: none;
 }
 
 .nav-link {
-    padding: 20px 16px;
+    padding: 0 16px;
 }
 
 @media screen and (max-width: 800px) {
@@ -86,11 +93,8 @@
         width: 100%;
     }
 
-    .nav-link-li {
-        width: 100%;
+    .nav-link-li, .nav-link-li a {
+        height: 40px;
     }
 
-    .nav-link {
-        padding: 0 0;
-    }
 }
