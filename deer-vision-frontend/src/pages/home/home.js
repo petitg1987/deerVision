@@ -15,44 +15,39 @@ class Home extends Component {
             <div>
                 <h2>Games</h2>
                 <div className="game-container">
-                    <div className="vertical-spacer"/>
-                    <div className="horizontal-spacer"/>
                     <div>
                         <img src={photonEngineerLogo} className="pe-logo" alt="Photon Engineer Logo" width="300px" height="75px"/>
                     </div>
-                    <div className="vertical-spacer"/>
-                    <div className="horizontal-spacer"/>
-                    <div className="game-description">
-                        <Description> {/*TODO: update game description*/}
-                            <p>About the game:</p>
-                            <ul>
-                                <li>In the year 2075, a space probe saw a strange platform floating in space close to Jupiter. The government decided to finance a space mission to send you on this platform to elucidate the mystery.</li>
-                                <li>Photon Engineer is a first-person <strong>puzzle game</strong>. Your goal is to build different types of blocks (mirror, pusher, merger...) efficiently to solve the challenges that await you.</li>
-                             </ul>
+                    <div className="game-info-container">
+                        <div className="game-description">
+                            <Description> {/*TODO: update game description*/}
+                                <p>About the game:</p>
+                                <ul>
+                                    <li>In the year 2075, a space probe saw a strange platform floating in space close to Jupiter. The government decided to finance a space mission to send you on this platform to elucidate the mystery.</li>
+                                    <li>Photon Engineer is a first-person <strong>puzzle game</strong>. Your goal is to build different types of blocks (mirror, pusher, merger...) efficiently to solve the challenges that await you.</li>
+                                 </ul>
 
-                            <p>Join the community:</p>
-                            <div className="game-soc-container">
-                                <SocialNetwork logoSize={40} onlyCommunityNetwork={true}/>
-                            </div>
+                                <p>Join the community:</p>
+                                <div className="game-soc-container">
+                                    <SocialNetwork logoSize={40} onlyCommunityNetwork={true}/>
+                                </div>
 
-                            <p>Key request for Youtubers, Streamers and press:</p>
-                            <ul>
-                                <li><a className="text-link" href="https://woovit.com/widget/offer/photon-engineer" target="_blank" rel="noopener noreferrer">Woovit</a> (soon)</li> {/*TODO: update description/links*/}
-                                <li><a className="text-link" href="https://www.keymailer.co/g/games/xyz1234" target="_blank" rel="noopener noreferrer">Keymailer</a> (soon)</li> {/*TODO: update description/links*/}
-                            </ul>
-                        </Description>
+                                <p>Key request for Youtubers, Streamers and press:</p>
+                                <ul>
+                                    <li><a className="text-link" href="https://woovit.com/widget/offer/photon-engineer" target="_blank" rel="noopener noreferrer">Woovit</a> (soon)</li> {/*TODO: update description/links*/}
+                                    <li><a className="text-link" href="https://www.keymailer.co/g/games/xyz1234" target="_blank" rel="noopener noreferrer">Keymailer</a> (soon)</li> {/*TODO: update description/links*/}
+                                </ul>
+                            </Description>
+                        </div>
+                        <div className="game-btn-platform">
+                            <br/>
+                            <Button text="TRAILER [SOON]" link="https://www.youtube.com/watch?v=XYZ1234" squareLogo={youtubeSquareLogo}/> {/*TODO: update description/links*/}
+                            <br/>
+                            <Button text="BUY ON STEAM [SOON]" link="https://store.steampowered.com/app/1234/Photon_Engineer/" squareLogo={steamSquareLogo}/> {/*TODO: update description/links*/}
+                            <br/>
+                            <Button text="BUY ON ITCH.IO [SOON]" link="https://deervision.itch.io/photon-engineer" squareLogo={itchSquareLogo}/> {/*TODO: update description*/}
+                        </div>
                     </div>
-                    <div className="horizontal-spacer"/>
-                    <div className="game-btn-platform">
-                        <br/>
-                        <Button text="TRAILER [SOON]" link="https://www.youtube.com/watch?v=XYZ1234" squareLogo={youtubeSquareLogo}/> {/*TODO: update description/links*/}
-                        <br/>
-                        <Button text="BUY ON STEAM [SOON]" link="https://store.steampowered.com/app/1234/Photon_Engineer/" squareLogo={steamSquareLogo}/> {/*TODO: update description/links*/}
-                        <br/>
-                        <Button text="BUY ON ITCH.IO [SOON]" link="https://deervision.itch.io/photon-engineer" squareLogo={itchSquareLogo}/> {/*TODO: update description*/}
-                    </div>
-                    <div className="vertical-spacer"/>
-                    <div className="horizontal-spacer"/>
                     <div className="game-screenshots"> {/*TODO: update/add screenshots*/}
                         <div className="game-screenshot">
                             <img src="/photon-engineer/screenshot1_1440p.webp" alt="Photon Engineer screenshot 1" width="1100" height="619" />
