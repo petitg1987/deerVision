@@ -9,8 +9,8 @@ class Privacy extends Component {
         return (
             <div>
                 <h2>Privacy Policy: Games</h2>
-                <div className="pp-container">
-                    <div className="pp-description">
+                <div className="priv-container">
+                    <div className="priv-description">
                         <Description>
                             <p>Last update: 24th of January 2022</p>
                         </Description>
@@ -96,8 +96,8 @@ class Privacy extends Component {
                 </div>
 
                 <h2>Privacy Policy: Website</h2>
-                <div className="pp-container">
-                    <div className="pp-description">
+                <div className="priv-container">
+                    <div className="priv-description">
                         <Description>
                             <p>This website does not collect any data and do not use cookies.</p>
                         </Description>

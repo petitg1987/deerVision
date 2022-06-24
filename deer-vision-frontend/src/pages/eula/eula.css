@@ -1,15 +1,13 @@
 .eula-container {
-    overflow: hidden;
+    padding-left: 100px;
 }
 
 .eula-description {
-    float: left;
     max-width: 800px;
 }
 
 @media screen and (max-width: 800px) {
-    .eula-description {
-        width: 94%;
-        max-width: 800px;
+    .eula-container {
+        padding-left: 5px;
     }
 }
