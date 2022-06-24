@@ -28,12 +28,19 @@ p {
     margin-bottom: 1em;
 }
 
+.page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .content {
-    background: repeating-linear-gradient(-45deg, #40404d, #40404d 4px, #42424f 4px, #42424f 8px);
+    width: 90%;
 }
 
 footer {
     background-color: #4b4b5c;
+    width: 100%;
 }
 
 .soc-container {

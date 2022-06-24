@@ -1,19 +1,10 @@
 h2 {
     margin: 25px auto 10px;
-    width: 90%;
     font-size: 22px;
     text-align: center;
     color: #ffffff;
     border-top: 4px solid #0089b5;
     border-bottom: 4px solid #0089b5;
-}
-
-hr {
-    margin-top: 40px;
-    border: none;
-    background-color: #d5d5dd;
-    height: 2px;
-    width: 80%;
 }
 
 .text-link:link, .text-link:visited, .text-link:hover, .text-link:active {
@@ -23,17 +14,6 @@ hr {
 
 .text-link:hover {
     color: #ffffff;
-}
-
-.vertical-spacer {
-    clear: both;
-    height: 30px;
-}
-
-.horizontal-spacer {
-    float: left;
-    width: 10%;
-    height: 1px;
 }
 
 .sub-title {

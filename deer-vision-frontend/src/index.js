@@ -23,7 +23,7 @@ class Index extends Component {
     render() {
         return (
             <BrowserRouter>
-                <div>
+                <div className="page">
                     <header>
                         <Navigation/>
                     </header>
