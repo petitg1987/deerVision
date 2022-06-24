@@ -28,7 +28,6 @@ class Index extends Component {
                         <Navigation/>
                     </header>
                     <div className="content">
-                        <br/><br/>
                         <Suspense fallback={<div>Loading...</div>}>
                             <Routes>
                                 <Route exact path='/' element={<Home/>}/>
