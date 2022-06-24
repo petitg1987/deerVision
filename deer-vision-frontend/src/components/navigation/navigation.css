@@ -1,93 +1,96 @@
 .nav {
+    display: flex;
+    justify-content: space-between;
     background-color: rgba(50, 50, 60, 0.95);
-    overflow: hidden; /* clear float property to display main content at the next line (https://css-tricks.com/all-about-floats/)  */
-    margin: 0;
-    padding: 0;
     opacity: 1.0;
     width: 100%;
     transition: opacity 0.5s;
 }
 
+.nav-main-container {
+    display: flex;
+    justify-content: space-between;
+}
+
 .nav-logo {
-    float: left;
+    display: flex;
+    align-items: center;
     padding-left: 6pc;
 }
 
 .nav-logo-text {
-    float: left;
-    padding: 20px 10px;
+    padding-left: 10px;
     font-weight: bold;
 }
 
-.nav-menu-ul {
-    float: right; /* display menu links on the right */
+.nav-hamburger {
+    display: none;
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 2pc;
+}
+
+.nav-links-container {
+    display: flex;
+    align-items: stretch;
+    padding-right: 6pc;
+}
+
+.nav-links-ul {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     list-style-type: none;
-    margin: 0;
     padding: 0;
 }
 
-.nav-menu-link-container {
-    float: left; /* display menu links horizontally */
-}
-
-.nav-spacing {
-    float: right;
-    padding-left: 6pc;
-}
-
-.nav-menu-link-container a:hover {
+.nav-link-li a:hover {
     background-color: #50505d;
 }
 
-.nav-logo-text, .nav-menu-link {
-    display: block;
+.nav-logo-text, .nav-link {
     color: #ffffff;
     text-align: center;
     text-decoration: none;
 }
 
-.nav-menu-link {
+.nav-link {
     padding: 20px 16px;
 }
 
-.nav-hamburger-icon {
-    display: none;
-    float: right;
-    padding: 20px 12px;
-    margin: 0;
-}
-
-.nav-hamburger-icon svg {
-    display: block;
-}
-
 @media screen and (max-width: 800px) {
+    .nav {
+        flex-direction: column;
+    }
+
     .nav-logo {
         padding-left: 0;
     }
 
-    .nav-menu-ul {
-        display: none;
-        float: none;
+    .nav-hamburger {
+        display: flex;
     }
 
-    .nav-menu-ul.responsive {
-        display: block;
-    }
-
-    .nav-menu-link-container {
-        float: none; /* display menu links vertically */
-    }
-
-    .nav-spacing {
+    .nav-links-ul {
         display: none;
     }
 
-    .nav-hamburger-icon {
-        display: block;
+    .nav-links-container {
+        justify-content: center;
+        padding-right: 0;
     }
 
-    .nav-logo-and-hamburger {
-        overflow: hidden; /* clear float property to display menu links at the next line (https://css-tricks.com/all-about-floats/) */
+    .nav-links-ul.opened {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .nav-link-li {
+        width: 100%;
+    }
+
+    .nav-link {
+        padding: 0 0;
     }
 }
