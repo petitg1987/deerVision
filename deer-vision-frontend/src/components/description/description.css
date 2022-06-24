@@ -8,7 +8,7 @@
     color: #0089b5;
 }
 
-.desc-text:first-child {
+.desc-container .desc-text:first-child * {
     margin-top: 0;
 }
 

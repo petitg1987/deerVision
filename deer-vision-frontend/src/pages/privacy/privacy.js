@@ -10,8 +10,6 @@ class Privacy extends Component {
             <div>
                 <h2>Privacy Policy: Games</h2>
                 <div className="pp-container">
-                    <div className="vertical-spacer"/>
-                    <div className="horizontal-spacer"/>
                     <div className="pp-description">
                         <Description>
                             <p>Last update: 24th of January 2022</p>
@@ -99,8 +97,6 @@ class Privacy extends Component {
 
                 <h2>Privacy Policy: Website</h2>
                 <div className="pp-container">
-                    <div className="vertical-spacer"/>
-                    <div className="horizontal-spacer"/>
                     <div className="pp-description">
                         <Description>
                             <p>This website does not collect any data and do not use cookies.</p>

@@ -19,8 +19,10 @@ class Description extends Component {
 
     render() {
         return (
-            <div className="desc-text">
-                {this.props.children}
+            <div className="desc-container">
+                <div className="desc-text">
+                    {this.props.children}
+                </div>
             </div>
         );
     }
