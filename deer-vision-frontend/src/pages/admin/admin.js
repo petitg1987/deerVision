@@ -74,15 +74,18 @@ class Admin extends Component {
             return (
                 <div>
                     <h2>Log-in</h2>
-                    <form onSubmit={this.handleSubmit}>
-                        <fieldset>
-                            {errorLoginMessage}
-                            <label htmlFor="password">Password: </label>
-                            <input type="password" name="password" id="password" autoCapitalize="none" value={this.state.pwdValue} onChange={evt => this.updateInputValue(evt)}/>
-                            <br/><br/>
-                            <button type="submit">Log in</button>
-                        </fieldset>
-                    </form>
+                    <div className="admin-container">
+                        <form onSubmit={this.handleSubmit}>
+                            <fieldset>
+                                {errorLoginMessage}
+                                <label htmlFor="password">Password: </label>
+                                <input type="password" name="password" id="password" autoCapitalize="none" value={this.state.pwdValue} onChange={evt => this.updateInputValue(evt)}/>
+                                <br/><br/>
+                                <button type="submit">Log in</button>
+                                <br/><br/>
+                            </fieldset>
+                        </form>
+                    </div>
                 </div>)
         }
 
