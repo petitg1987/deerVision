@@ -1,5 +1,6 @@
 .pres-container {
-    overflow: hidden;
+    display: flex;
+    padding-left: 100px;
 }
 
 .pres-profile {
@@ -9,29 +10,27 @@
 }
 
 .pres-description {
-    float: left;
-    width: 35%;
-    max-width: 600px;
+    width: 45%;
+    max-width: 800px;
 }
 
 .pres-logo {
-    float: left;
     width: 35%;
-    margin-top: 5px;
-    margin-bottom: 10px;
+    padding: 15px 0 15px 50px;
 }
 
 @media screen and (max-width: 800px) {
-    .pe-logo {
-        left: 0;
+    .pres-container {
+        flex-direction: column;
+        padding-left: 5px;
     }
 
     .pres-description {
         width: 94%;
-        max-width: 800px;
     }
 
     .pres-logo {
+        padding-left: 0;
         text-align: center;
         width: 100%;
     }
