@@ -18,7 +18,11 @@
 .game-description {
     width: 35%;
     max-width: 800px;
-    padding-right: 50px;
+    padding-right: 75px;
+}
+
+.game-description > * p {
+    padding-top: 10px;
 }
 
 .game-soc-container {
