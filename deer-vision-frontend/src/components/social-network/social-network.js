@@ -32,13 +32,6 @@ class SocialNetwork extends Component {
             labelComponent = <div className="network-title">{this.props.label}</div>
         }
 
-        let noCommunityComponents;
-        if (!this.props.onlyCommunityNetwork) {
-            noCommunityComponents = <a href="https://www.youtube.com/channel/UC1MNRfIXqQPB8dQtU94PpdQ" target="_blank" rel="noopener noreferrer" className="network-logo-wrapper">
-                <img className="network-logo" src={youtubeLogo} alt="Youtube Logo" width={this.props.logoSize} height={this.props.logoSize}/>
-            </a>;
-        }
-
         return (
             <div className="network-container">
                 {labelComponent}
@@ -49,7 +42,9 @@ class SocialNetwork extends Component {
                     <a href="https://twitter.com/deer_vision" target="_blank" rel="noopener noreferrer" className="network-logo-wrapper">
                         <img className="network-logo" src={twitterLogo} alt="Twitter Logo" width={this.props.logoSize} height={this.props.logoSize}/>
                     </a>
-                    {noCommunityComponents}
+                    <a href="https://www.youtube.com/channel/UC1MNRfIXqQPB8dQtU94PpdQ" target="_blank" rel="noopener noreferrer" className="network-logo-wrapper">
+                        <img className="network-logo" src={youtubeLogo} alt="Youtube Logo" width={this.props.logoSize} height={this.props.logoSize}/>
+                    </a>
                 </div>
             </div>
         );

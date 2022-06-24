@@ -29,7 +29,7 @@ class Home extends Component {
 
                                 <p>Join the community:</p>
                                 <div className="game-soc-container">
-                                    <SocialNetwork logoSize={40} onlyCommunityNetwork={true}/>
+                                    <SocialNetwork logoSize={40}/>
                                 </div>
 
                                 <p>Key request for Youtubers, Streamers and press:</p>
