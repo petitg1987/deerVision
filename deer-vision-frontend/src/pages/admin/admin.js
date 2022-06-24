@@ -89,25 +89,29 @@ class Admin extends Component {
         return (
             <div>
                 <h2>Common</h2>
-                <div className="sub-title">Players</div>
                 <div className="admin-container">
-                    <TotalPlayer backendUrl={backendUrl} token={this.getToken()}/>
-                </div>
+                    <div className="sub-title">Players</div>
+                    <div className="admin-info-container">
+                        <TotalPlayer backendUrl={backendUrl} token={this.getToken()}/>
+                    </div>
 
-                <div className="sub-title">Usage</div>
-                <div className="admin-container">
-                    <UsageGraph backendUrl={backendUrl} token={this.getToken()}/>
-                </div>
+                    <div className="sub-title">Usage</div>
+                    <div className="admin-info-container">
+                        <UsageGraph backendUrl={backendUrl} token={this.getToken()}/>
+                    </div>
 
-                <div className="sub-title">Issues</div>
-                <div className="admin-container">
-                    <Issues backendUrl={backendUrl} token={this.getToken()}/>
+                    <div className="sub-title">Issues</div>
+                    <div className="admin-info-container">
+                        <Issues backendUrl={backendUrl} token={this.getToken()}/>
+                    </div>
                 </div>
 
                 <h2>Photon Engineer</h2>
-                <div className="sub-title">Level Completion Time</div>
                 <div className="admin-container">
-                    <PeLevelCompletionTimeGraph backendUrl={backendUrl} token={this.getToken()}/>
+                    <div className="sub-title">Level Completion Time</div>
+                    <div className="admin-info-container">
+                        <PeLevelCompletionTimeGraph backendUrl={backendUrl} token={this.getToken()}/>
+                    </div>
                 </div>
 
                 <div className="logout-container">
