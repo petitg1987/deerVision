@@ -16,7 +16,7 @@
 }
 
 .game-description {
-    width: 35%;
+    width: 45%;
     max-width: 800px;
     padding-right: 75px;
 }
@@ -58,6 +58,6 @@
     }
 
     .game-description {
-        width: 94%;
+        width: 100%;
     }
 }
