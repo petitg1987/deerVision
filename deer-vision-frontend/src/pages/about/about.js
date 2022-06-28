@@ -16,7 +16,7 @@ class About extends Component {
                         <Description>
                             <p>I am Grégory Petit, a <strong>solo game developer</strong> located in Belgium. Deer Vision Studio is the company I created to publish my games.</p>
                             <p>I am first and foremost a developer. For more than 10 years, I developed my own game engine (<a className="text-link" href="https://github.com/petitg1987/urchinEngine" target="_blank" rel="noopener noreferrer" title="Git Hub">Urchin Engine</a>) out of passion.</p>
-                            <p>In 2021, I started to learn 3d modeling to create games using my game engine. Thus, I have a full control over the 3d models and programming which allows me to create games without any restrictions or any dependencies to third parties.</p>
+                            <p>In 2021, I started to learn 3d modeling to create games using my game engine. Thus, I have a full control over the 3d models and programming which allows me to create games without restrictions and without dependencies to third parties.</p>
                         </Description>
                     </div>
                     <div className="pres-logo">
