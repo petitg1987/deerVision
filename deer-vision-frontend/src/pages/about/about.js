@@ -12,7 +12,7 @@ class About extends Component {
                 <h2>About</h2>
                 <div className="pres-container">
                     <div className="pres-description">
-                        <p><img src={gregProfile} alt="Greg profile" width="150" height="186" className="pres-profile"/></p>
+                        <p><img src={gregProfile} alt="Greg profile" width="140" height="174" className="pres-profile"/></p>
                         <Description>
                             <p>I am Grégory Petit, a <strong>solo game developer</strong> located in Belgium. Deer Vision Studio is the company I created to publish my games.</p>
                             <p>I am first and foremost a developer. For more than 10 years, I developed my own game engine (<a className="text-link" href="https://github.com/petitg1987/urchinEngine" target="_blank" rel="noopener noreferrer" title="Git Hub">Urchin Engine</a>) out of passion.</p>
