@@ -25,6 +25,8 @@ public class LevelRestController {
     }
 
     //curl -X POST -H "Content-Type: text/plain" -H "X-Key: 0-17" --data "cageDoorOpened:122" "http://localhost:5000/api/pe/levels/0/completionTime?appId=photonEngineer&appVersion=1.0.0"
+    //curl -X POST -H "Content-Type: text/plain" -H "X-Key: 1-18" --data "cageDoorOpened:181" "http://localhost:5000/api/pe/levels/0/completionTime?appId=photonEngineer&appVersion=1.0.0"
+    //curl -X POST -H "Content-Type: text/plain" -H "X-Key: 2-19" --data "cageDoorOpened:185" "http://localhost:5000/api/pe/levels/0/completionTime?appId=photonEngineer&appVersion=1.0.0"
     //curl -X POST -H "Content-Type: text/plain" -H "X-Key: 0-17" --data "puzzleCompleted:182" "http://localhost:5000/api/pe/levels/0/completionTime?appId=photonEngineer&appVersion=1.0.0"
     @PostMapping(value = "/pe/levels/{levelId}/completionTime", consumes = MediaType.TEXT_PLAIN_VALUE)
     public ResponseEntity<String> levelCompletionTime(@PathVariable("levelId") Integer levelId, @RequestBody String value, @RequestParam("appId") String appId, @RequestParam(value="appVersion") String appVersion) {
