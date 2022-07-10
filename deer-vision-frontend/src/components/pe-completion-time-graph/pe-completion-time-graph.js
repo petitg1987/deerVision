@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
-import './pe-level-completion-time-graph.css';
+import './pe-completion-time-graph.css';
 import {getWithToken} from "../../js/request";
 import Chart from 'chart.js/auto';
 
-class PeLevelCompletionTimeGraph extends Component {
+class PeCompletionTimeGraph extends Component {
 
     constructor(props) {
         super(props);
@@ -22,7 +22,7 @@ class PeLevelCompletionTimeGraph extends Component {
     }
 
     async refreshChart() {
-        let ctx = document.getElementById("peLevelCompletionTimeChart");
+        let ctx = document.getElementById("peCompletionTimeChart");
         let lctJson = await getWithToken(this.props.backendUrl + 'api/admin/levels/' + this.state.levelSelected + '/completionTimes?includeSnapshot=' + this.state.includeSnapshotVal, this.props.token);
 
         let minutesTab = [];
@@ -38,7 +38,7 @@ class PeLevelCompletionTimeGraph extends Component {
             });
         });
 
-        let colors = ["#7bff00", "#7b00ff", "#ff7b00", "#007bff", "#ff007b", "#00ff7b"];
+        let colors = ["#7bff00", "#ff7b00", "#7b00ff", "#007bff", "#ff007b", "#00ff7b"];
         let timeDatasets = [];
         dataMap.forEach((data, actionName)=>{
             let dataset = {
@@ -108,13 +108,13 @@ class PeLevelCompletionTimeGraph extends Component {
 
     render() {
         return (
-            <div className="levelCompletionTimeChart">
+            <div className="completionTimeChart">
                 <select id="levelsSelect" onChange={this.handleLevelChange} value={this.state.levelSelected}/>&nbsp;&nbsp;
-                <input type="checkbox" id="levelCompletionTimeIncludeSnap" onChange={this.handleVersionChange} checked={this.state.includeSnapshotVal}/><label htmlFor="levelCompletionTimeIncludeSnap">Snapshot</label>
-                <canvas id="peLevelCompletionTimeChart"/>
+                <input type="checkbox" id="completionTimeIncludeSnap" onChange={this.handleVersionChange} checked={this.state.includeSnapshotVal}/><label htmlFor="completionTimeIncludeSnap">Snapshot</label>
+                <canvas id="peCompletionTimeChart"/>
             </div>
         );
     }
 }
 
-export default PeLevelCompletionTimeGraph;
+export default PeCompletionTimeGraph;
