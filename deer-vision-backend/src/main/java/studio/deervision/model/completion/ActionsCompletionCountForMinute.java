@@ -1,6 +1,7 @@
 package studio.deervision.model.completion;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class ActionsCompletionCountForMinute {
@@ -22,5 +23,9 @@ public class ActionsCompletionCountForMinute {
 
     public void addActionCompletionCounts(ActionCompletionCount quantity) {
         this.actionCompletionCounts.add(quantity);
+    }
+
+    public void sortActionCompletionCounts() {
+        actionCompletionCounts.sort(Comparator.comparing(ActionCompletionCount::actionName));
     }
 }

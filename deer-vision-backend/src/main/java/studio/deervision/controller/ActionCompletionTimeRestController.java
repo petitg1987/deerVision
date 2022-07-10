@@ -74,6 +74,7 @@ public class ActionCompletionTimeRestController {
             int finalMinute = minute;
             List<ActionCompletionCountForMinute> completionTimesMinute = actionCompletionCountForMinutes.stream().filter(e -> e.getMinute() == finalMinute).toList();
 
+            //add actions from DB
             ActionsCompletionCountForMinute actionsCompletionCountForMinute = new ActionsCompletionCountForMinute(minute);
             for (ActionCompletionCountForMinute completionTimeMinute : completionTimesMinute) {
                 actionsCompletionCountForMinute.addActionCompletionCounts(new ActionCompletionCount(completionTimeMinute.getActionName(), completionTimeMinute.getPlayerCount()));
@@ -87,6 +88,7 @@ public class ActionCompletionTimeRestController {
                 }
             }
 
+            actionsCompletionCountForMinute.sortActionCompletionCounts();
             result.add(actionsCompletionCountForMinute);
         }
         return result;
