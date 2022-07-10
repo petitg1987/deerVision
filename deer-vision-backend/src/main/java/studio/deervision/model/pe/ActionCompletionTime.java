@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(indexes = @Index(name = "index_levelId", columnList = "levelId"))
-public class LevelCompletionTime {
+public class ActionCompletionTime {
 
     @Id
     @GeneratedValue
@@ -20,11 +20,11 @@ public class LevelCompletionTime {
 
     private Long completionTime;
 
-    public LevelCompletionTime() {
+    public ActionCompletionTime() {
 
     }
 
-    public LevelCompletionTime(String requestKey, String appVersion, Integer levelId, String actionName, Long completionTime) {
+    public ActionCompletionTime(String requestKey, String appVersion, Integer levelId, String actionName, Long completionTime) {
         this.requestKey = requestKey;
         this.appVersion = appVersion;
         this.levelId = levelId;

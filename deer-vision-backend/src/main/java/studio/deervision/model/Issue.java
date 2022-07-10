@@ -14,7 +14,7 @@ public class Issue {
     private Long id;
 
     @Lob
-    private String value;
+    private String data;
 
     private String requestKey;
 
@@ -29,8 +29,8 @@ public class Issue {
     public Issue(){
     }
 
-    public Issue(String value, String requestKey, String appId, String appVersion, OperatingSystem operatingSystem) {
-        this.value = value;
+    public Issue(String data, String requestKey, String appId, String appVersion, OperatingSystem operatingSystem) {
+        this.data = data;
         this.requestKey = requestKey;
         this.appId = appId;
         this.appVersion = appVersion;
@@ -46,12 +46,12 @@ public class Issue {
         this.id = id;
     }
 
-    public String getValue() {
-        return value;
+    public String getData() {
+        return data;
     }
 
-    public void setValue(String value) {
-        this.value = value;
+    public void setData(String value) {
+        this.data = value;
     }
 
     public String getRequestKey() {

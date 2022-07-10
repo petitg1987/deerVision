@@ -7,7 +7,7 @@ import java.time.format.DateTimeFormatter;
 public class IssueDto {
 
     private final Long id;
-    private final String value;
+    private final String data;
     private final String requestKey;
     private final String appId;
     private final String appVersion;
@@ -16,7 +16,7 @@ public class IssueDto {
 
     public IssueDto(Issue issue) {
         this.id = issue.getId();
-        this.value = issue.getValue();
+        this.data = issue.getData();
         this.requestKey = issue.getRequestKey();
         this.appId = issue.getAppId();
         this.appVersion = issue.getAppVersion();
@@ -28,8 +28,8 @@ public class IssueDto {
         return id;
     }
 
-    public String getValue() {
-        return value;
+    public String getData() {
+        return data;
     }
 
     public String getRequestKey() {

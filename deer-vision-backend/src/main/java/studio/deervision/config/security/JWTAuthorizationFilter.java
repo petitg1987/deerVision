@@ -12,6 +12,7 @@ import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Base64;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -50,7 +51,7 @@ public class JWTAuthorizationFilter implements Filter {
 
     private Claims validateToken(ServletRequest request) {
         String jwtToken = ((HttpServletRequest) request).getHeader(HEADER).replace(PREFIX, "");
-        return Jwts.parser().setSigningKey(adminProperties.getJwtSecret().getBytes()).parseClaimsJws(jwtToken).getBody();
+        return Jwts.parserBuilder().setSigningKey(adminProperties.getJwtSecret().getBytes()).build().parseClaimsJws(jwtToken).getBody();
     }
 
     @SuppressWarnings({"unchecked"})

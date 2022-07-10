@@ -3,10 +3,11 @@ package studio.deervision;
 import org.h2.tools.Server;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration;
 
 import java.sql.SQLException;
 
-@SpringBootApplication
+@SpringBootApplication(exclude= {UserDetailsServiceAutoConfiguration.class})
 public class DeerVisionApplication {
 
 	public static void main(String[] args) throws SQLException {

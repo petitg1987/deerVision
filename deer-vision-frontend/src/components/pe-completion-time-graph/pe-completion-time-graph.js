@@ -23,18 +23,18 @@ class PeCompletionTimeGraph extends Component {
 
     async refreshChart() {
         let ctx = document.getElementById("peCompletionTimeChart");
-        let lctJson = await getWithToken(this.props.backendUrl + 'api/admin/levels/' + this.state.levelSelected + '/completionTimes?includeSnapshot=' + this.state.includeSnapshotVal, this.props.token);
+        let completionTimesJson = await getWithToken(this.props.backendUrl + 'api/admin/levels/' + this.state.levelSelected + '/completionTimes?includeSnapshot=' + this.state.includeSnapshotVal, this.props.token);
 
         let minutesTab = [];
         let dataMap = new Map();
 
-        lctJson.forEach(lvlCompTime => {
-            minutesTab.push(lvlCompTime.minute + " min");
-            lvlCompTime.quantities.forEach(quantities => {
-                if (!dataMap.has(quantities.actionName)) {
-                    dataMap.set(quantities.actionName, []);
+        completionTimesJson.forEach(completionTime => {
+            minutesTab.push(completionTime.minute + " min");
+            completionTime.actionCompletionCounts.forEach(acc => {
+                if (!dataMap.has(acc.actionName)) {
+                    dataMap.set(acc.actionName, []);
                 }
-                dataMap.get(quantities.actionName).push(quantities.quantity);
+                dataMap.get(acc.actionName).push(acc.playerCount);
             });
         });
 
@@ -69,7 +69,10 @@ class PeCompletionTimeGraph extends Component {
                     y: {
                         min: 0,
                         ticks: {
-                            stepSize: 1
+                            stepSize: 1,
+                            callback: function(value) {
+                                return value + ' players';
+                            }
                         }
                     }
                 },

@@ -15,7 +15,7 @@ class Issues extends Component {
     async seeIssue(event, issueId) {
         event.preventDefault();
         let issuesJson = await getWithToken(this.props.backendUrl + 'api/admin/issues/' + issueId, this.props.token);
-        let htmlValue = issuesJson.value
+        let htmlValue = issuesJson.data
             .replace(/&/g, "&amp;")
             .replace(/</g, "&lt;")
             .replace(/>/g, "&gt;")

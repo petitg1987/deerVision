@@ -8,7 +8,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import studio.deervision.exception.ApplicationException;
 import studio.deervision.exception.LevelException;
-import studio.deervision.repository.pe.LevelCompletionTimeRange;
+import studio.deervision.repository.pe.ActionCompletionCountForMinute;
 import studio.deervision.service.pe.LevelService;
 
 import java.util.ArrayList;
@@ -53,39 +53,39 @@ public class LevelRestController {
         return ResponseEntity.ok(null);
     }
 
-    //curl -H "Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJkdnNKV1QiLCJzdWIiOiJhZG1pbiIsImF1dGhvcml0aWVzIjpbIlJPTEVfVVNFUiJdLCJpYXQiOjE2MzQ1NzIzODgsImV4cCI6MTk0OTkzMjM4OH0.S-VnMofcbTMv4epZCT3Es1zezcvXsN4xL0gmkXca3vGHsXvwa5MB1puaw6Y8wBUZLLifvXLLGZUcYvYoDvLOWQ" "http://localhost:5000/api/admin/levels/0/completionTimes?includeSnapshot=true" | jq .
+    //curl -H "Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJkdnNKV1QiLCJzdWIiOiJhZG1pbiIsImF1dGhvcml0aWVzIjpbIlJPTEVfVVNFUiJdLCJpYXQiOjE2NTc0NzE4NDMsImV4cCI6MTk3MjgzMTg0M30.S16GDOuf4RU3_puN6xAuVRDNcEiAJtngFmkTfo37kqalaN3c3m9OdxGWuXv49u9jvOyGraNaXDCvuH9bnrtfiA" "http://localhost:5000/api/admin/levels/0/completionTimes?includeSnapshot=true" | jq .
     @GetMapping(value = "/admin/levels/{levelId}/completionTimes")
-    public List<LevelCompletionTimeOutput> getLevelCompletionTimesGroupByMinute(@PathVariable("levelId") Integer levelId, @RequestParam("includeSnapshot") Boolean includeSnapshot) {
-        List<LevelCompletionTimeRange> completionTimesGroupByMinute = levelService.getLevelCompletionTimesGroupByMinute(levelId, includeSnapshot);
-        return toLevelCompletionTimeOutput(completionTimesGroupByMinute);
+    public List<ActionsCompletionCountForMinute> getLevelCompletionTimesGroupByMinute(@PathVariable("levelId") Integer levelId, @RequestParam("includeSnapshot") Boolean includeSnapshot) {
+        List<ActionCompletionCountForMinute> actionCompletionCountForMinutes = levelService.groupCompletionTimeByMinute(levelId, includeSnapshot);
+        return toActionsCompletionCountForMinute(actionCompletionCountForMinutes);
     }
 
-    //curl -H "Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJkdnNKV1QiLCJzdWIiOiJhZG1pbiIsImF1dGhvcml0aWVzIjpbIlJPTEVfVVNFUiJdLCJpYXQiOjE2MzQ1NzIzODgsImV4cCI6MTk0OTkzMjM4OH0.S-VnMofcbTMv4epZCT3Es1zezcvXsN4xL0gmkXca3vGHsXvwa5MB1puaw6Y8wBUZLLifvXLLGZUcYvYoDvLOWQ" "http://localhost:5000/api/admin/levels/ids"
+    //curl -H "Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJkdnNKV1QiLCJzdWIiOiJhZG1pbiIsImF1dGhvcml0aWVzIjpbIlJPTEVfVVNFUiJdLCJpYXQiOjE2NTc0NzE4NDMsImV4cCI6MTk3MjgzMTg0M30.S16GDOuf4RU3_puN6xAuVRDNcEiAJtngFmkTfo37kqalaN3c3m9OdxGWuXv49u9jvOyGraNaXDCvuH9bnrtfiA" "http://localhost:5000/api/admin/levels/ids"
     @GetMapping(value = "/admin/levels/ids")
     public List<Integer> getLevelIds() {
         return levelService.getLevelIds();
     }
 
-    List<LevelCompletionTimeOutput> toLevelCompletionTimeOutput(List<LevelCompletionTimeRange> completionTimesGroupByMinute) {
-        List<LevelCompletionTimeOutput> result = new ArrayList<>();
+    List<ActionsCompletionCountForMinute> toActionsCompletionCountForMinute(List<ActionCompletionCountForMinute> actionCompletionCountForMinutes) {
+        List<ActionsCompletionCountForMinute> result = new ArrayList<>();
         for (int minute = 0; minute <= LevelService.MAX_COMPLETION_TIME_MIN; ++minute) {
             int finalMinute = minute;
-            List<LevelCompletionTimeRange> completionTimesMinute = completionTimesGroupByMinute.stream().filter(e -> e.getMinute() == finalMinute).toList();
+            List<ActionCompletionCountForMinute> completionTimesMinute = actionCompletionCountForMinutes.stream().filter(e -> e.getMinute() == finalMinute).toList();
 
-            LevelCompletionTimeOutput levelCompletionTimeOutput = new LevelCompletionTimeOutput(minute);
-            for (LevelCompletionTimeRange completionTimeMinute : completionTimesMinute) {
-                levelCompletionTimeOutput.addQuantities(new LevelCompletionTimeQuantity(completionTimeMinute.getActionName(), completionTimeMinute.getQuantity()));
+            ActionsCompletionCountForMinute actionsCompletionCountForMinute = new ActionsCompletionCountForMinute(minute);
+            for (ActionCompletionCountForMinute completionTimeMinute : completionTimesMinute) {
+                actionsCompletionCountForMinute.addActionCompletionCounts(new ActionCompletionCount(completionTimeMinute.getActionName(), completionTimeMinute.getPlayerCount()));
             }
 
-            //add missing action quantities
+            //add missing actions
             for (String actionName : LevelService.ACTIONS_NAMES) {
-                boolean missingAction = levelCompletionTimeOutput.getQuantities().stream().noneMatch(qts -> actionName.equals(qts.actionName()));
+                boolean missingAction = actionsCompletionCountForMinute.getActionCompletionCounts().stream().noneMatch(qts -> actionName.equals(qts.actionName()));
                 if (missingAction) {
-                    levelCompletionTimeOutput.addQuantities(new LevelCompletionTimeQuantity(actionName, 0));
+                    actionsCompletionCountForMinute.addActionCompletionCounts(new ActionCompletionCount(actionName, 0));
                 }
             }
 
-            result.add(levelCompletionTimeOutput);
+            result.add(actionsCompletionCountForMinute);
         }
         return result;
     }

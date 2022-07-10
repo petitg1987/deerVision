@@ -7,9 +7,9 @@ import org.springframework.stereotype.Service;
 import studio.deervision.config.properties.AppProperties;
 import studio.deervision.exception.ApplicationException;
 import studio.deervision.exception.LevelException;
-import studio.deervision.model.pe.LevelCompletionTime;
-import studio.deervision.repository.pe.LevelCompletionTimeRange;
-import studio.deervision.repository.pe.LevelCompletionTimeRepository;
+import studio.deervision.model.pe.ActionCompletionTime;
+import studio.deervision.repository.pe.ActionCompletionCountForMinute;
+import studio.deervision.repository.pe.ActionCompletionTimeRepository;
 
 import java.util.Arrays;
 import java.util.List;
@@ -22,12 +22,12 @@ public class LevelService {
     public static final List<String> ACTIONS_NAMES = Arrays.asList("Open Cage Door", "Complete Puzzle");
     private static final Logger LOGGER = LoggerFactory.getLogger(LevelService.class);
 
-    private final LevelCompletionTimeRepository levelCompletionTimeRepository;
+    private final ActionCompletionTimeRepository actionCompletionTimeRepository;
     private final AppProperties appProperties;
 
     @Autowired
-    public LevelService(LevelCompletionTimeRepository levelCompletionTimeRepository, AppProperties appProperties) {
-        this.levelCompletionTimeRepository = levelCompletionTimeRepository;
+    public LevelService(ActionCompletionTimeRepository actionCompletionTimeRepository, AppProperties appProperties) {
+        this.actionCompletionTimeRepository = actionCompletionTimeRepository;
         this.appProperties = appProperties;
     }
 
@@ -41,19 +41,19 @@ public class LevelService {
         } else if (Math.round(completionTimeInSec / 60.0) > MAX_COMPLETION_TIME_MIN) {
             LOGGER.info("Ignore completion of {} seconds in level {} for request key: {} (reason: time too high)", completionTimeInSec, levelId, requestKey);
             return;
-        } else if (levelCompletionTimeRepository.countByRequestKeyAndLevelIdAndActionName(requestKey, levelId, actionName) != 0) {
+        } else if (actionCompletionTimeRepository.countByRequestKeyAndLevelIdAndActionName(requestKey, levelId, actionName) != 0) {
             LOGGER.info("Ignore completion of {} seconds in level {} for action name {} and for request key: {} (reason: already registered)", completionTimeInSec, levelId, actionName, requestKey);
             return;
         }
-        levelCompletionTimeRepository.saveAndFlush(new LevelCompletionTime(requestKey, appVersion, levelId, actionName, completionTimeInSec));
+        actionCompletionTimeRepository.saveAndFlush(new ActionCompletionTime(requestKey, appVersion, levelId, actionName, completionTimeInSec));
     }
 
-    public List<LevelCompletionTimeRange> getLevelCompletionTimesGroupByMinute(int levelId, boolean includeSnapshot) {
-        return levelCompletionTimeRepository.findCompletionTimesGroupByMinute(levelId, includeSnapshot);
+    public List<ActionCompletionCountForMinute> groupCompletionTimeByMinute(int levelId, boolean includeSnapshot) {
+        return actionCompletionTimeRepository.groupCompletionTimeByMinute(levelId, includeSnapshot);
     }
 
     public List<Integer> getLevelIds() {
-        return levelCompletionTimeRepository.findDistinctByLevelId();
+        return actionCompletionTimeRepository.findDistinctByLevelId();
     }
 
 }
