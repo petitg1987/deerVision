@@ -23,7 +23,7 @@ class PeCompletionTimeGraph extends Component {
 
     async refreshChart() {
         let ctx = document.getElementById("peCompletionTimeChart");
-        let completionTimesJson = await getWithToken(this.props.backendUrl + 'api/admin/levels/' + this.state.levelSelected + '/completionTimes?includeSnapshot=' + this.state.includeSnapshotVal, this.props.token);
+        let completionTimesJson = await getWithToken(this.props.backendUrl + 'api/admin/levels/' + this.state.levelSelected + '/completionTimes?appId=photonEngineer&includeSnapshot=' + this.state.includeSnapshotVal, this.props.token);
 
         let minutesTab = [];
         let dataMap = new Map();
@@ -90,7 +90,7 @@ class PeCompletionTimeGraph extends Component {
 
     async componentDidMount() {
         let levelsSelector = document.getElementById("levelsSelect");
-        let levelIdsJson = await getWithToken(this.props.backendUrl + 'api/admin/levels/ids', this.props.token);
+        let levelIdsJson = await getWithToken(this.props.backendUrl + 'api/admin/levels/ids?appId=photonEngineer', this.props.token);
 
         let option = document.createElement("option");
         option.text = "Level 0";

@@ -1,4 +1,4 @@
-package studio.deervision.model.pe;
+package studio.deervision.model.completion;
 
 import javax.persistence.*;
 
@@ -12,6 +12,8 @@ public class ActionCompletionTime {
 
     private String requestKey;
 
+    private String appId;
+
     private String appVersion;
 
     private Integer levelId;
@@ -24,8 +26,9 @@ public class ActionCompletionTime {
 
     }
 
-    public ActionCompletionTime(String requestKey, String appVersion, Integer levelId, String actionName, Long completionTime) {
+    public ActionCompletionTime(String requestKey, String appId, String appVersion, Integer levelId, String actionName, Long completionTime) {
         this.requestKey = requestKey;
+        this.appId = appId;
         this.appVersion = appVersion;
         this.levelId = levelId;
         this.actionName = actionName;
@@ -46,6 +49,14 @@ public class ActionCompletionTime {
 
     public void setRequestKey(String requestKey) {
         this.requestKey = requestKey;
+    }
+
+    public String getAppId() {
+        return appId;
+    }
+
+    public void setAppId(String appId) {
+        this.appId = appId;
     }
 
     public String getAppVersion() {

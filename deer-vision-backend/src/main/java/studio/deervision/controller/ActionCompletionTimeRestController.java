@@ -1,4 +1,4 @@
-package studio.deervision.controller.pe;
+package studio.deervision.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -8,20 +8,22 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import studio.deervision.exception.ApplicationException;
 import studio.deervision.exception.LevelException;
-import studio.deervision.repository.pe.ActionCompletionCountForMinute;
-import studio.deervision.service.pe.LevelService;
+import studio.deervision.model.completion.ActionCompletionCount;
+import studio.deervision.model.completion.ActionCompletionCountForMinute;
+import studio.deervision.model.completion.ActionsCompletionCountForMinute;
+import studio.deervision.service.ActionCompletionTimeService;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @RestController
 @RequestMapping("/api")
-public class LevelRestController {
+public class ActionCompletionTimeRestController {
 
-    private final LevelService levelService;
+    private final ActionCompletionTimeService levelService;
 
     @Autowired
-    public LevelRestController(LevelService levelService) {
+    public ActionCompletionTimeRestController(ActionCompletionTimeService levelService) {
         this.levelService = levelService;
     }
 
@@ -53,22 +55,22 @@ public class LevelRestController {
         return ResponseEntity.ok(null);
     }
 
-    //curl -H "Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJkdnNKV1QiLCJzdWIiOiJhZG1pbiIsImF1dGhvcml0aWVzIjpbIlJPTEVfVVNFUiJdLCJpYXQiOjE2NTc0NzE4NDMsImV4cCI6MTk3MjgzMTg0M30.S16GDOuf4RU3_puN6xAuVRDNcEiAJtngFmkTfo37kqalaN3c3m9OdxGWuXv49u9jvOyGraNaXDCvuH9bnrtfiA" "http://localhost:5000/api/admin/levels/0/completionTimes?includeSnapshot=true" | jq .
+    //curl -H "Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJkdnNKV1QiLCJzdWIiOiJhZG1pbiIsImF1dGhvcml0aWVzIjpbIlJPTEVfVVNFUiJdLCJpYXQiOjE2NTc0NzE4NDMsImV4cCI6MTk3MjgzMTg0M30.S16GDOuf4RU3_puN6xAuVRDNcEiAJtngFmkTfo37kqalaN3c3m9OdxGWuXv49u9jvOyGraNaXDCvuH9bnrtfiA" "http://localhost:5000/api/admin/levels/0/completionTimes?appId=photonEngineer&includeSnapshot=true" | jq .
     @GetMapping(value = "/admin/levels/{levelId}/completionTimes")
-    public List<ActionsCompletionCountForMinute> getLevelCompletionTimesGroupByMinute(@PathVariable("levelId") Integer levelId, @RequestParam("includeSnapshot") Boolean includeSnapshot) {
-        List<ActionCompletionCountForMinute> actionCompletionCountForMinutes = levelService.groupCompletionTimeByMinute(levelId, includeSnapshot);
+    public List<ActionsCompletionCountForMinute> getLevelCompletionTimesGroupByMinute(@PathVariable("levelId") Integer levelId, @RequestParam("appId") String appId, @RequestParam("includeSnapshot") Boolean includeSnapshot) {
+        List<ActionCompletionCountForMinute> actionCompletionCountForMinutes = levelService.groupCompletionTimeByMinute(appId, levelId, includeSnapshot);
         return toActionsCompletionCountForMinute(actionCompletionCountForMinutes);
     }
 
-    //curl -H "Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJkdnNKV1QiLCJzdWIiOiJhZG1pbiIsImF1dGhvcml0aWVzIjpbIlJPTEVfVVNFUiJdLCJpYXQiOjE2NTc0NzE4NDMsImV4cCI6MTk3MjgzMTg0M30.S16GDOuf4RU3_puN6xAuVRDNcEiAJtngFmkTfo37kqalaN3c3m9OdxGWuXv49u9jvOyGraNaXDCvuH9bnrtfiA" "http://localhost:5000/api/admin/levels/ids"
+    //curl -H "Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJkdnNKV1QiLCJzdWIiOiJhZG1pbiIsImF1dGhvcml0aWVzIjpbIlJPTEVfVVNFUiJdLCJpYXQiOjE2NTc0NzE4NDMsImV4cCI6MTk3MjgzMTg0M30.S16GDOuf4RU3_puN6xAuVRDNcEiAJtngFmkTfo37kqalaN3c3m9OdxGWuXv49u9jvOyGraNaXDCvuH9bnrtfiA" "http://localhost:5000/api/admin/levels/ids?appId=photonEngineer"
     @GetMapping(value = "/admin/levels/ids")
-    public List<Integer> getLevelIds() {
-        return levelService.getLevelIds();
+    public List<Integer> getLevelIds(@RequestParam("appId") String appId) {
+        return levelService.getLevelIds(appId);
     }
 
     List<ActionsCompletionCountForMinute> toActionsCompletionCountForMinute(List<ActionCompletionCountForMinute> actionCompletionCountForMinutes) {
         List<ActionsCompletionCountForMinute> result = new ArrayList<>();
-        for (int minute = 0; minute <= LevelService.MAX_COMPLETION_TIME_MIN; ++minute) {
+        for (int minute = 0; minute <= ActionCompletionTimeService.MAX_COMPLETION_TIME_MIN; ++minute) {
             int finalMinute = minute;
             List<ActionCompletionCountForMinute> completionTimesMinute = actionCompletionCountForMinutes.stream().filter(e -> e.getMinute() == finalMinute).toList();
 
@@ -78,7 +80,7 @@ public class LevelRestController {
             }
 
             //add missing actions
-            for (String actionName : LevelService.ACTIONS_NAMES) {
+            for (String actionName : ActionCompletionTimeService.ACTIONS_NAMES) {
                 boolean missingAction = actionsCompletionCountForMinute.getActionCompletionCounts().stream().noneMatch(qts -> actionName.equals(qts.actionName()));
                 if (missingAction) {
                     actionsCompletionCountForMinute.addActionCompletionCounts(new ActionCompletionCount(actionName, 0));

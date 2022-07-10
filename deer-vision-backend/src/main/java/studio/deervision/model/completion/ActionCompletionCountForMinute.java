@@ -1,4 +1,4 @@
-package studio.deervision.repository.pe;
+package studio.deervision.model.completion;
 
 public interface ActionCompletionCountForMinute {
     String getActionName();
