@@ -38,7 +38,7 @@ class PeLevelCompletionTimeGraph extends Component {
             });
         });
 
-        let colors = ["#7bd000", "#ff007b", "#007bff"]; //TODO add more !
+        let colors = ["#7bff00", "#7b00ff", "#ff7b00", "#007bff", "#ff007b", "#00ff7b"];
         let timeDatasets = [];
         dataMap.forEach((data, actionName)=>{
             let dataset = {
