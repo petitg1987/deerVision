@@ -5,7 +5,7 @@ import {postRequest} from "../../js/request"
 import {isJwtExpired} from 'jwt-check-expiration';
 import UsageGraph from "../../components/usage-graph/usage-graph";
 import Issues from "../../components/issues/issues";
-import PeCompletionTimeGraph from "../../components/pe-completion-time-graph/pe-completion-time-graph";
+import ActionCompletionTimeGraph from "../../components/action-completion-time-graph/action-completion-time-graph";
 import TotalPlayer from "../../components/total-player/total-player";
 
 const backendUrl = "https://backend.deervision.studio/";
@@ -111,9 +111,9 @@ class Admin extends Component {
 
                 <h2>Photon Engineer</h2>
                 <div className="admin-container">
-                    <div className="sub-title">Completion Times</div>
+                    <div className="sub-title">Action Completion Time</div>
                     <div className="admin-info-container">
-                        <PeCompletionTimeGraph backendUrl={backendUrl} token={this.getToken()}/>
+                        <ActionCompletionTimeGraph appId='photonEngineer' backendUrl={backendUrl} token={this.getToken()}/>
                     </div>
                 </div>
 
