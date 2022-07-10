@@ -1,5 +1,6 @@
 package studio.deervision.service;
 
+import com.google.common.collect.ImmutableMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,15 +12,16 @@ import studio.deervision.model.completion.ActionCompletionTime;
 import studio.deervision.model.completion.ActionCompletionCountForMinute;
 import studio.deervision.repository.ActionCompletionTimeRepository;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 import java.util.regex.Pattern;
 
 @Service
 public class ActionCompletionTimeService {
 
     public static final int MAX_COMPLETION_TIME_MIN = 35;
-    public static final List<String> ACTIONS_NAMES = Arrays.asList("Open Cage Door", "Complete Puzzle"); //action names for all games
+    public static final Map<String, List<String>> APP_ACTIONS_NAMES = ImmutableMap.of(
+            "photonEngineer", Arrays.asList("Open Cage Door", "Complete Puzzle")
+    );
     private static final Logger LOGGER = LoggerFactory.getLogger(ActionCompletionTimeService.class);
 
     private final ActionCompletionTimeRepository actionCompletionTimeRepository;
@@ -36,7 +38,7 @@ public class ActionCompletionTimeService {
             throw new ApplicationException("Invalid application id: " + appId);
         } else if (!Pattern.matches(appProperties.getVersionPattern(), appVersion)) {
             throw new ApplicationException("Invalid application version: " + appVersion);
-        } else if (!ACTIONS_NAMES.contains(actionName)) {
+        } else if (!APP_ACTIONS_NAMES.get(appId).contains(actionName)) {
             throw new LevelException("Invalid action name: " + actionName);
         } else if (Math.round(completionTimeInSec / 60.0) > MAX_COMPLETION_TIME_MIN) {
             LOGGER.info("Ignore completion of {} seconds in level {} for request key: {} (reason: time too high)", completionTimeInSec, levelId, requestKey);

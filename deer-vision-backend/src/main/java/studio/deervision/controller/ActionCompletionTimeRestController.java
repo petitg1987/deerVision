@@ -20,11 +20,11 @@ import java.util.List;
 @RequestMapping("/api")
 public class ActionCompletionTimeRestController {
 
-    private final ActionCompletionTimeService levelService;
+    private final ActionCompletionTimeService actionCompletionTimeService;
 
     @Autowired
-    public ActionCompletionTimeRestController(ActionCompletionTimeService levelService) {
-        this.levelService = levelService;
+    public ActionCompletionTimeRestController(ActionCompletionTimeService actionCompletionTimeService) {
+        this.actionCompletionTimeService = actionCompletionTimeService;
     }
 
     //curl -X POST -H "Content-Type: text/plain" -H "X-Key: 0-17" --data "Open Cage Door:122" "http://localhost:5000/api/pe/levels/0/completionTime?appId=photonEngineer&appVersion=1.0.0"
@@ -48,7 +48,7 @@ public class ActionCompletionTimeRestController {
         }
 
         try {
-            levelService.registerLevelCompletionTime(requestKey, appId, appVersion, levelId, actionName, completionTimeInSec);
+            actionCompletionTimeService.registerLevelCompletionTime(requestKey, appId, appVersion, levelId, actionName, completionTimeInSec);
         } catch (ApplicationException | LevelException e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }
@@ -58,17 +58,16 @@ public class ActionCompletionTimeRestController {
     //curl -H "Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJkdnNKV1QiLCJzdWIiOiJhZG1pbiIsImF1dGhvcml0aWVzIjpbIlJPTEVfVVNFUiJdLCJpYXQiOjE2NTc0NzE4NDMsImV4cCI6MTk3MjgzMTg0M30.S16GDOuf4RU3_puN6xAuVRDNcEiAJtngFmkTfo37kqalaN3c3m9OdxGWuXv49u9jvOyGraNaXDCvuH9bnrtfiA" "http://localhost:5000/api/admin/levels/0/completionTimes?appId=photonEngineer&includeSnapshot=true" | jq .
     @GetMapping(value = "/admin/levels/{levelId}/completionTimes")
     public List<ActionsCompletionCountForMinute> getLevelCompletionTimesGroupByMinute(@PathVariable("levelId") Integer levelId, @RequestParam("appId") String appId, @RequestParam("includeSnapshot") Boolean includeSnapshot) {
-        List<ActionCompletionCountForMinute> actionCompletionCountForMinutes = levelService.groupCompletionTimeByMinute(appId, levelId, includeSnapshot);
-        return toActionsCompletionCountForMinute(actionCompletionCountForMinutes);
+        return toActionsCompletionCountForMinute(actionCompletionTimeService.groupCompletionTimeByMinute(appId, levelId, includeSnapshot), appId);
     }
 
     //curl -H "Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJkdnNKV1QiLCJzdWIiOiJhZG1pbiIsImF1dGhvcml0aWVzIjpbIlJPTEVfVVNFUiJdLCJpYXQiOjE2NTc0NzE4NDMsImV4cCI6MTk3MjgzMTg0M30.S16GDOuf4RU3_puN6xAuVRDNcEiAJtngFmkTfo37kqalaN3c3m9OdxGWuXv49u9jvOyGraNaXDCvuH9bnrtfiA" "http://localhost:5000/api/admin/levels/ids?appId=photonEngineer"
     @GetMapping(value = "/admin/levels/ids")
     public List<Integer> getLevelIds(@RequestParam("appId") String appId) {
-        return levelService.getLevelIds(appId);
+        return actionCompletionTimeService.getLevelIds(appId);
     }
 
-    List<ActionsCompletionCountForMinute> toActionsCompletionCountForMinute(List<ActionCompletionCountForMinute> actionCompletionCountForMinutes) {
+    List<ActionsCompletionCountForMinute> toActionsCompletionCountForMinute(List<ActionCompletionCountForMinute> actionCompletionCountForMinutes, String appId) {
         List<ActionsCompletionCountForMinute> result = new ArrayList<>();
         for (int minute = 0; minute <= ActionCompletionTimeService.MAX_COMPLETION_TIME_MIN; ++minute) {
             int finalMinute = minute;
@@ -81,7 +80,7 @@ public class ActionCompletionTimeRestController {
             }
 
             //add missing actions
-            for (String actionName : ActionCompletionTimeService.ACTIONS_NAMES) {
+            for (String actionName : ActionCompletionTimeService.APP_ACTIONS_NAMES.get(appId)) {
                 boolean missingAction = actionsCompletionCountForMinute.getActionCompletionCounts().stream().noneMatch(qts -> actionName.equals(qts.actionName()));
                 if (missingAction) {
                     actionsCompletionCountForMinute.addActionCompletionCounts(new ActionCompletionCount(actionName, 0));
