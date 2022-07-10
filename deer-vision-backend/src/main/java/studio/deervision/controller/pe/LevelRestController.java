@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import studio.deervision.exception.ApplicationException;
+import studio.deervision.exception.LevelException;
 import studio.deervision.repository.pe.LevelCompletionTimeRange;
 import studio.deervision.service.pe.LevelService;
 
@@ -46,7 +47,7 @@ public class LevelRestController {
 
         try {
             levelService.registerLevelCompletionTime(requestKey, appId, appVersion, levelId, actionName, completionTimeInSec);
-        } catch (ApplicationException e) {
+        } catch (ApplicationException | LevelException e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }
         return ResponseEntity.ok(null);
@@ -70,10 +71,20 @@ public class LevelRestController {
         for (int minute = 0; minute <= LevelService.MAX_COMPLETION_TIME_MIN; ++minute) {
             int finalMinute = minute;
             List<LevelCompletionTimeRange> completionTimesMinute = completionTimesGroupByMinute.stream().filter(e -> e.getMinute() == finalMinute).toList();
+
             LevelCompletionTimeOutput levelCompletionTimeOutput = new LevelCompletionTimeOutput(minute);
             for (LevelCompletionTimeRange completionTimeMinute : completionTimesMinute) {
                 levelCompletionTimeOutput.addQuantities(new LevelCompletionTimeQuantity(completionTimeMinute.getActionName(), completionTimeMinute.getQuantity()));
             }
+
+            //add missing action quantities
+            for (String actionName : LevelService.ACTIONS_NAMES) {
+                boolean missingAction = levelCompletionTimeOutput.getQuantities().stream().noneMatch(qts -> actionName.equals(qts.actionName()));
+                if (missingAction) {
+                    levelCompletionTimeOutput.addQuantities(new LevelCompletionTimeQuantity(actionName, 0));
+                }
+            }
+
             result.add(levelCompletionTimeOutput);
         }
         return result;
