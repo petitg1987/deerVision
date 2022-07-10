@@ -10,7 +10,7 @@ import studio.deervision.exception.ApplicationException;
 import studio.deervision.repository.pe.LevelCompletionTimeRange;
 import studio.deervision.service.pe.LevelService;
 
-import java.util.Comparator;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -24,18 +24,26 @@ public class LevelRestController {
         this.levelService = levelService;
     }
 
-    //curl -X POST -H "Content-Type: text/plain" -H "X-Key: 0-17" --data "3" "http://localhost:5000/api/pe/levels/0/completionTime?appId=photonEngineer&appVersion=1.0.0"
+    //curl -X POST -H "Content-Type: text/plain" -H "X-Key: 0-17" --data "cageDoorOpened:122" "http://localhost:5000/api/pe/levels/0/completionTime?appId=photonEngineer&appVersion=1.0.0"
+    //curl -X POST -H "Content-Type: text/plain" -H "X-Key: 0-17" --data "puzzleCompleted:182" "http://localhost:5000/api/pe/levels/0/completionTime?appId=photonEngineer&appVersion=1.0.0"
     @PostMapping(value = "/pe/levels/{levelId}/completionTime", consumes = MediaType.TEXT_PLAIN_VALUE)
     public ResponseEntity<String> levelCompletionTime(@PathVariable("levelId") Integer levelId, @RequestBody String value, @RequestParam("appId") String appId, @RequestParam(value="appVersion") String appVersion) {
         String requestKey = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        String[] valueSplit = value.split(":");
+        if (valueSplit.length != 2 || valueSplit[0].isEmpty() || valueSplit[1].isEmpty()) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Unexpected format for value: " + value);
+        }
+        String actionName = valueSplit[0];
         long completionTimeInSec;
         try {
-            completionTimeInSec = Long.parseLong(value);
+            completionTimeInSec = Long.parseLong(valueSplit[1]);
         } catch (NumberFormatException e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }
+
         try {
-            levelService.registerLevelCompletionTime(requestKey, appId, appVersion, levelId, completionTimeInSec);
+            levelService.registerLevelCompletionTime(requestKey, appId, appVersion, levelId, actionName, completionTimeInSec);
         } catch (ApplicationException e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }
@@ -44,10 +52,9 @@ public class LevelRestController {
 
     //curl -H "Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJkdnNKV1QiLCJzdWIiOiJhZG1pbiIsImF1dGhvcml0aWVzIjpbIlJPTEVfVVNFUiJdLCJpYXQiOjE2MzQ1NzIzODgsImV4cCI6MTk0OTkzMjM4OH0.S-VnMofcbTMv4epZCT3Es1zezcvXsN4xL0gmkXca3vGHsXvwa5MB1puaw6Y8wBUZLLifvXLLGZUcYvYoDvLOWQ" "http://localhost:5000/api/admin/levels/0/completionTimes?includeSnapshot=true" | jq .
     @GetMapping(value = "/admin/levels/{levelId}/completionTimes")
-    public List<LevelCompletionTimeRange> getLevelCompletionTimesGroupByMinute(@PathVariable("levelId") Integer levelId, @RequestParam("includeSnapshot") Boolean includeSnapshot) {
+    public List<LevelCompletionTimeOutput> getLevelCompletionTimesGroupByMinute(@PathVariable("levelId") Integer levelId, @RequestParam("includeSnapshot") Boolean includeSnapshot) {
         List<LevelCompletionTimeRange> completionTimesGroupByMinute = levelService.getLevelCompletionTimesGroupByMinute(levelId, includeSnapshot);
-        addMissingMinutes(completionTimesGroupByMinute);
-        return completionTimesGroupByMinute;
+        return toLevelCompletionTimeOutput(completionTimesGroupByMinute);
     }
 
     //curl -H "Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJkdnNKV1QiLCJzdWIiOiJhZG1pbiIsImF1dGhvcml0aWVzIjpbIlJPTEVfVVNFUiJdLCJpYXQiOjE2MzQ1NzIzODgsImV4cCI6MTk0OTkzMjM4OH0.S-VnMofcbTMv4epZCT3Es1zezcvXsN4xL0gmkXca3vGHsXvwa5MB1puaw6Y8wBUZLLifvXLLGZUcYvYoDvLOWQ" "http://localhost:5000/api/admin/levels/ids"
@@ -56,25 +63,18 @@ public class LevelRestController {
         return levelService.getLevelIds();
     }
 
-    void addMissingMinutes(List<LevelCompletionTimeRange> completionTimeGroupByMinute) {
+    List<LevelCompletionTimeOutput> toLevelCompletionTimeOutput(List<LevelCompletionTimeRange> completionTimesGroupByMinute) {
+        List<LevelCompletionTimeOutput> result = new ArrayList<>();
         for (int minute = 0; minute <= LevelService.MAX_COMPLETION_TIME_MIN; ++minute) {
-            boolean minuteExist = false;
-            for (LevelCompletionTimeRange lctr : completionTimeGroupByMinute) {
-                minuteExist = minuteExist || lctr.getMinute() == minute;
+            int finalMinute = minute;
+            List<LevelCompletionTimeRange> completionTimesMinute = completionTimesGroupByMinute.stream().filter(e -> e.getMinute() == finalMinute).toList();
+            LevelCompletionTimeOutput levelCompletionTimeOutput = new LevelCompletionTimeOutput(minute);
+            for (LevelCompletionTimeRange completionTimeMinute : completionTimesMinute) {
+                levelCompletionTimeOutput.addQuantities(new LevelCompletionTimeQuantity(completionTimeMinute.getActionName(), completionTimeMinute.getQuantity()));
             }
-            if (!minuteExist) {
-                final int missingMinute = minute;
-                completionTimeGroupByMinute.add(new LevelCompletionTimeRange() {
-                    public Integer getMinute() {
-                        return missingMinute;
-                    }
-                    public Integer getQuantity() {
-                        return 0;
-                    }
-                });
-            }
+            result.add(levelCompletionTimeOutput);
         }
-        completionTimeGroupByMinute.sort(Comparator.comparing(LevelCompletionTimeRange::getMinute));
+        return result;
     }
 
 }

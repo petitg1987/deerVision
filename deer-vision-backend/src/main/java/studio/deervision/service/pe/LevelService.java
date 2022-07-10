@@ -28,7 +28,7 @@ public class LevelService {
         this.appProperties = appProperties;
     }
 
-    public void registerLevelCompletionTime(String requestKey, String appId, String appVersion, int levelId, long completionTimeInSec) throws ApplicationException {
+    public void registerLevelCompletionTime(String requestKey, String appId, String appVersion, int levelId, String actionName, long completionTimeInSec) throws ApplicationException {
         if (!appId.equals("photonEngineer")) {
             throw new ApplicationException("Invalid application id: " + appId);
         } else if (!Pattern.matches(appProperties.getVersionPattern(), appVersion)) {
@@ -36,11 +36,11 @@ public class LevelService {
         } else if (Math.round(completionTimeInSec / 60.0) > MAX_COMPLETION_TIME_MIN) {
             LOGGER.info("Ignore completion of {} seconds in level {} for request key: {} (reason: time too high)", completionTimeInSec, levelId, requestKey);
             return;
-        } else if (levelCompletionTimeRepository.countByRequestKeyAndLevelId(requestKey, levelId) != 0) {
-            LOGGER.info("Ignore completion of {} seconds in level {} for request key: {} (reason: already registered)", completionTimeInSec, levelId, requestKey);
+        } else if (levelCompletionTimeRepository.countByRequestKeyAndLevelIdAndActionName(requestKey, levelId, actionName) != 0) {
+            LOGGER.info("Ignore completion of {} seconds in level {} for action name {} and for request key: {} (reason: already registered)", completionTimeInSec, levelId, actionName, requestKey);
             return;
         }
-        levelCompletionTimeRepository.saveAndFlush(new LevelCompletionTime(requestKey, appVersion, levelId, completionTimeInSec));
+        levelCompletionTimeRepository.saveAndFlush(new LevelCompletionTime(requestKey, appVersion, levelId, actionName, completionTimeInSec));
     }
 
     public List<LevelCompletionTimeRange> getLevelCompletionTimesGroupByMinute(int levelId, boolean includeSnapshot) {

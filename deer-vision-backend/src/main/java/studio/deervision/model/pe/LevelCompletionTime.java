@@ -16,16 +16,19 @@ public class LevelCompletionTime {
 
     private Integer levelId;
 
+    private String actionName;
+
     private Long completionTime;
 
     public LevelCompletionTime() {
 
     }
 
-    public LevelCompletionTime(String requestKey, String appVersion, Integer levelId, Long completionTime) {
+    public LevelCompletionTime(String requestKey, String appVersion, Integer levelId, String actionName, Long completionTime) {
         this.requestKey = requestKey;
         this.appVersion = appVersion;
         this.levelId = levelId;
+        this.actionName = actionName;
         this.completionTime = completionTime;
     }
 
@@ -59,6 +62,14 @@ public class LevelCompletionTime {
 
     public void setLevelId(Integer levelId) {
         this.levelId = levelId;
+    }
+
+    public String getActionName() {
+        return actionName;
+    }
+
+    public void setActionName(String actionName) {
+        this.actionName = actionName;
     }
 
     public Long getCompletionTime() {
