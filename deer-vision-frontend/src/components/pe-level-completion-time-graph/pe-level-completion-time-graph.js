@@ -26,19 +26,31 @@ class PeLevelCompletionTimeGraph extends Component {
         let lctJson = await getWithToken(this.props.backendUrl + 'api/admin/levels/' + this.state.levelSelected + '/completionTimes?includeSnapshot=' + this.state.includeSnapshotVal, this.props.token);
 
         let minutesTab = [];
-        let playerQuantityTab = [];
+        let dataMap = new Map();
+
         lctJson.forEach(lvlCompTime => {
             minutesTab.push(lvlCompTime.minute + " min");
-            playerQuantityTab.push(lvlCompTime.quantity);
+            lvlCompTime.quantities.forEach(quantities => {
+                if (!dataMap.has(quantities.actionName)) {
+                    dataMap.set(quantities.actionName, []);
+                }
+                dataMap.get(quantities.actionName).push(quantities.quantity);
+            });
         });
 
-        let dataset = {
-            data: playerQuantityTab,
-            borderColor: "#7bd000",
-            backgroundColor : "#7bd000",
-            fill: true,
-            lineTension: 0
-        }
+        let colors = ["#7bd000", "#ff007b", "#007bff"]; //TODO add more !
+        let timeDatasets = [];
+        dataMap.forEach((data, actionName)=>{
+            let dataset = {
+                label: actionName,
+                data: data,
+                borderColor: colors[timeDatasets.length],
+                backgroundColor : colors[timeDatasets.length],
+                fill: true,
+                lineTension: 0
+            }
+            timeDatasets.push(dataset);
+        })
 
         if (this.statChart) {
             this.statChart.destroy();
@@ -48,7 +60,7 @@ class PeLevelCompletionTimeGraph extends Component {
             type: 'bar',
             data: {
                 labels: minutesTab,
-                datasets: [dataset]
+                datasets: timeDatasets
             },
             options: {
                 maintainAspectRatio: true,
@@ -63,7 +75,7 @@ class PeLevelCompletionTimeGraph extends Component {
                 },
                 plugins: {
                     legend: {
-                        display: false
+                        display: true
                     },
                     title: {
                         display: false,

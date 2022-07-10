@@ -111,7 +111,7 @@ class Admin extends Component {
 
                 <h2>Photon Engineer</h2>
                 <div className="admin-container">
-                    <div className="sub-title">Level Completion Time</div>
+                    <div className="sub-title">Level Completion Times</div>
                     <div className="admin-info-container">
                         <PeLevelCompletionTimeGraph backendUrl={backendUrl} token={this.getToken()}/>
                     </div>
