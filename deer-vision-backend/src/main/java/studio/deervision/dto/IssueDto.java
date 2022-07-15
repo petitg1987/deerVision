@@ -8,6 +8,7 @@ public class IssueDto {
 
     private final Long id;
     private final String data;
+    private final String origin;
     private final String requestKey;
     private final String appId;
     private final String appVersion;
@@ -17,6 +18,7 @@ public class IssueDto {
     public IssueDto(Issue issue) {
         this.id = issue.getId();
         this.data = issue.getData();
+        this.origin = issue.getOrigin().toIssueOriginString();
         this.requestKey = issue.getRequestKey();
         this.appId = issue.getAppId();
         this.appVersion = issue.getAppVersion();
@@ -30,6 +32,10 @@ public class IssueDto {
 
     public String getData() {
         return data;
+    }
+
+    public String getOrigin() {
+        return origin;
     }
 
     public String getRequestKey() {

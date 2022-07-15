@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 import studio.deervision.config.properties.AdminProperties;
 import studio.deervision.dto.TokenDto;
 
+import javax.crypto.spec.SecretKeySpec;
+import java.security.Key;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -44,6 +46,7 @@ public class AdminLoginRestController {
 
     private String getJWTToken() {
         List<GrantedAuthority> grantedAuthorities = AuthorityUtils.commaSeparatedStringToAuthorityList("ROLE_USER");
+        Key signingKey = new SecretKeySpec(adminProperties.getJwtSecret().getBytes(), SignatureAlgorithm.HS512.getJcaName());
         return Jwts
                 .builder()
                 .setId("dvsJWT")
@@ -51,6 +54,6 @@ public class AdminLoginRestController {
                 .claim("authorities", grantedAuthorities.stream().map(GrantedAuthority::getAuthority).collect(Collectors.toList()))
                 .setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis() + 1000L * 60L * 60L * 24L * 365L * 10L))
-                .signWith(SignatureAlgorithm.HS512, adminProperties.getJwtSecret().getBytes()).compact();
+                .signWith(signingKey, SignatureAlgorithm.HS512).compact();
     }
 }

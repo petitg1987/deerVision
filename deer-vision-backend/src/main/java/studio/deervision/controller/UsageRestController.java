@@ -39,7 +39,7 @@ public class UsageRestController {
         String requestKey = (String)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         try {
             usageService.registerNewUsage(requestKey, appId, appVersion, OperatingSystem.toOperatingSystem(os));
-        } catch (ApplicationException e) {
+        } catch (ApplicationException | IllegalArgumentException e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }
         return ResponseEntity.ok(null);

@@ -7,6 +7,7 @@ import java.time.format.DateTimeFormatter;
 public class IssueListDto {
 
     private final Long id;
+    private final String origin;
     private final String requestKey;
     private final String appId;
     private final String appVersion;
@@ -15,6 +16,7 @@ public class IssueListDto {
 
     public IssueListDto(LightIssue lightIssue) {
         this.id = lightIssue.getId();
+        this.origin = lightIssue.getOrigin().toIssueOriginString();
         this.requestKey = lightIssue.getRequestKey();
         this.appId = lightIssue.getAppId();
         this.appVersion = lightIssue.getAppVersion();
@@ -24,6 +26,10 @@ public class IssueListDto {
 
     public Long getId() {
         return id;
+    }
+
+    public String getOrigin() {
+        return origin;
     }
 
     public String getRequestKey() {

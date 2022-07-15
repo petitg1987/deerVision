@@ -16,6 +16,8 @@ public class Issue {
     @Lob
     private String data;
 
+    private IssueOrigin origin;
+
     private String requestKey;
 
     private String appId;
@@ -29,8 +31,9 @@ public class Issue {
     public Issue(){
     }
 
-    public Issue(String data, String requestKey, String appId, String appVersion, OperatingSystem operatingSystem) {
+    public Issue(String data, IssueOrigin origin, String requestKey, String appId, String appVersion, OperatingSystem operatingSystem) {
         this.data = data;
+        this.origin = origin;
         this.requestKey = requestKey;
         this.appId = appId;
         this.appVersion = appVersion;
@@ -52,6 +55,14 @@ public class Issue {
 
     public void setData(String value) {
         this.data = value;
+    }
+
+    public IssueOrigin getOrigin() {
+        return origin;
+    }
+
+    public void setOrigin(IssueOrigin origin) {
+        this.origin = origin;
     }
 
     public String getRequestKey() {

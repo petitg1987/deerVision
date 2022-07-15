@@ -58,19 +58,24 @@ class Issues extends Component {
                 .replace(/^./, (str) => str.toUpperCase());
             let shortAppVersion = issue.appVersion
                 .replace('snapshot', 'snap');
+            let issueOrigin = issue.origin
+                .replace('-', ' ')
+                .replace(/^./, (str) => str.toUpperCase());
             let osName = issue.operatingSystem
                 .replace('-', ' ')
                 .replace(/^./, (str) => str.toUpperCase());
             let shortRequestKey = parseInt(issue.requestKey
                 .replace(/-.*$/, ''))
                 .toString(36)
-                .toUpperCase()
+                .substring(0, 8)
+                .toUpperCase();
 
             issuesData.push(
                 <tr key={issue.id}>
                     <td>{issue.dateTime}</td>
                     <td>{appName}</td>
                     <td>{shortAppVersion}</td>
+                    <td className="secondary-info">{issueOrigin}</td>
                     <td className="secondary-info">{osName}</td>
                     <td className="secondary-info">{shortRequestKey}</td>
                     <td>
@@ -112,6 +117,7 @@ class Issues extends Component {
                             <th>Date</th>
                             <th>Application</th>
                             <th>Version</th>
+                            <th className="secondary-info">Origin</th>
                             <th className="secondary-info">OS</th>
                             <th className="secondary-info">Key</th>
                             <th>Actions</th>

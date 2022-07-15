@@ -6,6 +6,7 @@ import studio.deervision.config.properties.AppProperties;
 import studio.deervision.exception.ApplicationException;
 import studio.deervision.exception.IssueException;
 import studio.deervision.model.Issue;
+import studio.deervision.model.IssueOrigin;
 import studio.deervision.model.OperatingSystem;
 import studio.deervision.repository.IssueRepository;
 import studio.deervision.repository.LightIssue;
@@ -27,14 +28,14 @@ public class IssueService {
         this.appProperties = appProperties;
     }
 
-    public void newIssue(String value, String requestKey, String appId, String appVersion, OperatingSystem operatingSystem) throws ApplicationException, IssueException {
+    public void newIssue(String value, IssueOrigin origin, String requestKey, String appId, String appVersion, OperatingSystem operatingSystem) throws ApplicationException, IssueException {
         if (value == null || "".equals(value)) {
             throw new IssueException("Empty issue value received");
         } else if (!Pattern.matches(appProperties.getVersionPattern(), appVersion)) {
             throw new ApplicationException("Invalid application version: " + appVersion);
         }
 
-        Issue issue = new Issue(value, requestKey, appId, appVersion, operatingSystem);
+        Issue issue = new Issue(value, origin, requestKey, appId, appVersion, operatingSystem);
         issueRepository.saveAndFlush(issue);
     }
 
