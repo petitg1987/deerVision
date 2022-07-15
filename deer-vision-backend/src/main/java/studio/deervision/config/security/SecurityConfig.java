@@ -5,101 +5,109 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpMethod;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import studio.deervision.config.properties.ActuatorProperties;
 import studio.deervision.config.properties.AdminProperties;
 
+
 @Configuration
 @EnableWebSecurity
+@EnableWebMvc
 public class SecurityConfig {
 
     private static final int PASSWORD_STRENGTH = 10;
+
+    private final ActuatorProperties actuatorProperties;
+    private final AdminProperties adminProperties;
+
+    @Autowired
+    public SecurityConfig(ActuatorProperties actuatorProperties, AdminProperties adminProperties){
+        this.actuatorProperties = actuatorProperties;
+        this.adminProperties = adminProperties;
+    }
 
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder(PASSWORD_STRENGTH);
     }
 
-    @Configuration
+    @Bean
     @Order(1)
-    public static class ActuatorSecurity extends WebSecurityConfigurerAdapter {
-
-        private final ActuatorProperties actuatorProperties;
-
-        @Autowired
-        public ActuatorSecurity(ActuatorProperties actuatorProperties){
-            this.actuatorProperties = actuatorProperties;
-        }
-
-        @Override
-        protected void configure(HttpSecurity http) throws Exception {
-            http.regexMatcher("^/actuator/.*").authorizeRequests()
-                    .regexMatchers("^/actuator/.*").authenticated()
-                    .and().httpBasic()
-                    .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                    .and().csrf().disable();
-        }
-
-        @Override
-        protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-            auth.inMemoryAuthentication().withUser("actuator").password(actuatorProperties.getPassword()).roles("ACTUATOR_USER");
-        }
+    public WebMvcConfigurer corsConfigurer() {
+        return new WebMvcConfigurer() {
+            @Override
+            public void addCorsMappings(CorsRegistry registry) {
+                registry.addMapping("/**")
+                        .allowedMethods("GET", "POST", "DELETE")
+                        .allowedOrigins(adminProperties.getAllowedOrigins().toArray(new String[0]));
+            }
+        };
     }
 
-    @Configuration
+    @Bean
     @Order(2)
-    public static class APIAdminLoginSecurity extends WebSecurityConfigurerAdapter {
-
-        @Override
-        protected void configure(HttpSecurity http) throws Exception {
-            http.regexMatcher("^/api/admin/login.*").authorizeRequests()
-                    .regexMatchers("^/api/admin/login.*").permitAll()
-                    .and().csrf().disable();
-        }
+    public SecurityFilterChain actuatorFilterChain(HttpSecurity http) throws Exception {
+        http.regexMatcher("^/actuator/.*").authorizeRequests()
+                .regexMatchers("^/actuator/.*").authenticated()
+                .and().httpBasic()
+                .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and().csrf().disable();
+        return http.build();
     }
 
-    @Configuration
+    @Bean
+    @Order(2)
+    public InMemoryUserDetailsManager actuatorUserDetailsService() {
+        UserDetails user = User.withUsername("actuator")
+                .password(actuatorProperties.getPassword())
+                .roles("ACTUATOR_USER")
+                .build();
+        return new InMemoryUserDetailsManager(user);
+    }
+
+    @Bean
     @Order(3)
-    public static class APIAdminSecurity extends WebSecurityConfigurerAdapter {
-
-        private final AdminProperties adminProperties;
-
-        @Autowired
-        public APIAdminSecurity(AdminProperties adminProperties) {
-            this.adminProperties = adminProperties;
-        }
-
-        @Override
-        protected void configure(HttpSecurity http) throws Exception {
-            http.regexMatcher("^/api/admin/.*")
-                    .addFilterAfter(new JWTAuthorizationFilter(adminProperties), UsernamePasswordAuthenticationFilter.class)
-                    .authorizeRequests()
-                    .regexMatchers(HttpMethod.OPTIONS, "^/api/admin/.*").permitAll() //allow CORS option calls
-                    .regexMatchers("^/api/admin/.*").fullyAuthenticated()
-                    .and().csrf().disable();
-        }
+    public SecurityFilterChain apiAdminLoginFilterChain(HttpSecurity http) throws Exception {
+        http.regexMatcher("^/api/admin/login.*").authorizeRequests()
+                .regexMatchers("^/api/admin/login.*").permitAll()
+                .and().csrf().disable();
+        return http.build();
     }
 
-    @Configuration
+    @Bean
     @Order(4)
-    public static class APIPublicSecurity extends WebSecurityConfigurerAdapter {
+    public SecurityFilterChain apiAdminFilterChain(HttpSecurity http) throws Exception {
+        http.regexMatcher("^/api/admin/.*")
+                .addFilterAfter(new JWTAuthorizationFilter(adminProperties), UsernamePasswordAuthenticationFilter.class)
+                .authorizeRequests()
+                .regexMatchers(HttpMethod.OPTIONS, "^/api/admin/.*").permitAll() //allow CORS option calls
+                .regexMatchers("^/api/admin/.*").fullyAuthenticated()
+                .and().csrf().disable();
+        return http.build();
+    }
 
-        @Override
-        protected void configure(HttpSecurity http) throws Exception {
-            http.regexMatcher("^/api/.*")
-                    .addFilterBefore(new RequestKeyAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class)
-                    .authorizeRequests()
-                    .regexMatchers("^/api/.*")
-                    .fullyAuthenticated()
-                    .and().csrf().disable();
-        }
+    @Bean
+    @Order(5)
+    public SecurityFilterChain apiPublicFilterChain(HttpSecurity http) throws Exception {
+        http.regexMatcher("^/api/.*")
+                .addFilterBefore(new RequestKeyAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class)
+                .authorizeRequests()
+                .regexMatchers("^/api/.*")
+                .fullyAuthenticated()
+                .and().csrf().disable();
+        return http.build();
     }
 
 }

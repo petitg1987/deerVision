@@ -29,7 +29,7 @@ public class QueryExecutorService {
         StringBuilder queryResult;
         EntityManager em = entityManagerFactory.createEntityManager();
         em.joinTransaction();
-        List<Object> results = em.createNativeQuery(sqlQuery).getResultList();
+        @SuppressWarnings("unchecked") List<Object> results = em.createNativeQuery(sqlQuery).getResultList();
         queryResult = new StringBuilder("Total results: " + results.size() + "\n\n");
         for (Object resultLine : results) {
             if (resultLine.getClass().isArray()) {
