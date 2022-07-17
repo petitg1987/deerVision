@@ -10,6 +10,26 @@ import steamSquareLogo from "../../images/steamSquareLogo.webp";
 import itchSquareLogo from "../../images/itchSquareLogo.webp";
 
 class Home extends Component {
+
+    async componentDidMount() {
+        let modal = document.getElementById('screenshots-modal');
+        let gameImages = document.getElementsByClassName('game-screenshot-img');
+        for (let gameImage of gameImages) {
+            gameImage.onclick = function(event) {
+                let modalImg = document.getElementById("model-content-img");
+                modal.style.display = "flex";
+                modalImg.src = this.src; /* TODO use bigger img */
+                event.stopPropagation();
+            }
+        }
+
+        document.body.onclick = function() {
+            if (modal.style.display === "flex") {
+                modal.style.display = "none";
+            }
+        }
+    }
+
     render() {
         return (
             <div>
@@ -50,15 +70,20 @@ class Home extends Component {
                     </div>
                     <div className="game-screenshots"> {/*TODO: update/add screenshots*/}
                         <div className="game-screenshot">
-                            <img src="/photon-engineer/screenshot1_1440p.webp" alt="Photon Engineer screenshot 1" width="1100" height="619" />
+                            <img className="game-screenshot-img" src="/photon-engineer/screenshot1_1440p.webp" alt="Photon Engineer screenshot 1" width="1100" height="619" />
                         </div>
                         <div className="game-screenshot">
-                            <img src="/photon-engineer/screenshot2_1440p.webp" alt="Photon Engineer screenshot 2" width="1100" height="619" />
+                            <img className="game-screenshot-img" src="/photon-engineer/screenshot2_1440p.webp" alt="Photon Engineer screenshot 2" width="1100" height="619" />
                         </div>
                         <div className="game-screenshot">
-                            <img src="/photon-engineer/screenshot3_1440p.webp" alt="Photon Engineer screenshot 3" width="1100" height="619" />
+                            <img className="game-screenshot-img" src="/photon-engineer/screenshot3_1440p.webp" alt="Photon Engineer screenshot 3" width="1100" height="619" />
+                        </div>
+                        <div id="screenshots-modal" className="modal">
+                            <span className="close">&times;</span>
+                            <img className="modal-content" id="model-content-img" />
                         </div>
                     </div>
+
                 </div>
             </div>
         );
