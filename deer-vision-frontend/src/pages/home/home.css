@@ -45,7 +45,7 @@
 .game-screenshot-img {
     display: flex; /* only to avoid margin collapse */
     height: auto;
-    width: 450px;
+    width: 350px;
     border: 2px solid #ffffff;
     margin: 5px;
     cursor: zoom-in;

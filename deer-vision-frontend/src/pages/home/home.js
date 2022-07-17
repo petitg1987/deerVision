@@ -89,6 +89,9 @@ class Home extends Component {
                         <div className="game-screenshot">
                             <img className="game-screenshot-img" src="/photon-engineer/screenshot4_720p.webp" alt="Photon Engineer screenshot 4" width="1280" height="720" />
                         </div>
+                        <div className="game-screenshot">
+                            <img className="game-screenshot-img" src="/photon-engineer/screenshot5_720p.webp" alt="Photon Engineer screenshot 5" width="1280" height="720" />
+                        </div>
 
                         <div id="screenshots-modal" className="screenshots-modal">
                             <img className="screenshots-modal-content" id="screenshots-modal-content-img" alt="Zoom-in screenshot" />
