@@ -42,11 +42,12 @@
 }
 
 .game-screenshot-img {
+    display: flex; /* only to avoid margin collapse */
     height: auto;
     width: 450px;
     border: 2px solid #ffffff;
     margin: 5px;
-    cursor: pointer;
+    cursor: zoom-in;
     transition: 0.3s;
 }
 
@@ -54,7 +55,7 @@
     opacity: 0.5;
 }
 
-.modal {
+.screenshots-modal {
     display: none;
     justify-content: center;
     position: fixed; /* stay in place */
@@ -67,17 +68,16 @@
     background-color: rgba(0, 0, 0, 0.8);
 }
 
-.modal-content {
+.screenshots-modal-content {
     margin: auto;
     width: 80%;
     max-width: 1100px;
     border: 2px solid #ffffff;
-    cursor: pointer; /* TODO should be on all body */
-    animation-name: zoom;
+    animation-name: img-zoom;
     animation-duration: 0.6s;
 }
 
-@keyframes zoom {
+@keyframes img-zoom {
     from {transform:scale(0)}
     to {transform:scale(1)}
 }
@@ -105,7 +105,7 @@
         width: calc(100% - 20px);
     }
 
-    .modal-content {
+    .screenshots-modal-content {
         width: 100%;
     }
 }
