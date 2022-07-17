@@ -48,7 +48,6 @@
     border: 2px solid #ffffff;
     margin: 5px;
     cursor: zoom-in;
-    transition: 0.3s;
 }
 
 .game-screenshot-img:hover {
@@ -103,9 +102,11 @@
 
     .game-screenshot-img {
         width: calc(100% - 20px);
+        cursor: auto;
     }
 
-    .screenshots-modal-content {
-        width: 100%;
+    .game-screenshot-img:hover {
+        opacity: 1.0;
     }
+
 }

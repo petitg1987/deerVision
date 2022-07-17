@@ -17,12 +17,14 @@ class Home extends Component {
         let gameImages = document.getElementsByClassName('game-screenshot-img');
         for (let gameImage of gameImages) {
             gameImage.onclick = function(event) {
-                body.style.cursor = "pointer";
+                if (!window.matchMedia("(max-width: 800px)").matches) {
+                    body.style.cursor = "pointer";
 
-                let modalImg = document.getElementById("screenshots-modal-content-img");
-                screenshotsModal.style.display = "flex";
-                modalImg.src = this.src; /* TODO use bigger img */
-                event.stopPropagation();
+                    let modalImg = document.getElementById("screenshots-modal-content-img");
+                    screenshotsModal.style.display = "flex";
+                    modalImg.src = this.src; /* TODO use bigger img */
+                    event.stopPropagation();
+                }
             }
         }
 
