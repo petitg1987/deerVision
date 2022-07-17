@@ -18,13 +18,13 @@ class Home extends Component {
         for (let gameImage of gameImages) {
             gameImage.onclick = function(event) {
                 if (!window.matchMedia("(max-width: 800px)").matches) {
-                    body.style.cursor = "pointer";
-
                     let modalImg = document.getElementById("screenshots-modal-content-img");
-                    screenshotsModal.style.display = "flex";
-                    let zoomInImage = this.src;
-                    zoomInImage = zoomInImage.replace("_720p", "_1440p");
+                    let zoomInImage = this.src.replace("_720p", "_1440p");
+                    modalImg.src = ""; //for slow connection: display white/empty image first instead of the previous one displayed
                     modalImg.src = zoomInImage;
+
+                    body.style.cursor = "pointer";
+                    screenshotsModal.style.display = "flex";
                     event.stopPropagation();
                 }
             }
