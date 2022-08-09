@@ -1,5 +1,5 @@
 import React, {Component, Suspense} from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom/client';
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import Navigation from "./components/navigation/navigation";
 import Home from './pages/home/home';
@@ -47,7 +47,10 @@ class Index extends Component {
                             <br/>
                             <small>&copy; {this.currentYear}, Deer Vision Studio | <a className={"text-link"} href={"/privacy"} title={"Privacy Policy"}>Privacy</a> | <a className={"text-link"} href={"/eula"} title={"End User License Agreement"}>EULA</a></small>
                             <br/>
-                            <small>Company number: 0123456789 {/*TODO: update numero entreprise */} | Contact: <a className={"text-link"} href={"mailto:contact@deervision.studio"}>contact@deervision.studio</a></small>
+                            {/*TODO: update numero entreprise */}
+                            <small>Company N° (BE): 0123456789</small>
+                            <br/>
+                            <small>Contact: <a className={"text-link"} href={"mailto:contact@deervision.studio"}>contact@deervision.studio</a></small>
                             <br/>
                             <br/>
                         </center>
@@ -58,6 +61,6 @@ class Index extends Component {
     }
 }
 
-ReactDOM.render((
-    <Index/>
-), document.getElementById('app'))
+ReactDOM
+    .createRoot(document.getElementById('app'))
+    .render(<Index/>)
