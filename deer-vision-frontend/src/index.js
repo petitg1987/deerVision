@@ -43,17 +43,14 @@ class Index extends Component {
                         <div className="soc-container">
                             <SocialNetwork logoSize={48} label="Social networks:"/>
                         </div>
-                        <center>
+                        <div className="company-container">
+                            &copy; {this.currentYear}, Deer Vision Studio | <a className={"text-link"} href={"/privacy"} title={"Privacy Policy"}>Privacy</a> | <a className={"text-link"} href={"/eula"} title={"End User License Agreement"}>EULA</a>
                             <br/>
-                            <small>&copy; {this.currentYear}, Deer Vision Studio | <a className={"text-link"} href={"/privacy"} title={"Privacy Policy"}>Privacy</a> | <a className={"text-link"} href={"/eula"} title={"End User License Agreement"}>EULA</a></small>
+                            {/*TODO: update company number*/}
+                            Company N° (BE): 0123456789
                             <br/>
-                            {/*TODO: update numero entreprise */}
-                            <small>Company N° (BE): 0123456789</small>
-                            <br/>
-                            <small>Contact: <a className={"text-link"} href={"mailto:contact@deervision.studio"}>contact@deervision.studio</a></small>
-                            <br/>
-                            <br/>
-                        </center>
+                            Contact: <a className={"text-link"} href={"mailto:contact@deervision.studio"}>contact@deervision.studio</a>
+                        </div>
                     </footer>
                 </div>
             </BrowserRouter>

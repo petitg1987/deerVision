@@ -47,6 +47,13 @@ footer {
     text-align: center;
 }
 
+.company-container {
+    text-align: center;
+    font-size: 13px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
 @media screen and (max-width: 800px) {
     .content {
         width: 95%;
