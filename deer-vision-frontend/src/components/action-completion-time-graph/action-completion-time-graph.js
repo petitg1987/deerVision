@@ -26,6 +26,32 @@ class ActionCompletionTimeGraph extends Component {
         this.setState({includeSnapshotVal: event.target.checked}, this.refreshChart);
     }
 
+    async refreshLevelIds() {
+        let levelsSelector = document.getElementById("levelsSelect");
+        let levelIdsJson = await getWithToken(this.props.backendUrl + 'api/admin/levels/ids?appId=' + this.props.appId, this.props.token);
+
+        let selectedLevelStillValid = false;
+
+        levelIdsJson.forEach(levelNumber => {
+            let option = document.createElement("option");
+            option.text = "Level " + levelNumber;
+            option.value = levelNumber;
+            levelsSelector.add(option);
+
+            if (levelNumber === this.state.levelSelected) {
+                selectedLevelStillValid = true;
+                option.selected = true;
+            }
+        });
+
+        if (!selectedLevelStillValid) {
+            levelsSelector.selectedIndex = 0;
+            this.setState({levelSelected: levelsSelector.value}, this.refreshActionNames);
+        } else {
+            await this.refreshActionNames();
+        }
+    }
+
     async refreshActionNames() {
         let actionNamesSelector = document.getElementById("actionNamesSelect");
         let actionNamesJson = await getWithToken(this.props.backendUrl + 'api/admin/levels/' + this.state.levelSelected + '/actionNames?appId=' + this.props.appId, this.props.token);
@@ -47,6 +73,7 @@ class ActionCompletionTimeGraph extends Component {
 
         if (!selectedActionNameStillValid) {
             actionNamesSelector.selectedIndex = 0;
+            this.setState({actionNameSelected: actionNamesSelector.value}, this.refreshActionNames);
         } else {
             this.refreshChart().then(() => {});
         }
@@ -54,7 +81,6 @@ class ActionCompletionTimeGraph extends Component {
 
     async refreshChart() {
         let ctx = document.getElementById("actionCompletionTimeChart");
-        console.log(this.state.actionNameSelected);
         let completionTimesJson = await getWithToken(this.props.backendUrl + 'api/admin/levels/' + this.state.levelSelected + '/completionTimes/' + this.state.actionNameSelected + '?appId=' + this.props.appId + '&includeSnapshot=' + this.state.includeSnapshotVal, this.props.token);
 
         let minutesTab = [];
@@ -109,28 +135,7 @@ class ActionCompletionTimeGraph extends Component {
     }
 
     async componentDidMount() {
-        let levelsSelector = document.getElementById("levelsSelect");
-        let levelIdsJson = await getWithToken(this.props.backendUrl + 'api/admin/levels/ids?appId=' + this.props.appId, this.props.token);
-
-        let selectedLevelStillValid = false;
-
-        levelIdsJson.forEach(levelNumber => {
-            let option = document.createElement("option");
-            option.text = "Level " + levelNumber;
-            option.value = levelNumber;
-            levelsSelector.add(option);
-
-            if (levelNumber === this.state.levelSelected) {
-                selectedLevelStillValid = true;
-                option.selected = true;
-            }
-        });
-
-        if (!selectedLevelStillValid) {
-            levelsSelector.selectedIndex = 0;
-        } else {
-            this.refreshChart().then(() => {});
-        }
+        await this.refreshLevelIds();
     }
 
     render() {
