@@ -35,6 +35,8 @@ public class QueryExecutorController {
     }
 
     //curl -X POST -H "Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJkdnNKV1QiLCJzdWIiOiJhZG1pbiIsImF1dGhvcml0aWVzIjpbIlJPTEVfVVNFUiJdLCJpYXQiOjE2NTc0NzE4NDMsImV4cCI6MTk3MjgzMTg0M30.S16GDOuf4RU3_puN6xAuVRDNcEiAJtngFmkTfo37kqalaN3c3m9OdxGWuXv49u9jvOyGraNaXDCvuH9bnrtfiA" -H "Content-Type: text/plain" --data "delete from issue where value like '%GeForce RTX 2080 SUPER%'" "https://backend.deervision.studio/api/admin/query-update"
+    //curl -X POST -H "Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJkdnNKV1QiLCJzdWIiOiJhZG1pbiIsImF1dGhvcml0aWVzIjpbIlJPTEVfVVNFUiJdLCJpYXQiOjE2NTc0NzE4NDMsImV4cCI6MTk3MjgzMTg0M30.S16GDOuf4RU3_puN6xAuVRDNcEiAJtngFmkTfo37kqalaN3c3m9OdxGWuXv49u9jvOyGraNaXDCvuH9bnrtfiA" -H "Content-Type: text/plain" --data "update action_completion_time set action_name='OpenCageDoor' where action_name='Open Cage Door'" "https://backend.deervision.studio/api/admin/query-update"
+    //curl -X POST -H "Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJkdnNKV1QiLCJzdWIiOiJhZG1pbiIsImF1dGhvcml0aWVzIjpbIlJPTEVfVVNFUiJdLCJpYXQiOjE2NTc0NzE4NDMsImV4cCI6MTk3MjgzMTg0M30.S16GDOuf4RU3_puN6xAuVRDNcEiAJtngFmkTfo37kqalaN3c3m9OdxGWuXv49u9jvOyGraNaXDCvuH9bnrtfiA" -H "Content-Type: text/plain" --data "update action_completion_time set action_name='CompletePuzzle' where action_name='Complete Puzzle'" "https://backend.deervision.studio/api/admin/query-update"
     @PostMapping(value = "/admin/query-update")
     public ResponseEntity<String> queryUpdate(@RequestBody String sqlQuery) {
         try {

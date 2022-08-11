@@ -3,7 +3,7 @@ package studio.deervision.model.completion;
 import javax.persistence.*;
 
 @Entity
-@Table(indexes = @Index(name = "index_levelId", columnList = "levelId"))
+@Table(indexes = {@Index(name = "index_levelId", columnList = "levelId"), @Index(name = "index_actionName", columnList = "actionName")})
 public class ActionCompletionTime {
 
     @Id

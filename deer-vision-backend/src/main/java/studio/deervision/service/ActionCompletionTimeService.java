@@ -19,9 +19,6 @@ import java.util.regex.Pattern;
 public class ActionCompletionTimeService {
 
     public static final int MAX_COMPLETION_TIME_MIN = 35;
-    public static final Map<String, List<String>> APP_ACTIONS_NAMES = ImmutableMap.of(
-            "photonEngineer", Arrays.asList("Open Cage Door", "Complete Puzzle")
-    );
     private static final Logger LOGGER = LoggerFactory.getLogger(ActionCompletionTimeService.class);
 
     private final ActionCompletionTimeRepository actionCompletionTimeRepository;
@@ -38,8 +35,6 @@ public class ActionCompletionTimeService {
             throw new ApplicationException("Invalid application id: " + appId);
         } else if (!Pattern.matches(appProperties.getVersionPattern(), appVersion)) {
             throw new ApplicationException("Invalid application version: " + appVersion);
-        } else if (!APP_ACTIONS_NAMES.get(appId).contains(actionName)) {
-            throw new LevelException("Invalid action name: " + actionName);
         } else if (Math.round(completionTimeInSec / 60.0) > MAX_COMPLETION_TIME_MIN) {
             LOGGER.info("Ignore completion of {} seconds in level {} for request key: {} (reason: time too high)", completionTimeInSec, levelId, requestKey);
             return;
@@ -50,12 +45,16 @@ public class ActionCompletionTimeService {
         actionCompletionTimeRepository.saveAndFlush(new ActionCompletionTime(requestKey, appId, appVersion, levelId, actionName, completionTimeInSec));
     }
 
-    public List<ActionCompletionCountForMinute> groupCompletionTimeByMinute(String appId, int levelId, boolean includeSnapshot) {
-        return actionCompletionTimeRepository.groupCompletionTimeByMinute(appId, levelId, includeSnapshot);
-    }
-
     public List<Integer> getLevelIds(String appId) {
         return actionCompletionTimeRepository.findDistinctByLevelId(appId);
+    }
+
+    public List<String> getActionNames(String appId, int levelId) {
+        return actionCompletionTimeRepository.findDistinctByActionName(appId, levelId);
+    }
+
+    public List<ActionCompletionCountForMinute> groupCompletionTimeByMinute(String appId, int levelId, String actionName, boolean includeSnapshot) {
+        return actionCompletionTimeRepository.groupCompletionTimeByMinute(appId, levelId, actionName, includeSnapshot);
     }
 
 }
