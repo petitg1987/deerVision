@@ -3,11 +3,11 @@ package studio.deervision.model.completion;
 import javax.persistence.*;
 
 @Entity
-@Table(indexes = {@Index(name = "index_levelId", columnList = "levelId"), @Index(name = "index_actionName", columnList = "actionName")})
+@Table
 public class ActionCompletionTime {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String requestKey;

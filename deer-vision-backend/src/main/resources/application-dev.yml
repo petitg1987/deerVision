@@ -1,6 +1,7 @@
 spring:
   datasource:
-    url: "jdbc:postgresql://localhost:5432/postgres"
+    password: "dev"
+  flyway:
     password: "dev"
 admin:
   #Password: dev

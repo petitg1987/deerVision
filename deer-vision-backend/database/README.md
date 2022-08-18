@@ -18,4 +18,4 @@
 * Execute `docker exec -it postgres-db bash`
 
 ## Create database dump
-* Execute "docker exec -t postgres-db pg_dump -U postgres > postgres_dump_`date +%d-%m-%Y"_"%H_%M_%S`.sql"
+* Execute "docker exec -t postgres-db pg_dump -U postgres > ~/postgres_dump_`date +%d-%m-%Y"_"%H_%M_%S`.sql"

@@ -4,5 +4,8 @@ spring:
     driverClassName: "org.h2.Driver"
     username: "sa"
     password:
+  flyway:
+    enabled: false
   jpa:
     database-platform: "org.hibernate.dialect.H2Dialect"
+    hibernate.ddl-auto: "update"

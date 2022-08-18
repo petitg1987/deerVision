@@ -10,9 +10,15 @@ spring:
     driverClassName: "org.postgresql.Driver"
     username: "postgres"
     password: "vY82M3ZrnZEN"
+  flyway:
+    enabled: true
+    url: "jdbc:postgresql://localhost:5432/postgres"
+    user: "postgres"
+    password: "vY82M3ZrnZEN"
+    locations: "classpath:db/migration"
   jpa:
     database-platform: "org.hibernate.dialect.PostgreSQL95Dialect"
-    hibernate.ddl-auto: "update"
+    hibernate.ddl-auto: "none"
     show-sql: false
     open-in-view: false
   servlet.multipart:
