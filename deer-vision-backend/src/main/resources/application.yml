@@ -6,10 +6,10 @@ management:
 spring:
   profiles.active: "appinfo"
   datasource:
-    url: "jdbc:postgresql://localhost:5432/mytest"
+    url: "jdbc:postgresql://localhost:5432/postgres"
     driverClassName: "org.postgresql.Driver"
     username: "postgres"
-    password: "mysecretpassword"
+    password: "vY82M3ZrnZEN"
   jpa:
     database-platform: "org.hibernate.dialect.PostgreSQL95Dialect"
     hibernate.ddl-auto: "update"
