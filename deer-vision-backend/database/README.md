@@ -4,7 +4,7 @@
  
 # Access to database
 ## Pre-requisites
-* Install plql: `sudo apt install postgresql-client-common postgresql-client-14`
+* Install Postgres tools: `sudo apt install postgresql-client-common postgresql-client-14`
 
 ## Console
 * Execute (password: dev): `psql -h localhost -d postgres -p 5432 -U postgres`
@@ -16,3 +16,6 @@
 
 ## Access to docker container
 * Execute `docker exec -it postgres-db bash`
+
+## Create database dump
+* Execute "docker exec -t postgres-db pg_dump -U postgres > postgres_dump_`date +%d-%m-%Y"_"%H_%M_%S`.sql"
