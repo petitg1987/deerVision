@@ -15,9 +15,9 @@ public interface UsageRepository extends JpaRepository<Usage, Long> {
     @Query("SELECT DISTINCT u.appId FROM Usage u")
     List<String> findDistinctAppId();
 
-    @Query(nativeQuery = true, value = "SELECT FORMATDATETIME(u.DATE_TIME, 'yyyy-MM-dd') as UsageDate, COUNT(DISTINCT u.REQUEST_KEY) as UsageCount from Usage u WHERE u.APP_ID=?1 AND u.DATE_TIME BETWEEN ?2 AND ?3 AND (true=?4 OR u.APP_VERSION not like '%snapshot') GROUP BY UsageDate")
+    @Query(nativeQuery = true, value = "SELECT TO_DATE(cast(u.DATE_TIME as TEXT), 'YYYY-MM-DD') as UsageDate, COUNT(DISTINCT u.REQUEST_KEY) as UsageCount from Usage u WHERE u.APP_ID=?1 AND u.DATE_TIME BETWEEN ?2 AND ?3 AND (true=?4 OR u.APP_VERSION not like '%snapshot') GROUP BY UsageDate")
     List<UsageCount> findUsageCountBetweenDatesUnique(String appId, LocalDateTime startDateTime, LocalDateTime endDateTime, boolean includeSnapshot);
-    @Query(nativeQuery = true, value = "SELECT FORMATDATETIME(u.DATE_TIME, 'yyyy-MM-dd') as UsageDate, COUNT(u.DATE_TIME) as UsageCount from Usage u WHERE u.APP_ID=?1 AND u.DATE_TIME BETWEEN ?2 AND ?3 AND (true=?4 OR u.APP_VERSION not like '%snapshot') GROUP BY UsageDate")
+    @Query(nativeQuery = true, value = "SELECT TO_DATE(cast(u.DATE_TIME as TEXT), 'YYYY-MM-DD') as UsageDate, COUNT(u.DATE_TIME) as UsageCount from Usage u WHERE u.APP_ID=?1 AND u.DATE_TIME BETWEEN ?2 AND ?3 AND (true=?4 OR u.APP_VERSION not like '%snapshot') GROUP BY UsageDate")
     List<UsageCount> findUsageCountBetweenDates(String appId, LocalDateTime startDateTime, LocalDateTime endDateTime, boolean includeSnapshot);
 
     @Query("SELECT COUNT(DISTINCT u.requestKey) FROM Usage u WHERE u.appId =?1")
