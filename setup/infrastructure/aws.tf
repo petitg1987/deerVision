@@ -30,14 +30,14 @@ terraform {
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      version = "~> 3.38"
+      version = "~> 4.0"
     }
   }
 }
 
 provider "aws" {
   region = var.region
-  shared_credentials_file = "~/.aws/credentials"
+  shared_credentials_files = ["~/.aws/credentials"]
   profile = "deervision"
 }
 
@@ -425,11 +425,15 @@ resource "aws_codedeploy_deployment_group" "deployment_group" {
 
 resource "aws_s3_bucket" "storage_backend" {
   bucket = "${var.appName}-backend"
-  acl = "private"
   tags = {
     Name = "${var.appName}Backend"
     Application = var.appName
   }
+}
+
+resource "aws_s3_bucket_acl" "storage_backend_bucket_acl" {
+  bucket = aws_s3_bucket.storage_backend.id
+  acl = "private"
 }
 
 resource "aws_s3_bucket_public_access_block" "storage_access_backend" {
@@ -445,35 +449,62 @@ resource "aws_s3_bucket_public_access_block" "storage_access_backend" {
 ##########################################################################################
 resource "aws_s3_bucket" "storage_frontend" {
   bucket = "${var.appName}-frontend"
-  acl = "public-read"
-  policy = <<EOF
-{
-  "Version": "2008-10-17",
-  "Statement": [
-    {
-      "Sid": "PublicReadForGetBucketObjects",
-      "Effect": "Allow",
-      "Principal": {
-        "AWS": "*"
-      },
-      "Action": "s3:GetObject",
-      "Resource": "arn:aws:s3:::${var.appName}-frontend/*"
-    }
-  ]
-}
-EOF
-  website {
-    index_document = "index.html"
-    error_document = "error404.html"
+  tags = {
+    Name = "${var.appName}Frontend"
   }
+}
+
+resource "aws_s3_bucket_policy" "storage_frontend_policy" {
+  bucket = aws_s3_bucket.storage_frontend.id
+  policy = data.aws_iam_policy_document.storage_frontend_policy_document.json
+}
+
+data "aws_iam_policy_document" "storage_frontend_policy_document" {
+  statement {
+    sid = "PublicReadForGetBucketObjects"
+
+    principals {
+      type        = "AWS"
+      identifiers = ["*"]
+    }
+
+    actions = [
+      "s3:GetObject",
+    ]
+
+    resources = [
+      aws_s3_bucket.storage_frontend.arn,
+      "${aws_s3_bucket.storage_frontend.arn}/*",
+    ]
+  }
+}
+
+resource "aws_s3_bucket_acl" "storage_frontend_bucket_acl" {
+  bucket = aws_s3_bucket.storage_frontend.id
+  acl = "public-read"
+}
+
+resource "aws_s3_bucket_website_configuration" "storage_frontend_website" {
+  bucket = aws_s3_bucket.storage_frontend.bucket
+
+  index_document {
+    suffix = "index.html"
+  }
+
+  error_document {
+    key = "error404.html"
+  }
+}
+
+resource "aws_s3_bucket_cors_configuration" "storage_frontend_cors" {
+  bucket = aws_s3_bucket.storage_frontend.id
+
   cors_rule {
     allowed_headers = ["*"]
     allowed_methods = ["GET", "POST"]
     allowed_origins = ["*"]
+    expose_headers = ["ETag"]
     max_age_seconds = 3000
-  }
-  tags = {
-    Name = "${var.appName}Frontend"
   }
 }
 
