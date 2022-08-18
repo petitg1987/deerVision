@@ -4,7 +4,7 @@
 cd /home/ubuntu/ || exit
 sudo apt update
 sudo add-apt-repository -y ppa:certbot/certbot
-sudo apt install -y certbot python3-certbot-dns-route53 nginx ruby wget nfs-common cron openjdk-17-jre
+sudo apt install -y certbot python3-certbot-dns-route53 nginx ruby wget nfs-common cron openjdk-17-jre docker.io
 
 #Mount (and format) volume
 sudo mkdir ./data
@@ -15,6 +15,10 @@ if [[ "$checkVolume" == "/dev/xvdb: data" ]]; then
 fi
 sudo mount /dev/xvdb /home/ubuntu/data
 sudo chown ubuntu:ubuntu -R ./data
+
+#Launch database
+mkdir -p /home/ubuntu/data/db
+sudo docker run --name postgres-db -e POSTGRES_PASSWORD=vY82M3ZrnZEN -v /home/ubuntu/data/db/:/var/lib/postgresql/data -p 5432:5432 -d postgres:14.5
 
 #Create certificate (Let's encrypt)
 mkdir -p /home/ubuntu/data/letsencrypt/logs
