@@ -8,7 +8,7 @@
 
 ## Console
 * Execute (password: dev): `psql -h localhost -d postgres -p 5432 -U postgres`
-* Commands:  
+* Commands:
   * List databases: \l+
   * List tables: \dt public.* 
   * Execute select, update, delete queries (must end with semi-colon) 
