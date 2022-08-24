@@ -601,7 +601,7 @@ resource "aws_ses_receipt_rule" "receipt_email_to_sns" {
   sns_action {
     topic_arn = data.aws_sns_topic.contact_topic.arn
     encoding = "Base64"
-    position = 0
+    position = 1
   }
   provider = aws.virgina
 }
