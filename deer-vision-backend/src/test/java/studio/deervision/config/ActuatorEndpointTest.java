@@ -26,6 +26,8 @@ public class ActuatorEndpointTest {
     }
 
     @Test
+    //curl -u "actuator:XXX" https://backend.deervision.studio/actuator/health
+    //curl -u "actuator:XXX" https://backend.deervision.studio/actuator/heapdump > heapdump.txt
     public void checkSecure() {
         restAssured.get("actuator/health").then().statusCode(401);
     }
