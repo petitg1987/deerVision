@@ -29,7 +29,8 @@
   * Execute: `./deploy/deploy.sh backend`
   * Check log on server:
     ```bash
-    EC2_PUBLIC_IP=$(aws ec2 describe-addresses | jq -r '.Addresses[0].PublicIp')
+    INSTANCE_ID=$(aws ec2 describe-instances | jq -r '.Reservations[0].Instances[] | select(.KeyName=="deervision") | .InstanceId')
+    EC2_PUBLIC_IP=$(aws ec2 describe-addresses | jq -r --arg INSTANCEID "$INSTANCE_ID" '.Addresses[] | select (.InstanceId==$INSTANCEID) | .PublicIp')
     ssh -o "StrictHostKeyChecking=no" -i /home/greg/.ssh/deervision.pem "ubuntu@${EC2_PUBLIC_IP}"
     ```
 * Frontend:
