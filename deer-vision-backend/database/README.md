@@ -15,7 +15,7 @@
   * Exit: \q
 
 ## Access to docker container
-* Execute `docker exec -it postgres-db bash`
+* Execute `docker exec -it deervision-db bash`
 
 ## Create database dump
-* Execute "docker exec -t postgres-db pg_dump -U postgres > ~/postgres_dump_`date +%d-%m-%Y"_"%H_%M_%S`.sql"
+* Execute "docker exec -t deervision-db pg_dump -U postgres > ~/deervision_dump_`date +%d-%m-%Y"_"%H_%M_%S`.sql"
