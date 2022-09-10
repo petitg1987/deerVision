@@ -259,35 +259,6 @@ data "aws_iam_role" "AWSServiceRoleForAutoScaling" {
   name = "AWSServiceRoleForAutoScaling"
 }
 
-resource "aws_kms_key" "ebs_kms_key" {
-  description = "${var.appName} EBS KMS Key"
-  policy = <<EOF
-{
-    "Version": "2012-10-17",
-    "Id": "key-default-1",
-    "Statement": [
-        {
-            "Sid": "Enable IAM User Permissions",
-            "Effect": "Allow",
-            "Principal": {
-                "AWS": "*"
-            },
-            "Action": "kms:*",
-            "Resource": "*"
-        }
-    ]
-}
-EOF
-  tags = {
-    Application = var.appName
-  }
-}
-
-resource "aws_kms_alias" "ebs_kms_key_alias" {
-  name = "alias/${var.appName}EbsKmsKey"
-  target_key_id = aws_kms_key.ebs_kms_key.key_id
-}
-
 resource "aws_instance" "instance" {
   ami = data.aws_ami.ubuntu.id
   instance_type = "t2.micro"
@@ -311,8 +282,7 @@ resource "aws_instance" "instance" {
   }))
   root_block_device { //volume for the OS (destroy with instance termination)
     delete_on_termination = "true"
-    encrypted = "true"
-    kms_key_id = aws_kms_key.ebs_kms_key.arn
+    encrypted = "false"
     volume_size = 8
     volume_type = "gp2"
   }
@@ -324,8 +294,7 @@ resource "aws_instance" "instance" {
 
 resource "aws_ebs_volume" "ebs_volume" { //volume for the database (not destroyed on instance termination)
   availability_zone = aws_subnet.public_subnet[0].availability_zone
-  encrypted = "true"
-  kms_key_id = aws_kms_key.ebs_kms_key.arn
+  encrypted = "false"
   size = 4
   type = "gp2"
   multi_attach_enabled = false
