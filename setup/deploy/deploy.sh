@@ -49,7 +49,7 @@ function copyFrontendFilesInS3() {
 }
 
 function invalidCloudFrontCache() {
-    cloudDistributionId=$(aws cloudfront list-distributions | jq -r ".DistributionList.Items[0].Id")
+    cloudDistributionId=$(aws cloudfront list-distributions | jq -r '.DistributionList.Items[] | select (.Aliases.Items[0]=="deervision.studio") | .Id')
     echo "Invaliding cache for distribution id: ${cloudDistributionId}"
     aws cloudfront create-invalidation --distribution-id ${cloudDistributionId} --paths "/*"
 }
