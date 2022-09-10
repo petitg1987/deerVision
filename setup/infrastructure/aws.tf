@@ -547,7 +547,7 @@ resource "aws_ses_email_identity" "email_registration" {
 }
 
 resource "aws_ses_receipt_rule_set" "contact_rule_set" {
-  rule_set_name = "contact-receipt-rules"
+  rule_set_name = "contact-receipt-rules-${var.appName}"
   provider = aws.virgina
 }
 
@@ -557,7 +557,7 @@ resource "aws_ses_active_receipt_rule_set" "contact_active_rule_set" {
 }
 
 data "aws_sns_topic" "contact_topic" {
-  name = "contact-email-topic"
+  name = "contact-email-topic-${var.appName}"
   provider = aws.virgina
 }
 
@@ -577,7 +577,7 @@ resource "aws_ses_receipt_rule" "receipt_email_to_sns" {
 
 resource "aws_route53_record" "dns_mx_record" {
   zone_id = data.aws_route53_zone.route53_zone_queried.zone_id
-  name = "deervision.studio"
+  name = var.domainName
   type = "MX"
   ttl = "60"
   records = ["10 inbound-smtp.us-east-1.amazonaws.com"]
