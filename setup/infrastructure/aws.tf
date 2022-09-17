@@ -570,7 +570,7 @@ resource "aws_ses_receipt_rule" "receipt_email_to_sns" {
   scan_enabled = true
   sns_action {
     topic_arn = data.aws_sns_topic.contact_topic.arn
-    encoding = "Base64"
+    encoding = "UTF-8"
     position = 1
   }
   provider = aws.virgina
