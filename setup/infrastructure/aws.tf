@@ -547,10 +547,11 @@ resource "aws_ses_email_identity" "email_registration" {
 }
 
 resource "aws_ses_receipt_rule_set" "contact_rule_set" {
-  rule_set_name = "contact-receipt-rules-${var.appName}"
+  rule_set_name = "contact-receipt-rules"
   provider = aws.virgina
 }
 
+#Only one active rule set is allow for an AWS account. DeerVision project is responsible to create it. Others projets only use it !
 resource "aws_ses_active_receipt_rule_set" "contact_active_rule_set" {
   rule_set_name = aws_ses_receipt_rule_set.contact_rule_set.rule_set_name
   provider = aws.virgina
@@ -562,8 +563,8 @@ data "aws_sns_topic" "contact_topic" {
 }
 
 resource "aws_ses_receipt_rule" "receipt_email_to_sns" {
-  name = "receipt_email_to_sns"
-  rule_set_name = aws_ses_receipt_rule_set.contact_rule_set.rule_set_name
+  name = "receipt_email_to_sns-${var.appName}"
+  rule_set_name = aws_ses_active_receipt_rule_set.contact_active_rule_set.rule_set_name
   recipients = ["contact@${var.domainName}"]
   enabled = true
   scan_enabled = true
