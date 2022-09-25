@@ -121,3 +121,9 @@ cat <<EOT > ./amazon-cloudwatch-agent.json
 EOT
 sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a fetch-config -m ec2 -c file:/home/ubuntu/amazon-cloudwatch-agent.json -s
 sudo rm amazon-cloudwatch-agent.deb
+
+#Add swap memory
+sudo dd if=/dev/zero of=/swapfile bs=128M count=8 #8*128 = 1024Mo
+sudo chmod 600 /swapfile
+sudo mkswap /swapfile
+sudo swapon /swapfile
