@@ -165,15 +165,11 @@ resource "aws_network_acl" "network_acl" {
 ##########################################################################################
 data "aws_ami" "ubuntu" {
   most_recent = true
+  owners = ["amazon"]
   filter {
-    name = "name"
-    values = ["ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-*"]
+    name = "image-id"
+    values = ["ami-0caef02b518350c8b"] #Ubuntu Server 22.04 LTS (HVM), SSD Volume Type
   }
-  filter {
-    name = "virtualization-type"
-    values = ["hvm"]
-  }
-  owners = ["099720109477"]
 }
 
 resource "aws_iam_role" "instance_role" {

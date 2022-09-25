@@ -4,7 +4,7 @@
 cd /home/ubuntu/ || exit
 sudo apt update
 sudo add-apt-repository -y ppa:certbot/certbot
-sudo apt install -y certbot python3-certbot-dns-route53 nginx ruby wget nfs-common cron openjdk-17-jre docker.io
+sudo apt install -y certbot python3-certbot-dns-route53 nginx ruby-full ruby-webrick wget nfs-common cron openjdk-17-jre docker.io
 
 #Mount (and format) volume
 sudo mkdir ./data
@@ -55,12 +55,16 @@ sudo rm /etc/nginx/sites-enabled/default
 sudo ln -s /etc/nginx/sites-available/reverseproxy /etc/nginx/sites-enabled/reverseproxy
 sudo systemctl restart nginx
 
-#Setup CodeDeploy agent
-wget https://aws-codedeploy-eu-central-1.s3.eu-central-1.amazonaws.com/latest/install
-chmod +x ./install
-sudo ./install auto
-rm ./install
-sudo service codedeploy-agent start
+#Setup CodeDeploy agent (instructions for Ubuntu 22.04 from: https://github.com/aws/aws-codedeploy-agent/issues/301)
+cd /tmp
+wget https://aws-codedeploy-eu-central-1.s3.eu-central-1.amazonaws.com/releases/codedeploy-agent_1.3.2-1902_all.deb
+mkdir codedeploy-agent_1.3.2-1902_ubuntu22
+dpkg-deb -R codedeploy-agent_1.3.2-1902_all.deb codedeploy-agent_1.3.2-1902_ubuntu22
+sed 's/Depends:.*/Depends:ruby3.0/' -i ./codedeploy-agent_1.3.2-1902_ubuntu22/DEBIAN/control
+dpkg-deb -b codedeploy-agent_1.3.2-1902_ubuntu22/
+sudo dpkg -i codedeploy-agent_1.3.2-1902_ubuntu22.deb
+#sudo service codedeploy-agent status
+cd /home/ubuntu/
 
 #Setup CloudWatch agent
 # - Note 1: JSON configuration logs file is /opt/aws/amazon-cloudwatch-agent/logs/configuration-validation.log
