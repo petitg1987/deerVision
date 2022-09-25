@@ -18,7 +18,7 @@ sudo chown ubuntu:ubuntu -R ./data
 
 #Launch database
 mkdir -p /home/ubuntu/data/db
-sudo docker run --restart always --name postgres-db -e POSTGRES_PASSWORD=vY82M3ZrnZEN -v /home/ubuntu/data/db/:/var/lib/postgresql/data -p 5432:5432 -d postgres:14.5
+sudo docker run --restart always --name deervision-db -e POSTGRES_PASSWORD=vY82M3ZrnZEN -v /home/ubuntu/data/db/:/var/lib/postgresql/data -p 5432:5432 -d postgres:14.5
 sleep 10 #Wait volume is created by docker
 sudo chmod 755 -R /home/ubuntu/data/db
 
