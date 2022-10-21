@@ -3,11 +3,16 @@
   <head>
     <meta charset="utf-8" />
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-    <link rel="icon" type="image/png" href="%PUBLIC_URL%/favicon-128.png" sizes="128x128">
-    <link rel="icon" type="image/png" href="%PUBLIC_URL%/favicon-196.png" sizes="196x196">
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
+    <link rel="icon" type="image/png" href="%PUBLIC_URL%/favicon-128.png" sizes="128x128" />
+    <link rel="icon" type="image/png" href="%PUBLIC_URL%/favicon-196.png" sizes="196x196" />
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Deer Vision Studio is an independent studio, which develops video games. Our main game is Photon Engineer, a puzzle game which requires a lot of logic."/>
+    <meta name="description" content="Deer Vision Studio is an independent studio, which develops video games. Our main game is Photon Engineer, a puzzle game which requires a lot of logic." />
+    <script type="text/javascript">
+      if (window.location.hostname.indexOf("www") === 0) {
+        window.location = window.location.href.replace("www.", "");
+      }
+    </script>
     <title>Deer Vision Studio</title>
   </head>
   <body>
