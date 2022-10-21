@@ -29,6 +29,6 @@ actuator:
 admin:
   password: "$2a$10$SRSz7BSfnjvUnX7/BJyLSufHJOS5z6mDvo4lzeQkVUdYqGYtEx2UG"
   jwt-secret: "zDARQgTBuU89Vdcqgw3wYGNUPFfv4BwuTWn6cRCcvEJSax6u98Ua8xzk5m7Z46cxnKZerM"
-  allowed-origins: "http://127.0.0.1:3000, http://localhost:3000, https://deervision.studio"
+  allowed-origins: "http://127.0.0.1:3000, http://localhost:3000, https://deervision.studio, https://www.deervision.studio"
 app:
   version-pattern: "^\\d+[.]\\d+[.]\\d+(-snapshot)?$"
