@@ -6,7 +6,7 @@
   * Add the region "eu-central-1" in `~/.aws/config` for "deervision" profile
   * Create EC2 key pair named "deervision" and add file "deervision.pem" with permission '600' in `~/.ssh/`
   * Register domain "deervision.studio" by using Route 53 and enable "Transfer lock"
-  * In "N.Virgina" region: create and validate an ACM certificate for "deervision.studio" with additional domain name "www.deervision.studio"
+  * In "N.Virgina" region: create and validate an ACM certificate for "deervision.studio" and with additional domain name "www.deervision.studio"
   * Delete the default VPC (optional)
   * Verify the following manually via: https://console.aws.amazon.com/ses/ (N. Virgina)
     * Mail: petitg1987@x.x
