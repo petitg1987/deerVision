@@ -8,6 +8,8 @@
     filter: saturate(130%);
     position: relative;
     left: -2%;
+    width: 30%;
+    height: 30%;
 }
 
 .game-info-container {
@@ -91,6 +93,11 @@
 @media screen and (max-width: 800px) {
     .game-container {
         padding-left: 5px;
+    }
+
+    .pe-logo {
+        width: 75%;
+        height: 75%;
     }
 
     .game-info-container {

@@ -20,12 +20,12 @@ header {
 }
 
 ul {
-    padding-left: 30px;
+    padding-left: 2em;
 }
 
 p {
     margin-top: 1em;
-    margin-bottom: 1em;
+    margin-bottom: 1.2em;
 }
 
 .page {
@@ -50,8 +50,8 @@ footer {
 .company-container {
     text-align: center;
     font-size: 0.95rem;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    margin-top: 1.0em;
+    margin-bottom: 1.5em;
 }
 
 @media screen and (max-width: 800px) {
