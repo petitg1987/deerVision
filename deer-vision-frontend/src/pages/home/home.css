@@ -5,7 +5,7 @@
 .pe-logo {
     margin-top: 20px;
     margin-bottom: 30px;
-    filter: saturate(130%);
+    filter: saturate(160%);
     position: relative;
     left: -2%;
     width: 27%;
@@ -57,6 +57,7 @@
     border: 2px solid #ffffff;
     margin: 5px;
     cursor: zoom-in;
+    border-radius: 10px;
 }
 
 .game-screenshot-img:hover {

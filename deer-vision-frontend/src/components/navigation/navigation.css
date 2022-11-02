@@ -1,7 +1,7 @@
 .nav {
     display: flex;
     justify-content: space-between;
-    background-color: rgba(50, 50, 60, 0.95);
+    background-color: rgba(50, 50, 65, 0.95);
     opacity: 1.0;
     width: 100%;
     transition: opacity 0.5s;
@@ -53,7 +53,7 @@
 }
 
 .nav-link-li:hover {
-    background-color: #50505d;
+    background-color: #505065;
 }
 
 .nav-logo-text, .nav-link {
