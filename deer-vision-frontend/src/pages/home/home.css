@@ -33,11 +33,7 @@
 
 .game-soc-container {
     padding-left: 22px;
-}
-
-.game-btn-platform {
-    margin-top: 20px;
-    margin-bottom: 10px;
+    padding-bottom: 25px;
 }
 
 .game-screenshots {
@@ -47,7 +43,7 @@
     align-items: center;
     justify-content: flex-start;
     width: 80%;
-    margin-bottom: 20px;
+    padding-bottom: 25px;
 }
 
 .game-screenshot {
@@ -101,8 +97,8 @@
     }
 
     .pe-logo {
-        width: 75%;
-        height: 75%;
+        width: 80%;
+        height: 80%;
     }
 
     .game-info-container {
