@@ -1,31 +1,14 @@
-.desc-text {
-    width: 100%;
-}
-
 .desc-text p::first-letter {
     font-weight: bold;
     font-size: 1.2em;
     color: #0089b5;
 }
 
-.desc-container .desc-text:first-child * {
+.desc-text p {
+    margin-bottom: 0.2em;
+    margin-top: 0.5em;
+}
+
+.desc-text p:first-child {
     margin-top: 0;
-}
-
-.desc-text {
-    /* animation start */
-    opacity: 0.2;
-}
-
-@keyframes desc-text-anim {
-    to {
-        opacity: 1.0;
-    }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-    .desc-text-anim-trigger {
-        animation: desc-text-anim 1.5s 1;
-        animation-fill-mode: forwards; /*leaves the animation in the state of the last frame */
-    }
 }

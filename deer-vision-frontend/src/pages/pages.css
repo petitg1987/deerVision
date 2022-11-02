@@ -20,12 +20,12 @@ h2 {
     font-size: 1.2rem;
     font-weight: bold;
     text-decoration: underline;
-    padding-top: 1.3em; /* for first child: padding must be 0 */
+    padding-top: 1.4em; /* for first child: padding must be 0 */
 }
 
 .sub-category {
     font-size: 0.9rem;
     font-weight: bold;
     text-decoration: underline;
-    padding-top: 0.8em; /* for first child: padding must be 0 */
+    padding-top: 1.0em; /* for first child: padding must be 0 */
 }

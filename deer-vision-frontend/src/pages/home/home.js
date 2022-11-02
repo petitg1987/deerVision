@@ -53,12 +53,7 @@ class Home extends Component {
                                 <ul className="game-about">
                                     <li>In the year 2075, a space probe saw a strange platform floating in space close to Jupiter. The government decided to finance a space mission to send you on this platform to elucidate the mystery.</li>
                                     <li>Photon Engineer is a first-person <strong>puzzle game</strong>. Your goal is to build different types of blocks (mirror, pusher, merger...) efficiently to solve the challenges that await you.</li>
-                                 </ul>
-
-                                <p>Join the community:</p>
-                                <div className="game-soc-container">
-                                    <SocialNetwork logoSize={40}/>
-                                </div>
+                                </ul>
                             </Description>
                         </div>
                         <div className="game-btn-platform">
@@ -70,6 +65,13 @@ class Home extends Component {
                             <Button text="BUY ON ITCH.IO [SOON]" link="https://deervision.itch.io/photon-engineer" squareLogo={itchSquareLogo}/> {/*TODO: update description*/}
                         </div>
                     </div>
+
+                    <Description>
+                        <p>Join the community:</p>
+                        <div className="game-soc-container">
+                            <SocialNetwork logoSize={40}/>
+                        </div>
+                    </Description>
 
                     <Description>
                         <p>Screenshots:</p>
