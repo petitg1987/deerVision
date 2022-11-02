@@ -30,9 +30,9 @@
     }
 
     .pres-logo {
+        width: 100%;
         padding-left: 0;
         text-align: center;
-        width: 100%;
     }
 
     .pres-logo img {
