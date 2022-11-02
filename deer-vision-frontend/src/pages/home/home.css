@@ -23,12 +23,12 @@
     padding-right: 75px;
 }
 
-.game-description li {
-    margin: 0.65em;
-}
-
 .game-description > * p {
     padding-top: 10px;
+}
+
+.game-about li {
+    margin-bottom: 0.7em;
 }
 
 .game-soc-container {

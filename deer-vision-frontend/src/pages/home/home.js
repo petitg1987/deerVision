@@ -50,7 +50,7 @@ class Home extends Component {
                         <div className="game-description">
                             <Description> {/*TODO: update game description*/}
                                 <p>About the game:</p>
-                                <ul>
+                                <ul className="game-about">
                                     <li>In the year 2075, a space probe saw a strange platform floating in space close to Jupiter. The government decided to finance a space mission to send you on this platform to elucidate the mystery.</li>
                                     <li>Photon Engineer is a first-person <strong>puzzle game</strong>. Your goal is to build different types of blocks (mirror, pusher, merger...) efficiently to solve the challenges that await you.</li>
                                  </ul>
