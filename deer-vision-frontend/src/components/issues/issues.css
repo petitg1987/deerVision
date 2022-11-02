@@ -62,7 +62,7 @@ th {
     overflow: scroll;
     text-align: left;
     font-family: Courier New, serif;
-    font-size: 12px;
+    font-size: 0.8rem;
     border: 1px dotted #909090;
 }
 
@@ -81,7 +81,7 @@ th {
     }
 
     .popup {
-        font-size: 9px;
+        font-size: 0.6rem;
     }
 }
 

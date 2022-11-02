@@ -1,6 +1,6 @@
 h2 {
-    margin: 25px auto 10px;
-    font-size: 22px;
+    font-size: 1.8rem;
+    margin: 1em auto 10px;
     text-align: center;
     color: #ffffff;
     border-top: 4px solid #0089b5;
@@ -17,14 +17,14 @@ h2 {
 }
 
 .sub-title {
-    font-size: 18px;
+    font-size: 1.2rem;
     font-weight: bold;
     text-decoration: underline;
     padding-top: 30px; /* for first child: padding must be 0 */
 }
 
 .sub-category {
-    font-size: 12px;
+    font-size: 0.9rem;
     font-weight: bold;
     text-decoration: underline;
     padding-top: 15px; /* for first child: padding must be 0 */
