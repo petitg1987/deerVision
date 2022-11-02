@@ -59,12 +59,6 @@ class Home extends Component {
                                 <div className="game-soc-container">
                                     <SocialNetwork logoSize={40}/>
                                 </div>
-
-                                <p>Key request for Youtubers, Streamers and press:</p>
-                                <ul>
-                                    <li><a className="text-link" href="https://woovit.com/widget/offer/photon-engineer" target="_blank" rel="noopener noreferrer">Woovit</a> (soon)</li> {/*TODO: update description/links*/}
-                                    <li><a className="text-link" href="https://www.keymailer.co/g/games/xyz1234" target="_blank" rel="noopener noreferrer">Keymailer</a> (soon)</li> {/*TODO: update description/links*/}
-                                </ul>
                             </Description>
                         </div>
                         <div className="game-btn-platform">
@@ -76,6 +70,10 @@ class Home extends Component {
                             <Button text="BUY ON ITCH.IO [SOON]" link="https://deervision.itch.io/photon-engineer" squareLogo={itchSquareLogo}/> {/*TODO: update description*/}
                         </div>
                     </div>
+
+                    <Description>
+                        <p>Screenshots:</p>
+                    </Description>
                     <div className="game-screenshots"> {/*TODO: update/add screenshots*/}
                         <div className="game-screenshot">
                             <img className="game-screenshot-img" src="/photon-engineer/screenshot1_720p.webp" alt="Photon Engineer screenshot 1" width="1280" height="720" />
