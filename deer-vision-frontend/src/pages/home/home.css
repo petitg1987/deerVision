@@ -23,6 +23,10 @@
     padding-right: 75px;
 }
 
+.game-description li {
+    margin: 0.65em;
+}
+
 .game-description > * p {
     padding-top: 10px;
 }
