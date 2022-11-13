@@ -44,7 +44,7 @@ class Navigation extends Component {
                     </a>
 
                     <div className="nav-hamburger">
-                        <a href="/" className="nav-hamburger-icon" onClick={(evt) => this.navMenuIconClick(evt)}>
+                        <a href="/" aria-label={"menu"} className="nav-hamburger-icon" onClick={(evt) => this.navMenuIconClick(evt)}>
                             <svg viewBox="0 0 100 100" width="23" height="21">
                                 <rect fill="#ffffff" y="0"  width="100" height="21" rx="8"/>
                                 <rect fill="#ffffff" y="39" width="100" height="21" rx="8"/>
