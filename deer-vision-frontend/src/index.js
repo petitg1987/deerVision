@@ -46,7 +46,7 @@ class Index extends Component {
                         <div className="company-container">
                             &copy; {this.currentYear}, Deer Vision | <a className={"text-link"} href={"/privacy"} title={"Privacy Policy"}>Privacy</a> | <a className={"text-link"} href={"/eula"} title={"End User License Agreement"}>EULA</a>
                             <br/>
-                            Company number: BE0794.357.843
+                            Company number: BE 0794.357.843
                             <br/>
                             Contact: <a className={"text-link"} href={"mailto:contact@deervision.studio"}>contact@deervision.studio</a>
                         </div>
