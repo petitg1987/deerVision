@@ -12,14 +12,14 @@ class Privacy extends Component {
                 <div className="priv-container">
                     <div className="priv-description">
                         <Description>
-                            <p>Last update: 24th of January 2022</p>
+                            <p>Last update: 9th of December 2022</p>
                         </Description>
 
                         <div className={"sub-title"}>Definitions</div>
                         <Description>
                             <p>For the purposes of this Privacy Policy:</p>
                             <ul>
-                                <li><strong>Company</strong> (referred to as either "Company", "We", "Us" or "Our" in this Agreement) refers to Deer Vision Studio.</li>
+                                <li><strong>Company</strong> (referred to as either "Company", "We", "Us" or "Our" in this Agreement) refers to Deer Vision.</li>
                             </ul>
                         </Description>
 

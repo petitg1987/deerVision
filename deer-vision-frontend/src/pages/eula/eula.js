@@ -12,7 +12,7 @@ class Eula extends Component {
                 <div className="eula-container">
                     <div className="eula-description">
                         <Description>
-                            <p>Last update: 24th of January 2022</p>
+                            <p>Last update: 9th of December 2022</p>
                         </Description>
 
                         <div className={"sub-title"}>Definitions</div>
@@ -21,7 +21,7 @@ class Eula extends Component {
                             <ul>
                                 <li><strong>Agreement</strong> means this End-User License Agreement that forms the entire agreement between You and the Company regarding the use of the Software.</li>
                                 <li><strong>Software</strong> means the software program provided by the Company purchased and downloaded by You to a Device.</li>
-                                <li><strong>Company</strong> (referred to as either "Company", "We", "Us" or "Our" in this Agreement) refers to Deer Vision Studio.</li>
+                                <li><strong>Company</strong> (referred to as either "Company", "We", "Us" or "Our" in this Agreement) refers to Deer Vision.</li>
                                 <li><strong>Device</strong> means any device that can access the Software such as a computer, a cellphone or a digital tablet.</li>
                                 <li><strong>You</strong> means the individual accessing or using the Software or the company, or other legal entity on behalf of which such individual is accessing or using the Software, as applicable.</li>
                             </ul>
@@ -30,7 +30,7 @@ class Eula extends Component {
                         <div className={"sub-title"}>Acknowledgment</div>
                         <Description>
                             <p>
-                                By purchasing, downloading or using the software product ("Software"), You agree to the terms of this Software Product License Agreement ("Agreement"). This Agreement is between Deer Vision Studio ("Company") and You. If You do not agree to the terms of this Agreement, do not purchase, download or use the Software. Please read this entire Agreement, which governs your use of the Software.
+                                By purchasing, downloading or using the software product ("Software"), You agree to the terms of this Software Product License Agreement ("Agreement"). This Agreement is between Deer Vision ("Company") and You. If You do not agree to the terms of this Agreement, do not purchase, download or use the Software. Please read this entire Agreement, which governs your use of the Software.
                                 <br/><br/>
                                 Your use of the Software is also subject to the <a className={"text-link"} href={"/privacy"}>Privacy Policy</a>.
                             </p>
