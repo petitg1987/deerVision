@@ -1,5 +1,10 @@
 {
+  "short_name": "Deer Vision",
+  "name": "Deer Vision",
   "icons": [
-    { "src": "/favicon-192.png", "type": "image/png", "sizes": "192x192" }
-  ]
+    { "src": "/favicon-192.png", "type": "image/png", "sizes": "192x192", "purpose" : "any" },
+    { "src": "/favicon-512.png", "type": "image/png", "sizes": "512x512", "purpose" : "any" }
+  ],
+  "theme_color": "#414155",
+  "background_color": "#414155"
 }
