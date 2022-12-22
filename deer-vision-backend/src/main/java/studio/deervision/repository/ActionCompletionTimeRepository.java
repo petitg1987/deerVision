@@ -11,7 +11,7 @@ import java.util.List;
 @Repository
 public interface ActionCompletionTimeRepository extends JpaRepository<ActionCompletionTime, Long> {
 
-    @Query("SELECT DISTINCT act.levelId FROM ActionCompletionTime act WHERE act.appId=?1")
+    @Query("SELECT DISTINCT act.levelId FROM ActionCompletionTime act WHERE act.appId=?1 ORDER BY act.levelId")
     List<Integer> findDistinctByLevelId(String appId);
 
     @Query("SELECT DISTINCT act.actionName FROM ActionCompletionTime act WHERE act.appId=?1 AND act.levelId=?2")
