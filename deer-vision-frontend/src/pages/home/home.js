@@ -57,7 +57,7 @@ class Home extends Component {
                                     <li>You will have to redirect and adjust laser beams by using the decor or by building blocks. These blocks have the ability to interact with laser beams to change their color, direction, turn them off and much more.</li>
                                     <li>There are also 2d puzzles where you have to move pieces in a certain order to reach a target. As you progress, these puzzles will evolve with more and more rules to increase progressively the difficulty.</li>
                                 </ul>
-                                <br/>A total of more than <strong>90 puzzles</strong> are waiting for you for several hours of gaming.
+                                A total of more than <strong>90 puzzles</strong> are waiting for you for several hours of gaming.
                             </div>
                         </Description>
 
