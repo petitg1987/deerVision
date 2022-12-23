@@ -7,7 +7,6 @@ import SocialNetwork from "../../components/social-network/social-network";
 import Button from "../../components/button/button";
 import youtubeSquareLogo from "../../images/youtubeSquareLogo.webp";
 import steamSquareLogo from "../../images/steamSquareLogo.webp";
-import itchSquareLogo from "../../images/itchSquareLogo.webp";
 
 class Home extends Component {
 
