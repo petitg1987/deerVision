@@ -18,17 +18,32 @@
 }
 
 .game-description {
-    width: 45%;
     max-width: 800px;
     padding-right: 75px;
+    padding-left: 22px;
+    font-size: 0.95rem;
 }
 
 .game-description > * p {
     padding-top: 10px;
 }
 
+.game-about {
+    list-style: none;
+}
+
 .game-about li {
     margin-bottom: 0.7em;
+}
+
+.game-about li::before {
+    content: "\2022";
+    color: #0089b5;
+    font-weight: bold;
+    font-size: 1.2rem;
+    display: inline-block;
+    width: 1.0em;
+    margin-left: -1.0em;
 }
 
 .game-soc-container {
@@ -120,6 +135,7 @@
 
     .game-description {
         padding-right: 0;
+        padding-left: 5px;
     }
 
     .game-description {

@@ -47,15 +47,20 @@ class Home extends Component {
                         <img src={photonEngineerLogo} className="pe-logo" alt="Photon Engineer Logo" width="300px" height="75px"/>
                     </div>
                     <div className="game-info-container">
-                        <div className="game-description">
-                            <Description> {/*TODO: update game description*/}
-                                <p>About the game:</p>
+
+                        <Description>
+                            <p>About the game:</p>
+                            <div className="game-description">
+                                In the year 2075, a space probe saw a strange platform floating in space close to Jupiter. The government has decided to finance a space mission to send you on this platform to elucidate the mystery.
+                                <br/><br/>During your journey, you will face a variety of original and challenging puzzles:
                                 <ul className="game-about">
-                                    <li>In the year 2075, a space probe saw a strange platform floating in space close to Jupiter. The government decided to finance a space mission to send you on this platform to elucidate the mystery.</li>
-                                    <li>Photon Engineer is a first-person <strong>puzzle game</strong>. Your goal is to build different types of blocks (mirror, pusher, merger...) efficiently to solve the challenges that await you.</li>
+                                    <li>You will have to redirect and adjust laser beams by using the decor or by building blocks. These blocks have the ability to interact with laser beams to change their color, direction, turn them off and much more.</li>
+                                    <li>There are also 2d puzzles where you have to move pieces in a certain order to reach a target. As you progress, these puzzles will evolve with more and more rules to increase progressively the difficulty.</li>
                                 </ul>
-                            </Description>
-                        </div>
+                                <br/>A total of more than <strong>90 puzzles</strong> are waiting for you for several hours of gaming.
+                            </div>
+                        </Description>
+
                         <div className="game-btn-platform">
                             <br/>
                             <Button text="TRAILER [SOON]" link="https://www.youtube.com/watch?v=XYZ1234" squareLogo={youtubeSquareLogo}/> {/*TODO: update description/links*/}
@@ -97,7 +102,6 @@ class Home extends Component {
                             <img className="screenshots-modal-content" id="screenshots-modal-content-img" alt="Zoom-in screenshot" />
                         </div>
                     </div>
-
                 </div>
             </div>
         );
