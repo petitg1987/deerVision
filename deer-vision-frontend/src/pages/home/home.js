@@ -66,8 +66,6 @@ class Home extends Component {
                             <Button text="TRAILER [SOON]" link="https://www.youtube.com/watch?v=XYZ1234" squareLogo={youtubeSquareLogo}/> {/*TODO: update description/links*/}
                             <br/>
                             <Button text="BUY ON STEAM [SOON]" link="https://store.steampowered.com/app/1234/Photon_Engineer/" squareLogo={steamSquareLogo}/> {/*TODO: update description/links*/}
-                            <br/>
-                            <Button text="BUY ON ITCH.IO [SOON]" link="https://deervision.itch.io/photon-engineer" squareLogo={itchSquareLogo}/> {/*TODO: update description*/}
                         </div>
                     </div>
 
