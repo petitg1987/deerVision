@@ -53,6 +53,29 @@
     padding-bottom: 25px;
 }
 
+.content-modal {
+    display: none;
+    justify-content: center;
+    position: fixed; /* stay in place */
+    z-index: 200;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto; /* enable scroll if needed */
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.trailer-modal-content {
+    margin: auto;
+    width: 60%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    border: 2px solid #ffffff;
+    border-radius: 10px;
+    display: block;
+}
+
 .game-screenshots {
     display: flex;
     flex-direction: row;
@@ -78,19 +101,6 @@
 
 .game-screenshot-img:hover {
     opacity: 0.5;
-}
-
-.screenshots-modal {
-    display: none;
-    justify-content: center;
-    position: fixed; /* stay in place */
-    z-index: 200;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto; /* enable scroll if needed */
-    background-color: rgba(0, 0, 0, 0.8);
 }
 
 .screenshots-modal-content {
@@ -142,6 +152,10 @@
 
     .game-description {
         width: 100%;
+    }
+
+    .trailer-modal-content {
+        width: 98%;
     }
 
     .game-screenshots {

@@ -18,11 +18,23 @@ class Button extends Component {
     }
 
     render() {
-        return (
-            <a href={this.props.link} target="_blank" rel="noopener noreferrer" className="btn">
-                <div className="btn-text"><img alt="Logo" src={this.props.squareLogo} width="20" height="20"/> {this.props.text}</div>
-            </a>
-        );
+        if (this.props.link !== "") {
+            return (
+                <a href={this.props.link} target="_blank" rel="noopener noreferrer" className="btn">
+                    <div className="btn-text">
+                        <img alt="Logo" src={this.props.squareLogo} width="20" height="20"/>{this.props.text}
+                    </div>
+                </a>
+            );
+        } else {
+            return (
+                <div onClick={(event) => this.props.clickEvent(event)} className="btn">
+                    <div className="btn-text">
+                        <img alt="Logo" src={this.props.squareLogo} width="20" height="20"/> {this.props.text}
+                    </div>
+                </div>
+            );
+        }
     }
 }
 
