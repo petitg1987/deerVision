@@ -21,14 +21,14 @@ class Home extends Component {
             if (trailerModal.style.display === "flex") {
                 let modalIframe = document.getElementById("trailer-modal-content");
                 modalIframe.src = "";
-                let body = document.getElementsByTagName("body")[0]
+                let body = document.getElementsByTagName("body")[0];
                 body.style.cursor = "auto";
                 trailerModal.style.display = "none";
             }
 
             let screenshotsModal = document.getElementById('screenshots-modal');
             if (screenshotsModal.style.display === "flex") {
-                let body = document.getElementsByTagName("body")[0]
+                let body = document.getElementsByTagName("body")[0];
                 body.style.cursor = "auto";
                 screenshotsModal.style.display = "none";
             }
