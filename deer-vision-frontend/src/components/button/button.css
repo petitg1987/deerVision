@@ -25,6 +25,7 @@
 
 .btn:hover {
     background-color: #505065;
+    cursor: pointer;
 }
 
 .btn:hover::after {

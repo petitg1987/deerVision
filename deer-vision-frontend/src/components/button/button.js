@@ -22,7 +22,7 @@ class Button extends Component {
             return (
                 <a href={this.props.link} target="_blank" rel="noopener noreferrer" className="btn">
                     <div className="btn-text">
-                        <img alt="Logo" src={this.props.squareLogo} width="20" height="20"/>{this.props.text}
+                        <img alt="Logo" src={this.props.squareLogo} width="20" height="20"/> {this.props.text}
                     </div>
                 </a>
             );
