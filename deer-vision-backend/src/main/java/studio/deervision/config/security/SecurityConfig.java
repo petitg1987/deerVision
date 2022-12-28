@@ -50,9 +50,10 @@ public class SecurityConfig {
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/**")
-                        .allowedMethods("GET", "POST", "DELETE")
-                        .allowedOrigins(adminProperties.getAllowedOrigins().toArray(new String[0]));
+                registry
+                    .addMapping("/**")
+                    .allowedMethods("GET", "POST", "DELETE")
+                    .allowedOrigins(adminProperties.getAllowedOrigins().toArray(new String[0]));
             }
         };
     }
@@ -80,9 +81,9 @@ public class SecurityConfig {
     @Order(2)
     public InMemoryUserDetailsManager actuatorUserDetailsService() {
         UserDetails user = User.withUsername("actuator")
-                .password(actuatorProperties.getPassword())
-                .roles("ACTUATOR_USER")
-                .build();
+            .password(actuatorProperties.getPassword())
+            .roles("ACTUATOR_USER")
+            .build();
         return new InMemoryUserDetailsManager(user);
     }
 
