@@ -60,7 +60,8 @@ public class UsageRestController {
 
         List<String> appIds = usageService.findDistinctAppId();
         for (String appId : appIds) {
-            Map<LocalDate, Long> mapUsageCounts = addMissingDates(usageService.findUsagesBetweenDates(appId, startDate, endDate, includeSnapshot, uniqueCount), chartDates);
+            Map<LocalDate, Long> mapUsageCounts = usageService.findUsagesBetweenDates(appId, startDate, endDate, includeSnapshot, uniqueCount);
+            chartDates.forEach(d -> mapUsageCounts.putIfAbsent(d,  0L)); //add missing dates
             List<Long> usageCounts = mapUsageCounts.keySet().stream()
                     .sorted()
                     .map(mapUsageCounts::get)
@@ -87,16 +88,11 @@ public class UsageRestController {
         List<LocalDate> dates = new ArrayList<>();
         LocalDate currentDate = LocalDate.now().minusDays(nbChartDays);
 
-        for(int i=0; i<nbChartDays; ++i) {
+        for (int i = 0; i < nbChartDays; ++i) {
             currentDate = currentDate.plusDays(1);
             dates.add(currentDate);
         }
 
         return dates;
-    }
-
-    private Map<LocalDate, Long> addMissingDates(Map<LocalDate, Long> map, List<LocalDate> dates){
-        dates.forEach(d -> map.putIfAbsent(d,  0L));
-        return map;
     }
 }
