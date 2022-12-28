@@ -1,6 +1,6 @@
 package studio.deervision.model.completion;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Entity
 @Table

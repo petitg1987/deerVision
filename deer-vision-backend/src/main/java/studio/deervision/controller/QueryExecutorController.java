@@ -5,7 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import studio.deervision.service.QueryExecutorService;
 
-import javax.persistence.PersistenceException;
+import jakarta.persistence.PersistenceException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 

@@ -21,6 +21,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import studio.deervision.config.properties.ActuatorProperties;
 import studio.deervision.config.properties.AdminProperties;
 
+import static org.springframework.security.web.util.matcher.RegexRequestMatcher.regexMatcher;
 
 @Configuration
 @EnableWebSecurity
@@ -59,11 +60,19 @@ public class SecurityConfig {
     @Bean
     @Order(2)
     public SecurityFilterChain actuatorFilterChain(HttpSecurity http) throws Exception {
-        http.regexMatcher("^/actuator/.*").authorizeRequests()
-                .regexMatchers("^/actuator/.*").authenticated()
-                .and().httpBasic()
-                .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                .and().csrf().disable();
+        http
+            .securityMatcher(regexMatcher("^/actuator/.*"))
+            .authorizeHttpRequests((authz) -> {
+                try {
+                    authz
+                        .requestMatchers(regexMatcher("^/actuator/.*")).authenticated()
+                        .and().httpBasic()
+                        .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                        .and().csrf().disable();
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
+            });
         return http.build();
     }
 
@@ -80,33 +89,54 @@ public class SecurityConfig {
     @Bean
     @Order(3)
     public SecurityFilterChain apiAdminLoginFilterChain(HttpSecurity http) throws Exception {
-        http.regexMatcher("^/api/admin/login.*").authorizeRequests()
-                .regexMatchers("^/api/admin/login.*").permitAll()
-                .and().csrf().disable();
+        http
+            .securityMatcher(regexMatcher("^/api/admin/login.*"))
+            .authorizeHttpRequests((authz) -> {
+                try {
+                    authz
+                        .requestMatchers(regexMatcher("^/api/admin/login.*")).permitAll()
+                        .and().csrf().disable();
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
+            });
         return http.build();
     }
 
     @Bean
     @Order(4)
     public SecurityFilterChain apiAdminFilterChain(HttpSecurity http) throws Exception {
-        http.regexMatcher("^/api/admin/.*")
-                .addFilterAfter(new JWTAuthorizationFilter(adminProperties), UsernamePasswordAuthenticationFilter.class)
-                .authorizeRequests()
-                .regexMatchers(HttpMethod.OPTIONS, "^/api/admin/.*").permitAll() //allow CORS option calls
-                .regexMatchers("^/api/admin/.*").fullyAuthenticated()
-                .and().csrf().disable();
+        http
+            .securityMatcher(regexMatcher("^/api/admin/.*"))
+            .authorizeHttpRequests((authz) -> {
+                try {
+                    authz
+                        .requestMatchers(regexMatcher(HttpMethod.OPTIONS, "^/api/admin/.*")).permitAll() //allow CORS option calls
+                        .requestMatchers(regexMatcher("^/api/admin/.*")).fullyAuthenticated()
+                        .and().addFilterAfter(new JWTAuthorizationFilter(adminProperties), UsernamePasswordAuthenticationFilter.class)
+                        .csrf().disable();
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
+            });
         return http.build();
     }
 
     @Bean
     @Order(5)
     public SecurityFilterChain apiPublicFilterChain(HttpSecurity http) throws Exception {
-        http.regexMatcher("^/api/.*")
-                .addFilterBefore(new RequestKeyAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class)
-                .authorizeRequests()
-                .regexMatchers("^/api/.*")
-                .fullyAuthenticated()
-                .and().csrf().disable();
+        http
+            .securityMatcher(regexMatcher("^/api/.*"))
+            .authorizeHttpRequests((authz) -> {
+                try {
+                    authz
+                        .requestMatchers(regexMatcher("^/api/.*")).fullyAuthenticated()
+                        .and().addFilterBefore(new RequestKeyAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class)
+                        .csrf().disable();
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
+            });
         return http.build();
     }
 

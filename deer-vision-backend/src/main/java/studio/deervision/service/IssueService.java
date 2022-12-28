@@ -11,7 +11,7 @@ import studio.deervision.model.OperatingSystem;
 import studio.deervision.repository.IssueRepository;
 import studio.deervision.repository.LightIssue;
 
-import javax.transaction.Transactional;
+import jakarta.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 import java.util.regex.Pattern;

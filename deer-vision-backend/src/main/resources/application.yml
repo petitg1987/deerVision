@@ -17,7 +17,7 @@ spring:
     password: "vY82M3ZrnZEN"
     locations: "classpath:db/migration"
   jpa:
-    database-platform: "org.hibernate.dialect.PostgreSQL95Dialect"
+    database-platform: "org.hibernate.dialect.PostgreSQLDialect"
     hibernate.ddl-auto: "none"
     show-sql: false
     open-in-view: false
