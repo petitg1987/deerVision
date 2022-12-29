@@ -49,7 +49,7 @@ function copyFrontendFilesInS3() {
 
     #No cache for entry points
     aws s3 rm "s3://${frontendBucketName}/index.html"
-    aws s3 cp "${filesPath}index.html" "s3://${frontendBucketName}/"
+    aws s3 cp --cache-control no-cache "${filesPath}index.html" "s3://${frontendBucketName}/"
 }
 
 function invalidCloudFrontCache() {
