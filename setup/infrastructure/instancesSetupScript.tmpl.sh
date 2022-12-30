@@ -48,6 +48,8 @@ echo -e "limit_req_zone \$binary_remote_addr zone=req_zone:500m rate=${maxReques
   "    proxy_set_header X-Forwarded-Host \$host;\n" \
   "    proxy_set_header X-Forwarded-Port 443;\n" \
   "    proxy_set_header X-Forwarded-Proto https;\n" \
+  "    proxy_set_header X-Forwarded-For \$remote_addr;\n" \
+  "    proxy_set_header X-Real-IP \$remote_addr;\n" \
   "    proxy_pass http://127.0.0.1:8080;\n" \
   "  }\n" \
   "}" | sudo tee /etc/nginx/sites-available/reverseproxy

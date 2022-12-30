@@ -1,6 +1,7 @@
 server:
   port: 5000
   servlet.context-path: "/"
+  forward-headers-strategy: NATIVE #Allow to transfer X-Forwarded-For header
 management:
   endpoints.web.exposure.include: "*"
 spring:
