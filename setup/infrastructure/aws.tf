@@ -257,7 +257,7 @@ data "aws_iam_role" "AWSServiceRoleForAutoScaling" {
 
 resource "aws_instance" "instance" {
   ami = data.aws_ami.ubuntu.id
-  instance_type = "t2.micro"
+  instance_type = "t2.micro" #When reserved instance expire, use t3a.micro
   key_name = "deervision"
   iam_instance_profile = aws_iam_instance_profile.instance_profile.name
   subnet_id = aws_subnet.public_subnet[0].id
