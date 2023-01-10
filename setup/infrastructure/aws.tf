@@ -291,7 +291,7 @@ resource "aws_instance" "instance" {
 resource "aws_ebs_volume" "ebs_volume" { //volume for the database (not destroyed on instance termination)
   availability_zone = aws_subnet.public_subnet[0].availability_zone
   encrypted = "false"
-  size = 4
+  size = 4 #when update value: update also the mount section in 'instancesSetupScript.tmpl.sh'
   type = "gp2"
   multi_attach_enabled = false
   tags = {

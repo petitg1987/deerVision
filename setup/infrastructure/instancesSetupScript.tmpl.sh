@@ -8,12 +8,13 @@ sudo apt install -y certbot python3-certbot-dns-route53 nginx ruby-full ruby-web
 
 #Mount (and format) volume
 sudo mkdir ./data
-checkVolume=$(sudo file -s /dev/xvdb)
-if [[ "$checkVolume" == "/dev/xvdb: data" ]]; then
+volumeName="/dev/"$(lsblk | grep 'disk' | grep '4G' | cut -f 1 -d ' ')
+checkVolume=$(sudo file -s $volumeName)
+if [[ "$checkVolume" == "$volumeName: data" ]]; then
   #Volume is empty: format to ext4
-  sudo mkfs -t ext4 /dev/xvdb
+  sudo mkfs -t ext4 $volumeName
 fi
-sudo mount /dev/xvdb /home/ubuntu/data
+sudo mount $volumeName /home/ubuntu/data
 sudo chown ubuntu:ubuntu -R ./data
 
 #Launch database
