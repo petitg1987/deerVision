@@ -18,7 +18,7 @@ import java.util.regex.Pattern;
 @Service
 public class ActionCompletionTimeService {
 
-    public static final int MAX_COMPLETION_TIME_MIN = 35;
+    public static final int MAX_COMPLETION_TIME_MIN = 60;
     private static final Logger LOGGER = LoggerFactory.getLogger(ActionCompletionTimeService.class);
 
     private final ActionCompletionTimeRepository actionCompletionTimeRepository;
