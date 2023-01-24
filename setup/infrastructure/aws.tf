@@ -449,6 +449,14 @@ resource "aws_s3_bucket_acl" "storage_frontend_bucket_acl" {
   acl = "public-read"
 }
 
+resource "aws_s3_bucket_public_access_block" "storage_access_frontend" {
+  bucket = aws_s3_bucket.storage_frontend.id
+  block_public_acls = false
+  block_public_policy = false
+  ignore_public_acls = false
+  restrict_public_buckets = false
+}
+
 resource "aws_s3_bucket_website_configuration" "storage_frontend_website" {
   bucket = aws_s3_bucket.storage_frontend.bucket
 
