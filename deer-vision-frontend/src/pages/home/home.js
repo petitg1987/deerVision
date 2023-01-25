@@ -83,15 +83,19 @@ class Home extends Component {
                     <div className="game-info-container">
 
                         <Description>
-                            <p>About the game:</p>
+                            <p>Story:</p>
                             <div className="game-description">
                                 In the year 2075, a space probe saw a strange platform floating in space close to Jupiter. The government has decided to finance a space mission to send you on this platform to elucidate the mystery.
-                                <br/><br/>During your journey, you will face a variety of original and challenging puzzles:
+                            </div>
+
+                            <p>Gameplay:</p>
+                            <div className="game-description">
+                                You will face a variety of original and challenging puzzles:
                                 <ul className="game-about">
                                     <li>You will need to redirect and adjust the laser beams by using the environment or by building blocks. These blocks have the capability to interact with laser beams to change their color, direction, deactivate them and much more.</li>
                                     <li>There are also 2d puzzles where you have to move pieces in a certain order to reach a target. As you progress, these puzzles will evolve with more rules to gradually increase the difficulty.</li>
                                 </ul>
-                                Altogether, more than <strong>90 puzzles</strong> await you for several hours of play.
+                                Altogether, more than <strong>90 puzzles</strong> await you, providing several hours of play.
                             </div>
                         </Description>
 
