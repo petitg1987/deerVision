@@ -92,8 +92,8 @@ class Home extends Component {
                             <div className="game-description">
                                 You will face a variety of original and challenging puzzles:
                                 <ul className="game-about">
-                                    <li>You will need to redirect and adjust the laser beams by using the environment or by building blocks. These blocks have the capability to interact with laser beams to change their color, direction, deactivate them and much more.</li>
-                                    <li>There are also 2d puzzles where you have to move pieces in a certain order to reach a target. As you progress, these puzzles will evolve with more rules to gradually increase the difficulty.</li>
+                                    <li>Redirect and adjust laser beams by using the environment or by building blocks. These blocks have the capability to interact with laser beams to change their color, direction, deactivate them and much more.</li>
+                                    <li>In addition, there are 2d puzzles where you have to move pieces in a certain order to reach a target. As you progress, these puzzles will evolve with the addition of new rules, which will change the experience and gradually increase the difficulty.</li>
                                 </ul>
                                 Altogether, more than <strong>90 puzzles</strong> await you, providing several hours of play.
                             </div>
