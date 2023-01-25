@@ -30,7 +30,7 @@ class Home extends Component {
     async componentDidMount() {
         document.body.onclick = function() {
             let trailerModal = document.getElementById('trailer-modal');
-            if (trailerModal.style.display === "flex") {
+            if (trailerModal && trailerModal.style.display === "flex") {
                 let modalIframe = document.getElementById("trailer-modal-content");
                 modalIframe.src = "";
                 let body = document.getElementsByTagName("body")[0];
@@ -83,12 +83,12 @@ class Home extends Component {
                     <div className="game-info-container">
 
                         <Description>
-                            <p>Story:</p>
+                            <p>Story</p>
                             <div className="game-description">
                                 In the year 2075, a space probe saw a strange platform floating in space close to Jupiter. The government has decided to finance a space mission to send you on this platform to elucidate the mystery.
                             </div>
 
-                            <p>Gameplay:</p>
+                            <p>Gameplay</p>
                             <div className="game-description">
                                 You will face a variety of original and challenging puzzles:
                                 <ul className="game-about">
@@ -114,14 +114,14 @@ class Home extends Component {
                     </div>
 
                     <Description>
-                        <p>Join the community:</p>
+                        <p>Join the community</p>
                         <div className="game-soc-container">
                             <SocialNetwork logoSize={40}/>
                         </div>
                     </Description>
 
                     <Description>
-                        <p>Screenshots:</p>
+                        <p>Screenshots</p>
                     </Description>
                     <div className="game-screenshots">
                         <div className="game-screenshot">

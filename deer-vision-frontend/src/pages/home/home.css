@@ -21,10 +21,12 @@
 
 .game-description {
     max-width: 800px;
-    padding-right: 75px;
-    padding-left: 22px;
-    font-size: 0.95rem;
+    padding: 5px 18px;
+    margin-right: 53px;
+    font-size: 1.0rem;
     font-family: "Verdana", sans-serif;
+    background-color: #363649;
+    border-radius: 10px;
 }
 
 .game-description > * p {
@@ -50,8 +52,11 @@
 }
 
 .game-soc-container {
-    padding-left: 22px;
-    padding-bottom: 25px;
+    display: inline-block;
+    padding: 5px 18px;
+    margin-bottom: 25px;
+    background-color: #363649;
+    border-radius: 10px;
 }
 
 .content-modal {
