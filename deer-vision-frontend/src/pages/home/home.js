@@ -108,7 +108,7 @@ class Home extends Component {
                     <Description>
                         <p>Screenshots:</p>
                     </Description>
-                    <div className="game-screenshots"> {/*TODO: update/add screenshots*/}
+                    <div className="game-screenshots">
                         <div className="game-screenshot">
                             <img className="game-screenshot-img" src="/photon-engineer/screenshot1_720p.webp" alt="Photon Engineer screenshot 1" onClick={(event) => this.onScreenshotClick(event)} width="1280" height="720" />
                         </div>
@@ -123,6 +123,27 @@ class Home extends Component {
                         </div>
                         <div className="game-screenshot">
                             <img className="game-screenshot-img" src="/photon-engineer/screenshot5_720p.webp" alt="Photon Engineer screenshot 5" onClick={(event) => this.onScreenshotClick(event)} width="1280" height="720" />
+                        </div>
+                        <div className="game-screenshot">
+                            <img className="game-screenshot-img" src="/photon-engineer/screenshot6_720p.webp" alt="Photon Engineer screenshot 6" onClick={(event) => this.onScreenshotClick(event)} width="1280" height="720" />
+                        </div>
+                        <div className="game-screenshot">
+                            <img className="game-screenshot-img" src="/photon-engineer/screenshot7_720p.webp" alt="Photon Engineer screenshot 7" onClick={(event) => this.onScreenshotClick(event)} width="1280" height="720" />
+                        </div>
+                        <div className="game-screenshot">
+                            <img className="game-screenshot-img" src="/photon-engineer/screenshot8_720p.webp" alt="Photon Engineer screenshot 8" onClick={(event) => this.onScreenshotClick(event)} width="1280" height="720" />
+                        </div>
+                        <div className="game-screenshot">
+                            <img className="game-screenshot-img" src="/photon-engineer/screenshot9_720p.webp" alt="Photon Engineer screenshot 9" onClick={(event) => this.onScreenshotClick(event)} width="1280" height="720" />
+                        </div>
+                        <div className="game-screenshot">
+                            <img className="game-screenshot-img" src="/photon-engineer/screenshot10_720p.webp" alt="Photon Engineer screenshot 10" onClick={(event) => this.onScreenshotClick(event)} width="1280" height="720" />
+                        </div>
+                        <div className="game-screenshot">
+                            <img className="game-screenshot-img" src="/photon-engineer/screenshot11_720p.webp" alt="Photon Engineer screenshot 11" onClick={(event) => this.onScreenshotClick(event)} width="1280" height="720" />
+                        </div>
+                        <div className="game-screenshot">
+                            <img className="game-screenshot-img" src="/photon-engineer/screenshot12_720p.webp" alt="Photon Engineer screenshot 12" onClick={(event) => this.onScreenshotClick(event)} width="1280" height="720" />
                         </div>
 
                         <div id="screenshots-modal" className="content-modal">

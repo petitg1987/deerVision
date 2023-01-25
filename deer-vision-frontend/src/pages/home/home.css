@@ -24,6 +24,7 @@
     padding-right: 75px;
     padding-left: 22px;
     font-size: 0.95rem;
+    font-family: Monaco, monospace;
 }
 
 .game-description > * p {
@@ -87,7 +88,7 @@
 
 .game-screenshot {
     width: 31%;
-    height: 31%;
+    aspect-ratio: 16 / 9;
     padding: 10px;
 }
 
