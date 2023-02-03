@@ -67,7 +67,7 @@ class Eula extends Component {
 
                         <div className={"sub-title"}>Dispute resolution process</div>
                         <Description>
-                            <p>This EULA shall be governed by and construed in accordance with the laws of Belgium. Any dispute arising from the use of the Software shall first be resolved through good faith negotiations. If the parties are unable to reach a mutually acceptable solution through negotiation, the dispute shall be resolved through binding arbitration. The parties hereby agree to accept the decision of the arbitrator as final and binding. This EULA constitutes the entire agreement between the parties and supersedes all prior negotiations, understandings, and agreements, whether written or oral, between the parties regarding the subject matter of this EULA.</p>
+                            <p>This EULA shall be governed by and construed in accordance with the laws of Belgium. Any dispute arising from the use of the Software shall first be resolved through good faith negotiations. If the parties are unable to reach a mutually acceptable solution through negotiation, the dispute shall be resolved through binding arbitration. The parties hereby agree to accept the decision of the arbitrator as final and binding.</p>
                         </Description>
 
                         <div className={"sub-title"}>Amendments</div>
