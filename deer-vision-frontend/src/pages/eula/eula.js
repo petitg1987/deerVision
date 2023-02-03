@@ -12,7 +12,7 @@ class Eula extends Component {
                 <div className="eula-container">
                     <div className="eula-description">
                         <Description>
-                            <p>Last update: 9th of December 2022</p>
+                            <p>Last update: 3rd of February 2023</p>
                         </Description>
 
                         <div className={"sub-title"}>Definitions</div>
@@ -62,7 +62,12 @@ class Eula extends Component {
 
                         <div className={"sub-title"}>Limitation of liability</div>
                         <Description>
-                            <p>To the maximum extent permitted by applicable law, in no event shall Company, be liable for any special, incidental, indirect, or consequential damages whatsoever (including, without limitation, damages for loss of business profits, business interruption, loss of business information, or any other pecuniary loss) arising out of the use of or inability to use the software product or the provision of or failure to provide support services, even if Company has been advised of the possibility of such damages. In any case, Company's entire liability under any provision of this Agreement shall be limited to the amount actually paid by You for the software product; provided however, if You have entered into a support services agreement, Company's entire liability regarding support services shall be governed by the terms of that Agreement. Notwithstanding the foregoing, some countries, states or other jurisdictions do not allow the exclusion of certain warranties or the limitation of liability as stated above, so the above terms may not apply to You. Instead, in such jurisdictions, the foregoing exclusions and limitations will apply to the maximum extent permitted by the laws of such jurisdictions.</p>
+                            <p>To the maximum extent permitted by applicable law, in no event shall Company, be liable for any special, incidental, indirect, or consequential damages whatsoever (including, without limitation, personal injury, hardware malfunction, damages for loss of business profits, business interruption, loss of business information, or any other pecuniary loss) arising out of the use of or inability to use the software product or the provision of or failure to provide support services, even if Company has been advised of the possibility of such damages. In any case, Company's entire liability under any provision of this Agreement shall be limited to the amount actually paid by You for the software product; provided however, if You have entered into a support services agreement, Company's entire liability regarding support services shall be governed by the terms of that Agreement. Notwithstanding the foregoing, some countries, states or other jurisdictions do not allow the exclusion of certain warranties or the limitation of liability as stated above, so the above terms may not apply to You. Instead, in such jurisdictions, the foregoing exclusions and limitations will apply to the maximum extent permitted by the laws of such jurisdictions.</p>
+                        </Description>
+
+                        <div className={"sub-title"}>Dispute resolution process</div>
+                        <Description>
+                            <p>This EULA shall be governed by and construed in accordance with the laws of Belgium. Any dispute arising from the use of the Software shall first be resolved through good faith negotiations. If the parties are unable to reach a mutually acceptable solution through negotiation, the dispute shall be resolved through binding arbitration. The parties hereby agree to accept the decision of the arbitrator as final and binding. This EULA constitutes the entire agreement between the parties and supersedes all prior negotiations, understandings, and agreements, whether written or oral, between the parties regarding the subject matter of this EULA.</p>
                         </Description>
 
                         <div className={"sub-title"}>Amendments</div>
