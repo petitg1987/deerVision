@@ -85,15 +85,15 @@ class Home extends Component {
                         <Description>
                             <p>Story</p>
                             <div className="game-description">
-                                In the year 2075, a space probe saw a strange platform floating in space close to Jupiter. The government has decided to finance a space mission to send you on this platform to elucidate the mystery.
+                                In 2075, a space probe saw a strange platform floating in space close to Jupiter. The government decided to finance a space mission to send you on this platform to elucidate the mystery.
                             </div>
 
                             <p>Gameplay</p>
                             <div className="game-description">
                                 You will face a variety of original and challenging puzzles:
                                 <ul className="game-about">
-                                    <li>Redirect and adjust laser beams by using the environment or by building blocks. These blocks have the capability to interact with laser beams to change their color, direction, deactivate them and much more.</li>
-                                    <li>In addition, there are 2d puzzles where you have to move pieces in a certain order to reach a target. As you progress, these puzzles will evolve with the addition of new rules, which will change the experience and gradually increase the difficulty.</li>
+                                    <li>Redirect and adjust laser beams by using the environment or by building blocks. These blocks have the capability to interact with laser beams to change their color and direction, deactivate them, and much more.</li>
+                                    <li>In addition, there are 2D puzzles where you must move pieces in a certain order to reach a target. As you progress, these puzzles will evolve with the addition of new rules, which will change the experience and gradually increase the difficulty.</li>
                                 </ul>
                                 Altogether, more than <strong>90 puzzles</strong> await you, providing several hours of play.
                             </div>
