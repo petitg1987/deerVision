@@ -85,7 +85,7 @@ class Home extends Component {
                         <Description>
                             <p>Story</p>
                             <div className="game-description">
-                                In 2075, a space probe saw a strange platform floating in space close to Jupiter. The government decided to finance a space mission to send you on this platform to elucidate the mystery.
+                                In 2075, a space probe saw a strange platform floating in space near Jupiter. The government decided to finance a space mission to send you on this platform to elucidate the mystery.
                             </div>
 
                             <p>Gameplay</p>
