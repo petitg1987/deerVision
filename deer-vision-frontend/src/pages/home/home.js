@@ -103,7 +103,7 @@ class Home extends Component {
                             <br/>
                             <Button text="TRAILER [SOON]" link="" clickEvent={this.onTrailerClick} squareLogo={youtubeSquareLogo}/> {/*TODO: update description*/}
                             <br/>
-                            <Button text="BUY ON STEAM [SOON]" link="https://store.steampowered.com/app/1234/Photon_Engineer/" squareLogo={steamSquareLogo}/> {/*TODO: update description/links*/}
+                            <Button text="BUY ON STEAM" link="https://store.steampowered.com/app/2305110/Photon_Engineer/" squareLogo={steamSquareLogo}/>
                         </div>
                         <div id="trailer-modal" className="content-modal">
                             <iframe id="trailer-modal-content" className="trailer-modal-content" width="560" height="315" src=""
