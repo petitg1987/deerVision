@@ -50,7 +50,7 @@ class Home extends Component {
     onTrailerClick(event) {
         let trailerModal = document.getElementById('trailer-modal');
         let modalIframe = document.getElementById("trailer-modal-content");
-        modalIframe.src = "https://www.youtube.com/embed/ddy12WHqt-M"; /*TODO: update links*/
+        modalIframe.src = "https://www.youtube.com/embed/kxTpgFO_0sQ";
 
         let body = document.getElementsByTagName("body")[0];
         body.style.cursor = "pointer";
@@ -101,7 +101,7 @@ class Home extends Component {
 
                         <div className="game-btn-platform">
                             <br/>
-                            <Button text="TRAILER [SOON]" link="" clickEvent={this.onTrailerClick} squareLogo={youtubeSquareLogo}/> {/*TODO: update description*/}
+                            <Button text="WATCH TRAILER" link="" clickEvent={this.onTrailerClick} squareLogo={youtubeSquareLogo}/>
                             <br/>
                             <Button text="BUY ON STEAM" link="https://store.steampowered.com/app/2305110/Photon_Engineer/" squareLogo={steamSquareLogo}/>
                         </div>
