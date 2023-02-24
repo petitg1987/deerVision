@@ -12,6 +12,7 @@ class Consumption extends Component {
     constructor(props) {
         super(props);
         this.scene1Chart = null;
+        this.scene1V2Chart = null;
     }
 
     refreshChart() {
@@ -25,11 +26,43 @@ class Consumption extends Component {
                 labels: ["40 FPS", "60 FPS", "90 FPS", "120 FPS", "140 FPS", "200 FPS"],
                 datasets: [{
                     data: ["157", "157", "157", "157", "157", "157"],
-                    label: "Computer idle", borderColor: "#007bff", backgroundColor : "#007bff", fill: true, lineTension: 0
+                    label: "Computer idle", borderColor: "#aaaaaa", backgroundColor : "#aaaaaa", fill: true, lineTension: 0
                 }, {
                     data: ["21", "28", "93", "115", "134", "186"],
                     label: "Game only (4K/high)",
                     borderColor: "#7bff00", backgroundColor : "#7bff00", fill: true, lineTension: 0
+                }]
+            },
+            options: {
+                maintainAspectRatio: true,
+                animation: true,
+                scales: {
+                    y: {min: 0, ticks: {stepSize: 1, callback: function(value) {return value + ' watts';}}},
+                    x: {stacked: false}
+                },
+                plugins: {legend: {display: true}, title: {display: false,}}
+            }
+        });
+
+        let ctxV2 = document.getElementById("resultScene1v2");
+        if (this.scene1V2Chart) {
+            this.scene1V2Chart.destroy();
+        }
+        this.scene1V2Chart = new Chart(ctxV2, {
+            type: 'bar',
+            data: {
+                labels: ["40 FPS", "60 FPS", "90 FPS", "120 FPS", "140 FPS", "200 FPS"],
+                datasets: [{
+                    data: ["157", "157", "157", "157", "157", "157"],
+                    label: "Computer idle", borderColor: "#aaaaaa", backgroundColor : "#aaaaaa", fill: true, lineTension: 0
+                }, {
+                    data: ["21", "28", "93", "115", "134", "186"],
+                    label: "Game only (4K/high)",
+                    borderColor: "#7bff00", backgroundColor : "#7bff00", fill: true, lineTension: 0
+                }, {
+                    data: ["7", "10", "16", "19", "23", "74"],
+                    label: "Game only (2K/medium)",
+                    borderColor: "#ff007b", backgroundColor : "#ff007b", fill: true, lineTension: 0
                 }]
             },
             options: {
@@ -55,7 +88,8 @@ class Consumption extends Component {
                 <div className="blog-container">
                     <div className="blog-content">
                         <img className={"blog-img-trans"} src={blogConsumptionStartImg} width={341} height={512} alt={"An electric pole"}/>
-                        <p className={"center"}>Have you ever wondered how much electricity a video game consumes? My brain asks this kind of questions and needs an answer.</p>
+                        <p className={"center"}><big>Have you ever wondered how much electricity a video game consumes?</big></p>
+                        <p className={"center"}>My brain asks this kind of questions and I need an answer !</p>
 
                         <div className={"blog-sub-title"}>Setup</div>
                         <p>Let's start by checking the setup I used to measure the electricity consumption of my puzzle game.</p>
@@ -83,21 +117,25 @@ class Consumption extends Component {
                         </ul>
 
                         <div className={"blog-sub-title"}>Game settings</div>
-                        <p>The game allows to configure a lot of settings directly impacting the performance. Here are the used one during my tests:
+                        <p>The game allows to configure a lot of settings directly impacting the performance. Here are the used one during my tests:</p>
                         <ul>
                             <li>Screen resolutions: 4k, 2K, 1080p, etc.</li>
                             <li>FPS limit: limit the number of frames per second (FPS) from 40 to 200</li>
                             <li>Gamma: change the global lighting of the game</li>
                             <li>Graphics quality impacting shadow, lighting, etc.</li>
-                        </ul></p>
+                        </ul>
                         <p><img className={"blog-img"} src={blogConsumptionSettingsImg} width={600} height={383} alt={"configuration des paramètres du jeu"}/></p>
 
                         <div className={"blog-sub-title"}>Results (scene 1)</div>
                         <p>Let's pickup a scene of my puzzle game and let's start to gather some data with different settings.</p>
                         <p>The 3D scene of the game I used to perform the measurements: <img className={"blog-img"} src={blogConsumptionScene1Img} width={600} height={383} alt={"game scene 1"}/></p>
-                        <p>I measured the electricity consumption of the game in <strong>4K</strong> with <strong>high</strong> setting and with different refresh rate: 40 FPS, 60 FPS, 90 FPS, 140 FPS, 200 FPS and unlimited (226 FPS). Here are the results:</p>
+                        <p>I measured the electricity consumption of the game in <strong>4K</strong> with <strong>high quality</strong> and with different refresh rate: 40 FPS, 60 FPS, 90 FPS, 140 FPS, 200 FPS and unlimited (226 FPS). Here are the results:</p>
                         <canvas id="resultScene1"/>
-                        I didn't really know what to expect but one thing surprised me at lot: the game consumes almost 9 times more electricity at 200 FPS compared to 40 FPS.
+                        <p>I didn't really know what to expect but one thing surprised me at lot: the game consumes almost 9 times more electricity at 200 FPS compared to 40 FPS.</p>
+
+                        <p>Let try another set of measurement with following game settings: <strong>2K</strong> with <strong>medium quality</strong>:</p>
+                        <canvas id="resultScene1v2"/>
+                        These results blew me away. The image quality in the game between both configuration is not easy to notice but the difference in electricity consumption is so different.
                     </div>
                 </div>
             </div>
