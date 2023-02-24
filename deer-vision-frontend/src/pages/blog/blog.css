@@ -18,6 +18,18 @@
 .blog-title {
     font-weight: bold;
     font-size: 1.1rem;
+    margin-bottom: 0.3em;
+}
+
+.blog-preview-main {
+    display: flex;
+    flex-direction: row;
+    gap: 0.5em;
+}
+
+.blog-img {
+    border-radius: 10px;
+    border: 1px solid white;
 }
 
 .blog-metadata {
