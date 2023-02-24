@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import "../pages.css"
 import "./blog.css"
 import blogConsumptionStartImg from "../../images/blogConsumptionStart.webp"
+import blogConsumptionDeviceImg from "../../images/blogConsumptionDevice.webp"
+import blogConsumptionSettingsImg from "../../images/blogConsumptionSettings.webp"
 
 class Consumption extends Component {
     render() {
@@ -10,14 +12,15 @@ class Consumption extends Component {
                 <h2>Electricity consumption of my game</h2>
                 <div className="blog-container">
                     <div className="blog-content">
-                        <p>Have you ever wondered how much electricity a video game consumes? This is the kind of question I ask myself out of curiosity.</p>
                         <img className={"blog-img-trans"} src={blogConsumptionStartImg} width={341} height={512} alt={"An electric pole"}/>
+                        <p className={"center"}>Have you ever wondered how much electricity a video game consumes? My brain asks this kind of questions and needs an answer.</p>
 
                         <div className={"blog-sub-title"}>Setup</div>
+                        <p>Let's start by checking the setup I used to measure the electricity consumption of my puzzle game.</p>
                         <p>My desktop computer:
                             <ul>
                                 <li>CPU: Intel i7-8700K CPU @ 3.70GHz</li>
-                                <li>Graphics card: NVidia 2080 Super</li>
+                                <li>Graphics card: Nvidia 2080 Super</li>
                                 <li>RAM: 32Go</li>
                                 <li>Disk: 980 PRO PCle 4.0 NVMe M.2 SSD</li>
                                 <li>Two screens - 4K</li>
@@ -33,10 +36,22 @@ class Consumption extends Component {
 
                         <p>Measurement device:
                             <ul>
-                                <li>I simply plug my computer on a device measuring the electricity consumption</li>
+                                <li>I plug my computer on a device measuring the electricity consumption in Watt. Nothing fancy here.
+                                    <img className={"blog-img"} src={blogConsumptionDeviceImg} width={450} height={225} alt={"device to measure the electricity consumption"}/>
+                                </li>
                             </ul>
                         </p>
 
+
+                        <div className={"blog-sub-title"}>Configuration</div>
+                        The game allows to configure a lot of settings directly impacting the performance. Here are the used one during my tests:
+                        <ul>
+                            <li>Screen resolution: 4k, 2K, 1080p...</li>
+                            <li>FPS limit: limit the number of images displayed by second from 40 to 200 or unlimited</li>
+                            <li>Gamma: change the global lighting of the game</li>
+                            <li>Graphics quality impacting shadow, lighting, etc.</li>
+                        </ul>
+                        <img className={"blog-img"} src={blogConsumptionSettingsImg} width={600} height={383} alt={"configuration des paramètres du jeu"}/>
                     </div>
                 </div>
             </div>

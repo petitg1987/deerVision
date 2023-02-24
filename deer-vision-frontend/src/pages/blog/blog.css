@@ -25,6 +25,10 @@
     margin-bottom: 0.5em;
 }
 
+.center {
+    text-align: center;
+}
+
 .blog-title {
     font-weight: bold;
     font-size: 1.1rem;
@@ -33,11 +37,10 @@
 
 .blog-sub-title {
     font-weight: bold;
-    font-size: 1.25rem;
-    margin-top: 2em;
+    font-size: 1.5rem;
+    margin-top: 1.5em;
     margin-bottom: 0.75em;
 }
-
 
 .blog-preview-main {
     display: flex;
