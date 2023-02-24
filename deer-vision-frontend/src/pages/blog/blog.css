@@ -51,14 +51,28 @@
 .blog-img {
     border-radius: 10px;
     border: 1px solid white;
+    max-width: 100%;
+    height: auto;
 }
 
 .blog-img-trans {
     align-self: center;
+    max-width: 100%;
+    height: auto;
 }
 
 .blog-metadata {
     font-size: 0.9rem;
     font-style: italic;
     margin-top: 1em;
+}
+
+.graph-container {
+    width: 75%;
+}
+
+@media screen and (max-width: 500px) {
+    .graph-container {
+        width: 95%;
+    }
 }

@@ -136,13 +136,13 @@ class Consumption extends Component {
 
                         <p></p>
                         <p>I measured the electricity consumption of the game with a <strong>4K resolution</strong> in <strong>high quality</strong> and with different refresh rate: 40 FPS, 60 FPS, 90 FPS, 120 FPS, 140 FPS and 200 FPS. Here are the results:</p>
-                        <canvas id="resultScene1"/>
+                        <div className={"graph-container"}><canvas id="resultScene1"/></div>
                         <p></p>
                         <p>I didn't really know what to expect but one thing surprised me at lot: the game consumes almost 9 times more electricity at 200 FPS compared to 40 FPS.</p>
 
                         <p></p>
                         <p>Let's try another set of measurements with the following game settings: <strong>2K resolution</strong> in <strong>medium quality</strong>:</p>
-                        <canvas id="resultScene1v2"/>
+                        <div className={"graph-container"}><canvas id="resultScene1v2"/></div>
                         <p></p>
                         These results blew me away. The difference in image quality between both configurations is not easy to notice, but the difference in electricity consumption is quite significant.
 
@@ -152,6 +152,7 @@ class Consumption extends Component {
                             <li><strong>Brightness/gamma settings</strong>: insignificant change in consumption</li>
                             <li><strong>Game in 2K fullscreen and 2K windowed</strong>: insignificant change in consumption</li>
                             <li><strong>I try to stress more the CPU with game physics</strong>: minor change in consumption</li>
+                            <li><strong>Use different scenes from the game</strong>: similar results compared to those above</li>
                         </ul>
                         <p></p>
                         <p>It seems that only the amount of work provided to the GPU significantly affects the overall power consumption.</p>
