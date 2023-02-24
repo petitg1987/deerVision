@@ -19,7 +19,7 @@ class Blog extends Component {
                     </div>
 
                     <div className="blog-preview">
-                        <small>More blogs are coming soon...</small>
+                        <small>More articles are coming soon...</small>
                     </div>
                 </div>
             </div>
