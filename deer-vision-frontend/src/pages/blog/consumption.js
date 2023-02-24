@@ -89,53 +89,63 @@ class Consumption extends Component {
                     <div className="blog-content">
                         <img className={"blog-img-trans"} src={blogConsumptionStartImg} width={341} height={512} alt={"An electric pole"}/>
                         <p className={"center"}><big>Have you ever wondered how much electricity a video game consumes?</big></p>
-                        <p className={"center"}>My brain asks this kind of questions and I need an answer !</p>
+                        <p className={"center"}>My brain asks these kinds of questions and I need an answer!</p>
 
                         <div className={"blog-sub-title"}>Setup</div>
                         <p>Let's start by checking the setup I used to measure the electricity consumption of my puzzle game.</p>
-                        <p>My desktop computer:</p>
+
+                        <p></p>
+                        <p>Desktop computer:</p>
                         <ul>
-                            <li>CPU: Intel i7-8700K CPU @ 3.70GHz</li>
-                            <li>Graphics card: Nvidia 2080 Super</li>
-                            <li>RAM: 32Go</li>
-                            <li>Disk: 980 PRO PCle 4.0 NVMe M.2 SSD</li>
-                            <li>Two screens - 4K</li>
+                            <li><b>CPU</b>: Intel i7-8700K CPU @ 3.70GHz</li>
+                            <li><b>Graphics card</b>: Nvidia GeForce 2080 Super</li>
+                            <li><b>RAM</b>: 32Go</li>
+                            <li><b>Disk</b>: 980 PRO PCle 4.0 NVMe M.2 SSD</li>
+                            <li><b>Screens</b>: two with 4K resolution</li>
                         </ul>
 
-                        <p>The game (<a className={"text-link"} href={"https://store.steampowered.com/app/2305110/Photon_Engineer/"} target={"_blank"} rel="noreferrer">Photon Engineer</a>):</p>
+                        <p></p>
+                        <p>Game (<a className={"text-link"} href={"https://store.steampowered.com/app/2305110/Photon_Engineer/"} target={"_blank"} rel="noreferrer">Photon Engineer</a>):</p>
                         <ul>
-                            <li>3D environment but with limited number of models</li>
+                            <li>3D environment with minimalist design</li>
                             <li>Bottleneck on the GPU (CPU usage: ~20%)</li>
                         </ul>
 
+                        <p></p>
                         <p>Measurement device:</p>
                         <ul>
                             <li>I plug my computer on a device measuring the electricity consumption in Watt. Nothing fancy here.
                                 <img className={"blog-img"} src={blogConsumptionDeviceImg} width={450} height={225} alt={"device to measure the electricity consumption"}/>
                             </li>
-                            <li>Consumption of my computer (idle): ~157 Watts</li>
+                            <li>Consumption of my computer idle: ~157 Watts</li>
                         </ul>
 
                         <div className={"blog-sub-title"}>Game settings</div>
-                        <p>The game allows to configure a lot of settings directly impacting the performance. Here are the used one during my tests:</p>
+                        <p>The game allows you to configure many settings that affect both performance and image quality. Here are the settings I used during my tests:</p>
                         <ul>
-                            <li>Screen resolutions: 4k, 2K, 1080p, etc.</li>
-                            <li>FPS limit: limit the number of frames per second (FPS) from 40 to 200</li>
-                            <li>Gamma: change the global lighting of the game</li>
-                            <li>Graphics quality impacting shadow, lighting, etc.</li>
+                            <li>Screen resolution: 4k, 2K, 1080p, etc.</li>
+                            <li>FPS limit: limits the number of frames per second (FPS) from 40 to 200</li>
+                            <li>Gamma: change the global brightness of the game</li>
+                            <li>Graphics quality impacting mainly the shadow and lighting: low, medium, high</li>
                         </ul>
                         <p><img className={"blog-img"} src={blogConsumptionSettingsImg} width={600} height={383} alt={"configuration des paramètres du jeu"}/></p>
 
-                        <div className={"blog-sub-title"}>Results (scene 1)</div>
-                        <p>Let's pickup a scene of my puzzle game and let's start to gather some data with different settings.</p>
-                        <p>The 3D scene of the game I used to perform the measurements: <img className={"blog-img"} src={blogConsumptionScene1Img} width={600} height={383} alt={"game scene 1"}/></p>
-                        <p>I measured the electricity consumption of the game in <strong>4K</strong> with <strong>high quality</strong> and with different refresh rate: 40 FPS, 60 FPS, 90 FPS, 140 FPS, 200 FPS and unlimited (226 FPS). Here are the results:</p>
+                        <div className={"blog-sub-title"}>Results</div>
+                        <p>Let's pick a scene from my puzzle game and start gathering data with different settings.</p>
+                        <p>Here is the 3D scene of the game I used to perform the measurements: <img className={"blog-img"} src={blogConsumptionScene1Img} width={600} height={383} alt={"game scene 1"}/></p>
+
+                        <p></p>
+                        <p>I measured the electricity consumption of the game with a <strong>4K resolution</strong> in <strong>high quality</strong> and with different refresh rate: 40 FPS, 60 FPS, 90 FPS, 120 FPS, 140 FPS and 200 FPS. Here are the results:</p>
                         <canvas id="resultScene1"/>
+                        <p></p>
                         <p>I didn't really know what to expect but one thing surprised me at lot: the game consumes almost 9 times more electricity at 200 FPS compared to 40 FPS.</p>
 
-                        <p>Let try another set of measurement with following game settings: <strong>2K</strong> with <strong>medium quality</strong>:</p>
+                        <p></p>
+                        <p></p>
+                        <p>Let's try another set of measurements with the following game settings: <strong>2K resolution</strong> in <strong>medium quality</strong>:</p>
                         <canvas id="resultScene1v2"/>
-                        These results blew me away. The image quality in the game between both configuration is not easy to notice but the difference in electricity consumption is so different.
+                        <p></p>
+                        These results blew me away. The difference in image quality between both configurations is not easy to notice, but the difference in electricity consumption is significant.
                     </div>
                 </div>
             </div>
