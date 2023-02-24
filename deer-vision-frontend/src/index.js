@@ -8,6 +8,8 @@ import Privacy from "./pages/privacy/privacy";
 import Eula from "./pages/eula/eula";
 import './index.css';
 import SocialNetwork from "./components/social-network/social-network";
+import Blog from "./pages/blog/blog";
+import Consumption from "./pages/blog/consumption";
 
 const Admin = React.lazy(() => import('./pages/admin/admin'))
 
@@ -31,6 +33,8 @@ class Index extends Component {
                         <Suspense fallback={<div>Loading...</div>}>
                             <Routes>
                                 <Route exact path='/' element={<Home/>}/>
+                                <Route exact path='/blog' element={<Blog/>}/>
+                                <Route exact path='/blog/consumption' element={<Consumption/>}/>
                                 <Route exact path='/about' element={<About/>}/>
                                 <Route exact path='/privacy' element={<Privacy/>}/>
                                 <Route exact path='/eula' element={<Eula/>}/>

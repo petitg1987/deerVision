@@ -59,6 +59,9 @@ class Navigation extends Component {
                             <Link to="/" className="nav-link" onClick={() => this.navMenuLinkClick()}>Games</Link>
                         </li>
                         <li className="nav-link-li">
+                            <Link to="/blog" className="nav-link" onClick={() => this.navMenuLinkClick()}>Blog</Link>
+                        </li>
+                        <li className="nav-link-li">
                             <Link to="/about" className="nav-link" onClick={() => this.navMenuLinkClick()}>About</Link>
                         </li>
                     </ul>
