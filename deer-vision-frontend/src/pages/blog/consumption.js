@@ -141,11 +141,10 @@ class Consumption extends Component {
                         <p>I didn't really know what to expect but one thing surprised me at lot: the game consumes almost 9 times more electricity at 200 FPS compared to 40 FPS.</p>
 
                         <p></p>
-                        <p></p>
                         <p>Let's try another set of measurements with the following game settings: <strong>2K resolution</strong> in <strong>medium quality</strong>:</p>
                         <canvas id="resultScene1v2"/>
                         <p></p>
-                        These results blew me away. The difference in image quality between both configurations is not easy to notice, but the difference in electricity consumption is significant.
+                        These results blew me away. The difference in image quality between both configurations is not easy to notice, but the difference in electricity consumption is quite significant.
                     </div>
                 </div>
             </div>
