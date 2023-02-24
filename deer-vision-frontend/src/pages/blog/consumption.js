@@ -4,6 +4,7 @@ import "./blog.css"
 import blogConsumptionStartImg from "../../images/blogConsumptionStart.webp"
 import blogConsumptionDeviceImg from "../../images/blogConsumptionDevice.webp"
 import blogConsumptionSettingsImg from "../../images/blogConsumptionSettings.webp"
+import blogConsumptionScene1Img from "../../images/blogConsumptionScene1.webp"
 
 class Consumption extends Component {
     render() {
@@ -39,19 +40,25 @@ class Consumption extends Component {
                                 <li>I plug my computer on a device measuring the electricity consumption in Watt. Nothing fancy here.
                                     <img className={"blog-img"} src={blogConsumptionDeviceImg} width={450} height={225} alt={"device to measure the electricity consumption"}/>
                                 </li>
+                                <li>Consumption of my computer (idle): ~157 Watt</li>
                             </ul>
                         </p>
-
 
                         <div className={"blog-sub-title"}>Configuration</div>
                         <p>The game allows to configure a lot of settings directly impacting the performance. Here are the used one during my tests:
                         <ul>
-                            <li>Screen resolution: 4k, 2K, 1080p...</li>
-                            <li>FPS limit: limit the number of images displayed by second from 40 to 200 or unlimited</li>
+                            <li>Screen resolutions: 4k, 2K, 1080p, etc.</li>
+                            <li>FPS limit: limit the number of frames per second (FPS) from 40 to 200 or unlimited</li>
                             <li>Gamma: change the global lighting of the game</li>
                             <li>Graphics quality impacting shadow, lighting, etc.</li>
                         </ul></p>
                         <p><img className={"blog-img"} src={blogConsumptionSettingsImg} width={600} height={383} alt={"configuration des paramètres du jeu"}/></p>
+
+                        <div className={"blog-sub-title"}>Results (scene 1)</div>
+                        <p>Let's pickup a scene of my puzzle game and let's start to gather some data with different settings.</p>
+                        <p>The scene used to perform the measurement: <img className={"blog-img"} src={blogConsumptionScene1Img} width={600} height={383} alt={"game scene 1"}/></p>
+                        <p>I measured the electricity consumption of the game in 4K with high setting and with different refresh rate: 40 FPS, 60 FPS, 90FPS, 140FPS and unlimited. Here is the result: </p>
+
                     </div>
                 </div>
             </div>
