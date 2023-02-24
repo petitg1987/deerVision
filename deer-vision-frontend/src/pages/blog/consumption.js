@@ -34,7 +34,7 @@ class Consumption extends Component {
                 }]
             },
             options: {
-                maintainAspectRatio: true,
+                maintainAspectRatio: false,
                 animation: true,
                 scales: {
                     y: {min: 0, ticks: {stepSize: 1, callback: function(value) {return value + ' watts';}}},
@@ -66,7 +66,7 @@ class Consumption extends Component {
                 }]
             },
             options: {
-                maintainAspectRatio: true,
+                maintainAspectRatio: false,
                 animation: true,
                 scales: {
                     y: {min: 0, ticks: {stepSize: 1, callback: function(value) {return value + ' watts';}}},
@@ -158,8 +158,8 @@ class Consumption extends Component {
                         <p>It seems that only the amount of work provided to the GPU significantly affects the overall power consumption.</p>
 
                         <div className={"blog-sub-title"}>Conclusion</div>
-                        <p><u>Warning: </u> these results are clearly specific to my configuration and to the game. I guess a lot of factors can produce very different results: laptop vs. desktop computer, game with CPU vs. GPU bottlenecks, etc.</p>
-                        <p>However, it is clear that game settings and hardware configuration can notably affect electricity consumption.</p>
+                        <p><u>Warning</u>: these results are clearly specific to my configuration and to the game. I guess a lot of factors can produce very different results: laptop vs. desktop computer, game with CPU vs. GPU bottlenecks, etc.</p>
+                        <p>However, it seems clear that game settings and hardware configuration can notably affect electricity consumption.</p>
                     </div>
                 </div>
             </div>

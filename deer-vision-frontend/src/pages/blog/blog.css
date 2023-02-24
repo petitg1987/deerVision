@@ -69,6 +69,7 @@
 
 .graph-container {
     width: 75%;
+    height: 300px;
 }
 
 @media screen and (max-width: 500px) {
