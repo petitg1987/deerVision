@@ -44,14 +44,14 @@ class Consumption extends Component {
 
 
                         <div className={"blog-sub-title"}>Configuration</div>
-                        The game allows to configure a lot of settings directly impacting the performance. Here are the used one during my tests:
+                        <p>The game allows to configure a lot of settings directly impacting the performance. Here are the used one during my tests:
                         <ul>
                             <li>Screen resolution: 4k, 2K, 1080p...</li>
                             <li>FPS limit: limit the number of images displayed by second from 40 to 200 or unlimited</li>
                             <li>Gamma: change the global lighting of the game</li>
                             <li>Graphics quality impacting shadow, lighting, etc.</li>
-                        </ul>
-                        <img className={"blog-img"} src={blogConsumptionSettingsImg} width={600} height={383} alt={"configuration des paramètres du jeu"}/>
+                        </ul></p>
+                        <p><img className={"blog-img"} src={blogConsumptionSettingsImg} width={600} height={383} alt={"configuration des paramètres du jeu"}/></p>
                     </div>
                 </div>
             </div>
