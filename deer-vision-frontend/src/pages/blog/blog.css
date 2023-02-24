@@ -6,8 +6,8 @@
     margin-bottom: 3rem;
 }
 
-.blog-preview {
-    max-width: 600px;
+.blog-preview, .blog-content {
+    max-width: 800px;
     padding: 5px 12px;
     font-size: 1.0rem;
     background-color: #363649;
@@ -15,11 +15,29 @@
     margin-bottom: 3rem;
 }
 
+.blog-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.blog-content p {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+}
+
 .blog-title {
     font-weight: bold;
     font-size: 1.1rem;
     margin-bottom: 0.3em;
 }
+
+.blog-sub-title {
+    font-weight: bold;
+    font-size: 1.25rem;
+    margin-top: 2em;
+    margin-bottom: 0.75em;
+}
+
 
 .blog-preview-main {
     display: flex;
@@ -30,6 +48,10 @@
 .blog-img {
     border-radius: 10px;
     border: 1px solid white;
+}
+
+.blog-img-trans {
+    align-self: center;
 }
 
 .blog-metadata {
