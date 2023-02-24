@@ -145,6 +145,20 @@ class Consumption extends Component {
                         <canvas id="resultScene1v2"/>
                         <p></p>
                         These results blew me away. The difference in image quality between both configurations is not easy to notice, but the difference in electricity consumption is quite significant.
+
+                        <div className={"blog-sub-title"}>More experimentation</div>
+                        <p>I try more measurements but without interesting results:</p>
+                        <ul>
+                            <li><strong>Brightness/gamma settings</strong>: insignificant change in consumption</li>
+                            <li><strong>Game in 2K fullscreen and 2K windowed</strong>: insignificant change in consumption</li>
+                            <li><strong>I try to stress more the CPU with game physics</strong>: minor change in consumption</li>
+                        </ul>
+                        <p></p>
+                        <p>It seems that only the amount of work provided to the GPU significantly affects the overall power consumption.</p>
+
+                        <div className={"blog-sub-title"}>Conclusion</div>
+                        <p><u>Warning: </u> these results are clearly specific to my configuration and to the game. I guess a lot of factors can produce very different results: laptop vs. desktop computer, game with CPU vs. GPU bottlenecks, etc.</p>
+                        <p>However, it is clear that game settings and hardware configuration can notably affect electricity consumption.</p>
                     </div>
                 </div>
             </div>
