@@ -158,8 +158,8 @@ class Consumption extends Component {
                         <p>It seems that only the amount of work provided to the GPU significantly affects the overall power consumption.</p>
 
                         <div className={"blog-sub-title"}>Conclusion</div>
-                        <p><u>Warning</u>: these results are clearly specific to my configuration and to the game. I guess a lot of factors can produce very different results: laptop vs. desktop computer, game with CPU vs. GPU bottlenecks, etc.</p>
-                        <p>However, it seems clear that game settings and hardware configuration can notably affect electricity consumption.</p>
+                        <p><small><u>Disclaimer</u>: these results are clearly specific to my configuration and to the game. I guess a lot of factors can produce very different results: laptop vs. desktop computer, game with CPU vs. GPU bottlenecks, etc.</small></p>
+                        <p>In my configuration, it is clear that game settings and hardware configuration can notably affect electricity consumption.</p>
                     </div>
                 </div>
             </div>
