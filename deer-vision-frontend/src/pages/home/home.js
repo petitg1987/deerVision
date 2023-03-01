@@ -85,17 +85,14 @@ class Home extends Component {
                         <Description>
                             <p>Story</p>
                             <div className="game-description">
-                                In 2075, a space probe saw a strange platform floating in space near Jupiter. The government decided to finance a space mission to send you on this platform to elucidate the mystery.
+                                <div>In 2075, a space probe saw a strange platform floating in space near Jupiter. The government decided to finance a space mission to send you on this platform to elucidate the mystery.</div><br/>
+                                <div>Your mission is to discover why these platforms exist and who built them.</div>
                             </div>
 
                             <p>Gameplay</p>
                             <div className="game-description">
-                                You will face a variety of original and challenging puzzles:
-                                <ul className="game-about">
-                                    <li>Redirect and adjust laser beams by using the environment or by building blocks. These blocks have the capability to interact with laser beams to change their color and direction, deactivate them, and much more.</li>
-                                    <li>In addition, there are 2D puzzles where you must move pieces in a certain order to reach a target. As you progress, these puzzles will evolve with the addition of new rules, which will change the experience and gradually increase the difficulty.</li>
-                                </ul>
-                                Altogether, more than <strong>90 puzzles</strong> await you, providing several hours of play.
+                                <div>During your journey, you will be confronted with a variety of original and challenging puzzles. Unleash your creativity and problem-solving skills to progress through the game by manipulating the environment and by building interactive blocks that have the ability to alter the course of laser beams.</div><br/>
+                                <div>Each puzzle is unique and provides a new idea. Altogether, more than <strong>90 puzzles</strong> await you, providing several hours of play.</div>
                             </div>
                         </Description>
 
@@ -103,7 +100,7 @@ class Home extends Component {
                             <br/>
                             <Button text="WATCH TRAILER" link="" clickEvent={this.onTrailerClick} squareLogo={youtubeSquareLogo}/>
                             <br/>
-                            <Button text="BUY ON STEAM" link="https://store.steampowered.com/app/2305110/Photon_Engineer/" squareLogo={steamSquareLogo}/>
+                            <Button text="STEAM PAGE" link="https://store.steampowered.com/app/2305110/Photon_Engineer/" squareLogo={steamSquareLogo}/>
                         </div>
                         <div id="trailer-modal" className="content-modal">
                             <iframe id="trailer-modal-content" className="trailer-modal-content" width="560" height="315" src=""
