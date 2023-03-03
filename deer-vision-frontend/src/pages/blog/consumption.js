@@ -4,7 +4,7 @@ import "./blog.css"
 import blogConsumptionStartImg from "../../images/blogConsumptionStart.webp"
 import blogConsumptionDeviceImg from "../../images/blogConsumptionDevice.webp"
 import blogConsumptionSettingsImg from "../../images/blogConsumptionSettings.webp"
-import blogConsumptionScene1Img from "../../images/blogConsumptionScene1.webp"
+import blogConsumptionSceneImg from "../../images/blogConsumptionScene.webp"
 import Chart from "chart.js/auto";
 
 class Consumption extends Component {
@@ -130,11 +130,10 @@ class Consumption extends Component {
                         </ul>
                         <p><img className={"blog-img"} src={blogConsumptionSettingsImg} width={600} height={383} alt={"configuration des paramètres du jeu"}/></p>
 
-                        <div className={"blog-sub-title"}>Results</div>
-                        <p>Let's pick a scene from my puzzle game and start gathering data with different settings.</p>
-                        <p>Here is the 3D scene of the game I used to perform the measurements: <img className={"blog-img"} src={blogConsumptionScene1Img} width={600} height={383} alt={"game scene 1"}/></p>
+                        <p>Let's pick a scene from my puzzle game and start gathering data with different settings. Here is the 3D scene of the game I used to perform the measurements:</p>
+                        <p><img className={"blog-img"} src={blogConsumptionSceneImg} width={600} height={383} alt={"game scene 1"}/></p>
 
-                        <p></p>
+                        <div className={"blog-sub-title"}>Results</div>
                         <p>I measured the electricity consumption of the game with a <strong>4K resolution</strong> in <strong>high quality</strong> and with different refresh rate: 40 FPS, 60 FPS, 90 FPS, 120 FPS, 140 FPS and 200 FPS. Here are the results:</p>
                         <div className={"graph-container"}><canvas id="resultScene1"/></div>
                         <p></p>
@@ -146,7 +145,7 @@ class Consumption extends Component {
                         <p></p>
                         These results blew me away. The difference in image quality between both configurations is not easy to notice, but the difference in electricity consumption is quite significant.
 
-                        <div className={"blog-sub-title"}>More experimentation</div>
+                        <div className={"blog-sub-title"}>More experiments</div>
                         <p>I try more measurements but without interesting results:</p>
                         <ul>
                             <li><strong>Brightness/gamma settings</strong>: insignificant change in consumption</li>
