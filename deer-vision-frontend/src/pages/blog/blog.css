@@ -73,6 +73,10 @@
 }
 
 @media screen and (max-width: 500px) {
+    .blog-preview-main {
+        flex-direction: column;
+    }
+
     .graph-container {
         width: 95%;
     }
