@@ -15,7 +15,7 @@ class Blog extends Component {
                             <img className={"blog-img"} src={blogConsumptionImg} width={130} height={130} alt={"Device to measure electricity consumption"}/>
                             <div>As a programmer, I always wondered what difference an optimized application could make on the amount of electricity consumed by a computer. Therefore, I decided to measure the power consumption of my own puzzle game.</div>
                         </div>
-                        <div className={"blog-metadata"}>date: 2023-02-24, poster: Grégory Petit</div>
+                        <div className={"blog-metadata"}>date: 2023-03-03 | poster: Grégory Petit</div>
                     </div>
 
                     <div className="blog-preview">

@@ -144,21 +144,24 @@ class Consumption extends Component {
                         <div className={"graph-container"}><canvas id="resultScene1v2"/></div>
                         <p></p>
                         These results blew me away. The difference in image quality between both configurations is not easy to notice, but the difference in electricity consumption is quite significant.
+                        <p><small><u>Disclaimer</u>: these results are clearly specific to my configuration and to the game. I guess a lot of factors can produce very different results: laptop vs. desktop computer, game with CPU vs. GPU bottlenecks, etc.</small></p>
 
                         <div className={"blog-sub-title"}>More experiments</div>
                         <p>I try more measurements but without interesting results:</p>
                         <ul>
-                            <li><strong>Brightness/gamma settings</strong>: insignificant change in consumption</li>
-                            <li><strong>Game in 2K fullscreen and 2K windowed</strong>: insignificant change in consumption</li>
-                            <li><strong>I try to stress more the CPU with game physics</strong>: minor change in consumption</li>
-                            <li><strong>Use different scenes from the game</strong>: similar results compared to those above</li>
+                            <li>Brightness/gamma settings: insignificant change in consumption</li>
+                            <li>Game in 2K fullscreen and 2K windowed: insignificant change in consumption</li>
+                            <li>I try to stress more the CPU with game physics: minor change in consumption</li>
+                            <li>Use different scenes from the game: similar results compared to those above</li>
                         </ul>
                         <p></p>
                         <p>It seems that only the amount of work provided to the GPU significantly affects the overall power consumption.</p>
-
-                        <div className={"blog-sub-title"}>Conclusion</div>
-                        <p><small><u>Disclaimer</u>: these results are clearly specific to my configuration and to the game. I guess a lot of factors can produce very different results: laptop vs. desktop computer, game with CPU vs. GPU bottlenecks, etc.</small></p>
-                        <p>In my configuration, it is clear that game settings and hardware configuration can notably affect electricity consumption.</p>
+                        <p>I also measured other topics related to gaming:</p>
+                        <ul>
+                            <li>Watch a stream on Twitch: <strong>~3 watts</strong></li>
+                            <li>Record a video with OBS: <strong>~42 watts</strong></li>
+                        </ul>
+                        <p></p>
                     </div>
                 </div>
             </div>
