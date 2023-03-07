@@ -125,6 +125,23 @@ public class SecurityConfig {
 
     @Bean
     @Order(5)
+    public SecurityFilterChain apiWebsitePublicFilterChain(HttpSecurity http) throws Exception {
+        http
+                .securityMatcher(regexMatcher("^/api/visitor/.*"))
+                .authorizeHttpRequests((authz) -> {
+                    try {
+                        authz
+                            .requestMatchers(regexMatcher("^/api/.*")).permitAll()
+                            .and().csrf().disable();
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
+                });
+        return http.build();
+    }
+
+    @Bean
+    @Order(6)
     public SecurityFilterChain apiPublicFilterChain(HttpSecurity http) throws Exception {
         http
             .securityMatcher(regexMatcher("^/api/.*"))
