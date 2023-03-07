@@ -119,7 +119,7 @@ class Admin extends Component {
 
                 <h2>Website</h2>
                 <div className="admin-container">
-                    <div className="sub-title">Visitor count</div>
+                    <div className="sub-title">Visitor counter</div>
                     <div className="admin-info-container">
                         <VisitorCountGraph token={this.getToken()}/>
                     </div>
