@@ -6,8 +6,9 @@ import {getBackendUrl} from "../../js/access";
 export default function VisitorCountryGraph({token}) {
 
     let visitorCountryChart = useRef(null);
+    let windowWidth = useRef(-1);
 
-    const refreshChart = useCallback(async () => {
+    const refreshVisitorCountryChart = useCallback(async () => {
         const retrieveVisitorCount = async (retrieveDays) => {
             let visitorCountryRespond = await fetch(getBackendUrl() + 'api/admin/visitor-country?retrieveDays=' + retrieveDays, {
                 method: "GET",
@@ -89,13 +90,22 @@ export default function VisitorCountryGraph({token}) {
         });
     }, [token]);
 
+    const onWindowResize = useCallback(async () => {
+        if(windowWidth.current !== window.innerWidth){
+            windowWidth.current = window.innerWidth;
+            await refreshVisitorCountryChart();
+        }
+    }, [refreshVisitorCountryChart]);
+
     useEffect(() => {
-        window.addEventListener('resize', refreshChart);
-        refreshChart().then();
+        refreshVisitorCountryChart().then();
+        windowWidth.current = window.innerWidth;
+
+        window.addEventListener('resize', onWindowResize);
         return () => { //umount
-            window.removeEventListener('resize', refreshChart);
+            window.removeEventListener('resize', onWindowResize);
         };
-    }, [refreshChart]);
+    }, [onWindowResize, refreshVisitorCountryChart]);
 
     return (
         <div className={"visitorChart"}>

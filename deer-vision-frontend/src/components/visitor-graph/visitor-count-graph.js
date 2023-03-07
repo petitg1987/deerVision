@@ -6,8 +6,9 @@ import {getBackendUrl} from "../../js/access";
 export default function VisitorCountGraph({token}) {
 
     let visitorCountChart = useRef(null);
+    let windowWidth = useRef(-1);
 
-    const refreshChart = useCallback(async () => {
+    const refreshVisitorCountChart = useCallback(async () => {
         let visitorCountRespond = await fetch(getBackendUrl() + 'api/admin/visitor-count?retrieveDays=20', {
             method: "GET",
             headers: new Headers({
@@ -60,13 +61,22 @@ export default function VisitorCountGraph({token}) {
         });
     }, [token]);
 
+    const onWindowResize = useCallback(async () => {
+        if(windowWidth.current !== window.innerWidth){
+            windowWidth.current = window.innerWidth;
+            await refreshVisitorCountChart();
+        }
+    }, [refreshVisitorCountChart]);
+
     useEffect(() => {
-        window.addEventListener('resize', refreshChart);
-        refreshChart().then();
+        refreshVisitorCountChart().then();
+        windowWidth.current = window.innerWidth;
+
+        window.addEventListener('resize', onWindowResize);
         return () => { //umount
-            window.removeEventListener('resize', refreshChart);
+            window.removeEventListener('resize', onWindowResize);
         };
-    }, [refreshChart]);
+    }, [onWindowResize, refreshVisitorCountChart]);
 
     return (
         <div className={"visitorChart"}>
