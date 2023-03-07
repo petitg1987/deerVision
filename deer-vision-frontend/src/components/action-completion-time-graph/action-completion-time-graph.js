@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import './action-completion-time-graph.css';
 import {getWithToken} from "../../js/request";
 import Chart from 'chart.js/auto';
+import {getBackendUrl} from "../../js/access";
 
 class ActionCompletionTimeGraph extends Component {
 
@@ -28,7 +29,7 @@ class ActionCompletionTimeGraph extends Component {
 
     async refreshLevelIds() {
         let levelsSelector = document.getElementById("levelsSelect");
-        let levelIdsJson = await getWithToken(this.props.backendUrl + 'api/admin/levels/ids?appId=' + this.props.appId, this.props.token);
+        let levelIdsJson = await getWithToken(getBackendUrl() + 'api/admin/levels/ids?appId=' + this.props.appId, this.props.token);
 
         let selectedLevelStillValid = false;
 
@@ -54,7 +55,7 @@ class ActionCompletionTimeGraph extends Component {
 
     async refreshActionNames() {
         let actionNamesSelector = document.getElementById("actionNamesSelect");
-        let actionNamesJson = await getWithToken(this.props.backendUrl + 'api/admin/levels/' + this.state.levelSelected + '/actionNames?appId=' + this.props.appId, this.props.token);
+        let actionNamesJson = await getWithToken(getBackendUrl() + 'api/admin/levels/' + this.state.levelSelected + '/actionNames?appId=' + this.props.appId, this.props.token);
 
         let selectedActionNameStillValid = false;
 
@@ -81,7 +82,7 @@ class ActionCompletionTimeGraph extends Component {
 
     async refreshChart() {
         let ctx = document.getElementById("actionCompletionTimeChart");
-        let completionTimesJson = await getWithToken(this.props.backendUrl + 'api/admin/levels/' + this.state.levelSelected + '/completionTimes/' + this.state.actionNameSelected + '?appId=' + this.props.appId + '&includeSnapshot=' + this.state.includeSnapshotVal, this.props.token);
+        let completionTimesJson = await getWithToken(getBackendUrl() + 'api/admin/levels/' + this.state.levelSelected + '/completionTimes/' + this.state.actionNameSelected + '?appId=' + this.props.appId + '&includeSnapshot=' + this.state.includeSnapshotVal, this.props.token);
 
         let minutesTab = [];
         let playerCountData = []

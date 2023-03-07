@@ -1,12 +1,13 @@
 import React, {Component} from 'react';
 import './total-player.css';
 import {getWithToken} from "../../js/request";
+import {getBackendUrl} from "../../js/access";
 
 class TotalPlayer extends Component {
 
     async componentDidMount() {
         let ulTotalPlayer = document.getElementById("listTotalPlayers");
-        let totalRequestKeyJson = await getWithToken(this.props.backendUrl + 'api/admin/usage/total-request-keys', this.props.token);
+        let totalRequestKeyJson = await getWithToken(getBackendUrl() + 'api/admin/usage/total-request-keys', this.props.token);
         for (let appNameKey in totalRequestKeyJson) {
             let appName = appNameKey
                 .replace(/([A-Z])/g, ' $1') //insert a space before all caps

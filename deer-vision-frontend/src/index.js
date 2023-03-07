@@ -10,6 +10,7 @@ import './index.css';
 import SocialNetwork from "./components/social-network/social-network";
 import Blog from "./pages/blog/blog";
 import Consumption from "./pages/blog/consumption";
+import VisitorCount from "./js/visitor-count";
 
 const Admin = React.lazy(() => import('./pages/admin/admin'))
 
@@ -30,6 +31,7 @@ class Index extends Component {
                         <Navigation/>
                     </header>
                     <div className="content">
+                        <VisitorCount />
                         <Suspense fallback={<div>Loading...</div>}>
                             <Routes>
                                 <Route exact path='/' element={<Home/>}/>

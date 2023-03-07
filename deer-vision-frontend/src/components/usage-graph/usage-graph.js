@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import './usage-graph.css';
 import {getWithToken} from "../../js/request";
 import Chart from 'chart.js/auto';
+import {getBackendUrl} from "../../js/access";
 
 class UsageGraph extends Component {
 
@@ -27,7 +28,7 @@ class UsageGraph extends Component {
     }
 
     async refreshChart() {
-        let usageJson = await getWithToken(this.props.backendUrl + 'api/admin/usage?retrieveDays=' + this.state.dayValueSelected + "&includeSnapshot=" + this.state.includeSnapshotVal + "&uniqueCount=" + this.state.uniqueCountVal, this.props.token);
+        let usageJson = await getWithToken(getBackendUrl() + 'api/admin/usage?retrieveDays=' + this.state.dayValueSelected + "&includeSnapshot=" + this.state.includeSnapshotVal + "&uniqueCount=" + this.state.uniqueCountVal, this.props.token);
         let ctx = document.getElementById("applicationsUsageChart");
 
         let datesTab = usageJson.dates;

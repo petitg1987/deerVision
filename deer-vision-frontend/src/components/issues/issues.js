@@ -4,6 +4,7 @@ import {deleteWithToken, getWithToken} from "../../js/request";
 import seeIcon from "../../images/seeIcon.webp";
 import deleteIcon from "../../images/deleteIcon.webp";
 import deleteUserIcon from "../../images/deleteUserIcon.webp";
+import {getBackendUrl} from "../../js/access";
 
 class Issues extends Component {
 
@@ -14,7 +15,7 @@ class Issues extends Component {
 
     async seeIssue(event, issueId) {
         event.preventDefault();
-        let issuesJson = await getWithToken(this.props.backendUrl + 'api/admin/issues/' + issueId, this.props.token);
+        let issuesJson = await getWithToken(getBackendUrl() + 'api/admin/issues/' + issueId, this.props.token);
         let htmlValue = issuesJson.data
             .replace(/&/g, "&amp;")
             .replace(/</g, "&lt;")
@@ -36,20 +37,20 @@ class Issues extends Component {
 
     async deleteIssue(event, issueId) {
         event.preventDefault();
-        deleteWithToken(this.props.backendUrl + 'api/admin/issues/' + issueId, this.props.token)
+        deleteWithToken(getBackendUrl() + 'api/admin/issues/' + issueId, this.props.token)
             .then(async () => {await this.refreshIssues()});
     }
 
     async deleteUserIssue(event, requestKey) {
         event.preventDefault();
         if (window.confirm("Are you sure you want to delete all issues of this user ?") === true) {
-             deleteWithToken(this.props.backendUrl + 'api/admin/issues?requestKey=' + requestKey, this.props.token)
+             deleteWithToken(getBackendUrl() + 'api/admin/issues?requestKey=' + requestKey, this.props.token)
                  .then(async () => {await this.refreshIssues()});
         }
     }
 
     async refreshIssues() {
-        let issuesJson = await getWithToken(this.props.backendUrl + 'api/admin/issues', this.props.token);
+        let issuesJson = await getWithToken(getBackendUrl() + 'api/admin/issues', this.props.token);
 
         let issuesData = [];
         issuesJson.forEach(issue => {

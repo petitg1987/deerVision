@@ -7,9 +7,9 @@ import UsageGraph from "../../components/usage-graph/usage-graph";
 import Issues from "../../components/issues/issues";
 import ActionCompletionTimeGraph from "../../components/action-completion-time-graph/action-completion-time-graph";
 import TotalPlayer from "../../components/total-player/total-player";
-
-const backendUrl = "https://backend.deervision.studio/";
-//const backendUrl = "http://127.0.0.1:5000/";
+import VisitorCountryGraph from "../../components/visitor-graph/visitor-country-graph";
+import VisitorCountGraph from "../../components/visitor-graph/visitor-count-graph";
+import {getBackendUrl} from "../../js/access";
 
 class Admin extends Component {
 
@@ -47,7 +47,7 @@ class Admin extends Component {
     async handleSubmit(event) {
         event.preventDefault();
         try {
-            let jsonResult = await postRequest(backendUrl + 'api/admin/login?password=' + this.state.pwdValue);
+            let jsonResult = await postRequest(getBackendUrl() + 'api/admin/login?password=' + this.state.pwdValue);
             let jwtToken = jsonResult.value;
             if (jwtToken && jwtToken !== '') {
                 this.logIn(jwtToken);
@@ -91,21 +91,21 @@ class Admin extends Component {
 
         return (
             <div>
-                <h2>Common</h2>
+                <h2>All games</h2>
                 <div className="admin-container">
                     <div className="sub-title">Players</div>
                     <div className="admin-info-container">
-                        <TotalPlayer backendUrl={backendUrl} token={this.getToken()}/>
+                        <TotalPlayer token={this.getToken()}/>
                     </div>
 
                     <div className="sub-title">Usage</div>
                     <div className="admin-info-container">
-                        <UsageGraph backendUrl={backendUrl} token={this.getToken()}/>
+                        <UsageGraph token={this.getToken()}/>
                     </div>
 
                     <div className="sub-title">Issues</div>
                     <div className="admin-info-container">
-                        <Issues backendUrl={backendUrl} token={this.getToken()}/>
+                        <Issues token={this.getToken()}/>
                     </div>
                 </div>
 
@@ -113,7 +113,20 @@ class Admin extends Component {
                 <div className="admin-container">
                     <div className="sub-title">Action Completion Time</div>
                     <div className="admin-info-container">
-                        <ActionCompletionTimeGraph appId='photonEngineer' backendUrl={backendUrl} token={this.getToken()}/>
+                        <ActionCompletionTimeGraph appId='photonEngineer' token={this.getToken()}/>
+                    </div>
+                </div>
+
+                <h2>Website</h2>
+                <div className="admin-container">
+                    <div className="sub-title">Visitor count</div>
+                    <div className="admin-info-container">
+                        <VisitorCountGraph token={this.getToken()}/>
+                    </div>
+
+                    <div className="sub-title">Visitor's country</div>
+                    <div className="admin-info-container">
+                        <VisitorCountryGraph token={this.getToken()}/>
                     </div>
                 </div>
 
