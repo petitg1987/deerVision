@@ -7,8 +7,8 @@
     margin-bottom: 30px;
     position: relative;
     left: -2%;
-    width: 27%;
-    height: 27%;
+    width: 35%;
+    height: 35%;
 }
 
 .game-info-container {
@@ -123,9 +123,21 @@
     to {transform:scale(1)}
 }
 
+@media screen and (max-width: 1500px) {
+    .pe-logo {
+        width: 50%;
+        height: 50%;
+    }
+}
+
 @media screen and (max-width: 1300px) {
     .game-container {
         padding-left: 5px;
+    }
+
+    .pe-logo {
+        width: 60%;
+        height: 60%;
     }
 
     .game-screenshot {
@@ -140,8 +152,8 @@
     }
 
     .pe-logo {
-        width: 80%;
-        height: 80%;
+        width: 95%;
+        height: 95%;
     }
 
     .game-info-container {
