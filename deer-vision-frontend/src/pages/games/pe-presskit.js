@@ -41,21 +41,23 @@ class PePressKit extends Component {
                         <ul>
                             <li>Capsule <small>(1280x720)</small>: <a className={"text-link"} target="_blank" rel="noopener noreferrer" href={capsuleSocNetwork}>capsuleSocNetwork.png</a></li>
                             <li>Capsule with description <small>(1280x720)</small>: <a className={"text-link"} target="_blank" rel="noopener noreferrer" href={capsuleSocNetworkDesc}>capsuleSocNetworkDesc.png</a></li>
-                            <li>Logo <small>(1482x400)</small>: <a className={"text-link"} target="_blank" rel="noopener noreferrer" href={gameLogo}>gameLogo.png</a></li>
-                            <li>Logo simplified <small>(1482x400)</small>: <a className={"text-link"} target="_blank" rel="noopener noreferrer" href={gameLogoSimplified}>gameLogoSimplified.png</a></li>
-                            <li>Screenshot <small>(2560x1440)</small>:&nbsp;
-                                <a className={"text-link"} target="_blank" rel="noopener noreferrer" href={screenshot1}>s1</a>,&nbsp;
-                                <a className={"text-link"} target="_blank" rel="noopener noreferrer" href={screenshot2}>s2</a>,&nbsp;
-                                <a className={"text-link"} target="_blank" rel="noopener noreferrer" href={screenshot3}>s3</a>,&nbsp;
-                                <a className={"text-link"} target="_blank" rel="noopener noreferrer" href={screenshot4}>s4</a>,&nbsp;
-                                <a className={"text-link"} target="_blank" rel="noopener noreferrer" href={screenshot5}>s5</a>,&nbsp;
-                                <a className={"text-link"} target="_blank" rel="noopener noreferrer" href={screenshot6}>s6</a>,&nbsp;
-                                <a className={"text-link"} target="_blank" rel="noopener noreferrer" href={screenshot7}>s7</a>,&nbsp;
-                                <a className={"text-link"} target="_blank" rel="noopener noreferrer" href={screenshot8}>s8</a>,&nbsp;
-                                <a className={"text-link"} target="_blank" rel="noopener noreferrer" href={screenshot9}>s9</a>,&nbsp;
-                                <a className={"text-link"} target="_blank" rel="noopener noreferrer" href={screenshot10}>s10</a>,&nbsp;
-                                <a className={"text-link"} target="_blank" rel="noopener noreferrer" href={screenshot11}>s11</a>,&nbsp;
-                                <a className={"text-link"} target="_blank" rel="noopener noreferrer" href={screenshot12}>s12</a>
+                            <li>Logo <small>(1482x400, transparent)</small>: <a className={"text-link"} target="_blank" rel="noopener noreferrer" href={gameLogo}>gameLogo.png</a></li>
+                            <li>Logo simplified <small>(1482x400, transparent)</small>: <a className={"text-link"} target="_blank" rel="noopener noreferrer" href={gameLogoSimplified}>gameLogoSimplified.png</a></li>
+                            <li>Screenshots <small>(2560x1440)</small>:
+                                <ul>
+                                    <li><a className={"text-link"} target="_blank" rel="noopener noreferrer" href={screenshot1}>screenshot1.webp</a></li>
+                                    <li><a className={"text-link"} target="_blank" rel="noopener noreferrer" href={screenshot2}>screenshot2.webp</a></li>
+                                    <li><a className={"text-link"} target="_blank" rel="noopener noreferrer" href={screenshot3}>screenshot3.webp</a></li>
+                                    <li><a className={"text-link"} target="_blank" rel="noopener noreferrer" href={screenshot4}>screenshot4.webp</a></li>
+                                    <li><a className={"text-link"} target="_blank" rel="noopener noreferrer" href={screenshot5}>screenshot5.webp</a></li>
+                                    <li><a className={"text-link"} target="_blank" rel="noopener noreferrer" href={screenshot6}>screenshot6.webp</a></li>
+                                    <li><a className={"text-link"} target="_blank" rel="noopener noreferrer" href={screenshot7}>screenshot7.webp</a></li>
+                                    <li><a className={"text-link"} target="_blank" rel="noopener noreferrer" href={screenshot8}>screenshot8.webp</a></li>
+                                    <li><a className={"text-link"} target="_blank" rel="noopener noreferrer" href={screenshot9}>screenshot9.webp</a></li>
+                                    <li><a className={"text-link"} target="_blank" rel="noopener noreferrer" href={screenshot10}>screenshot10.webp</a></li>
+                                    <li><a className={"text-link"} target="_blank" rel="noopener noreferrer" href={screenshot11}>screenshot11.webp</a></li>
+                                    <li><a className={"text-link"} target="_blank" rel="noopener noreferrer" href={screenshot12}>screenshot12.webp</a></li>
+                                </ul>
                             </li>
                         </ul>
                     </div>

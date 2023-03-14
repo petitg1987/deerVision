@@ -7,6 +7,7 @@
 }
 
 .press-content {
+    width: 100%;
     max-width: 800px;
     padding: 5px 12px;
     font-size: 1.0rem;
