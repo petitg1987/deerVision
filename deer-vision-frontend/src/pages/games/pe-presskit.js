@@ -5,18 +5,18 @@ import gameLogo from '../../images/photon-engineer/presskit/gameLogo.png'
 import gameLogoSimplified from '../../images/photon-engineer/presskit/gameLogoSimplified.png'
 import capsuleSocNetwork from '../../images/photon-engineer/presskit/capsuleSocNetwork.png'
 import capsuleSocNetworkDesc from '../../images/photon-engineer/presskit/capsuleSocNetworkDesc.png'
-import screenshot1 from '../../images/photon-engineer/screenshot1_1440p.webp'
-import screenshot2 from '../../images/photon-engineer/screenshot2_1440p.webp'
-import screenshot3 from '../../images/photon-engineer/screenshot3_1440p.webp'
-import screenshot4 from '../../images/photon-engineer/screenshot4_1440p.webp'
-import screenshot5 from '../../images/photon-engineer/screenshot5_1440p.webp'
-import screenshot6 from '../../images/photon-engineer/screenshot6_1440p.webp'
-import screenshot7 from '../../images/photon-engineer/screenshot7_1440p.webp'
-import screenshot8 from '../../images/photon-engineer/screenshot8_1440p.webp'
-import screenshot9 from '../../images/photon-engineer/screenshot9_1440p.webp'
-import screenshot10 from '../../images/photon-engineer/screenshot10_1440p.webp'
-import screenshot11 from '../../images/photon-engineer/screenshot11_1440p.webp'
-import screenshot12 from '../../images/photon-engineer/screenshot12_1440p.webp'
+import screenshot1 from '../../images/photon-engineer/screenshot1.png'
+import screenshot2 from '../../images/photon-engineer/screenshot2.png'
+import screenshot3 from '../../images/photon-engineer/screenshot3.png'
+import screenshot4 from '../../images/photon-engineer/screenshot4.png'
+import screenshot5 from '../../images/photon-engineer/screenshot5.png'
+import screenshot6 from '../../images/photon-engineer/screenshot6.png'
+import screenshot7 from '../../images/photon-engineer/screenshot7.png'
+import screenshot8 from '../../images/photon-engineer/screenshot8.png'
+import screenshot9 from '../../images/photon-engineer/screenshot9.png'
+import screenshot10 from '../../images/photon-engineer/screenshot10.png'
+import screenshot11 from '../../images/photon-engineer/screenshot11.png'
+import screenshot12 from '../../images/photon-engineer/screenshot12.png'
 
 class PePressKit extends Component {
     render() {
@@ -45,18 +45,18 @@ class PePressKit extends Component {
                             <li>Logo simplified <small>(1482x400, transparent)</small>: <a className={"text-link"} target="_blank" rel="noopener noreferrer" href={gameLogoSimplified}>gameLogoSimplified.png</a></li>
                             <li>Screenshots <small>(2560x1440)</small>:
                                 <ul>
-                                    <li><a className={"text-link"} target="_blank" rel="noopener noreferrer" href={screenshot1}>screenshot1.webp</a></li>
-                                    <li><a className={"text-link"} target="_blank" rel="noopener noreferrer" href={screenshot2}>screenshot2.webp</a></li>
-                                    <li><a className={"text-link"} target="_blank" rel="noopener noreferrer" href={screenshot3}>screenshot3.webp</a></li>
-                                    <li><a className={"text-link"} target="_blank" rel="noopener noreferrer" href={screenshot4}>screenshot4.webp</a></li>
-                                    <li><a className={"text-link"} target="_blank" rel="noopener noreferrer" href={screenshot5}>screenshot5.webp</a></li>
-                                    <li><a className={"text-link"} target="_blank" rel="noopener noreferrer" href={screenshot6}>screenshot6.webp</a></li>
-                                    <li><a className={"text-link"} target="_blank" rel="noopener noreferrer" href={screenshot7}>screenshot7.webp</a></li>
-                                    <li><a className={"text-link"} target="_blank" rel="noopener noreferrer" href={screenshot8}>screenshot8.webp</a></li>
-                                    <li><a className={"text-link"} target="_blank" rel="noopener noreferrer" href={screenshot9}>screenshot9.webp</a></li>
-                                    <li><a className={"text-link"} target="_blank" rel="noopener noreferrer" href={screenshot10}>screenshot10.webp</a></li>
-                                    <li><a className={"text-link"} target="_blank" rel="noopener noreferrer" href={screenshot11}>screenshot11.webp</a></li>
-                                    <li><a className={"text-link"} target="_blank" rel="noopener noreferrer" href={screenshot12}>screenshot12.webp</a></li>
+                                    <li><a className={"text-link"} target="_blank" rel="noopener noreferrer" href={screenshot1}>screenshot1.png</a></li>
+                                    <li><a className={"text-link"} target="_blank" rel="noopener noreferrer" href={screenshot2}>screenshot2.png</a></li>
+                                    <li><a className={"text-link"} target="_blank" rel="noopener noreferrer" href={screenshot3}>screenshot3.png</a></li>
+                                    <li><a className={"text-link"} target="_blank" rel="noopener noreferrer" href={screenshot4}>screenshot4.png</a></li>
+                                    <li><a className={"text-link"} target="_blank" rel="noopener noreferrer" href={screenshot5}>screenshot5.png</a></li>
+                                    <li><a className={"text-link"} target="_blank" rel="noopener noreferrer" href={screenshot6}>screenshot6.png</a></li>
+                                    <li><a className={"text-link"} target="_blank" rel="noopener noreferrer" href={screenshot7}>screenshot7.png</a></li>
+                                    <li><a className={"text-link"} target="_blank" rel="noopener noreferrer" href={screenshot8}>screenshot8.png</a></li>
+                                    <li><a className={"text-link"} target="_blank" rel="noopener noreferrer" href={screenshot9}>screenshot9.png</a></li>
+                                    <li><a className={"text-link"} target="_blank" rel="noopener noreferrer" href={screenshot10}>screenshot10.png</a></li>
+                                    <li><a className={"text-link"} target="_blank" rel="noopener noreferrer" href={screenshot11}>screenshot11.png</a></li>
+                                    <li><a className={"text-link"} target="_blank" rel="noopener noreferrer" href={screenshot12}>screenshot12.png</a></li>
                                 </ul>
                             </li>
                         </ul>
