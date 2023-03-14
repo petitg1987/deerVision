@@ -7,8 +7,10 @@
 }
 
 .blog-preview, .blog-content {
+    box-sizing: border-box;
+    width: 100%;
     max-width: 800px;
-    padding: 5px 12px;
+    padding: 5px 10px;
     font-size: 1.0rem;
     background-color: #363649;
     border-radius: 10px;
