@@ -14,7 +14,7 @@ class PePressKit extends Component {
                         <div className={"press-title"}>Details</div>
                         <ul>
                             <li><strong>Name</strong>: Photon Engineer</li>
-                            <li><strong>Platform</strong>: PC (Windows / Linux)</li>
+                            <li><strong>Platform</strong>: Windows 10/11, Linux (Ubuntu 22.04)</li>
                             <li><strong>Steam page</strong>: <a className={"text-link"} target="_blank" rel="noopener noreferrer" href={"https://store.steampowered.com/app/2305110/Photon_Engineer/"}>https://store.steampowered.com/app/2305110/Photon_Engineer/</a></li>
                             <li><strong>Creator / publisher</strong>: Grégory Petit</li>
                             <li><strong>Game Engine</strong>: <a className={"text-link"} target="_blank" rel="noopener noreferrer" href={"https://github.com/petitg1987/urchinEngine"}>Urchin Engine</a> (in-house engine)</li>
@@ -23,8 +23,9 @@ class PePressKit extends Component {
 
                         <div className={"press-title"}>Assets</div>
                         <ul>
-                            <li><strong>Game logo</strong> (1482x400, transparent): <a className={"text-link"} target="_blank" rel="noopener noreferrer" href={"/pe-presskit/gameLogo.png"} download={true}>gameLogo.png</a></li>
-                            <li><strong>Capsule</strong> (1280x720): <a className={"text-link"} target="_blank" rel="noopener noreferrer" href={"/pe-presskit/capsule16_9.png"} download={true}>capsule16_9.png</a></li>
+                            <li>Game logo: <a className={"text-link"} target="_blank" rel="noopener noreferrer" href={"/pe-presskit/gameLogo.png"} download={true}>gameLogo.png</a> <small>(1482x400, transparent)</small></li>
+                            <li>Game logo - simplified version: <a className={"text-link"} target="_blank" rel="noopener noreferrer" href={"/pe-presskit/gameLogoSimplified.png"} download={true}>gameLogoSimplified.png</a> <small>(1482x400, transparent)</small></li>
+                            <li>Capsule: <a className={"text-link"} target="_blank" rel="noopener noreferrer" href={"/pe-presskit/capsule16_9.png"} download={true}>capsule16_9.png</a> <small>(1280x720)</small></li>
                         </ul>
                     </div>
                 </div>
