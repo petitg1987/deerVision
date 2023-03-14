@@ -29,12 +29,12 @@ class PePressKit extends Component {
                         <div>To learn more about the Photon Engineer, please consult our <a className={"text-link"} href={"/"}>games</a> page.</div>
                         <div className={"press-title"}>Details</div>
                         <ul>
-                            <li><strong>Name</strong>: Photon Engineer</li>
-                            <li><strong>Platform</strong>: Windows 10/11, Linux (Ubuntu 22.04)</li>
-                            <li><strong>Steam page</strong>: <a className={"text-link"} target="_blank" rel="noopener noreferrer" href={"https://store.steampowered.com/app/2305110/Photon_Engineer/"}>https://store.steampowered.com/app/2305110/Photon_Engineer/</a></li>
-                            <li><strong>Creator / publisher</strong>: Grégory Petit</li>
-                            <li><strong>Game Engine</strong>: <a className={"text-link"} target="_blank" rel="noopener noreferrer" href={"https://github.com/petitg1987/urchinEngine"}>Urchin Engine</a> (in-house engine)</li>
-                            <li><strong>Development time</strong>: ~2 years (full time) on the game, ~10 years (spare time) on the game engine</li>
+                            <li><i>Name</i>: Photon Engineer</li>
+                            <li><i>Platform</i>: Windows 10/11, Linux (Ubuntu 22.04)</li>
+                            <li><i>Steam page</i>: <a className={"text-link"} target="_blank" rel="noopener noreferrer" href={"https://store.steampowered.com/app/2305110/Photon_Engineer/"}>https://store.steampowered.com/app/2305110/Photon_Engineer/</a></li>
+                            <li><i>Creator / publisher</i>: Grégory Petit</li>
+                            <li><i>Game Engine</i>: <a className={"text-link"} target="_blank" rel="noopener noreferrer" href={"https://github.com/petitg1987/urchinEngine"}>Urchin Engine</a> (in-house engine)</li>
+                            <li><i>Development time</i>: ~2 years (full time) on the game, ~10 years (spare time) on the game engine</li>
                         </ul>
 
                         <div className={"press-title"}>Assets</div>
