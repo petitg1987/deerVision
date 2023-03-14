@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import "../pages.css"
 import "./presskit.css"
+import gameLogo from '../../images/photon-engineer/presskit/gameLogo.png'
+import gameLogoSimplified from '../../images/photon-engineer/presskit/gameLogoSimplified.png'
+import capsuleSocNetwork from '../../images/photon-engineer/presskit/capsuleSocNetwork.png'
+import capsuleSocNetworkText from '../../images/photon-engineer/presskit/capsuleSocNetworkText.png'
 
 class PePressKit extends Component {
     render() {
@@ -23,9 +27,10 @@ class PePressKit extends Component {
 
                         <div className={"press-title"}>Assets</div>
                         <ul>
-                            <li>Game logo: <a className={"text-link"} target="_blank" rel="noopener noreferrer" href={"/pe-presskit/gameLogo.png"} download={true}>gameLogo.png</a> <small>(1482x400, transparent)</small></li>
-                            <li>Game logo - simplified version: <a className={"text-link"} target="_blank" rel="noopener noreferrer" href={"/pe-presskit/gameLogoSimplified.png"} download={true}>gameLogoSimplified.png</a> <small>(1482x400, transparent)</small></li>
-                            <li>Capsule: <a className={"text-link"} target="_blank" rel="noopener noreferrer" href={"/pe-presskit/capsule16_9.png"} download={true}>capsule16_9.png</a> <small>(1280x720)</small></li>
+                            <li>Game logo <small>(1482x400)</small>: <a className={"text-link"} target="_blank" rel="noopener noreferrer" href={gameLogo} download={true}>gameLogo.png</a></li>
+                            <li>Game logo simplified <small>(1482x400)</small>: <a className={"text-link"} target="_blank" rel="noopener noreferrer" href={gameLogoSimplified} download={true}>gameLogoSimplified.png</a></li>
+                            <li>Capsule <small>(1280x720)</small>: <a className={"text-link"} target="_blank" rel="noopener noreferrer" href={capsuleSocNetwork} download={true}>capsuleSocNetwork.png</a></li>
+                            <li>Capsule with text <small>(1280x720)</small>: <a className={"text-link"} target="_blank" rel="noopener noreferrer" href={capsuleSocNetworkText} download={true}>capsuleSocNetworkText.png</a></li>
                         </ul>
                     </div>
                 </div>
