@@ -163,7 +163,7 @@ class Home extends Component {
                         </div>
                     </div>
 
-                    <p><small>⇨ You want to publish content about Photon Engineer ? Feel free to use our <a className={"text-link"} href="/game/pe-press-kit">press kit</a>.</small></p>
+                    <p><small>⇨ You want to publish content about Photon Engineer ? Feel free to use our <a className={"text-link"} href="/games/pe-press-kit">press kit</a>.</small></p>
                     <br/>
                 </div>
             </div>

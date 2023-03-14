@@ -36,7 +36,7 @@ class Index extends Component {
                         <Suspense fallback={<div>Loading...</div>}>
                             <Routes>
                                 <Route exact path='/' element={<Home/>}/>
-                                <Route exact path='/game/pe-press-kit' element={<PePressKit/>}/>
+                                <Route exact path='/games/pe-press-kit' element={<PePressKit/>}/>
                                 <Route exact path='/blog' element={<Blog/>}/>
                                 <Route exact path='/blog/consumption' element={<Consumption/>}/>
                                 <Route exact path='/about' element={<About/>}/>
