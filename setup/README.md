@@ -8,10 +8,6 @@
   * Register domain "deervision.studio" by using Route 53 and enable "Transfer lock"
   * In "N.Virgina" region: create and validate an ACM certificate for "deervision.studio" and with additional domain name "www.deervision.studio"
   * Delete the default VPC (optional)
-  * Verify the following manually via: https://console.aws.amazon.com/ses/ (N. Virgina)
-    * Mail: petitg1987@x.x
-    * Domain: deervision.studio
-  * Add manually a standard topic named 'contact-email-topic-deervision' with an email subscription to petitg1987@x.x via: https://console.aws.amazon.com/sns/ (N. Virgina)
 * Install AWS CLI: `snap install aws-cli`
 * Install Maven: `sudo apt install maven`
 
