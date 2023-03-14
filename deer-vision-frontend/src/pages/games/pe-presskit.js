@@ -4,7 +4,19 @@ import "./presskit.css"
 import gameLogo from '../../images/photon-engineer/presskit/gameLogo.png'
 import gameLogoSimplified from '../../images/photon-engineer/presskit/gameLogoSimplified.png'
 import capsuleSocNetwork from '../../images/photon-engineer/presskit/capsuleSocNetwork.png'
-import capsuleSocNetworkText from '../../images/photon-engineer/presskit/capsuleSocNetworkText.png'
+import capsuleSocNetworkDesc from '../../images/photon-engineer/presskit/capsuleSocNetworkDesc.png'
+import screenshot1 from '../../images/photon-engineer/screenshot1_1440p.webp'
+import screenshot2 from '../../images/photon-engineer/screenshot2_1440p.webp'
+import screenshot3 from '../../images/photon-engineer/screenshot3_1440p.webp'
+import screenshot4 from '../../images/photon-engineer/screenshot4_1440p.webp'
+import screenshot5 from '../../images/photon-engineer/screenshot5_1440p.webp'
+import screenshot6 from '../../images/photon-engineer/screenshot6_1440p.webp'
+import screenshot7 from '../../images/photon-engineer/screenshot7_1440p.webp'
+import screenshot8 from '../../images/photon-engineer/screenshot8_1440p.webp'
+import screenshot9 from '../../images/photon-engineer/screenshot9_1440p.webp'
+import screenshot10 from '../../images/photon-engineer/screenshot10_1440p.webp'
+import screenshot11 from '../../images/photon-engineer/screenshot11_1440p.webp'
+import screenshot12 from '../../images/photon-engineer/screenshot12_1440p.webp'
 
 class PePressKit extends Component {
     render() {
@@ -27,10 +39,24 @@ class PePressKit extends Component {
 
                         <div className={"press-title"}>Assets</div>
                         <ul>
-                            <li>Game logo <small>(1482x400)</small>: <a className={"text-link"} target="_blank" rel="noopener noreferrer" href={gameLogo} download={true}>gameLogo.png</a></li>
-                            <li>Game logo simplified <small>(1482x400)</small>: <a className={"text-link"} target="_blank" rel="noopener noreferrer" href={gameLogoSimplified} download={true}>gameLogoSimplified.png</a></li>
-                            <li>Capsule <small>(1280x720)</small>: <a className={"text-link"} target="_blank" rel="noopener noreferrer" href={capsuleSocNetwork} download={true}>capsuleSocNetwork.png</a></li>
-                            <li>Capsule with text <small>(1280x720)</small>: <a className={"text-link"} target="_blank" rel="noopener noreferrer" href={capsuleSocNetworkText} download={true}>capsuleSocNetworkText.png</a></li>
+                            <li>Capsule <small>(1280x720)</small>: <a className={"text-link"} target="_blank" rel="noopener noreferrer" href={capsuleSocNetwork}>capsuleSocNetwork.png</a></li>
+                            <li>Capsule with description <small>(1280x720)</small>: <a className={"text-link"} target="_blank" rel="noopener noreferrer" href={capsuleSocNetworkDesc}>capsuleSocNetworkDesc.png</a></li>
+                            <li>Logo <small>(1482x400)</small>: <a className={"text-link"} target="_blank" rel="noopener noreferrer" href={gameLogo}>gameLogo.png</a></li>
+                            <li>Logo simplified <small>(1482x400)</small>: <a className={"text-link"} target="_blank" rel="noopener noreferrer" href={gameLogoSimplified}>gameLogoSimplified.png</a></li>
+                            <li>Screenshot <small>(2560x1440)</small>:&nbsp;
+                                <a className={"text-link"} target="_blank" rel="noopener noreferrer" href={screenshot1}>s1</a>,&nbsp;
+                                <a className={"text-link"} target="_blank" rel="noopener noreferrer" href={screenshot2}>s2</a>,&nbsp;
+                                <a className={"text-link"} target="_blank" rel="noopener noreferrer" href={screenshot3}>s3</a>,&nbsp;
+                                <a className={"text-link"} target="_blank" rel="noopener noreferrer" href={screenshot4}>s4</a>,&nbsp;
+                                <a className={"text-link"} target="_blank" rel="noopener noreferrer" href={screenshot5}>s5</a>,&nbsp;
+                                <a className={"text-link"} target="_blank" rel="noopener noreferrer" href={screenshot6}>s6</a>,&nbsp;
+                                <a className={"text-link"} target="_blank" rel="noopener noreferrer" href={screenshot7}>s7</a>,&nbsp;
+                                <a className={"text-link"} target="_blank" rel="noopener noreferrer" href={screenshot8}>s8</a>,&nbsp;
+                                <a className={"text-link"} target="_blank" rel="noopener noreferrer" href={screenshot9}>s9</a>,&nbsp;
+                                <a className={"text-link"} target="_blank" rel="noopener noreferrer" href={screenshot10}>s10</a>,&nbsp;
+                                <a className={"text-link"} target="_blank" rel="noopener noreferrer" href={screenshot11}>s11</a>,&nbsp;
+                                <a className={"text-link"} target="_blank" rel="noopener noreferrer" href={screenshot12}>s12</a>
+                            </li>
                         </ul>
                     </div>
                 </div>
