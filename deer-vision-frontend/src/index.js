@@ -56,7 +56,7 @@ class Index extends Component {
                             <br/>
                             Company number: BE 0794.357.843
                             <br/>
-                            Contact: <a className={"text-link"} href={"mailto:contact@deervision.studio"}>contact@deervision.studio</a>
+                            Contact: <a className={"text-link"} href={"mailto:deervision@proton.me"}>deervision@proton.me</a>
                         </div>
                     </footer>
                 </div>

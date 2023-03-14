@@ -77,7 +77,7 @@ class Eula extends Component {
 
                         <div className={"sub-title"}>Contact</div>
                         <Description>
-                            <p>For any questions relating to the Agreement, please contact us at <a className={"text-link"} href={"mailto:contact@deervision.studio"}>contact@deervision.studio</a></p>
+                            <p>For any questions relating to the Agreement, please contact us at <a className={"text-link"} href={"mailto:deervision@proton.me"}>deervision@proton.me</a></p>
                         </Description>
                     </div>
                 </div>
