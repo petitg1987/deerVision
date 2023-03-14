@@ -23,8 +23,7 @@ class PePressKit extends Component {
 
                         <div className={"press-title"}>Assets</div>
                         <ul>
-                            <li><strong>Screenshots</strong> (2560x1440): <a className={"text-link"} target="_blank" rel="noopener noreferrer" href={"/pe-presskit/screenshots.zip"}>screenshots.zip</a></li>
-                            <li><strong>Logo</strong> (1482x400, transparent): <a className={"text-link"} target="_blank" rel="noopener noreferrer" href={"/pe-presskit/gameLogo.png"} download={true}>gameLogo.png</a></li>
+                            <li><strong>Game logo</strong> (1482x400, transparent): <a className={"text-link"} target="_blank" rel="noopener noreferrer" href={"/pe-presskit/gameLogo.png"} download={true}>gameLogo.png</a></li>
                             <li><strong>Capsule</strong> (1280x720): <a className={"text-link"} target="_blank" rel="noopener noreferrer" href={"/pe-presskit/capsule16_9.png"} download={true}>capsule16_9.png</a></li>
                         </ul>
                     </div>
