@@ -162,6 +162,9 @@ class Home extends Component {
                             <img id="screenshots-modal-content" className="screenshots-modal-content" alt="Zoom-in screenshot" />
                         </div>
                     </div>
+
+                    <p><small>⇨ You want to publish content about Photon Engineer ? Feel free to use our <a className={"text-link"} href="/game/pe-press-kit">press kit</a>.</small></p>
+                    <br/>
                 </div>
             </div>
         );

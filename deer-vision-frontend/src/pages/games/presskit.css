@@ -1,0 +1,23 @@
+.press-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+}
+
+.press-content {
+    max-width: 800px;
+    padding: 5px 12px;
+    font-size: 1.0rem;
+    background-color: #363649;
+    border-radius: 10px;
+    margin-bottom: 3rem;
+}
+
+.press-title {
+    font-weight: bold;
+    font-size: 1.5rem;
+    margin-top: 1.5em;
+    margin-bottom: 0.75em;
+}

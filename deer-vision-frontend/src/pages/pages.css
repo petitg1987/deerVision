@@ -3,8 +3,10 @@ h2 {
     margin: 1em auto 0.4em;
     text-align: center;
     color: #ffffff;
-    border-top: 0.15em solid #0089b5;
-    border-bottom: 0.15em solid #0089b5;
+    text-decoration: underline;
+    text-decoration-thickness: 0.15em;
+    text-decoration-color: #0089b5;
+    text-underline-offset: 0.3em;
 }
 
 .text-link:link, .text-link:visited, .text-link:hover, .text-link:active {

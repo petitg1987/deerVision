@@ -11,6 +11,7 @@ import SocialNetwork from "./components/social-network/social-network";
 import Blog from "./pages/blog/blog";
 import Consumption from "./pages/blog/consumption";
 import VisitorCount from "./js/visitor-count";
+import PePressKit from "./pages/games/pe-presskit";
 
 const Admin = React.lazy(() => import('./pages/admin/admin'))
 
@@ -35,6 +36,7 @@ class Index extends Component {
                         <Suspense fallback={<div>Loading...</div>}>
                             <Routes>
                                 <Route exact path='/' element={<Home/>}/>
+                                <Route exact path='/game/pe-press-kit' element={<PePressKit/>}/>
                                 <Route exact path='/blog' element={<Blog/>}/>
                                 <Route exact path='/blog/consumption' element={<Consumption/>}/>
                                 <Route exact path='/about' element={<About/>}/>
