@@ -85,7 +85,8 @@ class Home extends Component {
                         <Description>
                             <p>Gameplay</p>
                             <div className="game-description">
-                                <div>During your journey, you will be confronted with a variety of original and challenging puzzles. Unleash your creativity and problem-solving skills to progress through the game by manipulating the environment and by building interactive blocks that have the ability to alter the course of laser beams.</div><br/>
+                                <div>During your journey, you will be confronted with a variety of original and challenging puzzles. You will be required to form ingenious systems by building blocks having different abilities, such as deflecting and merging laser beams, turning and pushing other blocks.</div><br/>
+                                <div>Unleash your creativity and problem-solving skills to progress through the game, unravel the mysteries of your surroundings and unlock new information as you delve deeper into the unknown.</div><br/>
                                 <div>Each puzzle is unique and provides a new idea. Altogether, more than <strong>90 puzzles</strong> await you, providing several hours of play.</div>
                             </div>
 
