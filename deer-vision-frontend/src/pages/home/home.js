@@ -83,16 +83,16 @@ class Home extends Component {
                     <div className="game-info-container">
 
                         <Description>
-                            <p>Story</p>
-                            <div className="game-description">
-                                <div>In 2075, a space probe saw a strange platform floating in space near Jupiter. The government decided to finance a space mission to send you on this platform to elucidate the mystery.</div><br/>
-                                <div>Your mission is to discover why this platform exists and who built it.</div>
-                            </div>
-
                             <p>Gameplay</p>
                             <div className="game-description">
                                 <div>During your journey, you will be confronted with a variety of original and challenging puzzles. Unleash your creativity and problem-solving skills to progress through the game by manipulating the environment and by building interactive blocks that have the ability to alter the course of laser beams.</div><br/>
                                 <div>Each puzzle is unique and provides a new idea. Altogether, more than <strong>90 puzzles</strong> await you, providing several hours of play.</div>
+                            </div>
+
+                            <p>Story</p>
+                            <div className="game-description">
+                                <div>In 2075, a space probe saw a strange platform floating in space near Jupiter. The government decided to finance a space mission to send you on this platform to elucidate the mystery.</div><br/>
+                                <div>Your mission is to discover why this platform exists and who built it.</div>
                             </div>
                         </Description>
 
