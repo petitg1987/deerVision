@@ -75,7 +75,7 @@ class Home extends Component {
                 <h2>Games</h2>
                 <div className="game-container">
                     <div>
-                        <img src={photonEngineerLogo} className="pe-logo" alt="Photon Engineer Logo" width="320px" height="86px"/>
+                        <img src={photonEngineerLogo} className="pe-logo" alt="Photon Engineer Logo" width="320px" height="150px"/>
                     </div>
                     <div className="game-info-container">
 
