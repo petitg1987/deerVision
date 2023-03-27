@@ -14,9 +14,6 @@ import screenshot6 from '../../images/photon-engineer/screenshot6.png'
 import screenshot7 from '../../images/photon-engineer/screenshot7.png'
 import screenshot8 from '../../images/photon-engineer/screenshot8.png'
 import screenshot9 from '../../images/photon-engineer/screenshot9.png'
-import screenshot10 from '../../images/photon-engineer/screenshot10.png'
-import screenshot11 from '../../images/photon-engineer/screenshot11.png'
-import screenshot12 from '../../images/photon-engineer/screenshot12.png'
 
 class PePressKit extends Component {
     render() {
@@ -54,9 +51,6 @@ class PePressKit extends Component {
                                     <li><a className={"text-link"} target="_blank" rel="noopener noreferrer" href={screenshot7}>screenshot7.png</a></li>
                                     <li><a className={"text-link"} target="_blank" rel="noopener noreferrer" href={screenshot8}>screenshot8.png</a></li>
                                     <li><a className={"text-link"} target="_blank" rel="noopener noreferrer" href={screenshot9}>screenshot9.png</a></li>
-                                    <li><a className={"text-link"} target="_blank" rel="noopener noreferrer" href={screenshot10}>screenshot10.png</a></li>
-                                    <li><a className={"text-link"} target="_blank" rel="noopener noreferrer" href={screenshot11}>screenshot11.png</a></li>
-                                    <li><a className={"text-link"} target="_blank" rel="noopener noreferrer" href={screenshot12}>screenshot12.png</a></li>
                                 </ul>
                             </li>
                         </ul>

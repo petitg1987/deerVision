@@ -16,9 +16,6 @@ import screenshot6 from "../../images/photon-engineer/screenshot6_720p.webp";
 import screenshot7 from "../../images/photon-engineer/screenshot7_720p.webp";
 import screenshot8 from "../../images/photon-engineer/screenshot8_720p.webp";
 import screenshot9 from "../../images/photon-engineer/screenshot9_720p.webp";
-import screenshot10 from "../../images/photon-engineer/screenshot10_720p.webp";
-import screenshot11 from "../../images/photon-engineer/screenshot11_720p.webp";
-import screenshot12 from "../../images/photon-engineer/screenshot12_720p.webp";
 
 class Home extends Component {
 
@@ -148,15 +145,6 @@ class Home extends Component {
                         </div>
                         <div className="game-screenshot">
                             <img className="game-screenshot-img" src={screenshot9} alt="Photon Engineer screenshot 9" onClick={(event) => this.onScreenshotClick(event, 9)} width="1280" height="720" />
-                        </div>
-                        <div className="game-screenshot">
-                            <img className="game-screenshot-img" src={screenshot10} alt="Photon Engineer screenshot 10" onClick={(event) => this.onScreenshotClick(event, 10)} width="1280" height="720" />
-                        </div>
-                        <div className="game-screenshot">
-                            <img className="game-screenshot-img" src={screenshot11} alt="Photon Engineer screenshot 11" onClick={(event) => this.onScreenshotClick(event, 11)} width="1280" height="720" />
-                        </div>
-                        <div className="game-screenshot">
-                            <img className="game-screenshot-img" src={screenshot12} alt="Photon Engineer screenshot 12" onClick={(event) => this.onScreenshotClick(event, 12)} width="1280" height="720" />
                         </div>
 
                         <div id="screenshots-modal" className="content-modal">
