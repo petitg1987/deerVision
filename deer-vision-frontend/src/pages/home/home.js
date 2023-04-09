@@ -84,7 +84,7 @@ class Home extends Component {
                             <div className="game-description">
                                 <div>During your journey, you will be confronted with a variety of original and challenging puzzles. You will be required to form ingenious systems by building blocks having different abilities, such as deflecting and merging laser beams, turning and pushing other blocks.</div><br/>
                                 <div>Unleash your creativity and problem-solving skills to progress through the game, unravel the mysteries of your surroundings and unlock new information as you delve deeper into the unknown.</div><br/>
-                                <div>Each puzzle is unique and provides a new idea. Altogether, more than <strong>90 puzzles</strong> await you, providing several hours of play.</div>
+                                <div>The laser puzzles are interspersed with sliding puzzles that require strategic moves to solve.</div>
                             </div>
 
                             <p>Story</p>
@@ -153,11 +153,26 @@ class Home extends Component {
                     </div>
 
                     <Description>
+                        <p>Further details</p>
+                        <div className="game-description">
+                            <ul>
+                                <li>40 levels/platforms to discover.</li>
+                                <li>95 puzzles (45 puzzles with lasers and 50 sliding puzzles).</li>
+                                <li>15 puzzle achievements that extend the game experience.</li>
+                                <li>Each puzzle is unique and provides a new idea.</li>
+                                <li>The further you go, the more complex mechanisms you'll encounter.</li>
+                                <li>Lasers are all marked with symbols for colorblind players.</li>
+                            </ul>
+                        </div>
+                    </Description>
+                    <br/>
+
+                    <Description>
                         <p>Influencers & Press</p>
                         <div className="game-description">
                             <ul>
-                                <li>Steam keys for influencers and press: <a className={"text-link"} target="_blank" rel="noopener noreferrer" href="https://www.keymailer.co/g/games/169095">Keymailer</a> / <a className={"text-link"} target="_blank" rel="noopener noreferrer" href="https://woovit.com/offer/photon-engineer/">Woovit</a></li>
-                                <li>Feel free to use our <a className={"text-link"} href="/games/pe-press-kit">press kit</a> as you wish</li>
+                                <li>Steam keys for influencers and press: <a className={"text-link"} target="_blank" rel="noopener noreferrer" href="https://www.keymailer.co/g/games/169095">Keymailer</a> / <a className={"text-link"} target="_blank" rel="noopener noreferrer" href="https://woovit.com/offer/photon-engineer/">Woovit</a>.</li>
+                                <li>Feel free to use our <a className={"text-link"} href="/games/pe-press-kit">press kit</a> as you wish.</li>
                             </ul>
                         </div>
                     </Description>
