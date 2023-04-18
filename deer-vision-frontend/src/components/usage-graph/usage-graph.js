@@ -8,7 +8,7 @@ class UsageGraph extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {dayValueSelected: '15', includeSnapshotVal: false, uniqueCountVal: false};
+        this.state = {dayValueSelected: '15', includeSnapshotVal: false, uniqueCountVal: true};
         this.usageChart = null;
         this.handleDaysChange = this.handleDaysChange.bind(this);
         this.handleVersionChange = this.handleVersionChange.bind(this);
