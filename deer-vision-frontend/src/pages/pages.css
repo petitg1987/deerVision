@@ -3,19 +3,23 @@ h2 {
     margin: 1em auto 0.4em;
     text-align: center;
     color: #ffffff;
+    letter-spacing: .5rem;
     text-decoration: underline;
-    text-decoration-thickness: 0.15em;
+    text-decoration-thickness: 0.08em;
     text-decoration-color: #0089b5;
-    text-underline-offset: 0.3em;
+    text-underline-offset: 0.2em;
+    text-transform: uppercase;
 }
 
 .text-link:link, .text-link:visited, .text-link:hover, .text-link:active {
-    color: #0089b5;
+    color: #ffffff;
+    text-decoration-color: #0089b5;
+    text-decoration-thickness: 0.1rem;
     text-decoration-style: solid;
 }
 
 .text-link:hover {
-    color: #ffffff;
+    text-decoration-color: #ffffff;
 }
 
 .sub-title {

@@ -5,86 +5,13 @@ import blogConsumptionStartImg from "../../images/blog/blogConsumptionStart.webp
 import blogConsumptionDeviceImg from "../../images/blog/blogConsumptionDevice.webp"
 import blogConsumptionSettingsImg from "../../images/blog/blogConsumptionSettings.webp"
 import blogConsumptionSceneImg from "../../images/blog/blogConsumptionScene.webp"
-import Chart from "chart.js/auto";
 
-class Consumption extends Component {
-
-    constructor(props) {
-        super(props);
-        this.scene1Chart = null;
-        this.scene1V2Chart = null;
-    }
-
-    refreshChart() {
-        let ctx = document.getElementById("resultScene1");
-        if (this.scene1Chart) {
-            this.scene1Chart.destroy();
-        }
-        this.scene1Chart = new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: ["40 FPS", "60 FPS", "90 FPS", "120 FPS", "140 FPS", "200 FPS"],
-                datasets: [{
-                    data: ["157", "157", "157", "157", "157", "157"],
-                    label: "Computer idle", borderColor: "#aaaaaa", backgroundColor : "#aaaaaa", fill: true, lineTension: 0
-                }, {
-                    data: ["21", "28", "93", "115", "134", "186"],
-                    label: "Game only (4K/high)",
-                    borderColor: "#7bff00", backgroundColor : "#7bff00", fill: true, lineTension: 0
-                }]
-            },
-            options: {
-                maintainAspectRatio: false,
-                animation: true,
-                scales: {
-                    y: {min: 0, ticks: {stepSize: 1, callback: function(value) {return value + ' watts';}}},
-                    x: {stacked: false}
-                },
-                plugins: {legend: {display: true}, title: {display: false,}}
-            }
-        });
-
-        let ctxV2 = document.getElementById("resultScene1v2");
-        if (this.scene1V2Chart) {
-            this.scene1V2Chart.destroy();
-        }
-        this.scene1V2Chart = new Chart(ctxV2, {
-            type: 'bar',
-            data: {
-                labels: ["40 FPS", "60 FPS", "90 FPS", "120 FPS", "140 FPS", "200 FPS"],
-                datasets: [{
-                    data: ["157", "157", "157", "157", "157", "157"],
-                    label: "Computer idle", borderColor: "#aaaaaa", backgroundColor : "#aaaaaa", fill: true, lineTension: 0
-                }, {
-                    data: ["21", "28", "93", "115", "134", "186"],
-                    label: "Game only (4K/high)",
-                    borderColor: "#7bff00", backgroundColor : "#7bff00", fill: true, lineTension: 0
-                }, {
-                    data: ["7", "10", "16", "19", "23", "74"],
-                    label: "Game only (2K/medium)",
-                    borderColor: "#ff007b", backgroundColor : "#ff007b", fill: true, lineTension: 0
-                }]
-            },
-            options: {
-                maintainAspectRatio: false,
-                animation: true,
-                scales: {
-                    y: {min: 0, ticks: {stepSize: 1, callback: function(value) {return value + ' watts';}}},
-                    x: {stacked: false}
-                },
-                plugins: {legend: {display: true}, title: {display: false,}}
-            }
-        });
-    }
-
-    componentDidMount() {
-        this.refreshChart();
-    }
+class BalancingPuzzles extends Component {
 
     render() {
         return (
             <div>
-                <h2>Electricity consumption of my game</h2>
+                <h2>Balancing the puzzles in my game</h2>
                 <div className="blog-container">
                     <div className="blog-content">
                         <img className={"blog-img-trans"} src={blogConsumptionStartImg} width={341} height={512} alt={"An electric pole"}/>
@@ -169,4 +96,4 @@ class Consumption extends Component {
     }
 }
 
-export default Consumption;
+export default BalancingPuzzles;
