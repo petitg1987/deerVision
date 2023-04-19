@@ -36,7 +36,7 @@ class BalancingPuzzles extends Component {
 
                         <div className={"blog-sub-title"}>Balancing technique #1: self-evaluation</div>
                         <p>Self-evaluating puzzles as a solo game developer is clearly not an easy or effective task. However, depending on the puzzle type, it is still possible to make a rough evaluation of its difficulty.</p>
-                        <p>Two techniques are available to make an approximate evaluation of the difficulty for <b>sliding puzzles</b>:</p>
+                        <p>I found two techniques to make an approximate evaluation of the difficulty for the <b>sliding puzzles</b>:</p>
                         <ul>
                             <li>Sliding puzzles require a certain number of moves to complete, which can be a useful but imperfect indicator of their difficulty. The number of pieces that can be moved also contributes to the difficulty of the puzzle: the more possibilities there are, the more complex the puzzle is likely to be.</li>
                             <li>It took me about two years to develop the game. As a result, I had the opportunity to partially forget the solutions to the early puzzles and experience them as if they were designed by someone else.</li>
@@ -50,7 +50,7 @@ class BalancingPuzzles extends Component {
 
                         <div className={"blog-sub-title"}>Balancing technique #3: gather statistics</div>
                         <p>Instead of requesting feedback from players about the difficulty of a puzzle, I came up with a new idea: add timing statistics. I implemented a time measurement feature to track the time taken to solve each puzzle, and then sent the statistics to a server. Finally, I aggregated the results to gain a clearer understanding of the difficulties of each puzzle.</p>
-                        <p>Here is the result for one puzzle:</p>
+                        <p>Here is the result for one puzzle of the level 15:</p>
                         <p><img className={"blog-img"} src={blogBalancingStats1Img} width={600} height={349} alt={"Puzzle statistics 1 - Photon Engineer"}/></p>
                         <p>This graph shows that 1 player found the solution to the puzzle in 3 min, 3 players found the solution in 4 minutes, etc.</p>
 
@@ -66,7 +66,7 @@ class BalancingPuzzles extends Component {
 
                         <p><img className={"blog-img"} src={blogBalancingBlockRotationImg} width={600} height={349} alt={"Block rotation - Photon Engineer"}/></p>
 
-                        <p>Essentially, the gameplay issue with the block rotation in my 3D laser puzzles interfered with all the statistics I had gathered for them.</p>
+                        <p>Essentially, the gameplay issue with the block rotation in my 3D laser puzzles interfered with all the statistics I had gathered.</p>
                         <p><u>Note</u>: I finally fixed this rotation problem with a better tutorial and a new system to make the block run smarter.</p>
 
                         <div className={"blog-sub-title"}>Conclusion</div>
