@@ -42,6 +42,8 @@
     font-size: 1.5rem;
     margin-top: 1.5em;
     margin-bottom: 0.75em;
+    text-decoration: underline;
+    text-decoration-style: dotted;
 }
 
 .blog-preview-main {

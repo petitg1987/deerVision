@@ -45,7 +45,12 @@ class BalancingPuzzles extends Component {
                         <p></p>
                         <p>However, both of these techniques do not work with laser puzzles. This is because this type of puzzle offers an infinite number of possibilities to place the blocks. Furthermore, I found that my brain remembered laser puzzles better than sliding puzzles, perhaps because they are 3D and took me longer to create.</p>
 
-                        <div className={"blog-sub-title"}>Balancing technique #2: ask players</div>
+                        <div className={"blog-sub-title"}>Balancing technique #2: find players</div>
+                        <p>One obvious way to evaluate the difficulty of puzzles is to have people play the game and provide feedback on each puzzle. This technique is probably one of the best, but it can be difficult to implement. Since this is my first game, the players don't know me and most of them are not interested in playing a game in development. Additionally, it may take some time for them to provide feedback.</p>
+                        <p>I found some people but I had the feeling that it was not sufficient to have a good balancing in all my puzzles.</p>
+
+                        <div className={"blog-sub-title"}>Balancing technique #3: statistics</div>
+                        <p></p>
 
                         <p></p>
                         <p></p>
