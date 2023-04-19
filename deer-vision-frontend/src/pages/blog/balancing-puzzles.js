@@ -68,10 +68,10 @@ class BalancingPuzzles extends Component {
                         <p><img className={"blog-img"} src={blogBalancingBlockRotationImg} width={600} height={349} alt={"Block rotation - Photon Engineer"}/></p>
 
                         <p>Essentially, the gameplay issue with the block rotation in my 3D laser puzzles interfered with all the statistics I had gathered for them.</p>
-                        <p><u>Note</u>: I finally fixed this problem with a better tutorial and a new system to make the block run smarter.</p>
+                        <p><u>Note</u>: I finally fixed this rotation problem with a better tutorial and a new system to make the block run smarter.</p>
 
                         <div className={"blog-sub-title"}>Conclusion</div>
-
+                        <p>There isn't a one-size-fits-all technique for balancing puzzle difficulty. I've found that a combination of statistics to gather a global perspective, and gameplay recordings to gather more detailed feedback from a smaller group of players, works best for me.</p>
 
                         <p></p>
                     </div>
