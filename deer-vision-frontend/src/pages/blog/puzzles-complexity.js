@@ -66,8 +66,9 @@ class PuzzlesComplexity extends Component {
 
                         <p><img className={"blog-img"} src={blogPuzzlesComplexityBlockRotationImg} width={600} height={349} alt={"Block rotation - Photon Engineer"}/></p>
 
-                        <p>Essentially, the gameplay issue with the block rotation in my 3D laser puzzles interfered with all the statistics I had gathered.</p>
-                        <p><u>Note</u>: I finally fixed this rotation problem with a better tutorial and a new system to make the block run smarter.</p>
+                        <p>The gameplay issue with the block rotation in my 3D laser puzzles interfered with all the statistics I had gathered. I finally fixed this rotation problem with a better tutorial and a new system to make the block turn smarter. I now have more confidence in my statistics to assess the difficulty of my puzzles.</p>
+
+                        <p>When my game reached a wider audience, I had the opportunity to see streamers and YouTubers playing it. However, I noticed that some players didn't understand certain parts of the gameplay, and this had a minor impact on the statistics. As I continued, I made improvements to the gameplay and started getting more accurate statistics. The accuracy of the statistics allowed me to make small adjustments to the puzzles and achieve better balancing.</p>
 
                         <div className={"blog-sub-title"}>Conclusion</div>
                         <p>There isn't a one-size-fits-all technique to evaluate the difficulty of a puzzle. I've found that a combination of statistics to gather a global perspective, and gameplay recordings to gather more detailed feedback from a smaller group of players, works best for me.</p>
