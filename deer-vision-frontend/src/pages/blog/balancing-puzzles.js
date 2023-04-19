@@ -60,7 +60,11 @@ class BalancingPuzzles extends Component {
 
                         <p>I was quite pleased with these statistics and believed that it would be the perfect solution for balancing puzzles in my game. However, I later discovered that I was mistaken...</p>
 
-                        <div className={"blog-sub-title"}>Balancing technique #4: game recording</div>
+                        <div className={"blog-sub-title"}>Balancing technique #4: gameplay recording</div>
+                        <p>When my game was almost finished, some people offered to test it and eventually record videos of their gameplay if I need them. I didn't ask the players to record my game since I felt it would take up their time and be unnecessary given that I already had statistics recording.</p>
+                        <p>Fortunately, some generous testers recorded gameplay footage and I discovered a major flaw in my statistics. It became clear that around 50% of the players were struggling with rotating the blocks in the 3D world and not with solving the puzzle. To provide context, players have the ability to rotate a block 90 degrees on the horizontal, vertical and depth axes. Through these recordings, I realized that not all players were able to understand how the rotation worked and were randomly trying to rotate the blocks in any direction, hoping to get the correct orientation.</p>
+
+                        <div className={"blog-sub-title"}>Conclusion</div>
 
                         <p></p>
                     </div>
