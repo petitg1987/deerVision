@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import "../pages.css"
 import "./blog.css"
 import blogConsumptionImg from "../../images/blog/blogConsumption.webp"
-import blogBalancingImg from "../../images/blog/blogBalancing.webp"
+import blogPuzzlesComplexityImg from "../../images/blog/blogPuzzlesComplexity.webp"
 
 class Blog extends Component {
     render() {
@@ -12,10 +12,10 @@ class Blog extends Component {
                 <div className="blog-container">
 
                     <div className="blog-preview">
-                        <div className={"blog-title"}><a className={"text-link"} href={"/blog/balancing-puzzles"}>The science of difficulty: how I balanced puzzles in my game</a></div>
+                        <div className={"blog-title"}><a className={"text-link"} href={"/blog/puzzles-complexity"}>How I evaluated the complexity of the puzzles in my game</a></div>
                         <div className={"blog-preview-main"}>
-                            <img className={"blog-img"} src={blogBalancingImg} width={130} height={130} alt={"Puzzle made of wood"}/>
-                            <div>If you're a fan of puzzle games and curious about the behind-the-scenes work of game development, this blog is for you. Discover how I tackled the challenge of balancing puzzles in my game.</div>
+                            <img className={"blog-img"} src={blogPuzzlesComplexityImg} width={130} height={130} alt={"Puzzle made of wood"}/>
+                            <div>If you're a fan of puzzle games and curious about the behind-the-scenes work of game development, this blog is for you. Discover how I tackled the challenge of evaluating the complexity of the puzzles in my game.</div>
                         </div>
                         <div className={"blog-metadata"}>date: 2023-04-19 | author: Grégory Petit</div>
                     </div>

@@ -12,7 +12,7 @@ import Blog from "./pages/blog/blog";
 import Consumption from "./pages/blog/consumption";
 import VisitorCount from "./js/visitor-count";
 import PePressKit from "./pages/games/pe-presskit";
-import BalancingPuzzles from "./pages/blog/balancing-puzzles";
+import PuzzlesComplexity from "./pages/blog/puzzles-complexity";
 
 const Admin = React.lazy(() => import('./pages/admin/admin'))
 
@@ -40,7 +40,7 @@ class Index extends Component {
                                 <Route exact path='/games/pe-press-kit' element={<PePressKit/>}/>
                                 <Route exact path='/blog' element={<Blog/>}/>
                                 <Route exact path='/blog/consumption' element={<Consumption/>}/>
-                                <Route exact path='/blog/balancing-puzzles' element={<BalancingPuzzles/>}/>
+                                <Route exact path='/blog/puzzles-complexity' element={<PuzzlesComplexity/>}/>
                                 <Route exact path='/about' element={<About/>}/>
                                 <Route exact path='/privacy' element={<Privacy/>}/>
                                 <Route exact path='/eula' element={<Eula/>}/>
