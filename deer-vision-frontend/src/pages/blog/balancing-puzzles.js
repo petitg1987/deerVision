@@ -36,7 +36,16 @@ class BalancingPuzzles extends Component {
                         <p>This is a 2D puzzle game where the objective is to use the red pieces to move the yellow piece to its target.</p>
 
                         <div className={"blog-sub-title"}>Balancing technique #1: self-evaluation</div>
+                        <p>Self-evaluating puzzles as a solo game developer is clearly not an easy or effective task. However, depending on the puzzle type, it is still possible to make a rough evaluation of its difficulty.</p>
+                        <p>Two techniques are available to make an approximate evaluation of the difficulty for <b>sliding puzzles</b>:</p>
+                        <ul>
+                            <li>Sliding puzzles require a certain number of moves to complete, which can be a useful but imperfect indicator of their difficulty. The number of pieces that can be moved also contributes to the difficulty of the puzzle: the more possibilities there are, the more complex the puzzle is likely to be.</li>
+                            <li>It took me about two years to develop the game. As a result, I had the opportunity to partially forget the solutions to the early puzzles and experience them as if they were designed by someone else.</li>
+                        </ul>
+                        <p></p>
+                        <p>However, both of these techniques do not work with laser puzzles. This is because this type of puzzle offers an infinite number of possibilities to place the blocks. Furthermore, I found that my brain remembered laser puzzles better than sliding puzzles, perhaps because they are 3D and took me longer to create.</p>
 
+                        <div className={"blog-sub-title"}>Balancing technique #2: ask players</div>
 
                         <p></p>
                         <p></p>
