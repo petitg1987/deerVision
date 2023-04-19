@@ -4,9 +4,8 @@ import "./blog.css"
 import blogBalancingStartImg from "../../images/blog/blogBalancingStart.webp"
 import blogBalancingSlidingPuzzleImg from "../../images/blog/blogBalancingSlidingPuzzle.gif"
 import blogBalancingLaserPuzzleImg from "../../images/blog/blogBalancingLaserPuzzle.gif"
-import blogConsumptionDeviceImg from "../../images/blog/blogConsumptionDevice.webp"
-import blogConsumptionSettingsImg from "../../images/blog/blogConsumptionSettings.webp"
-import blogConsumptionSceneImg from "../../images/blog/blogConsumptionScene.webp"
+import blogBalancingStats1Img from "../../images/blog/blogBalancingStats1.webp"
+import blogBalancingStats2Img from "../../images/blog/blogBalancingStats2.webp"
 
 class BalancingPuzzles extends Component {
 
@@ -49,81 +48,18 @@ class BalancingPuzzles extends Component {
                         <p>One obvious way to evaluate the difficulty of puzzles is to have people play the game and provide feedback on each puzzle. This technique is probably one of the best, but it can be difficult to implement. Since this is my first game, the players don't know me and most of them are not interested in playing a game in development. Additionally, it may take some time for them to provide feedback.</p>
                         <p>I found some people but I had the feeling that it was not sufficient to have a good balancing in all my puzzles.</p>
 
-                        <div className={"blog-sub-title"}>Balancing technique #3: statistics</div>
-                        <p></p>
+                        <div className={"blog-sub-title"}>Balancing technique #3: gather statistics</div>
+                        <p>Instead of requesting feedback from players about the difficulty of a puzzle, I came up with a new idea: add timing statistics. I implemented a time measurement feature to track the time taken to solve each puzzle, and then sent the statistics to a server. Finally, I aggregated the results to gain a clearer understanding of the difficulties of each puzzle.</p>
+                        <p>Here is the result for one puzzle:</p>
+                        <p><img className={"blog-img"} src={blogBalancingStats1Img} width={600} height={349} alt={"Puzzle statistics 1 - Photon Engineer"}/></p>
+                        <p>This graph shows that 1 player found the solution to the puzzle in 3 min, 3 players found the solution in 4 minutes, etc.</p>
 
-                        <p></p>
-                        <p></p>
-                        <p></p>
-                        <p></p>
-                        <p></p>
-                        <p></p>
-                        <p></p>
-                        <p></p>
-                        <p></p>
-                        <p></p>
-                        <p></p>
-                        <p></p>
-                        <p></p>
-                        <p></p>
-                        <p></p>
-                        <p></p>
-                        <p></p>
-                        <p></p>
-                        <p></p>
-                        <p></p>
-                        <p></p>
-                        <p></p>
-                        <p></p>
-                        <p>Measurement device:</p>
-                        <ul>
-                            <li>I plug my computer on a device measuring the electricity consumption in Watt. Nothing fancy here.
-                                <img className={"blog-img"} src={blogConsumptionDeviceImg} width={450} height={225} alt={"device to measure the electricity consumption"}/>
-                            </li>
-                            <li>Consumption of my computer idle: ~157 Watts</li>
-                        </ul>
+                        <p>Here is another graph:</p>
+                        <p><img className={"blog-img"} src={blogBalancingStats2Img} width={600} height={349} alt={"Puzzle statistics 2 - Photon Engineer"}/></p>
+                        <p>This graph shows a significant difference in the resolution time of the puzzles. It appears that some players can find the solution in about 9 minutes while others take more than 30 minutes. This result is concerning and indicates that I should review this particular puzzle.</p>
 
-                        <div className={"blog-sub-title"}>Game settings</div>
-                        <p>The game allows you to configure many settings that affect both performance and image quality. Here are the settings I used during my tests:</p>
-                        <ul>
-                            <li>Screen resolution: 4k, 2K, 1080p, etc.</li>
-                            <li>FPS limit: limits the number of frames per second (FPS) from 40 to 200</li>
-                            <li>Gamma: change the global brightness of the game</li>
-                            <li>Graphics quality impacting mainly the shadow and lighting: low, medium, high</li>
-                        </ul>
-                        <p><img className={"blog-img"} src={blogConsumptionSettingsImg} width={600} height={383} alt={"configuration des paramètres du jeu"}/></p>
+                        <p>I was quite pleased with these statistics and believed that it would be the perfect solution for balancing puzzles in my game. However, I later discovered that I was mistaken.</p>
 
-                        <p>Let's pick a scene from my puzzle game and start gathering data with different settings. Here is the 3D scene of the game I used to perform the measurements:</p>
-                        <p><img className={"blog-img"} src={blogConsumptionSceneImg} width={600} height={383} alt={"game scene 1"}/></p>
-
-                        <div className={"blog-sub-title"}>Results</div>
-                        <p>I measured the electricity consumption of the game with a <strong>4K resolution</strong> in <strong>high quality</strong> and with different refresh rate: 40 FPS, 60 FPS, 90 FPS, 120 FPS, 140 FPS and 200 FPS. Here are the results:</p>
-                        <div className={"graph-container"}><canvas id="resultScene1"/></div>
-                        <p></p>
-                        <p>I didn't really know what to expect but one thing surprised me at lot: the game consumes almost 9 times more electricity at 200 FPS compared to 40 FPS.</p>
-
-                        <p></p>
-                        <p>Let's try another set of measurements with the following game settings: <strong>2K resolution</strong> in <strong>medium quality</strong>:</p>
-                        <div className={"graph-container"}><canvas id="resultScene1v2"/></div>
-                        <p></p>
-                        These results blew me away. The difference in image quality between both configurations is not easy to notice, but the difference in electricity consumption is quite significant.
-                        <p><small><u>Disclaimer</u>: these results are clearly specific to my configuration and to the game. I guess a lot of factors can produce very different results: laptop vs. desktop computer, game with CPU vs. GPU bottlenecks, etc.</small></p>
-
-                        <div className={"blog-sub-title"}>More experiments</div>
-                        <p>I try more measurements but without interesting results:</p>
-                        <ul>
-                            <li>Brightness/gamma settings: insignificant change in consumption</li>
-                            <li>Game in 2K fullscreen and 2K windowed: insignificant change in consumption</li>
-                            <li>I try to stress more the CPU with game physics: minor change in consumption</li>
-                            <li>Use different scenes from the game: similar results compared to those above</li>
-                        </ul>
-                        <p></p>
-                        <p>It seems that only the amount of work provided to the GPU significantly affects the overall power consumption.</p>
-                        <p>I also measured other topics related to gaming:</p>
-                        <ul>
-                            <li>Watch a stream on Twitch: <strong>~3 watts</strong></li>
-                            <li>Record a video with OBS: <strong>~42 watts</strong></li>
-                        </ul>
                         <p></p>
                     </div>
                 </div>
