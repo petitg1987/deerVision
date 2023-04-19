@@ -56,9 +56,11 @@ class BalancingPuzzles extends Component {
 
                         <p>Here is another graph:</p>
                         <p><img className={"blog-img"} src={blogBalancingStats2Img} width={600} height={349} alt={"Puzzle statistics 2 - Photon Engineer"}/></p>
-                        <p>This graph shows a significant difference in the resolution time of the puzzles. It appears that some players can find the solution in about 9 minutes while others take more than 30 minutes. This result is concerning and indicates that I should review this particular puzzle.</p>
+                        <p>This graph shows a significant difference in the resolution time of the puzzle in level 20. It appears that some players can find the solution in about 9 minutes while others take more than 30 minutes. This result is concerning and indicates that I should review this particular puzzle.</p>
 
-                        <p>I was quite pleased with these statistics and believed that it would be the perfect solution for balancing puzzles in my game. However, I later discovered that I was mistaken.</p>
+                        <p>I was quite pleased with these statistics and believed that it would be the perfect solution for balancing puzzles in my game. However, I later discovered that I was mistaken...</p>
+
+                        <div className={"blog-sub-title"}>Balancing technique #4: game recording</div>
 
                         <p></p>
                     </div>
