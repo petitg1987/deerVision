@@ -21,10 +21,10 @@ class BalancingPuzzles extends Component {
                         <p className={"center"}>My experience with balancing puzzles in my game may be limited, but I've learned a lot in the process and I am excited to share my insights with you.</p>
 
                         <div className={"blog-sub-title"}>Disclaimer</div>
-                        <p>While I don't claim that the puzzles in my games are flawlessly balanced, I have gained valuable experience by making mistakes, which I am eager to share with you. In addition, I receive player stats as my game is released, giving me a comprehensive view of the puzzle difficulty.</p>
+                        <p>While I don't claim that the puzzles in my games (<a className={"text-link"} href={"https://store.steampowered.com/app/2305110/Photon_Engineer/"} target={"_blank"} rel="noreferrer">Photon Engineer</a>) are flawlessly balanced, I have gained valuable experience by making mistakes, which I am eager to share with you. In addition, I receive player stats as my game is released, giving me a comprehensive view of the puzzle difficulty.</p>
 
                         <div className={"blog-sub-title"}>Game details</div>
-                        <p>First of all, it's important that I provide you with some key details about my puzzle game (<a className={"text-link"} href={"https://store.steampowered.com/app/2305110/Photon_Engineer/"} target={"_blank"} rel="noreferrer">Photon Engineer</a>).</p>
+                        <p>First of all, I'd like to provide some key details about my puzzle game for those who haven't played it.</p>
                         <p>The game features two distinct categories of puzzles, each of which presents a unique challenge to me in terms of balancing.</p>
 
                         <p><b>Laser puzzles:</b></p>
