@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import "../pages.css"
 import "./blog.css"
-import blogConsumptionStartImg from "../../images/blog/blogConsumptionStart.webp"
+import blogBalancingStartImg from "../../images/blog/blogBalancingStart.webp"
+import blogBalancingSlidingPuzzleImg from "../../images/blog/blogBalancingSlidingPuzzle.gif"
+import blogBalancingLaserPuzzleImg from "../../images/blog/blogBalancingLaserPuzzle.gif"
 import blogConsumptionDeviceImg from "../../images/blog/blogConsumptionDevice.webp"
 import blogConsumptionSettingsImg from "../../images/blog/blogConsumptionSettings.webp"
 import blogConsumptionSceneImg from "../../images/blog/blogConsumptionScene.webp"
@@ -14,30 +16,50 @@ class BalancingPuzzles extends Component {
                 <h2>Balancing the puzzles in my game</h2>
                 <div className="blog-container">
                     <div className="blog-content">
-                        <img className={"blog-img-trans"} src={blogConsumptionStartImg} width={341} height={512} alt={"An electric pole"}/>
-                        <p className={"center"}><big>Have you ever wondered how much electricity a video game consumes?</big></p>
-                        <p className={"center"}>My brain asks these kinds of questions and I need an answer!</p>
+                        <img className={"blog-img-trans"} src={blogBalancingStartImg} width={341} height={339} alt={"Rubiks cube"}/>
+                        <p className={"center"}><big>Balancing puzzles in my game: what I've learned</big></p>
+                        <p className={"center"}>My experience with balancing puzzles in my game may be limited, but I've learned a lot in the process and I am excited to share my insights with you.</p>
 
-                        <div className={"blog-sub-title"}>Setup</div>
-                        <p>Let's start by checking the setup I used to measure the electricity consumption of my puzzle game.</p>
+                        <div className={"blog-sub-title"}>Disclaimer</div>
+                        <p>While I don't claim that the puzzles in my games are flawlessly balanced, I have gained valuable experience by making mistakes, which I am eager to share with you. In addition, I receive player stats as my game is released, giving me a comprehensive view of the puzzle difficulty.</p>
+
+                        <div className={"blog-sub-title"}>Game details</div>
+                        <p>First of all, it's important that I provide you with some key details about my puzzle game (<a className={"text-link"} href={"https://store.steampowered.com/app/2305110/Photon_Engineer/"} target={"_blank"} rel="noreferrer">Photon Engineer</a>).</p>
+                        <p>The game features two distinct categories of puzzles, each of which presents a unique challenge to me in terms of balancing.</p>
+
+                        <p><b>Laser puzzles:</b></p>
+                        <p><img className={"blog-img"} src={blogBalancingLaserPuzzleImg} width={600} height={337} alt={"laser puzzle - Photon Engineer"}/></p>
+                        <p>The player can build different blocks, each with unique features such as delaying a laser or pushing another block. The objective of the game is to redirect lasers into receptors and match a specific pattern.</p>
+
+                        <p><b>Sliding puzzles:</b></p>
+                        <p><img className={"blog-img"} src={blogBalancingSlidingPuzzleImg} width={600} height={337} alt={"sliding puzzle - Photon Engineer"}/></p>
+                        <p>This is a 2D puzzle game where the objective is to use the red pieces to move the yellow piece to its target.</p>
+
+                        <div className={"blog-sub-title"}>Balancing technique #1: self-evaluation</div>
+
 
                         <p></p>
-                        <p>Desktop computer:</p>
-                        <ul>
-                            <li><b>CPU</b>: Intel i7-8700K CPU @ 3.70GHz</li>
-                            <li><b>Graphics card</b>: Nvidia GeForce 2080 Super</li>
-                            <li><b>RAM</b>: 32Go</li>
-                            <li><b>Disk</b>: 980 PRO PCle 4.0 NVMe M.2 SSD</li>
-                            <li><b>Screens</b>: two with 4K resolution</li>
-                        </ul>
-
                         <p></p>
-                        <p>Game (<a className={"text-link"} href={"https://store.steampowered.com/app/2305110/Photon_Engineer/"} target={"_blank"} rel="noreferrer">Photon Engineer</a>):</p>
-                        <ul>
-                            <li>3D environment with minimalist design</li>
-                            <li>Bottleneck on the GPU (CPU usage: ~20%)</li>
-                        </ul>
-
+                        <p></p>
+                        <p></p>
+                        <p></p>
+                        <p></p>
+                        <p></p>
+                        <p></p>
+                        <p></p>
+                        <p></p>
+                        <p></p>
+                        <p></p>
+                        <p></p>
+                        <p></p>
+                        <p></p>
+                        <p></p>
+                        <p></p>
+                        <p></p>
+                        <p></p>
+                        <p></p>
+                        <p></p>
+                        <p></p>
                         <p></p>
                         <p>Measurement device:</p>
                         <ul>

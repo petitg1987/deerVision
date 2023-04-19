@@ -128,7 +128,7 @@ class Consumption extends Component {
                             <li>Gamma: change the global brightness of the game</li>
                             <li>Graphics quality impacting mainly the shadow and lighting: low, medium, high</li>
                         </ul>
-                        <p><img className={"blog-img"} src={blogConsumptionSettingsImg} width={600} height={383} alt={"configuration des paramètres du jeu"}/></p>
+                        <p><img className={"blog-img"} src={blogConsumptionSettingsImg} width={600} height={383} alt={"game settings"}/></p>
 
                         <p>Let's pick a scene from my puzzle game and start gathering data with different settings. Here is the 3D scene of the game I used to perform the measurements:</p>
                         <p><img className={"blog-img"} src={blogConsumptionSceneImg} width={600} height={383} alt={"game scene 1"}/></p>
