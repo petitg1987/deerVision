@@ -18,7 +18,6 @@ class BalancingPuzzles extends Component {
                     <div className="blog-content">
                         <img className={"blog-img-trans"} src={blogBalancingStartImg} width={341} height={339} alt={"Rubiks cube"}/>
                         <p className={"center"}><big>Balancing puzzles in my game: what I've learned</big></p>
-                        <p className={"center"}>My experience with balancing puzzles in my game may be limited, but I've learned a lot in the process and I am excited to share my insights with you.</p>
 
                         <div className={"blog-sub-title"}>Disclaimer</div>
                         <p>While I don't claim that the puzzles in my games (<a className={"text-link"} href={"https://store.steampowered.com/app/2305110/Photon_Engineer/"} target={"_blank"} rel="noreferrer">Photon Engineer</a>) are flawlessly balanced, I have gained valuable experience by making mistakes, which I am eager to share with you. In addition, I receive player stats as my game is released, giving me a comprehensive view of the puzzle difficulty.</p>
