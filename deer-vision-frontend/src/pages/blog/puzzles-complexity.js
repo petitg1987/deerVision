@@ -20,7 +20,7 @@ class PuzzlesComplexity extends Component {
                         <p className={"center"}><big>How I evaluated the complexity of the puzzles in my game</big></p>
 
                         <div className={"blog-sub-title"}>Disclaimer</div>
-                        <p>While I don't claim that the puzzles in my games (<a className={"text-link"} href={"https://store.steampowered.com/app/2305110?utm_source=website"} target={"_blank"} rel="noreferrer">Photon Engineer</a>) are flawlessly balanced, I have gained valuable experience by making mistakes, which I am eager to share with you.</p>
+                        <p>While I don't claim that the puzzles in my games (<a className={"text-link"} href={"https://store.steampowered.com/app/2305110?utm_source=website-b2"} target={"_blank"} rel="noreferrer">Photon Engineer</a>) are flawlessly balanced, I have gained valuable experience by making mistakes, which I am eager to share with you.</p>
 
                         <div className={"blog-sub-title"}>Game details</div>
                         <p>First of all, I'd like to provide some key details about my puzzle game for those who haven't played it.</p>

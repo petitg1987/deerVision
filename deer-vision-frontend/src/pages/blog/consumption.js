@@ -105,7 +105,7 @@ class Consumption extends Component {
                         </ul>
 
                         <p></p>
-                        <p>Game (<a className={"text-link"} href={"https://store.steampowered.com/app/2305110/Photon_Engineer/"} target={"_blank"} rel="noreferrer">Photon Engineer</a>):</p>
+                        <p>Game (<a className={"text-link"} href={"https://store.steampowered.com/app/2305110?utm_source=website-b1"} target={"_blank"} rel="noreferrer">Photon Engineer</a>):</p>
                         <ul>
                             <li>3D environment with minimalist design</li>
                             <li>Bottleneck on the GPU (CPU usage: ~20%)</li>
