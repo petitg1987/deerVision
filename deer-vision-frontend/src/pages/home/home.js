@@ -7,6 +7,7 @@ import SocialNetwork from "../../components/social-network/social-network";
 import Button from "../../components/button/button";
 import youtubeSquareLogo from "../../images/youtubeSquareLogo.webp";
 import steamSquareLogo from "../../images/steamSquareLogo.webp";
+import itchSquareLogo from "../../images/itchSquareLogo.webp";
 import screenshot1 from "../../images/photon-engineer/screenshot1_720p.webp";
 import screenshot2 from "../../images/photon-engineer/screenshot2_720p.webp";
 import screenshot3 from "../../images/photon-engineer/screenshot3_720p.webp";
@@ -98,7 +99,9 @@ class Home extends Component {
                             <br/>
                             <Button text="WATCH TRAILER" link="" clickEvent={this.onTrailerClick} squareLogo={youtubeSquareLogo}/>
                             <br/>
-                            <Button text="STEAM PAGE" link="https://store.steampowered.com/app/2305110?utm_source=website-main" squareLogo={steamSquareLogo}/>
+                            <Button text="GET IT ON STEAM" link="https://store.steampowered.com/app/2305110?utm_source=website-main" squareLogo={steamSquareLogo}/>
+                            <br/>
+                            <Button text="GET IT ON ITCH.IO" link="https://deervision.itch.io/photon-engineer" squareLogo={itchSquareLogo}/>
                         </div>
                         <div id="trailer-modal" className="content-modal">
                             <iframe id="trailer-modal-content" className="trailer-modal-content" width="560" height="315" src=""
