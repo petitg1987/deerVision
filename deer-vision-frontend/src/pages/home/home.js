@@ -163,7 +163,6 @@ class Home extends Component {
                                 <li>95 puzzles (45 puzzles with lasers and 50 sliding puzzles).</li>
                                 <li>15 puzzle achievements that extend the game experience.</li>
                                 <li>Each puzzle is unique and provides a new idea.</li>
-                                <li>The further you go, the more complex mechanisms you'll encounter.</li>
                                 <li>Lasers are all marked with symbols for colorblind players.</li>
                             </ul>
                         </div>
