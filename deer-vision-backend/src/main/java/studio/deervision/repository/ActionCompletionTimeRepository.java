@@ -27,7 +27,7 @@ public interface ActionCompletionTimeRepository extends JpaRepository<ActionComp
     @Query (value = "SELECT DISTINCT ON (act.request_key) act.request_key as requestKey, act.level_id as levelId, act.action_name as actionName, TO_CHAR(act.creation_date_time, 'dd/mm/yyyy HH24:MI') as creationDateTime FROM action_completion_time act " +
             "WHERE act.app_id=?1 " +
             "AND (true=?2 OR act.app_version not like '%snapshot') " +
-            "ORDER BY act.request_key, act.creation_date_time DESC " +
+            "ORDER BY act.request_key, act.creation_date_time DESC, act.id DESC " +
             "LIMIT ?3", nativeQuery = true)
     List<LastActionCompletion> getLastCompletionsOfDistinctUsers(String appId, boolean includeSnapshot, int resultLimit);
 
