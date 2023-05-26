@@ -10,6 +10,7 @@ import TotalPlayer from "../../components/total-player/total-player";
 import VisitorCountryGraph from "../../components/visitor-graph/visitor-country-graph";
 import VisitorCountGraph from "../../components/visitor-graph/visitor-count-graph";
 import {getBackendUrl} from "../../js/access";
+import LastActionCompletionTime from "../../components/last-action-completion-time/last-action-completion-time";
 
 class Admin extends Component {
 
@@ -114,6 +115,13 @@ class Admin extends Component {
                     <div className="sub-title">Action Completion Time</div>
                     <div className="admin-info-container">
                         <ActionCompletionTimeGraph appId='photonEngineer' token={this.getToken()}/>
+                    </div>
+                </div>
+                <br/>
+                <div className="admin-container">
+                    <div className="sub-title">Last Action Completion Time By User</div>
+                    <div className="admin-info-container">
+                        <LastActionCompletionTime appId='photonEngineer' token={this.getToken()}/>
                     </div>
                 </div>
 
