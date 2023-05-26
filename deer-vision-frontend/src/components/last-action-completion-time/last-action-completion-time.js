@@ -7,69 +7,56 @@ class LastActionCompletionTime extends Component {
 
     constructor(props) {
         super(props);
+        this.state = {tableData: []};
     }
 
-    async refreshLevelIds() {
-        let levelsSelector = document.getElementById("levelsSelect");
-        let levelIdsJson = await getWithToken(getBackendUrl() + 'api/admin/levels/ids?appId=' + this.props.appId, this.props.token);
+    async refreshLastCompletions() {
+        let lastCompletionsJson = await getWithToken(getBackendUrl() + 'api/admin/levels/lastCompletions?appId=' + this.props.appId, this.props.token);
 
-        let selectedLevelStillValid = false;
+        let lastCompletionsData = [];
+        lastCompletionsJson.forEach(lc => {
+            let shortRequestKey = parseInt(lc.requestKey
+                .replace(/-.*$/, ''))
+                .toString(36)
+                .substring(0, 8)
+                .toUpperCase();
+            let levelId = lc.levelId;
+            let actionName = lc.actionName;
+            let creationDateTime = lc.creationDateTime;
 
-        levelIdsJson.forEach(levelNumber => {
-            let option = document.createElement("option");
-            option.text = "Level " + levelNumber;
-            option.value = levelNumber;
-            levelsSelector.add(option);
-
-            if (levelNumber === this.state.levelSelected) {
-                selectedLevelStillValid = true;
-                option.selected = true;
-            }
+            lastCompletionsData.push(
+                <tr key={shortRequestKey}>
+                    <td>{creationDateTime}</td>
+                    <td>{levelId}</td>
+                    <td>{actionName}</td>
+                    <td className="secondary-info">{shortRequestKey}</td>
+                </tr>
+            );
         });
 
-        if (!selectedLevelStillValid) {
-            levelsSelector.selectedIndex = 0;
-            this.setState({levelSelected: levelsSelector.value}, this.refreshActionNames);
-        } else {
-            await this.refreshActionNames();
-        }
-    }
-
-    async refreshActionNames() {
-        let actionNamesSelector = document.getElementById("actionNamesSelect");
-        let actionNamesJson = await getWithToken(getBackendUrl() + 'api/admin/levels/' + this.state.levelSelected + '/actionNames?appId=' + this.props.appId, this.props.token);
-
-        let selectedActionNameStillValid = false;
-
-        actionNamesSelector.length = 0;
-        actionNamesJson.forEach(actionName => {
-            let option = document.createElement("option");
-            option.text = actionName.replace(/([A-Z])/g, ' $1').trim();
-            option.value = actionName;
-            actionNamesSelector.add(option);
-
-            if (actionName === this.state.actionNameSelected) {
-                selectedActionNameStillValid = true;
-                option.selected = true;
-            }
-        });
-
-        if (!selectedActionNameStillValid) {
-            actionNamesSelector.selectedIndex = 0;
-            this.setState({actionNameSelected: actionNamesSelector.value}, this.refreshActionNames);
-        } else {
-            this.refreshChart().then(() => {});
-        }
+        this.setState({tableData: lastCompletionsData});
     }
 
     async componentDidMount() {
-        await this.refreshLevelIds();
+        await this.refreshLastCompletions();
     }
 
     render() {
         return (
-            <div className="actionCompletionTimeChart">
-                LOL
+            <div>
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Level</th>
+                        <th>Action Name</th>
+                        <th className="secondary-info">Key</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        {this.state.tableData}
+                    </tbody>
+                </table>
             </div>
         );
     }
