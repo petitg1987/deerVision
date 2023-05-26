@@ -7,7 +7,6 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="deer-vision" />
-        <module name="deer-vision-backend" />
       </profile>
     </annotationProcessing>
   </component>

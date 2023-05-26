@@ -2,6 +2,8 @@ package studio.deervision.model.completion;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDateTime;
+
 @Entity
 @Table
 public class ActionCompletionTime {
@@ -22,6 +24,8 @@ public class ActionCompletionTime {
 
     private Long completionTime;
 
+    private LocalDateTime creationDateTime;
+
     public ActionCompletionTime() {
 
     }
@@ -33,6 +37,7 @@ public class ActionCompletionTime {
         this.levelId = levelId;
         this.actionName = actionName;
         this.completionTime = completionTime;
+        this.creationDateTime = LocalDateTime.now();
     }
 
     public Long getId() {
@@ -89,5 +94,9 @@ public class ActionCompletionTime {
 
     public void setCompletionTime(Long completionTime) {
         this.completionTime = completionTime;
+    }
+
+    public LocalDateTime getCreationDateTime() {
+        return creationDateTime;
     }
 }
