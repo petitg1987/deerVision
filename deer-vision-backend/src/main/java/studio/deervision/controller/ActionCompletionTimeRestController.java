@@ -10,6 +10,7 @@ import studio.deervision.exception.ApplicationException;
 import studio.deervision.exception.LevelException;
 import studio.deervision.model.completion.ActionCompletionCountForMinute;
 import studio.deervision.model.completion.ActionCompletionCountForMinuteImpl;
+import studio.deervision.model.completion.LastActionCompletion;
 import studio.deervision.service.ActionCompletionTimeService;
 
 import java.util.ArrayList;
@@ -70,6 +71,12 @@ public class ActionCompletionTimeRestController {
     @GetMapping(value = "/admin/levels/{levelId}/completionTimes/{type}")
     public List<ActionCompletionCountForMinute> getLevelCompletionTimesGroupByMinute(@PathVariable("levelId") Integer levelId, @PathVariable("type") String actionName, @RequestParam("appId") String appId, @RequestParam("includeSnapshot") Boolean includeSnapshot) {
         return completeActionCompletionCountForMinute(actionCompletionTimeService.groupCompletionTimeByMinute(appId, levelId, actionName, includeSnapshot), actionName);
+    }
+
+    //curl -H "Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJkdnNKV1QiLCJzdWIiOiJhZG1pbiIsImF1dGhvcml0aWVzIjpbIlJPTEVfVVNFUiJdLCJpYXQiOjE2NTc0NzE4NDMsImV4cCI6MTk3MjgzMTg0M30.S16GDOuf4RU3_puN6xAuVRDNcEiAJtngFmkTfo37kqalaN3c3m9OdxGWuXv49u9jvOyGraNaXDCvuH9bnrtfiA" "http://localhost:5000/api/admin/levels/lastCompletions?appId=photonEngineer" | jq .
+    @GetMapping(value = "/admin/levels/lastCompletions")
+    public List<LastActionCompletion> getLastCompletionsOfDistinctUsers(@RequestParam("appId") String appId) {
+        return actionCompletionTimeService.getLastCompletionsOfDistinctUsers(appId, false, 10);
     }
 
     List<ActionCompletionCountForMinute> completeActionCompletionCountForMinute(List<ActionCompletionCountForMinute> actionCompletionCountForMinutes, String actionName) {

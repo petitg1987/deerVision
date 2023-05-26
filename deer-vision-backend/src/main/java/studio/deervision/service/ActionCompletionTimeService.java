@@ -9,6 +9,7 @@ import studio.deervision.exception.ApplicationException;
 import studio.deervision.exception.LevelException;
 import studio.deervision.model.completion.ActionCompletionTime;
 import studio.deervision.model.completion.ActionCompletionCountForMinute;
+import studio.deervision.model.completion.LastActionCompletion;
 import studio.deervision.repository.ActionCompletionTimeRepository;
 
 import java.util.*;
@@ -54,6 +55,10 @@ public class ActionCompletionTimeService {
 
     public List<ActionCompletionCountForMinute> groupCompletionTimeByMinute(String appId, int levelId, String actionName, boolean includeSnapshot) {
         return actionCompletionTimeRepository.groupCompletionTimeByMinute(appId, levelId, actionName, includeSnapshot);
+    }
+
+    public List<LastActionCompletion> getLastCompletionsOfDistinctUsers(String appId, boolean includeSnapshot, int resultLimit) {
+        return actionCompletionTimeRepository.getLastCompletionsOfDistinctUsers(appId, includeSnapshot, resultLimit);
     }
 
 }
