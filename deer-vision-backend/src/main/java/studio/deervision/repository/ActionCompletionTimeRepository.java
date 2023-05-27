@@ -24,10 +24,15 @@ public interface ActionCompletionTimeRepository extends JpaRepository<ActionComp
             "GROUP BY ROUND(act.completionTime / 60.0, 0), act.actionName")
     List<ActionCompletionCountForMinute> groupCompletionTimeByMinute(String appId, int levelId, String actionName, boolean includeSnapshot);
 
-    @Query (value = "SELECT DISTINCT ON (act.request_key) act.request_key as requestKey, act.level_id as levelId, act.action_name as actionName, TO_CHAR(act.creation_date_time, 'dd/mm/yyyy HH24:MI') as creationDateTime FROM action_completion_time act " +
-            "WHERE act.app_id=?1 " +
-            "AND (true=?2 OR act.app_version not like '%snapshot') " +
-            "ORDER BY act.request_key, act.creation_date_time DESC, act.id DESC " +
+    @Query (value = "SELECT subquery.request_key as requestKey, subquery.level_id as levelId, subquery.action_name as actionName, TO_CHAR(subquery.creation_date_time, 'dd/mm/yyyy HH24:MI') as creationDateTime " +
+            "FROM ( " +
+            "    SELECT DISTINCT ON(sact.request_key) *" +
+            "    FROM action_completion_time sact " +
+            "    WHERE sact.app_id=?1 " +
+            "    AND (true=?2 OR sact.app_version not like '%snapshot') " +
+            "    ORDER BY sact.request_key, sact.creation_date_time DESC  " +
+            ") subquery " +
+            "ORDER BY subquery.creation_date_time DESC " +
             "LIMIT ?3", nativeQuery = true)
     List<LastActionCompletion> getLastCompletionsOfDistinctUsers(String appId, boolean includeSnapshot, int resultLimit);
 
