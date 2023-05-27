@@ -27,11 +27,11 @@ public class ActionCompletionTimeRestController {
         this.actionCompletionTimeService = actionCompletionTimeService;
     }
 
-    //curl -X POST -H "Content-Type: text/plain" -H "X-Key: 0-17" --data "OpenCageDoor:122" "http://localhost:5000/api/pe/levels/0/completionTime?appId=photonEngineer&appVersion=1.0.0"
-    //curl -X POST -H "Content-Type: text/plain" -H "X-Key: 1-18" --data "OpenCageDoor:181" "http://localhost:5000/api/pe/levels/0/completionTime?appId=photonEngineer&appVersion=1.0.0"
-    //curl -X POST -H "Content-Type: text/plain" -H "X-Key: 2-19" --data "OpenCageDoor:185" "http://localhost:5000/api/pe/levels/0/completionTime?appId=photonEngineer&appVersion=1.0.0"
-    //curl -X POST -H "Content-Type: text/plain" -H "X-Key: 0-17" --data "CompletePuzzle:182" "http://localhost:5000/api/pe/levels/0/completionTime?appId=photonEngineer&appVersion=1.0.0"
-    @PostMapping(value = "/pe/levels/{levelId}/completionTime", consumes = MediaType.TEXT_PLAIN_VALUE)
+    //curl -X POST -H "Content-Type: text/plain" -H "X-Key: 0-17" --data "OpenCageDoor:122" "http://localhost:5000/api/levels/0/completionTime?appId=photonEngineer&appVersion=1.0.0"
+    //curl -X POST -H "Content-Type: text/plain" -H "X-Key: 1-18" --data "OpenCageDoor:181" "http://localhost:5000/api/levels/0/completionTime?appId=photonEngineer&appVersion=1.0.0"
+    //curl -X POST -H "Content-Type: text/plain" -H "X-Key: 2-19" --data "OpenCageDoor:185" "http://localhost:5000/api/levels/0/completionTime?appId=photonEngineer&appVersion=1.0.0"
+    //curl -X POST -H "Content-Type: text/plain" -H "X-Key: 0-17" --data "CompletePuzzle:182" "http://localhost:5000/api/levels/0/completionTime?appId=photonEngineer&appVersion=1.0.0"
+    @PostMapping(value = {"/pe/levels/{levelId}/completionTime" /* For backward compatibility, can be removed in next release */, "/levels/{levelId}/completionTime"}, consumes = MediaType.TEXT_PLAIN_VALUE)
     public ResponseEntity<String> levelCompletionTime(@PathVariable("levelId") Integer levelId, @RequestBody String value, @RequestParam("appId") String appId, @RequestParam(value="appVersion") String appVersion) {
         String requestKey = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
