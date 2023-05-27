@@ -20,12 +20,13 @@ class LastActionCompletion extends Component {
                 .toString(36)
                 .substring(0, 8)
                 .toUpperCase();
+            let actionName = lc.actionName.replace(/([A-Z])/g, ' $1').trim();
 
             lastCompletionsData.push(
                 <tr key={shortRequestKey}>
                     <td>{lc.creationDateTime}</td>
                     <td>{lc.levelId}</td>
-                    <td>{lc.actionName}</td>
+                    <td>{actionName}</td>
                     <td className="secondary-info">{shortRequestKey}</td>
                 </tr>
             );
