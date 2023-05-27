@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
-import './last-action-completion-time.css';
+import './last-action-completion.css';
 import {getWithToken} from "../../js/request";
 import {getBackendUrl} from "../../js/access";
 
-class LastActionCompletionTime extends Component {
+class LastActionCompletion extends Component {
 
     constructor(props) {
         super(props);
@@ -20,15 +20,12 @@ class LastActionCompletionTime extends Component {
                 .toString(36)
                 .substring(0, 8)
                 .toUpperCase();
-            let levelId = lc.levelId;
-            let actionName = lc.actionName;
-            let creationDateTime = lc.creationDateTime;
 
             lastCompletionsData.push(
                 <tr key={shortRequestKey}>
-                    <td>{creationDateTime}</td>
-                    <td>{levelId}</td>
-                    <td>{actionName}</td>
+                    <td>{lc.creationDateTime}</td>
+                    <td>{lc.levelId}</td>
+                    <td>{lc.actionName}</td>
                     <td className="secondary-info">{shortRequestKey}</td>
                 </tr>
             );
@@ -62,4 +59,4 @@ class LastActionCompletionTime extends Component {
     }
 }
 
-export default LastActionCompletionTime;
+export default LastActionCompletion;
