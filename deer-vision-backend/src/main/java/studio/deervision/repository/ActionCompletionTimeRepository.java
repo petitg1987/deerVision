@@ -30,9 +30,9 @@ public interface ActionCompletionTimeRepository extends JpaRepository<ActionComp
             "    FROM action_completion_time sact " +
             "    WHERE sact.app_id=?1 " +
             "    AND (true=?2 OR sact.app_version not like '%snapshot') " +
-            "    ORDER BY sact.request_key, sact.creation_date_time DESC  " +
+            "    ORDER BY sact.request_key, sact.creation_date_time DESC, sact.id DESC " +
             ") subquery " +
-            "ORDER BY subquery.creation_date_time DESC " +
+            "ORDER BY subquery.creation_date_time DESC, subquery.id DESC " +
             "LIMIT ?3", nativeQuery = true)
     List<LastActionCompletion> getLastCompletionsOfDistinctUsers(String appId, boolean includeSnapshot, int resultLimit);
 
