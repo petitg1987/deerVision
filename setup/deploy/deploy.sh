@@ -41,12 +41,17 @@ function buildFrontPackage() {
 }
 
 function copyFrontendFilesInS3() {
-    filesPath="../../deer-vision-frontend/build/"
-    echo "Removing files '$filesPath' from S3 bucket '${frontendBucketName}'"
-    aws s3 rm --recursive "s3://${frontendBucketName}/"
-    echo "Copying files '$filesPath' in S3 bucket '${frontendBucketName}'"
-    aws s3 cp --recursive --exclude "_source/*" --exclude "*.html" --cache-control max-age=31536000 "${filesPath}" "s3://${frontendBucketName}/"
-    aws s3 cp --recursive --exclude "*" --include "*.html" --cache-control no-cache --content-type "text/html" "${filesPath}" "s3://${frontendBucketName}/" #No cache for html files entry point
+    originalFilesPath="../../deer-vision-frontend/build/"
+    filesPath="../../deer-vision-frontend/builds3/"
+
+    #Sync via checksum to not copy files which are not modified (only modification date time is different)
+    #Indeed, "aws s3 sync" consider a file as modified when the modification date time is updated
+    mkdir -p ${filesPath}
+    rsync -v --checksum --delete --recursive ${originalFilesPath} ${filesPath}
+
+    echo "Sync files '$filesPath' from S3 bucket '${frontendBucketName}'"
+    aws s3 sync --delete --exclude "_source/*" --exclude "*.html" --cache-control max-age=31536000 "${filesPath}" "s3://${frontendBucketName}/"
+    aws s3 sync --delete --exclude "*" --include "*.html" --cache-control no-cache --content-type "text/html" "${filesPath}" "s3://${frontendBucketName}/" #No cache for html files entry point
 }
 
 function invalidCloudFrontCache() {
