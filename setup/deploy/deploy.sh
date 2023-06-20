@@ -46,8 +46,7 @@ function copyFrontendFilesInS3() {
     aws s3 rm --recursive "s3://${frontendBucketName}/"
     echo "Copying files '$filesPath' in S3 bucket '${frontendBucketName}'"
     aws s3 cp --recursive --exclude "_source/*" --exclude "*.html" --cache-control max-age=31536000 "${filesPath}" "s3://${frontendBucketName}/"
-    #No cache for html files entry point:
-    aws s3 cp --recursive --exclude "*" --include "*.html" --cache-control no-cache --content-type "text/html" "${filesPath}" "s3://${frontendBucketName}/"
+    aws s3 cp --recursive --exclude "*" --include "*.html" --cache-control no-cache --content-type "text/html" "${filesPath}" "s3://${frontendBucketName}/" #No cache for html files entry point
 }
 
 function invalidCloudFrontCache() {
