@@ -7,6 +7,7 @@ import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -51,9 +52,9 @@ public class SecurityConfig {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry
-                    .addMapping("/**")
-                    .allowedMethods("GET", "POST", "DELETE")
-                    .allowedOrigins(adminProperties.getAllowedOrigins().toArray(new String[0]));
+                        .addMapping("/**")
+                        .allowedMethods("GET", "POST", "DELETE")
+                        .allowedOrigins(adminProperties.getAllowedOrigins().toArray(new String[0]));
             }
         };
     }
@@ -62,18 +63,11 @@ public class SecurityConfig {
     @Order(2)
     public SecurityFilterChain actuatorFilterChain(HttpSecurity http) throws Exception {
         http
-            .securityMatcher(regexMatcher("^/actuator/.*"))
-            .authorizeHttpRequests((authz) -> {
-                try {
-                    authz
-                        .requestMatchers(regexMatcher("^/actuator/.*")).authenticated()
-                        .and().httpBasic()
-                        .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                        .and().csrf().disable();
-                } catch (Exception e) {
-                    throw new RuntimeException(e);
-                }
-            });
+                .securityMatcher(regexMatcher("^/actuator/.*"))
+                .authorizeHttpRequests(authz -> authz.requestMatchers(regexMatcher("^/actuator/.*")).authenticated())
+                .sessionManagement(a -> a.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .csrf(AbstractHttpConfigurer::disable)
+                .httpBasic();
         return http.build();
     }
 
@@ -81,9 +75,9 @@ public class SecurityConfig {
     @Order(2)
     public InMemoryUserDetailsManager actuatorUserDetailsService() {
         UserDetails user = User.withUsername("actuator")
-            .password(actuatorProperties.getPassword())
-            .roles("ACTUATOR_USER")
-            .build();
+                .password(actuatorProperties.getPassword())
+                .roles("ACTUATOR_USER")
+                .build();
         return new InMemoryUserDetailsManager(user);
     }
 
@@ -91,16 +85,9 @@ public class SecurityConfig {
     @Order(3)
     public SecurityFilterChain apiAdminLoginFilterChain(HttpSecurity http) throws Exception {
         http
-            .securityMatcher(regexMatcher("^/api/admin/login.*"))
-            .authorizeHttpRequests((authz) -> {
-                try {
-                    authz
-                        .requestMatchers(regexMatcher("^/api/admin/login.*")).permitAll()
-                        .and().csrf().disable();
-                } catch (Exception e) {
-                    throw new RuntimeException(e);
-                }
-            });
+                .securityMatcher(regexMatcher("^/api/admin/login.*"))
+                .authorizeHttpRequests(authz -> authz.requestMatchers(regexMatcher("^/api/admin/login.*")).permitAll())
+                .csrf(AbstractHttpConfigurer::disable);
         return http.build();
     }
 
@@ -108,18 +95,12 @@ public class SecurityConfig {
     @Order(4)
     public SecurityFilterChain apiAdminFilterChain(HttpSecurity http) throws Exception {
         http
-            .securityMatcher(regexMatcher("^/api/admin/.*"))
-            .authorizeHttpRequests((authz) -> {
-                try {
-                    authz
+                .securityMatcher(regexMatcher("^/api/admin/.*"))
+                .authorizeHttpRequests(authz -> authz
                         .requestMatchers(regexMatcher(HttpMethod.OPTIONS, "^/api/admin/.*")).permitAll() //allow CORS option calls
-                        .requestMatchers(regexMatcher("^/api/admin/.*")).fullyAuthenticated()
-                        .and().addFilterAfter(new JWTAuthorizationFilter(adminProperties), UsernamePasswordAuthenticationFilter.class)
-                        .csrf().disable();
-                } catch (Exception e) {
-                    throw new RuntimeException(e);
-                }
-            });
+                        .requestMatchers(regexMatcher("^/api/admin/.*")).fullyAuthenticated())
+                .addFilterAfter(new JWTAuthorizationFilter(adminProperties), UsernamePasswordAuthenticationFilter.class)
+                .csrf(AbstractHttpConfigurer::disable);
         return http.build();
     }
 
@@ -128,15 +109,8 @@ public class SecurityConfig {
     public SecurityFilterChain apiWebsitePublicFilterChain(HttpSecurity http) throws Exception {
         http
                 .securityMatcher(regexMatcher("^/api/visitor/.*"))
-                .authorizeHttpRequests((authz) -> {
-                    try {
-                        authz
-                            .requestMatchers(regexMatcher("^/api/.*")).permitAll()
-                            .and().csrf().disable();
-                    } catch (Exception e) {
-                        throw new RuntimeException(e);
-                    }
-                });
+                .authorizeHttpRequests(authz -> authz.requestMatchers(regexMatcher("^/api/.*")).permitAll())
+                .csrf(AbstractHttpConfigurer::disable);
         return http.build();
     }
 
@@ -144,17 +118,10 @@ public class SecurityConfig {
     @Order(6)
     public SecurityFilterChain apiPublicFilterChain(HttpSecurity http) throws Exception {
         http
-            .securityMatcher(regexMatcher("^/api/.*"))
-            .authorizeHttpRequests((authz) -> {
-                try {
-                    authz
-                        .requestMatchers(regexMatcher("^/api/.*")).fullyAuthenticated()
-                        .and().addFilterBefore(new RequestKeyAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class)
-                        .csrf().disable();
-                } catch (Exception e) {
-                    throw new RuntimeException(e);
-                }
-            });
+                .securityMatcher(regexMatcher("^/api/.*"))
+                .authorizeHttpRequests(authz -> authz.requestMatchers(regexMatcher("^/api/.*")).fullyAuthenticated())
+                .addFilterBefore(new RequestKeyAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class)
+                .csrf(AbstractHttpConfigurer::disable);
         return http.build();
     }
 
