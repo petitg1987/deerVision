@@ -1,12 +1,7 @@
 #!/bin/bash -x
 
-#Install required software
-cd /home/ubuntu/ || exit
-sudo apt update
-sudo add-apt-repository -y ppa:certbot/certbot
-sudo apt install -y certbot python3-certbot-dns-route53 nginx ruby-full ruby-webrick wget nfs-common cron openjdk-17-jre docker.io
-
 #Mount (and format) volume
+cd /home/ubuntu/ || exit
 sudo mkdir ./data
 volumeName="/dev/"$(lsblk | grep 'disk' | grep '4G' | cut -f 1 -d ' ')
 checkVolume=$(sudo file -s $volumeName)
@@ -124,9 +119,3 @@ cat <<EOT > ./amazon-cloudwatch-agent.json
 EOT
 sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a fetch-config -m ec2 -c file:/home/ubuntu/amazon-cloudwatch-agent.json -s
 sudo rm amazon-cloudwatch-agent.deb
-
-#Add swap memory
-sudo dd if=/dev/zero of=/swapfile bs=128M count=8 #8*128 = 1024Mo
-sudo chmod 600 /swapfile
-sudo mkswap /swapfile
-sudo swapon /swapfile

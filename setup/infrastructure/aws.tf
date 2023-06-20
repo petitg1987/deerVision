@@ -165,10 +165,10 @@ resource "aws_network_acl" "network_acl" {
 ##########################################################################################
 data "aws_ami" "ubuntu" {
   most_recent = true
-  owners = ["amazon"]
+  owners = ["496124100072"]
   filter {
     name = "image-id"
-    values = ["ami-0caef02b518350c8b"] #Ubuntu Server 22.04 LTS (HVM), SSD Volume Type
+    values = ["ami-0dd2715a1ae2acd18"] #Private AMI with Ubuntu 22.04 LTS
   }
 }
 
