@@ -1,11 +1,15 @@
 #!/bin/bash -x
 
+# ===============================================================
+# /!\ CHANGE IN THIS FILE REQUIRE: ./infra.sh recreateInstance
+# ===============================================================
+
 #Create script log file
 echo "$(date '+%Y-%m-%d %H:%M:%S') - Start script execution" >> /home/ubuntu/userdata.log
 
 #Mount (and format) volume
 echo "$(date '+%Y-%m-%d %H:%M:%S') - Mounting data volume" >> /home/ubuntu/userdata.log
-sleep 5 #wait to be sure volume is available
+sleep 90 #wait to be sure EBS volume is well attached to the EC2 instance
 cd /home/ubuntu/ || exit
 sudo mkdir ./data
 volumeName="/dev/"$(lsblk | grep 'disk' | grep '4G' | cut -f 1 -d ' ')
@@ -17,7 +21,6 @@ if [[ "$checkVolume" == "$volumeName: data" ]]; then
 fi
 echo "$volumeName   /home/ubuntu/data   ext4   defaults   0   0" | sudo tee -a /etc/fstab
 sudo mount -a
-sleep 5 #wait to be sure volume is mounted
 sudo chown ubuntu:ubuntu -R ./data
 checkVolumeMountedResult=$(df -h)
 if [[ $checkVolumeMountedResult == *"/home/ubuntu/data"* ]]; then
