@@ -499,19 +499,11 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
   default_root_object = "index.html"
   aliases = [var.domainName, "www.${var.domainName}"]
   default_cache_behavior {
+    cache_policy_id = "658327ea-f89d-4fab-a63d-7e88639e58f6" #ID of CachingOptimized (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/using-managed-cache-policies.html)
     allowed_methods  = ["DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST", "PUT"]
     cached_methods   = ["GET", "HEAD"]
     target_origin_id = "website"
-    forwarded_values {
-      query_string = false
-      cookies {
-        forward = "none"
-      }
-    }
     viewer_protocol_policy = "redirect-to-https"
-    min_ttl = 0
-    default_ttl = 3600
-    max_ttl = 86400
     compress = true
   }
   price_class = "PriceClass_100"
