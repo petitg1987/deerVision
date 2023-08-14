@@ -40,7 +40,7 @@ public class VisitorService {
     public VisitorService(VisitorRepository visitorRepository) throws IOException {
         this.visitorRepository = visitorRepository;
 
-        Resource geoDbResource = new ClassPathResource("GeoLite2-Country_20230127.mmdb"); //file from https://www.maxmind.com/en/account/login OR https://download.maxmind.com/app/geoip_download?edition_id=GeoLite2-Country&license_key=62Bcxf97UVQar0Ya&suffix=tar.gz
+        Resource geoDbResource = new ClassPathResource("GeoLite2-Country_20230811.mmdb"); //file from https://www.maxmind.com/en/account/login OR https://download.maxmind.com/app/geoip_download?edition_id=GeoLite2-Country&license_key=62Bcxf97UVQar0Ya&suffix=tar.gz
         geoDbReader = new DatabaseReader.Builder(geoDbResource.getInputStream()).build();
     }
 
