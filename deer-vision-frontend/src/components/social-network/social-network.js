@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import discordLogo from "../../images/discordLogo.webp";
 import youtubeLogo from "../../images/youtubeLogo.webp";
-import twitterLogo from "../../images/twitterLogo.webp";
+import xLogo from "../../images/xLogo.webp";
 import './social-network.css';
 import uniqueId from 'lodash/uniqueId'
 
@@ -40,7 +40,7 @@ class SocialNetwork extends Component {
                         <img className="network-logo" src={discordLogo} alt="Discord Logo" width={this.props.logoSize} height={this.props.logoSize}/>
                     </a>
                     <a href="https://twitter.com/DeerVisionStd" target="_blank" rel="noopener noreferrer" className="network-logo-wrapper">
-                        <img className="network-logo" src={twitterLogo} alt="Twitter Logo" width={this.props.logoSize} height={this.props.logoSize}/>
+                        <img className="network-logo" src={xLogo} alt="X Logo" width={this.props.logoSize} height={this.props.logoSize}/>
                     </a>
                     <a href="https://www.youtube.com/channel/UC1MNRfIXqQPB8dQtU94PpdQ" target="_blank" rel="noopener noreferrer" className="network-logo-wrapper">
                         <img className="network-logo" src={youtubeLogo} alt="Youtube Logo" width={this.props.logoSize} height={this.props.logoSize}/>

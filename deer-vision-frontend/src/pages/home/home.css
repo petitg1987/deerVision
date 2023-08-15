@@ -28,8 +28,18 @@
     border-radius: 10px;
 }
 
-.game-description > * p {
-    padding-top: 10px;
+.p-game-description {
+    line-height: 1.35em;
+    margin-bottom: 1em;
+}
+
+.p-game-description:last-child {
+    margin-bottom: 0;
+}
+
+.game-list > li {
+    margin-top: 0.25em;
+    margin-bottom: 0.25em;
 }
 
 .game-about {

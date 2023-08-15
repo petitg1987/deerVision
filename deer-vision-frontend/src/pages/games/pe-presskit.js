@@ -22,10 +22,10 @@ class PePressKit extends Component {
                 <h2>Photon Engineer - Press kit</h2>
                 <div className={"press-container"}>
                     <div className={"press-content"}>
-                        <div>If you are a YouTuber, Twitch streamer, influencer or journalist, feel free to use our press kit for any content related to Photon Engineer.</div>
-                        <div>To learn more about the Photon Engineer, please consult our <a className={"text-link"} href={"/"}>games</a> page.</div>
+                        <div className={"p-press-content"}>If you are a YouTuber, Twitch streamer, influencer or journalist, feel free to use our press kit for any content related to Photon Engineer.</div>
+                        <div className={"p-press-content"}>To learn more about the Photon Engineer, please consult our <a className={"text-link"} href={"/"}>games</a> page.</div>
                         <div className={"press-title"}>Details</div>
-                        <ul>
+                        <ul className={"press-list"}>
                             <li><i>Name</i>: Photon Engineer</li>
                             <li><i>Platform</i>: Windows 10/11, Linux (Ubuntu 22.04)</li>
                             <li><i>Steam page</i>: <a className={"text-link"} target="_blank" rel="noopener noreferrer" href={"https://store.steampowered.com/app/2305110?utm_source=website-pk"}>https://store.steampowered.com/app/2305110</a></li>
@@ -35,13 +35,13 @@ class PePressKit extends Component {
                         </ul>
 
                         <div className={"press-title"}>Assets</div>
-                        <ul>
+                        <ul className={"press-list"}>
                             <li>Capsule <small>(1280x720)</small>: <a className={"text-link"} target="_blank" rel="noopener noreferrer" href={capsuleSocNetwork}>capsuleSocNetwork.png</a></li>
                             <li>Capsule with description <small>(1280x720)</small>: <a className={"text-link"} target="_blank" rel="noopener noreferrer" href={capsuleSocNetworkDesc}>capsuleSocNetworkDesc.png</a></li>
                             <li>Logo <small>(1482x400, transparent)</small>: <a className={"text-link"} target="_blank" rel="noopener noreferrer" href={gameLogo}>gameLogo.png</a></li>
                             <li>Logo simplified <small>(1482x400, transparent)</small>: <a className={"text-link"} target="_blank" rel="noopener noreferrer" href={gameLogoSimplified}>gameLogoSimplified.png</a></li>
                             <li>Screenshots <small>(2560x1440)</small>:
-                                <ul>
+                                <ul className={"press-list"}>
                                     <li><a className={"text-link"} target="_blank" rel="noopener noreferrer" href={screenshot1}>screenshot1.png</a></li>
                                     <li><a className={"text-link"} target="_blank" rel="noopener noreferrer" href={screenshot2}>screenshot2.png</a></li>
                                     <li><a className={"text-link"} target="_blank" rel="noopener noreferrer" href={screenshot3}>screenshot3.png</a></li>

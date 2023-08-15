@@ -49,6 +49,10 @@ footer {
     margin-bottom: 1.5em;
 }
 
+.company-container > p {
+    margin-bottom: 0.5em;
+}
+
 @media screen and (max-width: 800px) {
     .content {
         width: 96%;

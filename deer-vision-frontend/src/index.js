@@ -54,11 +54,9 @@ class Index extends Component {
                             <SocialNetwork logoSize={48} label="Social networks:"/>
                         </div>
                         <div className="company-container">
-                            &copy; {this.currentYear}, Deer Vision | <a className={"text-link"} href={"/privacy"} title={"Privacy Policy"}>Privacy</a> | <a className={"text-link"} href={"/eula"} title={"End User License Agreement"}>EULA</a>
-                            <br/>
-                            Company number: BE 0794.357.843
-                            <br/>
-                            Contact: <a className={"text-link"} href={"mailto:deervision@proton.me"}>deervision@proton.me</a>
+                            <p>&copy; {this.currentYear}, Deer Vision | <a className={"text-link"} href={"/privacy"} title={"Privacy Policy"}>Privacy</a> | <a className={"text-link"} href={"/eula"} title={"End User License Agreement"}>EULA</a></p>
+                            <p>Company number: BE 0794.357.843</p>
+                            <p>Contact: <a className={"text-link"} href={"mailto:deervision@proton.me"}>deervision@proton.me</a></p>
                         </div>
                     </footer>
                 </div>
