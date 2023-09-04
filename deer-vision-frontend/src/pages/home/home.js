@@ -161,7 +161,7 @@ class Home extends Component {
                             <ul className={"game-list"}>
                                 <li>40 levels/platforms to discover.</li>
                                 <li>95 puzzles (45 puzzles with lasers and 50 sliding puzzles).</li>
-                                <li>15 puzzle achievements that extend the game experience.</li>
+                                <li>18 puzzle achievements that extend the game experience.</li>
                                 <li>Each puzzle is unique and provides a new idea.</li>
                                 <li>Lasers are all marked with symbols for colorblind players.</li>
                             </ul>
