@@ -48,7 +48,7 @@ class Home extends Component {
     onTrailerClick(event) {
         let trailerModal = document.getElementById('trailer-modal');
         let modalIframe = document.getElementById("trailer-modal-content");
-        modalIframe.src = "https://www.youtube.com/embed/ADOYXmTux5g";
+        modalIframe.src = "https://www.youtube.com/embed/JbVsi7y7nu0?si=vMhLAP_asotyrfq1";
 
         let body = document.getElementsByTagName("body")[0];
         body.style.cursor = "pointer";
