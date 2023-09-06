@@ -30,7 +30,7 @@ terraform {
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      version = "~> 4.0"
+      version = "~> 5.0"
     }
   }
 }
@@ -308,7 +308,7 @@ resource "aws_volume_attachment" "volume_attachment" {
 
 resource "aws_eip" "eip" {
   instance = aws_instance.instance.id
-  vpc = true
+  domain = "vpc"
 }
 
 ##########################################################################################
