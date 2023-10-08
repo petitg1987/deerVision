@@ -12,6 +12,8 @@ import VisitorCountGraph from "../../components/visitor-graph/visitor-count-grap
 import {getBackendUrl} from "../../js/access";
 import LastActionCompletion from "../../components/last-action-completion-time/last-action-completion";
 
+const ADMIN_TOKEN_KEY = "deerVisionAdminToken";
+
 class Admin extends Component {
 
     constructor(props) {
@@ -22,12 +24,12 @@ class Admin extends Component {
     }
 
     logIn(jwtToken) {
-        localStorage.setItem('token', jwtToken);
+        localStorage.setItem(ADMIN_TOKEN_KEY, jwtToken);
         this.setState({logInFail: false, jwtToken: jwtToken});
     }
 
     getToken() {
-        return localStorage.getItem('token');
+        return localStorage.getItem(ADMIN_TOKEN_KEY);
     }
 
     isLogIn() {
@@ -41,7 +43,7 @@ class Admin extends Component {
 
     logOut(event) {
         event.preventDefault();
-        localStorage.removeItem('token');
+        localStorage.removeItem(ADMIN_TOKEN_KEY);
         this.setState({jwtToken: ''});
     }
 

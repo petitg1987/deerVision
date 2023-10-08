@@ -1,7 +1,7 @@
 package studio.deervision.controller;
 
 import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.security.Keys;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
@@ -10,8 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import studio.deervision.config.properties.AdminProperties;
 import studio.deervision.dto.TokenDto;
 
-import javax.crypto.spec.SecretKeySpec;
-import java.security.Key;
+import javax.crypto.SecretKey;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -43,14 +42,14 @@ public class AdminLoginRestController {
 
     private String getJWTToken() {
         List<GrantedAuthority> grantedAuthorities = AuthorityUtils.commaSeparatedStringToAuthorityList("ROLE_USER");
-        Key signingKey = new SecretKeySpec(adminProperties.getJwtSecret().getBytes(), SignatureAlgorithm.HS512.getJcaName());
+        SecretKey signingKey = Keys.hmacShaKeyFor(adminProperties.getJwtSecret().getBytes());
         return Jwts
                 .builder()
-                .setId("dvsJWT")
-                .setSubject("admin")
+                .id("dvsJWT")
+                .subject("admin")
                 .claim("authorities", grantedAuthorities.stream().map(GrantedAuthority::getAuthority).collect(Collectors.toList()))
-                .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis() + 1000L * 60L * 60L * 24L * 365L * 10L))
-                .signWith(signingKey, SignatureAlgorithm.HS512).compact();
+                .issuedAt(new Date(System.currentTimeMillis()))
+                .expiration(new Date(System.currentTimeMillis() + 1000L * 60L * 60L * 24L * 365L * 10L))
+                .signWith(signingKey, Jwts.SIG.HS512).compact();
     }
 }

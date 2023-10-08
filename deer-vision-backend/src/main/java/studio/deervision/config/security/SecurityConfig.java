@@ -22,6 +22,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import studio.deervision.config.properties.ActuatorProperties;
 import studio.deervision.config.properties.AdminProperties;
 
+import static org.springframework.security.config.Customizer.withDefaults;
 import static org.springframework.security.web.util.matcher.RegexRequestMatcher.regexMatcher;
 
 @Configuration
@@ -67,7 +68,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(authz -> authz.requestMatchers(regexMatcher("^/actuator/.*")).authenticated())
                 .sessionManagement(a -> a.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .csrf(AbstractHttpConfigurer::disable)
-                .httpBasic();
+                .httpBasic(withDefaults());
         return http.build();
     }
 

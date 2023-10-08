@@ -3,6 +3,7 @@ package studio.deervision.config.security;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.security.Keys;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -11,6 +12,8 @@ import studio.deervision.config.properties.AdminProperties;
 import jakarta.servlet.*;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+
+import javax.crypto.SecretKey;
 import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -29,7 +32,7 @@ public class JWTAuthorizationFilter implements Filter {
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws ServletException, IOException {
         if (request instanceof HttpServletRequest && response instanceof HttpServletResponse) {
             try {
-                if (checkJWTToken(request)) {
+                if (hasJWTToken(request)) {
                     Claims claims = validateToken(request);
                     if (claims.get("authorities") != null) {
                         setUpSpringAuthentication(claims);
@@ -50,7 +53,8 @@ public class JWTAuthorizationFilter implements Filter {
 
     private Claims validateToken(ServletRequest request) {
         String jwtToken = ((HttpServletRequest) request).getHeader(HEADER).replace(PREFIX, "");
-        return Jwts.parserBuilder().setSigningKey(adminProperties.getJwtSecret().getBytes()).build().parseClaimsJws(jwtToken).getBody();
+        SecretKey key = Keys.hmacShaKeyFor(adminProperties.getJwtSecret().getBytes());
+        return Jwts.parser().verifyWith(key).build().parseSignedClaims(jwtToken).getPayload();
     }
 
     @SuppressWarnings({"unchecked"})
@@ -62,7 +66,7 @@ public class JWTAuthorizationFilter implements Filter {
         SecurityContextHolder.getContext().setAuthentication(auth);
     }
 
-    private boolean checkJWTToken(ServletRequest request) {
+    private boolean hasJWTToken(ServletRequest request) {
         String authenticationHeader = ((HttpServletRequest) request).getHeader(HEADER);
         return authenticationHeader != null && authenticationHeader.startsWith(PREFIX);
     }

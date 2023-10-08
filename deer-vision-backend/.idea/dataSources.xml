@@ -1,13 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="deer-vision-backend/Hibernate" uuid="6fce72f3-a326-4868-8db2-26803827b914">
-      <driver-ref>athena</driver-ref>
+    <data-source source="LOCAL" name="LOCAL_postgres" uuid="e031df21-936c-411b-9ec6-1497b05979ee">
+      <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
-      <imported>true</imported>
-      <remarks>Hibernate</remarks>
-      <jdbc-driver>com.simba.athena.jdbc42.Driver</jdbc-driver>
-      <jdbc-url>jdbc:h2:tcp://localhost:9191/$PROJECT_DIR$/database/deerVisionDB;DB_CLOSE_ON_EXIT=FALSE</jdbc-url>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://localhost:5432/postgres</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
+    <data-source source="LOCAL" name="PROD_postgres" uuid="1488d856-94e7-4417-a36e-c2f6d3be1443">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://localhost:5432/postgres</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>
