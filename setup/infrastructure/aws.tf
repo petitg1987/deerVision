@@ -535,10 +535,32 @@ resource "aws_route53_record" "dns_record_front" {
   }
 }
 
+resource "aws_route53_record" "dns_record_ipv6_front" {
+  zone_id = data.aws_route53_zone.route53_zone_queried.zone_id
+  name = ""
+  type = "AAAA"
+  alias {
+    name = aws_cloudfront_distribution.s3_distribution.domain_name
+    zone_id = aws_cloudfront_distribution.s3_distribution.hosted_zone_id
+    evaluate_target_health = true
+  }
+}
+
 resource "aws_route53_record" "dns_record_www_front" {
   zone_id = data.aws_route53_zone.route53_zone_queried.zone_id
   name = "www"
   type = "A"
+  alias {
+    name = aws_cloudfront_distribution.s3_distribution.domain_name
+    zone_id = aws_cloudfront_distribution.s3_distribution.hosted_zone_id
+    evaluate_target_health = true
+  }
+}
+
+resource "aws_route53_record" "dns_record_www_ipv6_front" {
+  zone_id = data.aws_route53_zone.route53_zone_queried.zone_id
+  name = "www"
+  type = "AAAA"
   alias {
     name = aws_cloudfront_distribution.s3_distribution.domain_name
     zone_id = aws_cloudfront_distribution.s3_distribution.hosted_zone_id
