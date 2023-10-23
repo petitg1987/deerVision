@@ -58,6 +58,7 @@ echo "$(date '+%Y-%m-%d %H:%M:%S') - Installing nginx" >> /home/ubuntu/userdata.
 echo -e "limit_req_zone \$binary_remote_addr zone=req_zone:500m rate=${maxRequestsBySecond}r/s;\n" \
   "server {\n" \
   "  listen 443;\n" \
+  "  listen [::]:443;\n" \
   "  server_name _;\n" \
   "  ssl on;\n" \
   "  ssl_certificate /home/ubuntu/data/letsencrypt/config/live/backend.deervision.studio/fullchain.pem;\n" \

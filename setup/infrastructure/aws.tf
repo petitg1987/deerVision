@@ -51,6 +51,7 @@ provider "aws" {
 ##########################################################################################
 resource "aws_vpc" "vpc" {
   cidr_block = "10.0.0.0/16"
+  assign_generated_ipv6_cidr_block = true
   enable_dns_hostnames = true
   tags = {
     Name = "${var.appName}VPC"
@@ -72,6 +73,10 @@ resource "aws_route_table" "route" {
     cidr_block = "0.0.0.0/0"
     gateway_id = aws_internet_gateway.igw.id
   }
+  route {
+    ipv6_cidr_block = "::/0"
+    gateway_id = aws_internet_gateway.igw.id
+  }
   tags = {
     Name = "${var.appName}Route"
     Application = var.appName
@@ -81,8 +86,10 @@ resource "aws_route_table" "route" {
 resource "aws_subnet" "public_subnet" {
   count = length(var.availabilityZones)
   vpc_id = aws_vpc.vpc.id
-  cidr_block = "10.0.${count.index}.0/24"
+  cidr_block = "10.0.${count.index}.0/24" #2^(32-24)=256 IPs
+  ipv6_cidr_block = cidrsubnet(aws_vpc.vpc.ipv6_cidr_block, 8, count.index)
   map_public_ip_on_launch = true
+  assign_ipv6_address_on_creation = true
   availability_zone = var.availabilityZones[count.index]
   tags = {
     Application = var.appName
@@ -106,6 +113,14 @@ resource "aws_network_acl" "network_acl" {
     protocol = "tcp"
     cidr_block = "0.0.0.0/0"
   }
+  ingress { #port for HTTPS in IPv6 (website request)
+    rule_no = 101
+    from_port = 443
+    to_port = 443
+    action = "allow"
+    protocol = "tcp"
+    ipv6_cidr_block = "::/0"
+  }
   ingress { #port for HTTP (website request)
     rule_no = 110
     from_port = 80
@@ -113,6 +128,14 @@ resource "aws_network_acl" "network_acl" {
     action = "allow"
     protocol = "tcp"
     cidr_block = "0.0.0.0/0"
+  }
+  ingress { #port for HTTP in IPv6 (website request)
+    rule_no = 111
+    from_port = 80
+    to_port = 80
+    action = "allow"
+    protocol = "tcp"
+    ipv6_cidr_block = "::/0"
   }
   ingress { #port for SSH (request)
     rule_no = 120
@@ -122,6 +145,14 @@ resource "aws_network_acl" "network_acl" {
     protocol = "tcp"
     cidr_block = "0.0.0.0/0"
   }
+  ingress { #port for SSH in IPv6 (request)
+    rule_no = 121
+    from_port = 22
+    to_port = 22
+    action = "allow"
+    protocol = "tcp"
+    ipv6_cidr_block = "::/0"
+  }
   ingress { #ephemeral ports for HTTP (EC2 internet response) and HTTPS (S3 response)
     rule_no = 130
     from_port = 1024
@@ -129,6 +160,24 @@ resource "aws_network_acl" "network_acl" {
     action = "allow"
     protocol = "tcp"
     cidr_block = "0.0.0.0/0"
+  }
+  ingress { #ephemeral ports for HTTP (EC2 internet response) and HTTPS (S3 response) in IPv6
+    rule_no = 131
+    from_port = 1024
+    to_port = 65535
+    action = "allow"
+    protocol = "tcp"
+    ipv6_cidr_block = "::/0"
+  }
+  ingress { #ping IPv4
+    rule_no = 140
+    from_port = 0
+    to_port = 0
+    action = "allow"
+    protocol = "icmp"
+    cidr_block = "0.0.0.0/0"
+    icmp_code = -1
+    icmp_type = -1
   }
   egress { #ephemeral ports for SSH (response) and HTTP/HTTPS (website response)
     rule_no = 100
@@ -138,6 +187,14 @@ resource "aws_network_acl" "network_acl" {
     protocol = "tcp"
     cidr_block = "0.0.0.0/0"
   }
+  egress { #ephemeral ports for SSH (response) and HTTP/HTTPS (website response) in IPv6
+    rule_no = 101
+    from_port = 1024
+    to_port = 65535
+    action = "allow"
+    protocol = "tcp"
+    ipv6_cidr_block = "::/0"
+  }
   egress { #port for HTTPS (S3 request)
     rule_no = 110
     from_port = 443
@@ -146,6 +203,14 @@ resource "aws_network_acl" "network_acl" {
     protocol = "tcp"
     cidr_block = "0.0.0.0/0"
   }
+  egress { #port for HTTPS in IPv6 (S3 request)
+    rule_no = 111
+    from_port = 443
+    to_port = 443
+    action = "allow"
+    protocol = "tcp"
+    ipv6_cidr_block = "::/0"
+  }
   egress { #port for HTTP (EC2 internet request)
     rule_no = 120
     from_port = 80
@@ -153,6 +218,24 @@ resource "aws_network_acl" "network_acl" {
     action = "allow"
     protocol = "tcp"
     cidr_block = "0.0.0.0/0"
+  }
+  egress { #port for HTTP in IPv6 (EC2 internet request)
+    rule_no = 121
+    from_port = 80
+    to_port = 80
+    action = "allow"
+    protocol = "tcp"
+    ipv6_cidr_block = "::/0"
+  }
+  egress { #ping IPv4
+    rule_no = 130
+    from_port = 0
+    to_port = 0
+    action = "allow"
+    protocol = "icmp"
+    cidr_block = "0.0.0.0/0"
+    icmp_code = -1
+    icmp_type = -1
   }
   tags = {
     Name = "${var.appName}NetworkACL"
@@ -204,6 +287,7 @@ resource "aws_security_group" "instance_sg" {
     to_port = 22
     protocol = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
+    ipv6_cidr_blocks = ["::/0"]
     description = "SSH"
   }
   ingress {
@@ -211,13 +295,22 @@ resource "aws_security_group" "instance_sg" {
     to_port = 443
     protocol = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
+    ipv6_cidr_blocks = ["::/0"]
     description = "HTTPS requests from Internet"
+  }
+  ingress {
+    from_port = 8
+    to_port = 0
+    protocol = "icmp"
+    cidr_blocks = ["0.0.0.0/0"]
+    description = "Allow ping IPv4"
   }
   egress {
     from_port = 0
     to_port = 0
     protocol = "-1"
     cidr_blocks = ["0.0.0.0/0"]
+    ipv6_cidr_blocks = ["::/0"]
     description = "Connection from EC2 to Internet"
   }
   tags = {
@@ -255,13 +348,23 @@ data "aws_iam_role" "AWSServiceRoleForAutoScaling" {
   name = "AWSServiceRoleForAutoScaling"
 }
 
+resource "aws_network_interface" "network_interface" {
+  subnet_id = aws_subnet.public_subnet[0].id
+  private_ips = [cidrhost(aws_subnet.public_subnet[0].cidr_block, 11)]
+  ipv6_addresses = [cidrhost(aws_subnet.public_subnet[0].ipv6_cidr_block, 16)] #16 (decimal) is displayed as 10 (hexadecimal) in IPv6 address
+  security_groups = [aws_security_group.instance_sg.id]
+  source_dest_check = false
+}
+
 resource "aws_instance" "instance" {
   ami = data.aws_ami.ubuntu.id
   instance_type = "t3a.micro"
   key_name = "deervision"
   iam_instance_profile = aws_iam_instance_profile.instance_profile.name
-  subnet_id = aws_subnet.public_subnet[0].id
-  vpc_security_group_ids = [aws_security_group.instance_sg.id]
+  network_interface {
+    device_index = 0
+    network_interface_id = aws_network_interface.network_interface.id
+  }
   disable_api_termination = false
   ebs_optimized = false
   hibernation = false
@@ -325,6 +428,14 @@ resource "aws_route53_record" "dns_record_backend" {
   type = "A"
   ttl = "60"
   records = [aws_eip.eip.public_ip]
+}
+
+resource "aws_route53_record" "dns_record_ipv6_backend" {
+  zone_id = data.aws_route53_zone.route53_zone_queried.zone_id
+  name = "backend"
+  type = "AAAA"
+  ttl = "60"
+  records = aws_network_interface.network_interface.ipv6_addresses
 }
 
 ##########################################################################################
