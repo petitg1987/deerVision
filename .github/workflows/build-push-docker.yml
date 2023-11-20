@@ -1,4 +1,4 @@
-name: Build and Test
+name: Build and Push Docker Image
 
 on:
   push:
@@ -21,7 +21,7 @@ jobs:
           cache: 'maven'
 
       - name: Build JAR
-        run: mvn -B clean package
+        run: mvn -B clean package --file ./deer-vision-backend/pom.xml
 
       - name: Build and Push Docker image
         uses: docker/build-push-action@v2
