@@ -20,4 +20,4 @@ jobs:
           java-version: '11'
 
       - name: Build with Maven and Run Tests
-        run: mvn -B clean test
+        run: mvn -f ./deer-vision-backend/pom.xml -B clean test
