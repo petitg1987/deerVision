@@ -24,13 +24,9 @@ jobs:
         run: mvn -B clean package --file ./deer-vision-backend/pom.xml
 
       - name: Build and Push Docker image
-        uses: docker/build-push-action@v2
-        with:
-          context: .
-          file: Dockerfile
-          push: true
-          tags: |
-            ghcr.io/${{ github.repository_owner }}/${{ github.repository_name }}:latest
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          docker build --build-arg JAR_FILE=deer-vision-backend/target/*.jar -t ghcr.io/${{ github.repository_owner }}/${{ github.repository_name }}:latest .
+          docker push ghcr.io/${{ github.repository_owner }}/${{ github.repository_name }}:latest
+        env:
+          DOCKER_USERNAME: ${{ github.actor }}
+          DOCKER_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
