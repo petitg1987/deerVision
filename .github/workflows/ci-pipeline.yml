@@ -1,12 +1,12 @@
-name: Build and Push Docker Image
+name: CI Pipeline
 
 on:
   push:
     branches:
-      - master
+      - '**'
 
 jobs:
-  build-push-docker:
+  ci-pipeline:
     runs-on: ubuntu-latest
 
     steps:
@@ -20,10 +20,15 @@ jobs:
           java-version: '17'
           cache: 'maven'
 
+      - name: Unit Tests
+        run: mvn -B clean test --file ./deer-vision-backend/pom.xml
+
       - name: Build JAR
+        if: github.ref == 'refs/heads/master'
         run: mvn -B clean package --file ./deer-vision-backend/pom.xml
 
       - name: Build and Push Docker image
+        if: github.ref == 'refs/heads/master'
         run: |
           docker build --build-arg JAR_FILE=deer-vision-backend/target/*.jar -t ghcr.io/${{ github.repository_owner }}/${{ github.repository_name }}:latest .
           docker push ghcr.io/${{ github.repository_owner }}/${{ github.repository_name }}:latest
