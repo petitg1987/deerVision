@@ -30,13 +30,13 @@ jobs:
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
-        with:  #TODO explain somewhere
+        with:  #TODO explain somewhere how to retrieve the role
           role-to-assume: arn:aws:iam::496124100072:role/deervisionGitHubAction
           aws-region: eu-central-1
 
-#      - name: Login to Amazon ECR
-#        id: login-ecr
-#        uses: aws-actions/amazon-ecr-login@v2
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v2
 #
 #      - name: Build, tag, and push docker image to Amazon ECR
 #        env:
@@ -52,20 +52,20 @@ jobs:
 
 
 
-      - name: Login to GitHub Container Registry
-        uses: docker/login-action@v3
-        if: github.ref == 'refs/heads/master'
-        with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Build and Push Docker Image
-        if: github.ref == 'refs/heads/master'
-        run: |
-          cd ./deer-vision-backend/
-          APP_VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
-          cd ./deploy/
-          cp ../target/deer-vision*.jar ./deer-vision.jar
-          docker build -t ghcr.io/${{ github.repository_owner }}/deer-vision:$APP_VERSION .
-          docker push ghcr.io/${{ github.repository_owner }}/deer-vision:$APP_VERSION
+#      - name: Login to GitHub Container Registry
+#        uses: docker/login-action@v3
+#        if: github.ref == 'refs/heads/master'
+#        with:
+#          registry: ghcr.io
+#          username: ${{ github.actor }}
+#          password: ${{ secrets.GITHUB_TOKEN }}
+#
+#      - name: Build and Push Docker Image
+#        if: github.ref == 'refs/heads/master'
+#        run: |
+#          cd ./deer-vision-backend/
+#          APP_VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
+#          cd ./deploy/
+#          cp ../target/deer-vision*.jar ./deer-vision.jar
+#          docker build -t ghcr.io/${{ github.repository_owner }}/deer-vision:$APP_VERSION .
+#          docker push ghcr.io/${{ github.repository_owner }}/deer-vision:$APP_VERSION
