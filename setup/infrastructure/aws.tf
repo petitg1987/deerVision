@@ -450,6 +450,53 @@ resource "aws_cloudwatch_log_group" "cloudwatch_log_group" {
 }
 
 ##########################################################################################
+# DEPLOYMENT FROM GITHUB ACTION
+##########################################################################################
+resource "aws_iam_openid_connect_provider" "git_hub_action_provider" {
+  url = "https://token.actions.githubusercontent.com"
+  client_id_list = ["sts.amazonaws.com"]
+  thumbprint_list = ["6938fd4d98bab03faadb97b34396831e3780aea1"]
+}
+
+resource "aws_iam_role" "git_hub_action_role" {
+  name = "${var.appName}GitHubAction"
+  assume_role_policy = <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Principal": {
+        "Federated": "${aws_iam_openid_connect_provider.git_hub_action_provider.arn}"
+      },
+      "Action": "sts:AssumeRoleWithWebIdentity",
+      "Condition": {
+        "StringEquals": {
+                "token.actions.githubusercontent.com:aud": "sts.amazonaws.com"
+        },
+        "StringLike": {
+          "token.actions.githubusercontent.com:sub": "repo:petitg1987/*"
+        }
+      }
+    }
+  ]
+}
+EOF
+}
+
+resource "aws_iam_role_policy_attachment" "AmazonEC2ContainerRegistryFullAccess" {
+  policy_arn = "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryFullAccess"
+  role = aws_iam_role.git_hub_action_role.name
+}
+
+resource "aws_ecr_repository" "foo" {
+  name = var.appName
+  image_scanning_configuration {
+    scan_on_push = false
+  }
+}
+
+##########################################################################################
 # CODE DEPLOY
 ##########################################################################################
 resource "aws_iam_role" "deployment_role" {

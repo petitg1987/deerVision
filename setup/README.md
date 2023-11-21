@@ -21,6 +21,7 @@
   * Force instance re-creation: `./infrastructure/infra.sh recreateInstance`
 
 # Deploy the application
+* Pre-requisite: update 'role-to-assume' ARN in '.github/workflows/ci-backend-pipeline.yml' with GitHub role created in AWS
 * Backend:
   * Execute: `./deploy/deploy.sh backend`
   * Check log on server:

@@ -1,4 +1,4 @@
-name: CI Pipeline
+name: CI Backend Pipeline
 
 on:
   push:
@@ -34,7 +34,7 @@ jobs:
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
-        with:  #TODO explain somewhere how to retrieve the role
+        with:
           role-to-assume: arn:aws:iam::496124100072:role/${{ env.APP_NAME }}GitHubAction
           aws-region: eu-central-1
 
@@ -42,7 +42,7 @@ jobs:
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v2
 
-      - name: Build, tag, and push docker image to Amazon ECR
+      - name: Build and Push Docker Image to Amazon ECR
         env:
           REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           REPOSITORY: ${{ env.APP_NAME }}
