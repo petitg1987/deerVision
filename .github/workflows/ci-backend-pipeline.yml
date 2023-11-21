@@ -32,7 +32,7 @@ jobs:
           cd ./deer-vision-backend/
           mvn -B clean package
 
-      - name: Configure AWS credentials
+      - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
           role-to-assume: arn:aws:iam::496124100072:role/${{ env.APP_NAME }}GitHubAction
