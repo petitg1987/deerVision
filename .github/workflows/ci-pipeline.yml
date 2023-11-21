@@ -37,15 +37,19 @@ jobs:
       - name: Login to Amazon ECR
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v2
-#
-#      - name: Build, tag, and push docker image to Amazon ECR
-#        env:
-#          REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-#          REPOSITORY: deer-vision-repo
-#          IMAGE_TAG: ${{ github.sha }}
-#        run: |
-#          docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG .
-#          docker push $REGISTRY/$REPOSITORY:$IMAGE_TAG
+
+      - name: Build, tag, and push docker image to Amazon ECR
+        env: #TODO use global variable if possible !
+          REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          REPOSITORY: deervision
+          IMAGE_TAG: ${{ github.sha }}
+        run: |
+          cd ./deer-vision-backend/
+          APP_VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
+          cd ./deploy/
+          cp ../target/deer-vision*.jar ./deer-vision.jar
+          docker build -t $REGISTRY/$REPOSITORY:$APP_VERSION .
+          docker push $REGISTRY/$REPOSITORY:$APP_VERSION
 
 
 
