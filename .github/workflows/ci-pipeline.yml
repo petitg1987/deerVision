@@ -24,10 +24,10 @@ jobs:
         if: github.ref == 'refs/heads/master'
         run: mvn -B clean package --file ./deer-vision-backend/pom.xml
 
-      - name: Login into GitHub Docker
+      - name: Login to GitHub Container Registry
         uses: docker/login-action@v3
         if: github.ref == 'refs/heads/master'
-        env:
+        with:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
