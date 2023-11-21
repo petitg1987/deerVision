@@ -1,6 +1,6 @@
 FROM eclipse-temurin:17-jdk-jammy
 
-WORKDIR /usr/src/app
+WORKDIR /app
 COPY deer-vision.jar .
 EXPOSE 8080
 # Specify any environment variables (if needed)
