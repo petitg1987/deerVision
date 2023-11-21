@@ -31,8 +31,8 @@ jobs:
           APP_VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
           cd ./deploy/
           cp ../target/deer-vision*.jar ./deer-vision.jar
-          docker build -t deer-vision .
-          docker push ghcr.io/${{ github.repository_owner }}/deer-vision-backend:$APP_VERSION
+          docker build -t deer-vision:$APP_VERSION .
+          docker push deer-vision:$APP_VERSION
         env:
           DOCKER_USERNAME: ${{ github.actor }}
           DOCKER_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
