@@ -27,10 +27,12 @@ jobs:
       - name: Build and Push Docker image
         if: github.ref == 'refs/heads/master'
         run: |
-          cd ./deer-vision-backend/deploy/
+          cd ./deer-vision-backend/
+          APP_VERSION=$(xmllint --xpath "//*[local-name()='project']/*[local-name()='version']/text()" pom.xml)
+          cd ./deploy/
           cp ../target/deer-vision*.jar ./deer-vision.jar
           docker build -t deer-vision .
-          #docker push ghcr.io/${{ github.repository_owner }}/deer-vision-backend:latest
+          docker push ghcr.io/${{ github.repository_owner }}/deer-vision-backend:$APP_VERSION
         env:
           DOCKER_USERNAME: ${{ github.actor }}
           DOCKER_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
