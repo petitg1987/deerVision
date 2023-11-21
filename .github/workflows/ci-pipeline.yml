@@ -5,6 +5,9 @@ on:
     branches:
       - '**'
 
+env:
+  APP_NAME: 'deervision'
+
 jobs:
   ci-pipeline:
     runs-on: ubuntu-latest
@@ -25,13 +28,14 @@ jobs:
           cache: 'maven'
 
       - name: Build JAR
-        if: github.ref == 'refs/heads/master'
-        run: mvn -B clean package --file ./deer-vision-backend/pom.xml
+        run: |
+          cd ./deer-vision-backend/
+          mvn -B clean package
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:  #TODO explain somewhere how to retrieve the role
-          role-to-assume: arn:aws:iam::496124100072:role/deervisionGitHubAction
+          role-to-assume: arn:aws:iam::496124100072:role/${{ env.APP_NAME }}GitHubAction
           aws-region: eu-central-1
 
       - name: Login to Amazon ECR
@@ -40,11 +44,10 @@ jobs:
 
       - name: Build, tag, and push docker image to Amazon ECR
         env:
-          REGISTRY: ${{steps.login-ecr.outputs.registry}}
-          REPOSITORY: deervision
+          REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          REPOSITORY: ${{ env.APP_NAME }}
           IMAGE_TAG: ${{ github.sha }}
         run: |
-          cd ./deer-vision-backend/
           APP_VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
           cd ./deploy/
           cp ../target/deer-vision*.jar ./deer-vision.jar
