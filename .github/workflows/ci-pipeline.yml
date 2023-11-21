@@ -27,8 +27,10 @@ jobs:
       - name: Build and Push Docker image
         if: github.ref == 'refs/heads/master'
         run: |
-          docker build --build-arg JAR_FILE=deer-vision-backend/target/*.jar -t ghcr.io/${{ github.repository_owner }}/deer-vision-backend:latest ./deer-vision-backend/
-          docker push ghcr.io/${{ github.repository_owner }}/deer-vision-backend:latest
+          cd ./deer-vision-backend/docker/
+          cp ../target/deer-vision*.jar ./deer-vision.jar
+          docker build -t deer-vision .
+          #docker push ghcr.io/${{ github.repository_owner }}/deer-vision-backend:latest
         env:
           DOCKER_USERNAME: ${{ github.actor }}
           DOCKER_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
