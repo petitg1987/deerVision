@@ -1,4 +1,4 @@
-FROM openjdk:17-jre-slim
+FROM eclipse-temurin:17-jdk-jammy
 
 WORKDIR /usr/src/app
 COPY deer-vision.jar .
