@@ -8,8 +8,10 @@ on:
 jobs:
   ci-pipeline:
     runs-on: ubuntu-latest
+
     permissions:
       id-token: write # This is required for requesting the JWT on AWS
+      contents: read
 
     steps:
       - name: Checkout Code
@@ -29,7 +31,7 @@ jobs:
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          role-to-assume: arn:aws:iam::496124100072:role/deervisionGitHubAction
+          role-to-assume: arn:aws:iam::496124100072:role/deervisionGitHubAction #TODO explain somewhere
           aws-region: eu-central-1
 
 #      - name: Login to Amazon ECR
