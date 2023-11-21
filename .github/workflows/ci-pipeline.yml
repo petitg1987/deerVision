@@ -28,7 +28,7 @@ jobs:
         if: github.ref == 'refs/heads/master'
         run: |
           cd ./deer-vision-backend/
-          APP_VERSION=$(xmllint --xpath "//*[local-name()='project']/*[local-name()='version']/text()" pom.xml)
+          APP_VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
           cd ./deploy/
           cp ../target/deer-vision*.jar ./deer-vision.jar
           docker build -t deer-vision .
