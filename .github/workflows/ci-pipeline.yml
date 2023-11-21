@@ -5,11 +5,11 @@ on:
     branches:
       - '**'
 
+env:
+  APP_NAME: 'deervision'
+
 jobs:
   ci-pipeline:
-    env:
-      APP_NAME: 'deervision'
-
     runs-on: ubuntu-latest
 
     permissions:
