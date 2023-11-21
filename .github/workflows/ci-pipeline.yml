@@ -7,6 +7,9 @@ on:
 
 jobs:
   ci-pipeline:
+    env:
+      APP_NAME: 'deervision'
+
     runs-on: ubuntu-latest
 
     permissions:
@@ -31,7 +34,7 @@ jobs:
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:  #TODO explain somewhere how to retrieve the role
-          role-to-assume: arn:aws:iam::496124100072:role/deervisionGitHubAction
+          role-to-assume: arn:aws:iam::496124100072:role/${{APP_NAME}}GitHubAction
           aws-region: eu-central-1
 
       - name: Login to Amazon ECR
@@ -39,9 +42,9 @@ jobs:
         uses: aws-actions/amazon-ecr-login@v2
 
       - name: Build, tag, and push docker image to Amazon ECR
-        env: #TODO use global variable if possible !
-          REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-          REPOSITORY: deervision
+        env:
+          REGISTRY: ${{steps.login-ecr.outputs.registry}}
+          REPOSITORY: ${{APP_NAME}}
           IMAGE_TAG: ${{ github.sha }}
         run: |
           cd ./deer-vision-backend/
@@ -50,26 +53,3 @@ jobs:
           cp ../target/deer-vision*.jar ./deer-vision.jar
           docker build -t $REGISTRY/$REPOSITORY:$APP_VERSION .
           docker push $REGISTRY/$REPOSITORY:$APP_VERSION
-
-
-
-
-
-
-#      - name: Login to GitHub Container Registry
-#        uses: docker/login-action@v3
-#        if: github.ref == 'refs/heads/master'
-#        with:
-#          registry: ghcr.io
-#          username: ${{ github.actor }}
-#          password: ${{ secrets.GITHUB_TOKEN }}
-#
-#      - name: Build and Push Docker Image
-#        if: github.ref == 'refs/heads/master'
-#        run: |
-#          cd ./deer-vision-backend/
-#          APP_VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
-#          cd ./deploy/
-#          cp ../target/deer-vision*.jar ./deer-vision.jar
-#          docker build -t ghcr.io/${{ github.repository_owner }}/deer-vision:$APP_VERSION .
-#          docker push ghcr.io/${{ github.repository_owner }}/deer-vision:$APP_VERSION
