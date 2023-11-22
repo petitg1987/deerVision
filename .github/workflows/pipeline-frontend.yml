@@ -48,13 +48,13 @@ jobs:
         if: github.ref == 'refs/heads/master'
         run: |
           cd ./${{ env.APP_FOLDER }}/
-          files_to_remove=$(aws s3 sync "./build/" "s3://${{ env.AWS_FRONTEND_BUCKET }}/" --dryrun --delete | grep "delete:" | awk '{print $2}')
+          files_to_remove=$(aws s3 sync --dryrun --delete "./build/" "s3://${{ env.AWS_FRONTEND_BUCKET }}/" | grep "delete:" | awk '{print $3}')
           for file in $files_to_remove; do
-            echo "Remove file: $file"
             aws s3 rm $file
           done
-          aws s3 cp --exclude "_source/*" --exclude "*.html" --cache-control max-age=31536000 "./build/" "s3://${{ env.AWS_FRONTEND_BUCKET }}/"
-          aws s3 cp --exclude "*" --include "*.html" --cache-control no-cache --content-type "text/html" "./builds3/" "s3://${{ env.AWS_FRONTEND_BUCKET }}/" #No cache for html files entry point
+          aws s3 cp --recursive --exclude "_source/*" --exclude "*.html" --cache-control max-age=31536000 "./build/" "s3://${{ env.AWS_FRONTEND_BUCKET }}/"
+          aws s3 cp --recursive --exclude "*" --include "*.html" --cache-control no-cache --content-type "text/html" "./builds3/" "s3://${{ env.AWS_FRONTEND_BUCKET }}/" #No cache for html files entry point
+
       - name: Invalidate CloudFront Cache
         if: github.ref == 'refs/heads/master'
         run: |
