@@ -37,16 +37,19 @@ jobs:
           mvn -B clean package
 
       - name: Configure AWS Credentials
+        if: github.ref == 'refs/heads/master'
         uses: aws-actions/configure-aws-credentials@v4
         with:
           role-to-assume: arn:aws:iam::${{ env.AWS_ACCOUNT_ID }}:role/${{ env.APP_NAME }}GitHubAction
           aws-region: ${{ env.AWS_REGION }}
 
       - name: Login to Amazon ECR
+        if: github.ref == 'refs/heads/master'
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v2
 
       - name: Build and Push Docker Image to Amazon ECR
+        if: github.ref == 'refs/heads/master'
         env:
           REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           REPOSITORY: ${{ env.APP_NAME }}
@@ -58,11 +61,13 @@ jobs:
           docker push $REGISTRY/$REPOSITORY:$IMAGE_TAG
 
       - name: Set Up SSH key
+        if: github.ref == 'refs/heads/master'
         run: |
           mkdir ~/.ssh
           echo "${{ secrets.EC2_SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa && chmod 600 ~/.ssh/id_rsa
 
       - name: Deploy Docker Image On Instance
+        if: github.ref == 'refs/heads/master'
         run: |
           cd ./${{ env.APP_FOLDER }}/deploy/
           EC2_PUBLIC_IP=$(aws ec2 describe-instances --filters Name=key-name,Values=${{ env.APP_NAME }} Name=instance-state-name,Values=running --query "Reservations[0].Instances[0].PublicIpAddress" --output text)
@@ -71,11 +76,12 @@ jobs:
           cat deploy.log
 
       - name: Show Error Deploy Logs
-        if: ${{ failure() }}
+        if: github.ref == 'refs/heads/master' && failure()
         run: |
           cat ./${{ env.APP_FOLDER }}/deploy/deploy.log
 
       - name: Check Deployment
+        if: github.ref == 'refs/heads/master'
         run: |
           max_attempts=35
           success=false
