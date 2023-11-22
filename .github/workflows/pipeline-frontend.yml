@@ -33,6 +33,7 @@ jobs:
       - name: Build with Yarn
         run: |
           cd ./${{ env.APP_FOLDER }}/
+          yarn install
           yarn build
 
 #      - name: Configure AWS Credentials
