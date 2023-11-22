@@ -1,0 +1,49 @@
+name: Pipeline Frontend
+
+on:
+  push:
+    paths-ignore:
+      - 'deer-vision-backend/**'
+    branches:
+      - '**'
+
+env:
+  AWS_REGION: 'eu-central-1'
+  APP_NAME: 'deervision'
+  APP_JAR_START_NAME: 'deer-vision'
+  APP_FOLDER: 'deer-vision-frontend'
+
+jobs:
+  frontend:
+    runs-on: ubuntu-latest
+
+    permissions:
+      id-token: write # This is required for requesting the JWT on AWS
+      contents: read
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Set Up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Build with Yarn
+        run: |
+          cd ./${{ env.APP_FOLDER }}/
+          yarn build
+
+#      - name: Configure AWS Credentials
+#        if: github.ref == 'refs/heads/master'
+#        uses: aws-actions/configure-aws-credentials@v4
+#        with:
+#          role-to-assume: arn:aws:iam::${{ env.AWS_ACCOUNT_ID }}:role/${{ env.APP_NAME }}GitHubAction
+#          aws-region: ${{ env.AWS_REGION }}
+#
+#      - name: Login to Amazon ECR
+#        if: github.ref == 'refs/heads/master'
+#        id: login-ecr
+#        uses: aws-actions/amazon-ecr-login@v2
+
