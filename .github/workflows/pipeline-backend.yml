@@ -8,11 +8,11 @@ on:
       - '**'
 
 env:
+  AWS_ACCOUNT_ID: '496124100072'
   AWS_REGION: 'eu-central-1'
   APP_NAME: 'deervision'
   APP_JAR_START_NAME: 'deer-vision'
   APP_FOLDER: 'deer-vision-backend'
-  AWS_ACCOUNT_ID: '496124100072'
 
 jobs:
   backend:
