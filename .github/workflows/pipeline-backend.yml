@@ -6,6 +6,7 @@ on:
       - '**'
 
 env:
+  AWS_REGION: 'eu-central-1'
   APP_NAME: 'deervision'
   APP_JAR_START_NAME: 'deer-vision'
   APP_FOLDER: 'deer-vision-backend'
@@ -39,7 +40,7 @@ jobs:
         uses: aws-actions/configure-aws-credentials@v4
         with:
           role-to-assume: arn:aws:iam::${{ env.AWS_ACCOUNT_ID }}:role/${{ env.APP_NAME }}GitHubAction
-          aws-region: eu-central-1
+          aws-region: ${{ env.AWS_REGION }}
 
       - name: Login to Amazon ECR
         id: login-ecr
@@ -64,10 +65,10 @@ jobs:
       - name: Deploy Docker Image On Instance
         run: |
           cd ./${{ env.APP_FOLDER }}/deploy/
-          INSTANCE_IP=$(aws ec2 describe-instances --filters Name=key-name,Values=${{ env.APP_NAME }} Name=instance-state-name,Values=running --query "Reservations[0].Instances[0].PublicIpAddress" --output text)
-          ssh -o "StrictHostKeyChecking=no" -i ~/.ssh/id_rsa ubuntu@$INSTANCE_IP 'bash -s' < deploy-backend.sh > deployment-logs.txt 2>&1
-          scp -o "StrictHostKeyChecking=no" -i ~/.ssh/id_rsa ubuntu@$INSTANCE_IP:~/deployment-logs.txt .
-          cat deployment-logs.txt
+          INSTANCE_IP=$(aws ec2 describe-instances --region ${{ env.AWS_REGION }} --filters Name=key-name,Values=${{ env.APP_NAME }} Name=instance-state-name,Values=running --query "Reservations[0].Instances[0].PublicIpAddress" --output text)
+          ssh -o "StrictHostKeyChecking=no" -i ~/.ssh/id_rsa ubuntu@$INSTANCE_IP 'bash -s' < deploy-backend.sh > logs.txt 2>&1
+          scp -o "StrictHostKeyChecking=no" -i ~/.ssh/id_rsa ubuntu@$INSTANCE_IP:~/logs.txt .
+          cat logs.txt
 
       - name: Check Deployment
         run: |
