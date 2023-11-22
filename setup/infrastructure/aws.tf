@@ -494,8 +494,9 @@ resource "aws_iam_role_policy_attachment" "AmazonEC2ReadOnlyAccess" {
   role = aws_iam_role.git_hub_action_role.name
 }
 
-resource "aws_ecr_repository" "foo" {
+resource "aws_ecr_repository" "docker_registry" {
   name = var.appName
+  image_tag_mutability = "IMMUTABLE"
   image_scanning_configuration {
     scan_on_push = false
   }

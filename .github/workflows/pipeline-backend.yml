@@ -9,6 +9,7 @@ env:
   APP_NAME: 'deervision'
   APP_JAR_START_NAME: 'deer-vision'
   APP_FOLDER: 'deer-vision-backend'
+  AWS_ACCOUNT_ID: '496124100072'
 
 jobs:
   backend:
@@ -37,7 +38,7 @@ jobs:
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          role-to-assume: arn:aws:iam::496124100072:role/${{ env.APP_NAME }}GitHubAction
+          role-to-assume: arn:aws:iam::${{ env.AWS_ACCOUNT_ID }}:role/${{ env.APP_NAME }}GitHubAction
           aws-region: eu-central-1
 
       - name: Login to Amazon ECR
@@ -50,12 +51,10 @@ jobs:
           REPOSITORY: ${{ env.APP_NAME }}
           IMAGE_TAG: ${{ github.sha }}
         run: |
-          cd ./${{ env.APP_FOLDER }}/
-          APP_VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
-          cd ./deploy/
+          cd ./${{ env.APP_FOLDER }}/deploy/
           cp ../target/${{ env.APP_JAR_START_NAME }}*.jar ./${{ env.APP_JAR_START_NAME }}.jar
-          docker build -t $REGISTRY/$REPOSITORY:$APP_VERSION .
-          docker push $REGISTRY/$REPOSITORY:$APP_VERSION
+          docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG .
+          docker push $REGISTRY/$REPOSITORY:$IMAGE_TAG
 
       - name: Set Up SSH key
         run: |
