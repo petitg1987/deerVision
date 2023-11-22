@@ -251,13 +251,13 @@ data "aws_ami" "ubuntu" {
   owners = ["496124100072"]
   filter {
     name = "image-id"
-    values = ["ami-0dd2715a1ae2acd18"] #Private AMI with Ubuntu 22.04 LTS
+    values = ["ami-055cb71dff2d966de"] #Private AMI with Ubuntu 22.04 LTS
   }
 }
 
 resource "aws_iam_role" "instance_role" {
   name = "${var.appName}InstanceRole"
-  description = "Allow EC2 instances to access to S3/SNS/SQS (code deploy agent) and Route53 (let's encrypt)"
+  description = "Allow EC2 instances to access to ECR (deploy script) and Route53 (let's encrypt)"
   assume_role_policy = <<EOF
 {
   "Version": "2012-10-17",
@@ -319,21 +319,6 @@ resource "aws_security_group" "instance_sg" {
   }
 }
 
-resource "aws_iam_role_policy_attachment" "AmazonEC2RoleforAWSCodeDeploy" {
-  policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonEC2RoleforAWSCodeDeploy"
-  role = aws_iam_role.instance_role.name
-}
-
-resource "aws_iam_role_policy_attachment" "AutoScalingNotificationAccessRole" {
-  policy_arn = "arn:aws:iam::aws:policy/service-role/AutoScalingNotificationAccessRole"
-  role = aws_iam_role.instance_role.name
-}
-
-resource "aws_iam_role_policy_attachment" "CloudWatchAgentAdminPolicy" {
-  policy_arn = "arn:aws:iam::aws:policy/CloudWatchAgentAdminPolicy"
-  role = aws_iam_role.instance_role.name
-}
-
 resource "aws_iam_role_policy_attachment" "AmazonRoute53FullAccess" {
   policy_arn = "arn:aws:iam::aws:policy/AmazonRoute53FullAccess"
   role = aws_iam_role.instance_role.name
@@ -347,10 +332,6 @@ resource "aws_iam_role_policy_attachment" "AmazonEC2ContainerRegistryFullAccess"
 resource "aws_iam_instance_profile" "instance_profile" {
   name = "${var.appName}InstanceProfile"
   role = aws_iam_role.instance_role.name
-}
-
-data "aws_iam_role" "AWSServiceRoleForAutoScaling" {
-  name = "AWSServiceRoleForAutoScaling"
 }
 
 resource "aws_network_interface" "network_interface" {
@@ -505,77 +486,6 @@ resource "aws_ecr_repository" "docker_registry" {
   image_scanning_configuration {
     scan_on_push = false
   }
-}
-
-##########################################################################################
-# CODE DEPLOY
-##########################################################################################
-resource "aws_iam_role" "deployment_role" {
-  name = "${var.appName}CodeDeployRole"
-  description = "Allow CodeDeploy service to access autoscale, EC2 and SNS"
-  assume_role_policy = <<EOF
-{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Sid": "",
-      "Effect": "Allow",
-      "Principal": {
-        "Service": "codedeploy.amazonaws.com"
-      },
-      "Action": "sts:AssumeRole"
-    }
-  ]
-}
-EOF
-  tags = {
-    Application = var.appName
-  }
-}
-
-resource "aws_iam_role_policy_attachment" "AWSCodeDeployRole" {
-  policy_arn = "arn:aws:iam::aws:policy/service-role/AWSCodeDeployRole"
-  role = aws_iam_role.deployment_role.name
-}
-
-resource "aws_codedeploy_app" "codedeploy_app" {
-  compute_platform = "Server"
-  name = "${var.appName}App"
-}
-
-resource "aws_codedeploy_deployment_group" "deployment_group" {
-  app_name = aws_codedeploy_app.codedeploy_app.name
-  deployment_group_name = "${var.appName}DeploymentGroup"
-  deployment_config_name = "CodeDeployDefault.AllAtOnce"
-  service_role_arn = aws_iam_role.deployment_role.arn
-  ec2_tag_set {
-    ec2_tag_filter {
-      key = "Application"
-      type = "KEY_AND_VALUE"
-      value = var.appName
-    }
-  }
-}
-
-resource "aws_s3_bucket" "storage_backend" {
-  bucket = "${var.appName}-backend"
-  tags = {
-    Name = "${var.appName}Backend"
-    Application = var.appName
-  }
-}
-
-resource "aws_s3_bucket_acl" "storage_backend_bucket_acl" {
-  bucket = aws_s3_bucket.storage_backend.id
-  acl = "private"
-}
-
-resource "aws_s3_bucket_public_access_block" "storage_access_backend" {
-  bucket = aws_s3_bucket.storage_backend.id
-  block_public_acls = true
-  block_public_policy = true
-  ignore_public_acls = true
-  restrict_public_buckets = true
 }
 
 ##########################################################################################

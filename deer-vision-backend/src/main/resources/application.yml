@@ -24,8 +24,6 @@ spring:
   servlet.multipart:
     maxFileSize: 1073741824
     maxRequestSize: 1073741824
-actuator:
-  password: "$2a$10$LP.C2c/pkgWQE2Z5x9JNNejYbh1lJ81au58xoUZa5ZnWh/4ROITfu"
 admin:
   password: "$2a$10$SRSz7BSfnjvUnX7/BJyLSufHJOS5z6mDvo4lzeQkVUdYqGYtEx2UG"
   jwt-secret: "zDARQgTBuU89Vdcqgw3wYGNUPFfv4BwuTWn6cRCcvEJSax6u98Ua8xzk5m7Z46cxnKZerM"
