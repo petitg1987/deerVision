@@ -65,9 +65,10 @@ jobs:
       - name: Deploy Docker Image On Instance
         run: |
           cd ./${{ env.APP_FOLDER }}/deploy/
-          INSTANCE_IP=$(aws ec2 describe-instances --region ${{ env.AWS_REGION }} --filters Name=key-name,Values=${{ env.APP_NAME }} Name=instance-state-name,Values=running --query "Reservations[0].Instances[0].PublicIpAddress" --output text)
-          ssh -o "StrictHostKeyChecking=no" -i ~/.ssh/id_rsa ubuntu@$INSTANCE_IP 'bash -s' < deploy-backend.sh > logs.txt 2>&1
-          scp -o "StrictHostKeyChecking=no" -i ~/.ssh/id_rsa ubuntu@$INSTANCE_IP:~/logs.txt .
+          EC2_PUBLIC_IP=$(aws ec2 describe-instances --filters Name=key-name,Values=${{ env.APP_NAME }} Name=instance-state-name,Values=running --query "Reservations[0].Instances[0].PublicIpAddress" --output text)
+          echo "Instance IP found: $EC2_PUBLIC_IP"
+          ssh -o "StrictHostKeyChecking=no" -i ~/.ssh/id_rsa ubuntu@$EC2_PUBLIC_IP 'bash -s' < deploy-backend.sh > logs.txt 2>&1
+          scp -o "StrictHostKeyChecking=no" -i ~/.ssh/id_rsa ubuntu@$EC2_PUBLIC_IP:~/logs.txt .
           cat logs.txt
 
       - name: Check Deployment
