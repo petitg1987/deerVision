@@ -18,6 +18,6 @@ sudo docker pull $AWS_ACCOUNT_ID.dkr.ecr.eu-central-1.amazonaws.com/$DOCKER_REGI
 sudo docker stop $DOCKER_IMAGE_NAME || true
 sudo docker rm $DOCKER_IMAGE_NAME || true
 
-#sudo docker run -d -p 5001:5000 --restart always --name $DOCKER_IMAGE_NAME $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$DOCKER_REGISTRY_NAME:$latest_tag
+#sudo docker run -d -p 8081:8080 --restart always --name $DOCKER_IMAGE_NAME $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$DOCKER_REGISTRY_NAME:$latest_tag
 
-sudo docker run -d -p 5001:5000 --name $DOCKER_IMAGE_NAME $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$DOCKER_REGISTRY_NAME:$latest_tag
+sudo docker run -d -p 8081:8080 --name $DOCKER_IMAGE_NAME $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$DOCKER_REGISTRY_NAME:$latest_tag
