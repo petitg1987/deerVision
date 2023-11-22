@@ -71,6 +71,11 @@ jobs:
           scp -o "StrictHostKeyChecking=no" -i ~/.ssh/id_rsa ubuntu@$EC2_PUBLIC_IP:~/deploy.log .
           cat deploy.log
 
+      - name: Show Error Deploy Logs
+        if: ${{ failure() }}
+        run: |
+          cat ./${{ env.APP_FOLDER }}/deploy/deploy.log
+
       - name: Check Deployment
         run: |
           status_code=$(curl -s -o /dev/null -w "%{http_code}" "https://backend.deervision.studio/api/test/deploy" --max-time 180)
