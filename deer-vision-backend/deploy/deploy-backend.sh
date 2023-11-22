@@ -27,7 +27,7 @@ sudo docker run -d -p 8080:8080 --restart always --name $DOCKER_IMAGE_NAME --net
 echo "Cleaning"
 sudo docker image prune -a -f
 sudo docker system prune -a -f
-image_ids=$(aws ecr list-images --region $AWS_REGION --repository-name $DOCKER_REGISTRY_NAME --query 'imageIds[].imageDigest' --output json)
+image_ids=$(aws ecr list-images --region $AWS_REGION --repository-name $DOCKER_REGISTRY_NAME --query 'imageIds[].imageDigest' --output text)
 for image_id in $image_ids; do
-    aws ecr batch-delete-image --region $AWS_REGION --repository-name $DOCKER_REGISTRY_NAME --image-ids $image_id
+  aws ecr batch-delete-image --region $AWS_REGION --repository-name $DOCKER_REGISTRY_NAME --image-ids $image_id
 done

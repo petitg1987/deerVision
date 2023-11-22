@@ -66,3 +66,13 @@ jobs:
           cd ./${{ env.APP_FOLDER }}/deploy/
           INSTANCE_IP=$(aws ec2 describe-instances --filters "Name=tag:Name,Values=${{ env.APP_NAME }}Instance" --query "Reservations[0].Instances[0].PublicIpAddress" --output text)
           ssh -o "StrictHostKeyChecking=no" -i ~/.ssh/id_rsa ubuntu@$INSTANCE_IP 'bash -s' < deploy-backend.sh
+
+      - name: Check Deployment
+        run: |
+          status_code=$(curl -s -o /dev/null -w "%{http_code}" "https://backend.deervision.studio/api/test/deploy" --max-time 180)
+          if [ $status_code -eq 200 ]; then
+            echo "Deployment check succeeded. HTTP 200 received."
+          else
+            echo "Deployment check failed. Received HTTP status code: $status_code"
+            exit 1
+          fi
