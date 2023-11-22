@@ -489,6 +489,11 @@ resource "aws_iam_role_policy_attachment" "AmazonEC2ContainerRegistryFullAccess"
   role = aws_iam_role.git_hub_action_role.name
 }
 
+resource "aws_iam_role_policy_attachment" "AmazonEC2ReadOnlyAccess" {
+  policy_arn = "arn:aws:iam::aws:policy/AmazonEC2ReadOnlyAccess"
+  role = aws_iam_role.git_hub_action_role.name
+}
+
 resource "aws_ecr_repository" "foo" {
   name = var.appName
   image_scanning_configuration {
