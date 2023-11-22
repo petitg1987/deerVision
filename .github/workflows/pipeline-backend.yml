@@ -11,7 +11,7 @@ env:
   APP_FOLDER: 'deer-vision-backend'
 
 jobs:
-  ci-backend:
+  backend:
     runs-on: ubuntu-latest
 
     permissions:
@@ -56,17 +56,6 @@ jobs:
           cp ../target/${{ env.APP_JAR_START_NAME }}*.jar ./${{ env.APP_JAR_START_NAME }}.jar
           docker build -t $REGISTRY/$REPOSITORY:$APP_VERSION .
           docker push $REGISTRY/$REPOSITORY:$APP_VERSION
-
-  cd-backend:
-    needs: ci-backend
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v4
-        with:
-          role-to-assume: arn:aws:iam::496124100072:role/${{ env.APP_NAME }}GitHubAction
-          aws-region: eu-central-1
 
       - name: Set Up SSH key
         run: echo "${{ secrets.EC2_SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa && chmod 600 ~/.ssh/id_rsa

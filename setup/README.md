@@ -23,7 +23,7 @@
 
 # Deploy the application
 * Pre-requisite: 
-  * Update both 'role-to-assume' ARN in '.github/workflows/pipeline-backend.yml' with GitHub role created in AWS
+  * Update 'role-to-assume' ARN in '.github/workflows/pipeline-backend.yml' with GitHub role created in AWS
 * Backend:
   * Execute: `./deploy/deploy.sh backend`
   * Check log on server:
