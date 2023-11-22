@@ -8,9 +8,10 @@ on:
       - '**'
 
 env:
+  AWS_ACCOUNT_ID: '496124100072'
   AWS_REGION: 'eu-central-1'
+  AWS_FRONTEND_BUCKET: 'deer-vision-frontend'
   APP_NAME: 'deervision'
-  APP_JAR_START_NAME: 'deer-vision'
   APP_FOLDER: 'deer-vision-frontend'
 
 jobs:
@@ -36,15 +37,27 @@ jobs:
           yarn install
           yarn build
 
-#      - name: Configure AWS Credentials
-#        if: github.ref == 'refs/heads/master'
-#        uses: aws-actions/configure-aws-credentials@v4
-#        with:
-#          role-to-assume: arn:aws:iam::${{ env.AWS_ACCOUNT_ID }}:role/${{ env.APP_NAME }}GitHubAction
-#          aws-region: ${{ env.AWS_REGION }}
-#
-#      - name: Login to Amazon ECR
-#        if: github.ref == 'refs/heads/master'
-#        id: login-ecr
-#        uses: aws-actions/amazon-ecr-login@v2
+      - name: Configure AWS Credentials
+        if: github.ref == 'refs/heads/master'
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::${{ env.AWS_ACCOUNT_ID }}:role/${{ env.APP_NAME }}GitHubAction
+          aws-region: ${{ env.AWS_REGION }}
 
+      - name: Sync Files in S3
+        if: github.ref == 'refs/heads/master'
+        run: |
+          cd ./${{ env.APP_FOLDER }}/
+          files_to_remove=$(aws s3 sync "./build/" "s3://${{ env.AWS_FRONTEND_BUCKET }}/" --dryrun --delete | grep "delete:" | awk '{print $2}')
+          for file in $files_to_remove; do
+            echo "Remove file: $file"
+            aws s3 rm $file
+          done
+          aws s3 cp --exclude "_source/*" --exclude "*.html" --cache-control max-age=31536000 "./build/" "s3://${{ env.AWS_FRONTEND_BUCKET }}/"
+          aws s3 cp --exclude "*" --include "*.html" --cache-control no-cache --content-type "text/html" "./builds3/" "s3://${{ env.AWS_FRONTEND_BUCKET }}/" #No cache for html files entry point
+      - name: Invalidate CloudFront Cache
+        if: github.ref == 'refs/heads/master'
+        run: |
+          cloudDistributionId=$(aws cloudfront list-distributions | jq -r '.DistributionList.Items[] | select (.Aliases.Items[0]=="deervision.studio") | .Id')
+          echo "Invaliding cache for distribution id: ${cloudDistributionId}"
+          aws cloudfront create-invalidation --distribution-id ${cloudDistributionId} --paths "/*"

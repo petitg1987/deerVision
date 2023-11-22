@@ -459,13 +459,23 @@ resource "aws_iam_role" "git_hub_action_role" {
 EOF
 }
 
-resource "aws_iam_role_policy_attachment" "AmazonEC2ContainerRegistryFullAccessReg" {
+resource "aws_iam_role_policy_attachment" "AmazonEC2ContainerRegistryFullAccessReg" { #GitHub actions can push images on ECR
   policy_arn = "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryFullAccess"
   role = aws_iam_role.git_hub_action_role.name
 }
 
-resource "aws_iam_role_policy_attachment" "AmazonEC2ReadOnlyAccess" {
+resource "aws_iam_role_policy_attachment" "AmazonEC2ReadOnlyAccess" { #GitHub actions can get EC2 public IP
   policy_arn = "arn:aws:iam::aws:policy/AmazonEC2ReadOnlyAccess"
+  role = aws_iam_role.git_hub_action_role.name
+}
+
+resource "aws_iam_role_policy_attachment" "AmazonS3FullAccess" { #GitHub actions can push data in S3
+  policy_arn = "arn:aws:iam::aws:policy/AmazonS3FullAccess"
+  role = aws_iam_role.git_hub_action_role.name
+}
+
+resource "aws_iam_role_policy_attachment" "CloudFrontFullAccess" { #GitHub actions can invalidate cloud front cache
+  policy_arn = "arn:aws:iam::aws:policy/CloudFrontFullAccess"
   role = aws_iam_role.git_hub_action_role.name
 }
 
