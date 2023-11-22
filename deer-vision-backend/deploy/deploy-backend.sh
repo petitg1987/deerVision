@@ -4,9 +4,9 @@ set -e
 set +x
 cd "$(dirname "$0")"
 
-APP_NAME='deervision'
 AWS_ACCOUNT_ID='496124100072'
 AWS_REGION='eu-central-1'
+APP_NAME='deervision'
 DOCKER_REGISTRY_NAME='deervision'
 DOCKER_IMAGE_NAME='deervision'
 
