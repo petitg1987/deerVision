@@ -7,13 +7,13 @@ management:
 spring:
   profiles.active: "appinfo"
   datasource:
-    url: "jdbc:postgresql://localhost:5432/postgres"
+    url: "jdbc:postgresql://deervision-db:5432/postgres"
     driverClassName: "org.postgresql.Driver"
     username: "postgres"
     password: "vY82M3ZrnZEN"
   flyway:
     enabled: true
-    url: "jdbc:postgresql://localhost:5432/postgres"
+    url: "jdbc:postgresql://deervision-db:5432/postgres"
     user: "postgres"
     password: "vY82M3ZrnZEN"
     locations: "classpath:db/migration"
