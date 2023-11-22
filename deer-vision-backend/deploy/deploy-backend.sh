@@ -2,7 +2,6 @@
 
 set -e
 cd "$(dirname "$0")"
-export AWS_DEFAULT_PROFILE=deervision
 
 APP_NAME='deervision'
 AWS_ACCOUNT_ID='496124100072'
@@ -11,10 +10,10 @@ DOCKER_IMAGE_NAME='deervision'
 
 aws ecr get-login-password --region eu-central-1 | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.eu-central-1.amazonaws.com
 
-latest_tag=$(aws ecr list-images --repository-name $DOCKER_REGISTRY_NAME --filter tagStatus=TAGGED --query 'imageIds | max_by(@, &imagePushedAt) | imageTag' --output text)
+image_info=$(aws ecr describe-images --repository-name $DOCKER_REGISTRY_NAME --query 'imageDetails[].[imageTags[0], imagePushedAt]' --output text)
+latest_tag=$(echo "$image_info" | sort -k2 -r | awk '{print $1}' | head -n 1)
 
-
-docker pull $AWS_ACCOUNT_ID.dkr.ecr.eu-central-1.amazonaws.com/$DOCKER_REGISTRY_NAME:$DOCKER_IMAGE_NAME
+docker pull $AWS_ACCOUNT_ID.dkr.ecr.eu-central-1.amazonaws.com/$DOCKER_REGISTRY_NAME:$latest_tag
 
 docker stop $DOCKER_IMAGE_NAME
 docker rm $DOCKER_IMAGE_NAME
