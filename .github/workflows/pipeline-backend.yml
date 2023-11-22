@@ -78,9 +78,7 @@ jobs:
       - name: Check Deployment
         run: |
           max_attempts=35
-          http_status=0
           success=false
-  
           for ((i=1; i<=max_attempts; i++)); do
             http_status=$(curl -s -o /dev/null -w "%{http_code}" https://backend.deervision.studio/api/test/deploy)
             echo "Attempt $i - HTTP Status Code: $http_status"
