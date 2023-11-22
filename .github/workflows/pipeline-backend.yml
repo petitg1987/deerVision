@@ -2,8 +2,8 @@ name: Pipeline Backend
 
 on:
   push:
-    paths-ignore:
-      - 'deer-vision-frontend/**'
+    paths:
+      - 'deer-vision-backend/**'
     branches:
       - '**'
 
