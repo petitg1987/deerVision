@@ -87,7 +87,7 @@ public class SecurityConfig {
     }
 
     @Bean
-    @Order(2)
+    @Order(5)
     public SecurityFilterChain apiKeyFilterChain(HttpSecurity http) throws Exception {
         http
                 .securityMatcher(regexMatcher("^/api/.*"))
