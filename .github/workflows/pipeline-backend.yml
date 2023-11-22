@@ -58,7 +58,9 @@ jobs:
           docker push $REGISTRY/$REPOSITORY:$APP_VERSION
 
       - name: Set Up SSH key
-        run: echo "${{ secrets.EC2_SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa && chmod 600 ~/.ssh/id_rsa
+        run: |
+          mkdir ~/.ssh
+          echo "${{ secrets.EC2_SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa && chmod 600 ~/.ssh/id_rsa
 
       - name: Deploy Docker Image On Instance
         run: |
