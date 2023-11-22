@@ -5,6 +5,7 @@
   * Add the IAM user keys in `~/.aws/credentials` for "deervision" profile
   * Add the region "eu-central-1" in `~/.aws/config` for "deervision" profile
   * Create EC2 key pair named "deervision" and add file "deervision.pem" with permission '600' in `~/.ssh/`
+  * Add the private key in GitHub secret with variable named 'EC2_SSH_PRIVATE_KEY'
   * Register domain "deervision.studio" by using Route 53 and enable "Transfer lock"
   * In "N.Virgina" region: create and validate an ACM certificate for "deervision.studio" and with additional domain name "www.deervision.studio"
   * Delete the default VPC (optional)
@@ -21,7 +22,8 @@
   * Force instance re-creation: `./infrastructure/infra.sh recreateInstance`
 
 # Deploy the application
-* Pre-requisite: update 'role-to-assume' ARN in '.github/workflows/ci-backend-pipeline.yml' with GitHub role created in AWS
+* Pre-requisite: 
+  * Update both 'role-to-assume' ARN in '.github/workflows/pipeline-backend.yml' with GitHub role created in AWS
 * Backend:
   * Execute: `./deploy/deploy.sh backend`
   * Check log on server:

@@ -1,4 +1,4 @@
-name: CI Backend Pipeline
+name: Pipeline Backend
 
 on:
   push:
@@ -11,7 +11,7 @@ env:
   APP_FOLDER: 'deer-vision-backend'
 
 jobs:
-  ci-pipeline:
+  ci-backend:
     runs-on: ubuntu-latest
 
     permissions:
@@ -56,3 +56,23 @@ jobs:
           cp ../target/${{ env.APP_JAR_START_NAME }}*.jar ./${{ env.APP_JAR_START_NAME }}.jar
           docker build -t $REGISTRY/$REPOSITORY:$APP_VERSION .
           docker push $REGISTRY/$REPOSITORY:$APP_VERSION
+
+  cd-backend:
+    needs: ci-backend
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::496124100072:role/${{ env.APP_NAME }}GitHubAction
+          aws-region: eu-central-1
+
+      - name: Set Up SSH key
+        run: echo "${{ secrets.EC2_SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa && chmod 600 ~/.ssh/id_rsa
+
+      - name: Deploy Docker Image On Instance
+        run: |
+          cd ./${{ env.APP_FOLDER }}/deploy/
+          INSTANCE_IP=$(aws ec2 describe-instances --filters "Name=tag:Name,Values=${{ env.APP_NAME }}Instance" --query "Reservations[0].Instances[0].PublicIpAddress" --output text)
+          ssh -i ~/.ssh/id_rsa ubuntu@$INSTANCE_IP 'bash -s' < deploy-backend.sh
