@@ -68,7 +68,6 @@ jobs:
           EC2_PUBLIC_IP=$(aws ec2 describe-instances --filters Name=key-name,Values=${{ env.APP_NAME }} Name=instance-state-name,Values=running --query "Reservations[0].Instances[0].PublicIpAddress" --output text)
           echo "Instance IP found: $EC2_PUBLIC_IP"
           ssh -o "StrictHostKeyChecking=no" -i ~/.ssh/id_rsa ubuntu@$EC2_PUBLIC_IP 'bash -s' < deploy-backend.sh > deploy.log 2>&1
-          scp -o "StrictHostKeyChecking=no" -i ~/.ssh/id_rsa ubuntu@$EC2_PUBLIC_IP:~/deploy.log .
           cat deploy.log
 
       - name: Show Error Deploy Logs
