@@ -1,9 +1,10 @@
-name: Pipeline Frontend
+name: Frontend Pipeline
 
 on:
   push:
     paths:
       - 'deer-vision-frontend/**'
+      - '.github/**'
     branches:
       - '**'
 
