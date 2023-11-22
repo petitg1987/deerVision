@@ -65,7 +65,9 @@ jobs:
         run: |
           cd ./${{ env.APP_FOLDER }}/deploy/
           INSTANCE_IP=$(aws ec2 describe-instances --filters "Name=tag:Name,Values=${{ env.APP_NAME }}Instance" --query "Reservations[0].Instances[0].PublicIpAddress" --output text)
-          ssh -o "StrictHostKeyChecking=no" -i ~/.ssh/id_rsa ubuntu@$INSTANCE_IP 'bash -s' < deploy-backend.sh
+          ssh -o "StrictHostKeyChecking=no" -i ~/.ssh/id_rsa ubuntu@$INSTANCE_IP 'bash -s' < deploy-backend.sh > deployment-logs.txt 2>&1
+          scp -o "StrictHostKeyChecking=no" -i ~/.ssh/id_rsa ubuntu@$INSTANCE_IP:~/deployment-logs.txt .
+          cat deployment-logs.txt
 
       - name: Check Deployment
         run: |
