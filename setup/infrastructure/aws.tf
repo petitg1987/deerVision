@@ -339,6 +339,11 @@ resource "aws_iam_role_policy_attachment" "AmazonRoute53FullAccess" {
   role = aws_iam_role.instance_role.name
 }
 
+resource "aws_iam_role_policy_attachment" "AmazonEC2ContainerRegistryFullAccess" {
+  policy_arn = "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryFullAccess"
+  role = aws_iam_role.instance_role.name
+}
+
 resource "aws_iam_instance_profile" "instance_profile" {
   name = "${var.appName}InstanceProfile"
   role = aws_iam_role.instance_role.name
@@ -484,7 +489,7 @@ resource "aws_iam_role" "git_hub_action_role" {
 EOF
 }
 
-resource "aws_iam_role_policy_attachment" "AmazonEC2ContainerRegistryFullAccess" {
+resource "aws_iam_role_policy_attachment" "AmazonEC2ContainerRegistryFullAccessReg" {
   policy_arn = "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryFullAccess"
   role = aws_iam_role.git_hub_action_role.name
 }
