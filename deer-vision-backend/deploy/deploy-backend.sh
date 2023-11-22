@@ -21,3 +21,5 @@ sudo docker rm $DOCKER_IMAGE_NAME || true
 #sudo docker run -d -p 8081:8080 --restart always --name $DOCKER_IMAGE_NAME $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$DOCKER_REGISTRY_NAME:$latest_tag
 
 sudo docker run -d -p 8081:8080 --name $DOCKER_IMAGE_NAME $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$DOCKER_REGISTRY_NAME:$latest_tag
+
+sudo docker image prune -a -f
