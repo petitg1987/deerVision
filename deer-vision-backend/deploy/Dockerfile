@@ -1,4 +1,4 @@
-FROM openjdk:17-alpine
+FROM openjdk:17-oracle
 
 WORKDIR /app
 COPY deer-vision.jar .
