@@ -77,10 +77,21 @@ jobs:
 
       - name: Check Deployment
         run: |
-          status_code=$(curl -s -o /dev/null -w "%{http_code}" "https://backend.deervision.studio/api/test/deploy" --max-time 10 --retry 20 --retry-delay 5)
-          if [ $status_code -eq 200 ]; then
-            echo "Deployment check succeeded. HTTP 200 received."
-          else
-            echo "Deployment check failed. Received HTTP status code: $status_code"
+          max_attempts=35
+          http_status=0
+          success=false
+  
+          for ((i=1; i<=max_attempts; i++)); do
+            http_status=$(curl -s -o /dev/null -w "%{http_code}" https://backend.deervision.studio/api/test/deploy)
+            echo "Attempt $i - HTTP Status Code: $http_status"
+            if [ $http_status -eq 200 ]; then
+              echo "API returned 200 OK!"
+              success=true
+              break
+            fi
+            sleep 5
+          done
+          if [ "$success" = false ]; then
+            echo "API did not return 200 after $max_attempts attempts. Exiting with error."
             exit 1
           fi
