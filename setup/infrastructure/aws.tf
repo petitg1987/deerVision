@@ -425,17 +425,6 @@ resource "aws_route53_record" "dns_record_ipv6_backend" {
 }
 
 ##########################################################################################
-# CLOUD WATCH
-##########################################################################################
-resource "aws_cloudwatch_log_group" "cloudwatch_log_group" {
-  name = "${var.appName}LogsGroup" #Name must match with variable "logGroupName" defined above
-  retention_in_days = 60
-  tags = {
-    Application = var.appName
-  }
-}
-
-##########################################################################################
 # DEPLOYMENT FROM GITHUB ACTION
 ##########################################################################################
 resource "aws_iam_openid_connect_provider" "git_hub_action_provider" {
