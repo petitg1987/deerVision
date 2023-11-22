@@ -20,5 +20,5 @@ sudo docker stop $DOCKER_IMAGE_NAME || true
 sudo docker rm $DOCKER_IMAGE_NAME || true
 sudo docker network create $DOCKER_NETWORK || true
 sudo docker network connect $DOCKER_NETWORK $APP_NAME-db || true
-sudo docker run -d -p 8081:8080 --restart always --name $DOCKER_IMAGE_NAME --network=$DOCKER_NETWORK $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$DOCKER_REGISTRY_NAME:$latest_tag
+sudo docker run -d -p 8080:8080 --restart always --name $DOCKER_IMAGE_NAME --network=$DOCKER_NETWORK $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$DOCKER_REGISTRY_NAME:$latest_tag
 sudo docker image prune -a -f
