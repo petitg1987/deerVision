@@ -55,6 +55,8 @@ export ADMIN_PASSWORD=$adminPassword
 adminJwtSecret=$(aws ssm get-parameter --region eu-central-1 --name deervisionAdminJwtSecret --query 'Parameter.Value' --output text)
 export ADMIN_JWT_SECRET=$adminJwtSecret
 
+echo "PWWWWWWWWWWWWWWWWWWWWWWWWWW: $DB_PASSWORD"
+
 echo "Deploy the new Docker image ($new_tag:$new_port)"
 sudo docker pull $AWS_ACCOUNT_ID.dkr.ecr.eu-central-1.amazonaws.com/$DOCKER_REGISTRY_NAME:$new_tag
 sudo docker network create $DOCKER_NETWORK || true
