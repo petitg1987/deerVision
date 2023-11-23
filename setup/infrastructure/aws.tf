@@ -29,7 +29,7 @@ variable "availabilityZones" {
 terraform {
   required_providers {
     aws = {
-      source  = "hashicorp/aws"
+      source = "hashicorp/aws"
       version = "~> 5.0"
     }
   }
@@ -404,7 +404,7 @@ resource "aws_ebs_volume" "ebs_volume" { //volume for the database (not destroye
 
 resource "aws_volume_attachment" "volume_attachment" {
   device_name = "/dev/sda2"
-  volume_id   = aws_ebs_volume.ebs_volume.id
+  volume_id = aws_ebs_volume.ebs_volume.id
   instance_id = aws_instance.instance.id
   force_detach = true
 }
@@ -458,7 +458,7 @@ data "aws_iam_policy_document" "storage_frontend_policy_document" {
     sid = "PublicReadForGetBucketObjects"
 
     principals {
-      type        = "AWS"
+      type = "AWS"
       identifiers = ["*"]
     }
 
@@ -519,7 +519,7 @@ data "aws_acm_certificate" "acm_certificate" {
 resource "aws_cloudfront_distribution" "s3_distribution" {
   origin {
     domain_name = aws_s3_bucket.storage_frontend.bucket_regional_domain_name
-    origin_id   = "website"
+    origin_id = "website"
   }
   enabled = true
   is_ipv6_enabled = true
@@ -529,8 +529,8 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
   aliases = [var.domainName, "www.${var.domainName}"]
   default_cache_behavior {
     cache_policy_id = "658327ea-f89d-4fab-a63d-7e88639e58f6" #ID of CachingOptimized (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/using-managed-cache-policies.html)
-    allowed_methods  = ["DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST", "PUT"]
-    cached_methods   = ["GET", "HEAD"]
+    allowed_methods = ["DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST", "PUT"]
+    cached_methods = ["GET", "HEAD"]
     target_origin_id = "website"
     viewer_protocol_policy = "redirect-to-https"
     compress = true
