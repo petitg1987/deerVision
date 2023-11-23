@@ -8,4 +8,4 @@ spring:
 admin:
   #Password: dev
   password: "$2a$10$v57rk18UIta5zcVpisbEyuMUl9ejw6L5.8y3QHAbKKgMoRPSLdtaC"
-  jwt-secret: "devSecret"
+  jwt-secret: "2ylrWjURho48Hs1/10odj+eaOkykZxQK69d5fVz+yfaKBf5HpFcgmCWbHQ8cUaTl"
