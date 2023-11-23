@@ -456,16 +456,13 @@ resource "aws_s3_bucket_policy" "storage_frontend_policy" {
 data "aws_iam_policy_document" "storage_frontend_policy_document" {
   statement {
     sid = "PublicReadForGetBucketObjects"
-
     principals {
       type = "AWS"
       identifiers = ["*"]
     }
-
     actions = [
       "s3:GetObject",
     ]
-
     resources = [
       aws_s3_bucket.storage_frontend.arn,
       "${aws_s3_bucket.storage_frontend.arn}/*",
