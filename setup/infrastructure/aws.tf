@@ -619,7 +619,7 @@ resource "aws_iam_role" "git_hub_action_role" {
       {
         "Effect": "Allow",
         "Principal": {
-          "Federated": "${aws_iam_openid_connect_provider.git_hub_action_provider.arn}"
+          "Federated": aws_iam_openid_connect_provider.git_hub_action_provider.arn
         },
         "Action": "sts:AssumeRoleWithWebIdentity",
         "Condition": {
