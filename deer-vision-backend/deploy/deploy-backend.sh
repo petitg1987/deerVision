@@ -12,7 +12,6 @@ DOCKER_NETWORK='app-network'
 
 function checkDeploymentSuccess() {
   base_url=$1
-  echo "START CHECKING for $base_url" #TODO remove this line
   max_attempts=35
   success=false
   for ((i=1; i<=max_attempts; i++)); do
@@ -55,11 +54,10 @@ sudo docker pull $AWS_ACCOUNT_ID.dkr.ecr.eu-central-1.amazonaws.com/$DOCKER_REGI
 sudo docker network create $DOCKER_NETWORK || true
 sudo docker network connect $DOCKER_NETWORK $APP_NAME-db || true
 sudo docker run -d -p $new_port:8080 --restart always --name $new_container_name --network=$DOCKER_NETWORK $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$DOCKER_REGISTRY_NAME:$new_tag
-echo "BEFORE CHECKING for $base_url" #TODO remove this line
 checkDeploymentSuccess "http://127.0.0.1:$new_port"
 
 echo "Switch from old container ($old_tag:$old_port) to new container ($new_tag:$new_port)"
-sed -i "s/127.0.0.1:$old_port;/127.0.0.1:$new_port;/" "/etc/nginx/sites-available/reverseproxy"
+sudo sed -i "s/127.0.0.1:$old_port;/127.0.0.1:$new_port;/" "/etc/nginx/sites-available/reverseproxy"
 sudo systemctl restart nginx
 checkDeploymentSuccess "https://backend.$APP_DOMAIN_NAME"
 
