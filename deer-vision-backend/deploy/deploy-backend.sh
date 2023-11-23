@@ -53,6 +53,8 @@ echo "Deploy the new Docker image ($new_tag:$new_port)"
 sudo docker pull $AWS_ACCOUNT_ID.dkr.ecr.eu-central-1.amazonaws.com/$DOCKER_REGISTRY_NAME:$new_tag
 sudo docker network create $DOCKER_NETWORK || true
 sudo docker network connect $DOCKER_NETWORK $APP_NAME-db || true
+sudo docker stop $new_container_name || true #useless except when script crashed
+sudo docker rm $new_container_name || true #useless except when script crashed
 sudo docker run -d -p $new_port:8080 --restart always --name $new_container_name --network=$DOCKER_NETWORK $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$DOCKER_REGISTRY_NAME:$new_tag
 checkDeploymentSuccess "http://127.0.0.1:$new_port"
 
