@@ -14,20 +14,15 @@ function checkDeploymentSuccess() {
   base_url=$1
   max_attempts=35
   success=false
-
   for ((i=1; i<=max_attempts; i++)); do
     http_status=$(curl -s -o /dev/null -w "%{http_code}" $base_url/api/test/deploy)
-    echo "Attempt $i - HTTP status code: $http_status"
-
+    echo "Attempt $i - Request on $base_url return HTTP code $http_status"
     if [ $http_status -eq 200 ]; then
-      echo "Deployment succeed: HTTP 200 return on $base_url"
       success=true
       break
     fi
-
     sleep 5
   done
-
   if [ "$success" = false ]; then
     echo "API did not return 200 after $max_attempts attempts on $base_url"
     exit 1
