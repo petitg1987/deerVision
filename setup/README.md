@@ -1,4 +1,5 @@
 # Pre-requisites
+* Install required packages: `snap install aws-cli maven`
 * AWS
   * Create "IAM Group" named "deer-vision-group" having "AdministratorAccess" IAM policy
   * Create "IAM User" named "deer-vision-user" with programmatic access and in "deer-vision-group" group
@@ -14,8 +15,6 @@
     * Type=Standard, Name=deervisionAdminJwtSecret, Value=JWT secret
   * Add secret in GitHub
     * Name=EC2_SSH_PRIVATE_KEY, Value=EC2 private key (`~/.ssh/deervision.pem`)
-* Install AWS CLI: `snap install aws-cli`
-* Install Maven: `sudo apt install maven`
 
 # Manage infrastructure
 * Create infrastructure: `./infrastructure/infra.sh create`
