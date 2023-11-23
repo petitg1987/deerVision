@@ -17,7 +17,7 @@ image_info=$(aws ecr describe-images --region $AWS_REGION --repository-name $DOC
 latest_tag=$(echo "$image_info" | sort -k2 -r | awk '{print $1}' | head -n 1)
 current_tag=$(sudo docker ps --filter "name=deervision" | grep -E " deervision$" | awk '{print $2}' | awk -F: '{print $2}')
 
-echo "Deploy the Docker image"
+echo "Deploy the Docker image $latest_tag (replace $current_tag)"
 sudo docker pull $AWS_ACCOUNT_ID.dkr.ecr.eu-central-1.amazonaws.com/$DOCKER_REGISTRY_NAME:$latest_tag
 sudo docker stop $DOCKER_IMAGE_NAME || true
 sudo docker rm $DOCKER_IMAGE_NAME || true
@@ -25,7 +25,7 @@ sudo docker network create $DOCKER_NETWORK || true
 sudo docker network connect $DOCKER_NETWORK $APP_NAME-db || true
 sudo docker run -d -p 8080:8080 --restart always --name $DOCKER_IMAGE_NAME --network=$DOCKER_NETWORK $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$DOCKER_REGISTRY_NAME:$latest_tag
 
-echo "Cleaning"
+echo "Cleaning images and AWS ECR"
 sudo docker image prune -a -f
 sudo docker system prune -a -f
 image_tags=$(aws ecr list-images --region $AWS_REGION --repository-name $DOCKER_REGISTRY_NAME --query 'imageIds[].imageTag' --output text)
