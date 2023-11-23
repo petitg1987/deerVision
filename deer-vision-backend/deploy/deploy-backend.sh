@@ -15,7 +15,7 @@ echo "Log into AWS ECR to get the last image id"
 aws ecr get-login-password --region $AWS_REGION | sudo docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com
 image_info=$(aws ecr describe-images --region $AWS_REGION --repository-name $DOCKER_REGISTRY_NAME --query 'imageDetails[].[imageTags[0], imagePushedAt]' --output text)
 latest_tag=$(echo "$image_info" | sort -k2 -r | awk '{print $1}' | head -n 1)
-current_tag=$(sudo docker ps --filter "name=deervision" | grep -E " deervision$" | awk '{print $2}' | awk -F: '{print $2}')
+current_tag=$(sudo docker inspect --format='{{.Config.Image}}' $APP_NAME | awk -F: '{print $2}')
 
 echo "Deploy the Docker image $latest_tag (replace $current_tag)"
 sudo docker pull $AWS_ACCOUNT_ID.dkr.ecr.eu-central-1.amazonaws.com/$DOCKER_REGISTRY_NAME:$latest_tag
