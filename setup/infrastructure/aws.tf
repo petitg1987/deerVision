@@ -258,21 +258,19 @@ data "aws_ami" "ubuntu" {
 resource "aws_iam_role" "instance_role" {
   name = "${var.appName}InstanceRole"
   description = "Role used inside the EC2 instance"
-  assume_role_policy = <<EOF
-{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Action": "sts:AssumeRole",
-      "Principal": {
-        "Service": "ec2.amazonaws.com"
-      },
-      "Effect": "Allow",
-      "Sid": ""
-    }
-  ]
-}
-EOF
+  assume_role_policy = jsonencode({
+    "Version": "2012-10-17",
+    "Statement": [
+      {
+        "Action": "sts:AssumeRole",
+        "Principal": {
+          "Service": "ec2.amazonaws.com"
+        },
+        "Effect": "Allow",
+        "Sid": ""
+      }
+    ]
+  })
   tags = {
     Application = var.appName
   }
@@ -291,19 +289,17 @@ resource "aws_iam_role_policy_attachment" "AmazonEC2ContainerRegistryFullAccess"
 resource "aws_iam_role_policy" "ec2_instance_system_manager" { #EC2 instance can read system manager parameter store
   name = "${var.appName}ReadParameter"
   role = aws_iam_role.instance_role.name
-  policy = <<EOF
-{
-	"Version": "2012-10-17",
-	"Statement": [
-		{
-			"Sid": "VisualEditor0",
-			"Effect": "Allow",
-			"Action": "ssm:GetParameter",
-			"Resource": "arn:aws:ssm:*:*:parameter/${var.appName}*"
-		}
-	]
-}
-EOF
+  policy = jsonencode({
+    "Version": "2012-10-17",
+    "Statement": [
+      {
+        "Sid": "VisualEditor0",
+        "Effect": "Allow",
+        "Action": "ssm:GetParameter",
+        "Resource": "arn:aws:ssm:*:*:parameter/${var.appName}*"
+      }
+    ]
+  })
 }
 
 resource "aws_iam_instance_profile" "instance_profile" {
@@ -620,48 +616,45 @@ resource "aws_iam_openid_connect_provider" "git_hub_action_provider" {
 
 resource "aws_iam_role" "git_hub_action_role" {
   name = "${var.appName}GitHubAction"
-  assume_role_policy = <<EOF
-{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Effect": "Allow",
-      "Principal": {
-        "Federated": "${aws_iam_openid_connect_provider.git_hub_action_provider.arn}"
-      },
-      "Action": "sts:AssumeRoleWithWebIdentity",
-      "Condition": {
-        "StringEquals": {"token.actions.githubusercontent.com:aud": "sts.amazonaws.com"},
-        "StringLike": {"token.actions.githubusercontent.com:sub": "repo:petitg1987/*"}
+  assume_role_policy = jsonencode({
+    "Version": "2012-10-17",
+    "Statement": [
+      {
+        "Effect": "Allow",
+        "Principal": {
+          "Federated": "${aws_iam_openid_connect_provider.git_hub_action_provider.arn}"
+        },
+        "Action": "sts:AssumeRoleWithWebIdentity",
+        "Condition": {
+          "StringEquals": {"token.actions.githubusercontent.com:aud": "sts.amazonaws.com"},
+          "StringLike": {"token.actions.githubusercontent.com:sub": "repo:petitg1987/*"}
+        }
       }
-    }
-  ]
-}
-EOF
+    ]
+  })
 }
 
 resource "aws_iam_role_policy" "git_hub_action_ecr" { #GitHub actions can push images on ECR
   name = "${var.appName}PushImagesOnECR"
   role = aws_iam_role.git_hub_action_role.name
-  policy = <<EOF
-{
-  "Version": "2012-10-17",
-  "Statement": [
+  policy = jsonencode({
+    "Version": "2012-10-17",
+    "Statement": [
       {
-          "Sid": "PushImagesOnECRLogin",
-          "Effect": "Allow",
-          "Action": ["ecr:GetAuthorizationToken"],
-          "Resource": "*"
+        "Sid": "PushImagesOnECRLogin",
+        "Effect": "Allow",
+        "Action": ["ecr:GetAuthorizationToken"],
+        "Resource": "*"
       },
       {
-          "Sid": "PushImagesOnECR",
-          "Effect": "Allow",
-          "Action": ["ecr:BatchCheckLayerAvailability", "ecr:InitiateLayerUpload", "ecr:UploadLayerPart", "ecr:CompleteLayerUpload", "ecr:PutImage"],
-          "Resource": "${aws_ecr_repository.docker_registry.arn}"
+        "Sid": "PushImagesOnECR",
+        "Effect": "Allow",
+        "Action": ["ecr:BatchCheckLayerAvailability", "ecr:InitiateLayerUpload", "ecr:UploadLayerPart", "ecr:CompleteLayerUpload", "ecr:PutImage"],
+        "Resource": aws_ecr_repository.docker_registry.arn
       }
-  ]
-}
-EOF
+    ]
+  })
+
 }
 
 resource "aws_iam_role_policy_attachment" "AmazonEC2ReadOnlyAccess" { #GitHub actions can get EC2 public IP
@@ -672,35 +665,31 @@ resource "aws_iam_role_policy_attachment" "AmazonEC2ReadOnlyAccess" { #GitHub ac
 resource "aws_iam_role_policy" "git_hub_action_s3" { #GitHub actions can push data in S3
   name = "${var.appName}UpdateS3"
   role = aws_iam_role.git_hub_action_role.name
-  policy = <<EOF
-{
-	"Version": "2012-10-17",
-	"Statement": [
-		{
-			"Sid": "UpdateS3",
-			"Effect": "Allow",
-			"Action": ["s3:PutObject", "s3:DeleteObject"],
-			"Resource": "${aws_s3_bucket.storage_frontend.arn}/*"
-		}
-	]
-}
-EOF
+  policy = jsonencode({
+    "Version": "2012-10-17",
+    "Statement": [
+      {
+        "Sid": "UpdateS3",
+        "Effect": "Allow",
+        "Action": ["s3:PutObject", "s3:DeleteObject"],
+        "Resource": "${aws_s3_bucket.storage_frontend.arn}/*"
+      }
+    ]
+  })
 }
 
 resource "aws_iam_role_policy" "git_hub_action_cloud_front" { #GitHub actions can invalidate cloud front
   name = "${var.appName}CloudFrontCreateInvalidation"
   role = aws_iam_role.git_hub_action_role.name
-  policy = <<EOF
-{
-	"Version": "2012-10-17",
-	"Statement": [
-		{
-			"Sid": "CloudFrontCreateInvalidation",
-			"Effect": "Allow",
-			"Action": ["cloudfront:ListDistributions", "cloudfront:CreateInvalidation"],
-			"Resource": "*"
-		}
-	]
-}
-EOF
+  policy = jsonencode({
+    "Version": "2012-10-17",
+    "Statement": [
+      {
+        "Sid": "CloudFrontCreateInvalidation",
+        "Effect": "Allow",
+        "Action": ["cloudfront:ListDistributions", "cloudfront:CreateInvalidation"],
+        "Resource": "*"
+      }
+    ]
+  })
 }
