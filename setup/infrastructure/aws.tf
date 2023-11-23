@@ -257,7 +257,7 @@ data "aws_ami" "ubuntu" {
 
 resource "aws_iam_role" "instance_role" {
   name = "${var.appName}InstanceRole"
-  description = "Allow EC2 instances to access to ECR (deploy script) and Route53 (let's encrypt)"
+  description = "Role used inside the EC2 instance"
   assume_role_policy = <<EOF
 {
   "Version": "2012-10-17",
@@ -276,6 +276,21 @@ EOF
   tags = {
     Application = var.appName
   }
+}
+
+resource "aws_iam_role_policy_attachment" "AmazonRoute53FullAccess" { #EC2 instance can update Route53 (let's encrypt)
+  policy_arn = "arn:aws:iam::aws:policy/AmazonRoute53FullAccess"
+  role = aws_iam_role.instance_role.name
+}
+
+resource "aws_iam_role_policy_attachment" "AmazonEC2ContainerRegistryFullAccess" { #EC2 instance can pull and delete images from ECR
+  policy_arn = "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryFullAccess"
+  role = aws_iam_role.instance_role.name
+}
+
+resource "aws_iam_instance_profile" "instance_profile" {
+  name = "${var.appName}InstanceProfile"
+  role = aws_iam_role.instance_role.name
 }
 
 resource "aws_security_group" "instance_sg" {
@@ -317,21 +332,6 @@ resource "aws_security_group" "instance_sg" {
     Name = "${var.appName}InstanceSG"
     Application = var.appName
   }
-}
-
-resource "aws_iam_role_policy_attachment" "AmazonRoute53FullAccess" {
-  policy_arn = "arn:aws:iam::aws:policy/AmazonRoute53FullAccess"
-  role = aws_iam_role.instance_role.name
-}
-
-resource "aws_iam_role_policy_attachment" "AmazonEC2ContainerRegistryFullAccess" {
-  policy_arn = "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryFullAccess"
-  role = aws_iam_role.instance_role.name
-}
-
-resource "aws_iam_instance_profile" "instance_profile" {
-  name = "${var.appName}InstanceProfile"
-  role = aws_iam_role.instance_role.name
 }
 
 resource "aws_network_interface" "network_interface" {
@@ -632,7 +632,7 @@ resource "aws_iam_role_policy" "git_hub_action_ecr" { #GitHub actions can push i
       {
           "Sid": "PushImagesOnECR",
           "Effect": "Allow",
-          "Action": "ecr:UploadLayerPart",
+          "Action": ["ecr:GetAuthorizationToken", "ecr:UploadLayerPart"],
           "Resource": "${aws_ecr_repository.docker_registry.arn}"
       }
   ]
@@ -663,7 +663,7 @@ resource "aws_iam_role_policy" "git_hub_action_s3" { #GitHub actions can push da
 EOF
 }
 
-resource "aws_iam_role_policy" "git_hub_action_cloud_front" { #GitHub actions can push data in S3
+resource "aws_iam_role_policy" "git_hub_action_cloud_front" { #GitHub actions can invalidate cloud front
   name = "${var.appName}CloudFrontCreateInvalidation"
   role = aws_iam_role.git_hub_action_role.name
   policy = <<EOF
