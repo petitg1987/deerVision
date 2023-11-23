@@ -57,20 +57,16 @@ sudo docker pull $AWS_ACCOUNT_ID.dkr.ecr.eu-central-1.amazonaws.com/$DOCKER_REGI
 sudo docker network create $DOCKER_NETWORK || true
 sudo docker network connect $DOCKER_NETWORK $APP_NAME-db || true
 sudo docker run -d -p $new_port:8080 --restart always --name $new_container_name --network=$DOCKER_NETWORK $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$DOCKER_REGISTRY_NAME:$new_tag
-
-echo "Waiting for the successful deployment locally"
 checkDeploymentSuccess "http://127.0.0.1:$new_port"
 
 echo "Switch from old container ($old_tag:$old_port) to new container ($new_tag:$new_port)"
 sed -i "s/127.0.0.1:$old_port;/127.0.0.1:$new_port;/" "/etc/nginx/sites-available/reverseproxy"
 sudo systemctl restart nginx
-sudo docker stop $old_container_name || true
-sudo docker rm $old_container_name || true
-
-echo "Waiting for the successful deployment remotely"
 checkDeploymentSuccess "https://backend.$APP_DOMAIN_NAME"
 
 echo "Cleaning local and registry Docker images"
+sudo docker stop $old_container_name || true
+sudo docker rm $old_container_name || true
 sudo docker image prune -a -f
 sudo docker system prune -a -f
 image_tags=$(aws ecr list-images --region $AWS_REGION --repository-name $DOCKER_REGISTRY_NAME --query 'imageIds[].imageTag' --output text)
