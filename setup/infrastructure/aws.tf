@@ -288,6 +288,24 @@ resource "aws_iam_role_policy_attachment" "AmazonEC2ContainerRegistryFullAccess"
   role = aws_iam_role.instance_role.name
 }
 
+resource "aws_iam_role_policy" "ec2_instance_system_manager" { #EC2 instance can read system manager parameter store
+  name = "${var.appName}ReadParameter"
+  role = aws_iam_role.instance_role.name
+  policy = <<EOF
+{
+	"Version": "2012-10-17",
+	"Statement": [
+		{
+			"Sid": "VisualEditor0",
+			"Effect": "Allow",
+			"Action": "ssm:GetParameter",
+			"Resource": "arn:aws:ssm:*:*:parameter/${var.appName}*"
+		}
+	]
+}
+EOF
+}
+
 resource "aws_iam_instance_profile" "instance_profile" {
   name = "${var.appName}InstanceProfile"
   role = aws_iam_role.instance_role.name
