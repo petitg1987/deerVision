@@ -25,7 +25,7 @@ sudo docker network create $DOCKER_NETWORK || true
 sudo docker network connect $DOCKER_NETWORK $APP_NAME-db || true
 sudo docker run -d -p 8080:8080 --restart always --name $DOCKER_IMAGE_NAME --network=$DOCKER_NETWORK $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$DOCKER_REGISTRY_NAME:$latest_tag
 
-echo "Cleaning images and AWS ECR"
+echo "Cleaning local and registry Docker images"
 sudo docker image prune -a -f
 sudo docker system prune -a -f
 image_tags=$(aws ecr list-images --region $AWS_REGION --repository-name $DOCKER_REGISTRY_NAME --query 'imageIds[].imageTag' --output text)
