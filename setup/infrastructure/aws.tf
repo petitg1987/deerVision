@@ -632,7 +632,7 @@ resource "aws_iam_role_policy" "git_hub_action_ecr" { #GitHub actions can push i
       {
           "Sid": "PushImagesOnECR",
           "Effect": "Allow",
-          "Action": ["ecr:GetAuthorizationToken", "ecr:UploadLayerPart"],
+          "Action": ["ecr:GetAuthorizationToken", "ecr:BatchCheckLayerAvailability", "ecr:InitiateLayerUpload", "ecr:UploadLayerPart", "ecr:CompleteLayerUpload", "ecr:PutImage"],
           "Resource": "*"
       }
   ]
@@ -656,7 +656,7 @@ resource "aws_iam_role_policy" "git_hub_action_s3" { #GitHub actions can push da
 			"Sid": "UpdateS3",
 			"Effect": "Allow",
 			"Action": ["s3:PutObject", "s3:DeleteObject"],
-			"Resource": "${aws_s3_bucket.storage_frontend.arn}"
+			"Resource": "${aws_s3_bucket.storage_frontend.arn}/*"
 		}
 	]
 }
