@@ -425,69 +425,6 @@ resource "aws_route53_record" "dns_record_ipv6_backend" {
 }
 
 ##########################################################################################
-# DEPLOYMENT FROM GITHUB ACTION
-##########################################################################################
-resource "aws_iam_openid_connect_provider" "git_hub_action_provider" {
-  url = "https://token.actions.githubusercontent.com"
-  client_id_list = ["sts.amazonaws.com"]
-  thumbprint_list = ["6938fd4d98bab03faadb97b34396831e3780aea1"]
-}
-
-resource "aws_iam_role" "git_hub_action_role" {
-  name = "${var.appName}GitHubAction"
-  assume_role_policy = <<EOF
-{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Effect": "Allow",
-      "Principal": {
-        "Federated": "${aws_iam_openid_connect_provider.git_hub_action_provider.arn}"
-      },
-      "Action": "sts:AssumeRoleWithWebIdentity",
-      "Condition": {
-        "StringEquals": {
-                "token.actions.githubusercontent.com:aud": "sts.amazonaws.com"
-        },
-        "StringLike": {
-          "token.actions.githubusercontent.com:sub": "repo:petitg1987/*"
-        }
-      }
-    }
-  ]
-}
-EOF
-}
-
-resource "aws_iam_role_policy_attachment" "AmazonEC2ContainerRegistryFullAccessReg" { #GitHub actions can push images on ECR
-  policy_arn = "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryFullAccess"
-  role = aws_iam_role.git_hub_action_role.name
-}
-
-resource "aws_iam_role_policy_attachment" "AmazonEC2ReadOnlyAccess" { #GitHub actions can get EC2 public IP
-  policy_arn = "arn:aws:iam::aws:policy/AmazonEC2ReadOnlyAccess"
-  role = aws_iam_role.git_hub_action_role.name
-}
-
-resource "aws_iam_role_policy_attachment" "AmazonS3FullAccess" { #GitHub actions can push data in S3
-  policy_arn = "arn:aws:iam::aws:policy/AmazonS3FullAccess"
-  role = aws_iam_role.git_hub_action_role.name
-}
-
-resource "aws_iam_role_policy_attachment" "CloudFrontFullAccess" { #GitHub actions can invalidate cloud front cache
-  policy_arn = "arn:aws:iam::aws:policy/CloudFrontFullAccess"
-  role = aws_iam_role.git_hub_action_role.name
-}
-
-resource "aws_ecr_repository" "docker_registry" {
-  name = var.appName
-  image_tag_mutability = "IMMUTABLE"
-  image_scanning_configuration {
-    scan_on_push = false
-  }
-}
-
-##########################################################################################
 # STATIC FRONTEND ON S3
 ##########################################################################################
 resource "aws_s3_bucket" "storage_frontend" {
@@ -644,4 +581,102 @@ resource "aws_route53_record" "dns_record_www_ipv6_front" {
     zone_id = aws_cloudfront_distribution.s3_distribution.hosted_zone_id
     evaluate_target_health = true
   }
+}
+
+##########################################################################################
+# DEPLOYMENT FROM GITHUB ACTION
+##########################################################################################
+resource "aws_ecr_repository" "docker_registry" {
+  name = var.appName
+  image_tag_mutability = "IMMUTABLE"
+  image_scanning_configuration {
+    scan_on_push = false
+  }
+}
+
+resource "aws_iam_openid_connect_provider" "git_hub_action_provider" {
+  url = "https://token.actions.githubusercontent.com"
+  client_id_list = ["sts.amazonaws.com"]
+  thumbprint_list = ["6938fd4d98bab03faadb97b34396831e3780aea1"]
+}
+
+resource "aws_iam_role" "git_hub_action_role" {
+  name = "${var.appName}GitHubAction"
+  assume_role_policy = <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Principal": {
+        "Federated": "${aws_iam_openid_connect_provider.git_hub_action_provider.arn}"
+      },
+      "Action": "sts:AssumeRoleWithWebIdentity",
+      "Condition": {
+        "StringEquals": {"token.actions.githubusercontent.com:aud": "sts.amazonaws.com"},
+        "StringLike": {"token.actions.githubusercontent.com:sub": "repo:petitg1987/*"}
+      }
+    }
+  ]
+}
+EOF
+}
+
+resource "aws_iam_role_policy" "git_hub_action_ecr" { #GitHub actions can push images on ECR
+  name = "${var.appName}PushImagesOnECR"
+  role = aws_iam_role.git_hub_action_role.name
+  policy = <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+      {
+          "Sid": "PushImagesOnECR",
+          "Effect": "Allow",
+          "Action": "ecr:UploadLayerPart",
+          "Resource": "${aws_ecr_repository.docker_registry.arn}"
+      }
+  ]
+}
+EOF
+}
+
+resource "aws_iam_role_policy_attachment" "AmazonEC2ReadOnlyAccess" { #GitHub actions can get EC2 public IP
+  policy_arn = "arn:aws:iam::aws:policy/AmazonEC2ReadOnlyAccess"
+  role = aws_iam_role.git_hub_action_role.name
+}
+
+resource "aws_iam_role_policy" "git_hub_action_s3" { #GitHub actions can push data in S3
+  name = "${var.appName}UpdateS3"
+  role = aws_iam_role.git_hub_action_role.name
+  policy = <<EOF
+{
+	"Version": "2012-10-17",
+	"Statement": [
+		{
+			"Sid": "UpdateS3",
+			"Effect": "Allow",
+			"Action": ["s3:PutObject", "s3:DeleteObject"],
+			"Resource": "${aws_s3_bucket.storage_frontend.arn}"
+		}
+	]
+}
+EOF
+}
+
+resource "aws_iam_role_policy" "git_hub_action_cloud_front" { #GitHub actions can push data in S3
+  name = "${var.appName}CloudFrontCreateInvalidation"
+  role = aws_iam_role.git_hub_action_role.name
+  policy = <<EOF
+{
+	"Version": "2012-10-17",
+	"Statement": [
+		{
+			"Sid": "CloudFrontCreateInvalidation",
+			"Effect": "Allow",
+			"Action": ["cloudfront:CreateInvalidation"],
+			"Resource": "${aws_cloudfront_distribution.s3_distribution.arn}"
+		}
+	]
+}
+EOF
 }
