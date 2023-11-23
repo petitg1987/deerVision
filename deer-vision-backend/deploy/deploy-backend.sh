@@ -15,9 +15,7 @@ function checkDeploymentSuccess() {
   max_attempts=35
   success=false
   for ((i=1; i<=max_attempts; i++)); do
-    set +e
-    http_status=$(curl -s -o /dev/null -w "%{http_code}" $base_url/api/test/deploy)
-    set -e
+    http_status=$(curl -s -o /dev/null -w "%{http_code}" $base_url/api/test/deploy || true)
     echo "Attempt $i - Request on $base_url return HTTP code $http_status"
     if [ $http_status -eq 200 ]; then
       success=true
@@ -61,11 +59,11 @@ checkDeploymentSuccess "http://127.0.0.1:$new_port"
 echo "Switch from old container ($old_tag:$old_port) to new container ($new_tag:$new_port)"
 sudo sed -i "s/127.0.0.1:$old_port;/127.0.0.1:$new_port;/" "/etc/nginx/sites-available/reverseproxy"
 sudo systemctl restart nginx
+sudo docker stop $old_container_name || true
+sudo docker rm $old_container_name || true
 checkDeploymentSuccess "https://backend.$APP_DOMAIN_NAME"
 
 echo "Cleaning local and registry Docker images"
-sudo docker stop $old_container_name || true
-sudo docker rm $old_container_name || true
 sudo docker image prune -a -f
 sudo docker system prune -a -f
 image_tags=$(aws ecr list-images --region $AWS_REGION --repository-name $DOCKER_REGISTRY_NAME --query 'imageIds[].imageTag' --output text)
