@@ -10,7 +10,7 @@ DOCKER_REGISTRY_NAME='deervision'
 DOCKER_BASE_CONTAINER_NAME='deervision'
 DOCKER_NETWORK='app-network'
 
-function checkDeploymentSuccess {
+function checkDeploymentSuccess() {
   base_url=$1
   max_attempts=35
   success=false
@@ -39,14 +39,14 @@ aws ecr get-login-password --region $AWS_REGION | sudo docker login --username A
 image_info=$(aws ecr describe-images --region $AWS_REGION --repository-name $DOCKER_REGISTRY_NAME --query 'imageDetails[].[imageTags[0], imagePushedAt]' --output text)
 
 echo "Get deployment informations"
-old_container_name=${DOCKER_BASE_CONTAINER_NAME}Green
+old_container_name=${DOCKER_BASE_CONTAINER_NAME}Blue
 old_port='8080'
-new_container_name=${DOCKER_BASE_CONTAINER_NAME}Blue
+new_container_name=${DOCKER_BASE_CONTAINER_NAME}Green
 new_port='8081'
-if sudo docker ps --format '{{.Names}}' | grep -q "${DOCKER_BASE_CONTAINER_NAME}Blue"; then
-  old_container_name=${DOCKER_BASE_CONTAINER_NAME}Blue
+if sudo docker ps --format '{{.Names}}' | grep -q "${DOCKER_BASE_CONTAINER_NAME}Green"; then
+  old_container_name=${DOCKER_BASE_CONTAINER_NAME}Green
   old_port='8081'
-  new_container_name=${DOCKER_BASE_CONTAINER_NAME}Green
+  new_container_name=${DOCKER_BASE_CONTAINER_NAME}Blue
   new_port='8080'
 fi
 new_tag=$(echo "$image_info" | sort -k2 -r | awk '{print $1}' | head -n 1)
