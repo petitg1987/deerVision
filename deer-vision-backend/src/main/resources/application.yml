@@ -10,12 +10,12 @@ spring:
     url: "jdbc:postgresql://deervision-db:5432/postgres"
     driverClassName: "org.postgresql.Driver"
     username: "postgres"
-    password: "vY82M3ZrnZEN"
+    password: ${DB_PASSWORD}
   flyway:
     enabled: true
     url: "jdbc:postgresql://deervision-db:5432/postgres"
     user: "postgres"
-    password: "vY82M3ZrnZEN"
+    password: ${DB_PASSWORD}
     locations: "classpath:db/migration"
   jpa:
     hibernate.ddl-auto: "none"
@@ -25,8 +25,8 @@ spring:
     maxFileSize: 1073741824
     maxRequestSize: 1073741824
 admin:
-  password: "$2a$10$SRSz7BSfnjvUnX7/BJyLSufHJOS5z6mDvo4lzeQkVUdYqGYtEx2UG"
-  jwt-secret: "zDARQgTBuU89Vdcqgw3wYGNUPFfv4BwuTWn6cRCcvEJSax6u98Ua8xzk5m7Z46cxnKZerM"
+  password: ${ADMIN_PASSWORD}
+  jwt-secret: ${ADMIN_JWT_SECRET}
   allowed-origins: "http://127.0.0.1:3000, http://localhost:3000, https://deervision.studio, https://www.deervision.studio"
 app:
   version-pattern: "^\\d+[.]\\d+[.]\\d+(-snapshot)?$"

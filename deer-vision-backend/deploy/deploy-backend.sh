@@ -47,13 +47,29 @@ fi
 new_tag=$(echo "$image_info" | sort -k2 -r | awk '{print $1}' | head -n 1)
 old_tag=$(sudo docker inspect --format='{{.Config.Image}}' $old_container_name | awk -F: '{print $2}')
 
+echo "Loading secret parameters"
+dbPassword=$(aws ssm get-parameter --region eu-central-1 --name deervisionDbPassword --query 'Parameter.Value' --output text)
+export DB_PASSWORD=$dbPassword
+adminPassword=$(aws ssm get-parameter --region eu-central-1 --name deervisionAdminPassword --query 'Parameter.Value' --output text)
+export ADMIN_PASSWORD=$adminPassword
+adminJwtSecret=$(aws ssm get-parameter --region eu-central-1 --name deervisionAdminJwtSecret --query 'Parameter.Value' --output text)
+export ADMIN_JWT_SECRET=$adminJwtSecret
+
 echo "Deploy the new Docker image ($new_tag:$new_port)"
 sudo docker pull $AWS_ACCOUNT_ID.dkr.ecr.eu-central-1.amazonaws.com/$DOCKER_REGISTRY_NAME:$new_tag
 sudo docker network create $DOCKER_NETWORK || true
 sudo docker network connect $DOCKER_NETWORK $APP_NAME-db || true
 sudo docker stop $new_container_name || true #useless except when script crashed
 sudo docker rm $new_container_name || true #useless except when script crashed
-sudo docker run -d -p $new_port:8080 --restart always --name $new_container_name --network=$DOCKER_NETWORK $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$DOCKER_REGISTRY_NAME:$new_tag
+sudo docker run -d \
+    -p $new_port:8080 \
+    -e DB_PASSWORD=$DB_PASSWORD \
+    -e ADMIN_PASSWORD=$ADMIN_PASSWORD \
+    -e ADMIN_JWT_SECRET=$ADMIN_JWT_SECRET \
+    --restart always \
+    --name $new_container_name \
+    --network=$DOCKER_NETWORK \
+    $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$DOCKER_REGISTRY_NAME:$new_tag
 checkDeploymentSuccess "http://127.0.0.1:$new_port"
 
 echo "Switch from old container ($old_tag:$old_port) to new container ($new_tag:$new_port)"
