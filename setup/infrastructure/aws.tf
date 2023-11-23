@@ -248,7 +248,7 @@ resource "aws_network_acl" "network_acl" {
 ##########################################################################################
 data "aws_ami" "ubuntu" {
   most_recent = true
-  owners = ["496124100072"]
+  owners = ["self"]
   filter {
     name = "image-id"
     values = ["ami-055cb71dff2d966de"] #Private AMI with Ubuntu 22.04 LTS
