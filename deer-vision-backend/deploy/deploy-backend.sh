@@ -12,7 +12,7 @@ DOCKER_NETWORK='app-network'
 
 function checkDeploymentSuccess() {
   base_url=$1
-  max_attempts=35
+  max_attempts=40
   success=false
   for ((i=1; i<=max_attempts; i++)); do
     http_status=$(curl -s -o /dev/null -w "%{http_code}" $base_url/api/test/deploy || true)
