@@ -31,6 +31,6 @@ sudo docker system prune -a -f
 image_ids=$(aws ecr list-images --region $AWS_REGION --repository-name $DOCKER_REGISTRY_NAME --query 'imageIds[].imageDigest' --output text)
 for image_id in $image_ids; do
   if [ "$image_id" != "$latest_tag" ] && [ "$image_id" != "$current_tag" ]; then
-    aws ecr batch-delete-image --region $AWS_REGION --repository-name $DOCKER_REGISTRY_NAME --image-ids imageDigest=$image_id
+    #aws ecr batch-delete-image --region $AWS_REGION --repository-name $DOCKER_REGISTRY_NAME --image-ids imageDigest=$image_id
   fi
 done
