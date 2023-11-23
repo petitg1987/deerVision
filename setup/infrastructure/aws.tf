@@ -266,8 +266,7 @@ resource "aws_iam_role" "instance_role" {
         "Principal": {
           "Service": "ec2.amazonaws.com"
         },
-        "Effect": "Allow",
-        "Sid": ""
+        "Effect": "Allow"
       }
     ]
   })
@@ -276,27 +275,31 @@ resource "aws_iam_role" "instance_role" {
   }
 }
 
-resource "aws_iam_role_policy_attachment" "AmazonRoute53FullAccess" { #EC2 instance can update Route53 (let's encrypt)
-  policy_arn = "arn:aws:iam::aws:policy/AmazonRoute53FullAccess"
-  role = aws_iam_role.instance_role.name
-}
-
-resource "aws_iam_role_policy_attachment" "AmazonEC2ContainerRegistryFullAccess" { #EC2 instance can pull and delete images from ECR
-  policy_arn = "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryFullAccess"
-  role = aws_iam_role.instance_role.name
-}
-
-resource "aws_iam_role_policy" "ec2_instance_system_manager" { #EC2 instance can read system manager parameter store
-  name = "${var.appName}ReadParameter"
+resource "aws_iam_role_policy" "ec2_instance_role_policy" {
+  name = "${var.appName}InstanceRolePolicy"
   role = aws_iam_role.instance_role.name
   policy = jsonencode({
     "Version": "2012-10-17",
     "Statement": [
-      {
-        "Sid": "VisualEditor0",
+      { #EC2 instance can read system manager parameter store
         "Effect": "Allow",
         "Action": "ssm:GetParameter",
         "Resource": "arn:aws:ssm:*:*:parameter/${var.appName}*"
+      },
+      { #EC2 instance can request and add records in Route53 (let's encrypt)
+        "Effect": "Allow",
+        "Action": ["route53:ListHostedZones", "route53:GetChange", "route53:ChangeResourceRecordSets"],
+        "Resource": "*"
+      },
+      { #EC2 instance can login into ECR
+        "Effect": "Allow",
+        "Action": ["ecr:GetAuthorizationToken"],
+        "Resource": "*"
+      },
+      { #EC2 instance can list and remove images from ECR
+        "Effect": "Allow",
+        "Action": ["ecr:DescribeImages", "ecr:ListImages", "ecr:BatchDeleteImage"],
+        "Resource": aws_ecr_repository.docker_registry.arn
       }
     ]
   })
@@ -359,7 +362,7 @@ resource "aws_network_interface" "network_interface" {
 resource "aws_instance" "instance" {
   ami = data.aws_ami.ubuntu.id
   instance_type = "t3a.micro"
-  key_name = "deervision"
+  key_name = var.appName
   iam_instance_profile = aws_iam_instance_profile.instance_profile.name
   network_interface {
     device_index = 0
@@ -631,58 +634,33 @@ resource "aws_iam_role" "git_hub_action_role" {
   })
 }
 
-resource "aws_iam_role_policy" "git_hub_action_ecr" { #GitHub actions can push images on ECR
-  name = "${var.appName}PushImagesOnECR"
+resource "aws_iam_role_policy" "git_hub_action_role_policy" {
+  name = "${var.appName}GitHubActionRolePolicy"
   role = aws_iam_role.git_hub_action_role.name
   policy = jsonencode({
     "Version": "2012-10-17",
     "Statement": [
-      {
-        "Sid": "PushImagesOnECRLogin",
+      { #GitHub actions can login into ECR
         "Effect": "Allow",
         "Action": ["ecr:GetAuthorizationToken"],
         "Resource": "*"
       },
-      {
-        "Sid": "PushImagesOnECR",
+      { #GitHub actions can push images on ECR
         "Effect": "Allow",
         "Action": ["ecr:BatchCheckLayerAvailability", "ecr:InitiateLayerUpload", "ecr:UploadLayerPart", "ecr:CompleteLayerUpload", "ecr:PutImage"],
         "Resource": aws_ecr_repository.docker_registry.arn
-      }
-    ]
-  })
-
-}
-
-resource "aws_iam_role_policy_attachment" "AmazonEC2ReadOnlyAccess" { #GitHub actions can get EC2 public IP
-  policy_arn = "arn:aws:iam::aws:policy/AmazonEC2ReadOnlyAccess"
-  role = aws_iam_role.git_hub_action_role.name
-}
-
-resource "aws_iam_role_policy" "git_hub_action_s3" { #GitHub actions can push data in S3
-  name = "${var.appName}UpdateS3"
-  role = aws_iam_role.git_hub_action_role.name
-  policy = jsonencode({
-    "Version": "2012-10-17",
-    "Statement": [
-      {
-        "Sid": "UpdateS3",
+      },
+      { #GitHub actions can get EC2 public IP
+        "Effect": "Allow",
+        "Action": ["ec2:DescribeInstances"],
+        "Resource": "*"
+      },
+      { #GitHub actions can push data in S3
         "Effect": "Allow",
         "Action": ["s3:PutObject", "s3:DeleteObject"],
         "Resource": "${aws_s3_bucket.storage_frontend.arn}/*"
-      }
-    ]
-  })
-}
-
-resource "aws_iam_role_policy" "git_hub_action_cloud_front" { #GitHub actions can invalidate cloud front
-  name = "${var.appName}CloudFrontCreateInvalidation"
-  role = aws_iam_role.git_hub_action_role.name
-  policy = jsonencode({
-    "Version": "2012-10-17",
-    "Statement": [
-      {
-        "Sid": "CloudFrontCreateInvalidation",
+      },
+      { #GitHub actions can invalidate cloud front
         "Effect": "Allow",
         "Action": ["cloudfront:ListDistributions", "cloudfront:CreateInvalidation"],
         "Resource": "*"
