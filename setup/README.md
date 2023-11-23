@@ -5,10 +5,15 @@
   * Add the IAM user keys in `~/.aws/credentials` for "deervision" profile
   * Add the region "eu-central-1" in `~/.aws/config` for "deervision" profile
   * Create EC2 key pair named "deervision" and add file "deervision.pem" with permission '600' in `~/.ssh/`
-  * Add the private key in GitHub secret with variable named 'EC2_SSH_PRIVATE_KEY'
   * Register domain "deervision.studio" by using Route 53 and enable "Transfer lock"
   * In "N.Virgina" region: create and validate an ACM certificate for "deervision.studio" and with additional domain name "www.deervision.studio"
   * Delete the default VPC (optional)
+  * Add parameters in AWS System Manager Parameter Store
+    * Type=Standard, Name=deervisionDbPassword, Value=clear DB password
+    * Type=Standard, Name=deervisionAdminPassword, Value=BCrypt hashed password with 10 rounds
+    * Type=Standard, Name=deervisionAdminJwtSecret, Value=JWT secret
+  * Add secret in GitHub
+    * Name=EC2_SSH_PRIVATE_KEY, Value=EC2 private key (`~/.ssh/deervision.pem`)
 * Install AWS CLI: `snap install aws-cli`
 * Install Maven: `sudo apt install maven`
 
