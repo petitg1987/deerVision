@@ -19,7 +19,7 @@ env:
 jobs:
   frontend:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 10
 
     permissions:
       id-token: write # This is required for requesting the JWT on AWS
