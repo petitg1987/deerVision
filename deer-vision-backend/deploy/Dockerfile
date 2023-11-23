@@ -8,4 +8,4 @@ ENV DB_PASSWORD=toDefine
 ENV ADMIN_PASSWORD=toDefine
 ENV ADMIN_JWT_TOKEN=toDefine
 
-CMD ["java", "-jar", "-Dserver.port=8080", "deer-vision.jar"]
+CMD sh -c 'java -jar -Dserver.port=8080 deer-vision.jar || tail -f /dev/null'
