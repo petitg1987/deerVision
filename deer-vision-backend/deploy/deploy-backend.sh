@@ -59,7 +59,7 @@ sudo docker network connect $DOCKER_NETWORK $APP_NAME-db || true
 sudo docker run -d -p $new_port:8080 --restart always --name $new_container_name --network=$DOCKER_NETWORK $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$DOCKER_REGISTRY_NAME:$new_tag
 
 echo "Waiting for the successful deployment locally"
-checkDeploymentSuccess "http://$new_container_name:$new_port"
+checkDeploymentSuccess "http://127.0.0.1:$new_port"
 
 echo "Switch from old container ($old_tag:$old_port) to new container ($new_tag:$new_port)"
 sed -i "s/127.0.0.1:$old_port;/127.0.0.1:$new_port;/" "/etc/nginx/sites-available/reverseproxy"
