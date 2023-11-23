@@ -630,10 +630,16 @@ resource "aws_iam_role_policy" "git_hub_action_ecr" { #GitHub actions can push i
   "Version": "2012-10-17",
   "Statement": [
       {
+          "Sid": "PushImagesOnECRLogin",
+          "Effect": "Allow",
+          "Action": ["ecr:GetAuthorizationToken"],
+          "Resource": "*"
+      },
+      {
           "Sid": "PushImagesOnECR",
           "Effect": "Allow",
-          "Action": ["ecr:GetAuthorizationToken", "ecr:BatchCheckLayerAvailability", "ecr:InitiateLayerUpload", "ecr:UploadLayerPart", "ecr:CompleteLayerUpload", "ecr:PutImage"],
-          "Resource": "*"
+          "Action": ["ecr:BatchCheckLayerAvailability", "ecr:InitiateLayerUpload", "ecr:UploadLayerPart", "ecr:CompleteLayerUpload", "ecr:PutImage"],
+          "Resource": "${aws_ecr_repository.docker_registry.arn}"
       }
   ]
 }
@@ -673,7 +679,7 @@ resource "aws_iam_role_policy" "git_hub_action_cloud_front" { #GitHub actions ca
 		{
 			"Sid": "CloudFrontCreateInvalidation",
 			"Effect": "Allow",
-			"Action": ["cloudfront:CreateInvalidation"],
+			"Action": ["cloudfront:ListDistributions", "cloudfront:CreateInvalidation"],
 			"Resource": "${aws_cloudfront_distribution.s3_distribution.arn}"
 		}
 	]
