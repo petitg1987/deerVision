@@ -286,19 +286,24 @@ resource "aws_iam_role_policy" "ec2_instance_role_policy" {
         "Action": "ssm:GetParameter",
         "Resource": "arn:aws:ssm:*:*:parameter/${var.appName}*"
       },
-      { #EC2 instance can request and add records in Route53 (let's encrypt)
+      { #EC2 instance can request Route53 (let's encrypt)
         "Effect": "Allow",
-        "Action": ["route53:ListHostedZones", "route53:GetChange", "route53:ChangeResourceRecordSets"],
+        "Action": ["route53:ListHostedZones", "route53:GetChange"],
         "Resource": "*"
+      },
+      { #EC2 instance can add records in Route53 (let's encrypt)
+        "Effect": "Allow",
+        "Action": ["route53:ChangeResourceRecordSets"],
+        "Resource": "arn:aws:route53:::hostedzone/${data.aws_route53_zone.route53_zone_queried.zone_id}"
       },
       { #EC2 instance can login into ECR
         "Effect": "Allow",
         "Action": ["ecr:GetAuthorizationToken"],
         "Resource": "*"
       },
-      { #EC2 instance can list and remove images from ECR
+      { #EC2 instance can pull, list and remove images from ECR
         "Effect": "Allow",
-        "Action": ["ecr:DescribeImages", "ecr:ListImages", "ecr:BatchDeleteImage"],
+        "Action": ["ecr:BatchGetImage", "ecr:DescribeImages", "ecr:ListImages", "ecr:BatchDeleteImage"],
         "Resource": aws_ecr_repository.docker_registry.arn
       }
     ]
