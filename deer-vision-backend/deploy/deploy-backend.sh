@@ -11,12 +11,14 @@ DOCKER_BASE_CONTAINER_NAME='deervision'
 DOCKER_NETWORK='app-network'
 
 function checkDeploymentSuccess() {
-  echo "START CHECKING for $base_url" #TODO remove this line
   base_url=$1
+  echo "START CHECKING for $base_url" #TODO remove this line
   max_attempts=35
   success=false
   for ((i=1; i<=max_attempts; i++)); do
+    set +e
     http_status=$(curl -s -o /dev/null -w "%{http_code}" $base_url/api/test/deploy)
+    set -e
     echo "Attempt $i - Request on $base_url return HTTP code $http_status"
     if [ $http_status -eq 200 ]; then
       success=true
