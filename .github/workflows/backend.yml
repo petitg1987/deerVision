@@ -14,7 +14,6 @@ env:
   APP_NAME: 'deervision'
   APP_JAR_START_NAME: 'deer-vision'
   APP_FOLDER: 'deer-vision-backend'
-  APP_DOMAIN_NAME: 'deervision.studio'
 
 jobs:
   backend:
@@ -83,23 +82,3 @@ jobs:
         if: github.ref == 'refs/heads/master' && failure()
         run: |
           cat ./${{ env.APP_FOLDER }}/deploy/deploy.log
-
-      - name: Check Deployment
-        if: github.ref == 'refs/heads/master'
-        run: |
-          max_attempts=35
-          success=false
-          for ((i=1; i<=max_attempts; i++)); do
-            http_status=$(curl -s -o /dev/null -w "%{http_code}" https://backend.${{ env.APP_DOMAIN_NAME }}/api/test/deploy)
-            echo "Attempt $i - HTTP Status Code: $http_status"
-            if [ $http_status -eq 200 ]; then
-              echo "API returned 200 OK!"
-              success=true
-              break
-            fi
-            sleep 5
-          done
-          if [ "$success" = false ]; then
-            echo "API did not return 200 after $max_attempts attempts. Exiting with error."
-            exit 1
-          fi
