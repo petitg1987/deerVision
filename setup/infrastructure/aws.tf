@@ -686,5 +686,3 @@ resource "aws_iam_role_policy" "git_hub_action_cloud_front" { #GitHub actions ca
 }
 EOF
 }
-
-#${aws_cloudfront_distribution.s3_distribution.arn}
