@@ -11,6 +11,7 @@ DOCKER_BASE_CONTAINER_NAME='deervision'
 DOCKER_NETWORK='app-network'
 
 function checkDeploymentSuccess() {
+  echo "START CHECKING for $base_url" #TODO remove this line
   base_url=$1
   max_attempts=35
   success=false
@@ -35,14 +36,14 @@ image_info=$(aws ecr describe-images --region $AWS_REGION --repository-name $DOC
 
 echo "Get deployment informations"
 old_container_name=${DOCKER_BASE_CONTAINER_NAME}Blue
-old_port='8080'
+old_port='8081'
 new_container_name=${DOCKER_BASE_CONTAINER_NAME}Green
-new_port='8081'
+new_port='8080'
 if sudo docker ps --format '{{.Names}}' | grep -q "${DOCKER_BASE_CONTAINER_NAME}Green"; then
   old_container_name=${DOCKER_BASE_CONTAINER_NAME}Green
-  old_port='8081'
+  old_port='8080'
   new_container_name=${DOCKER_BASE_CONTAINER_NAME}Blue
-  new_port='8080'
+  new_port='8081'
 fi
 new_tag=$(echo "$image_info" | sort -k2 -r | awk '{print $1}' | head -n 1)
 old_tag=$(sudo docker inspect --format='{{.Config.Image}}' $old_container_name | awk -F: '{print $2}')
@@ -52,6 +53,7 @@ sudo docker pull $AWS_ACCOUNT_ID.dkr.ecr.eu-central-1.amazonaws.com/$DOCKER_REGI
 sudo docker network create $DOCKER_NETWORK || true
 sudo docker network connect $DOCKER_NETWORK $APP_NAME-db || true
 sudo docker run -d -p $new_port:8080 --restart always --name $new_container_name --network=$DOCKER_NETWORK $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$DOCKER_REGISTRY_NAME:$new_tag
+echo "BEFORE CHECKING for $base_url" #TODO remove this line
 checkDeploymentSuccess "http://127.0.0.1:$new_port"
 
 echo "Switch from old container ($old_tag:$old_port) to new container ($new_tag:$new_port)"
