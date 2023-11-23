@@ -303,7 +303,7 @@ resource "aws_iam_role_policy" "ec2_instance_role_policy" {
       },
       { #EC2 instance can pull, list and remove images from ECR
         "Effect": "Allow",
-        "Action": ["ecr:BatchGetImage", "ecr:DescribeImages", "ecr:ListImages", "ecr:BatchDeleteImage"],
+        "Action": ["ecr:BatchGetImage", "ecr:GetDownloadUrlForLayer", "ecr:DescribeImages", "ecr:ListImages", "ecr:BatchDeleteImage"],
         "Resource": aws_ecr_repository.docker_registry.arn
       }
     ]
