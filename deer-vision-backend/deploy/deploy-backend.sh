@@ -1,8 +1,6 @@
 #!/bin/bash
 
 set -e
-set +x
-cd "$(dirname "$0")"
 
 AWS_ACCOUNT_ID='496124100072'
 AWS_REGION='eu-central-1'
