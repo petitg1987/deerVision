@@ -633,7 +633,7 @@ resource "aws_iam_role_policy" "git_hub_action_ecr" { #GitHub actions can push i
           "Sid": "PushImagesOnECR",
           "Effect": "Allow",
           "Action": ["ecr:GetAuthorizationToken", "ecr:UploadLayerPart"],
-          "Resource": "${aws_ecr_repository.docker_registry.arn}"
+          "Resource": "*"
       }
   ]
 }
