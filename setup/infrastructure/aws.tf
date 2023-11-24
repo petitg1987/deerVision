@@ -383,9 +383,7 @@ resource "aws_instance" "instance" {
   user_data = base64encode(templatefile("${path.module}/instancesSetupScript.tmpl.sh", {
     maxRequestsBySecond = 10,
     maxRequestsBurst = 20,
-    maxRequestsBodySizeInKB = 250,
-    logGroupName = "${var.appName}LogsGroup",
-    logStreamNamePrefix = "${var.appName}LogsStream"
+    maxRequestsBodySizeInKB = 250
   }))
   root_block_device { //volume for the OS (destroy with instance termination)
     delete_on_termination = "true"
