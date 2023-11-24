@@ -16,6 +16,7 @@ https://deervision.studio
   * Backend:
     * Move in backend folder: `cd deer-vision-backend`
     * Build the Jar: `mvn clean package`
+    * Start the database: `./database/start.sh`
     * Launch the Jar: `java -jar ./target/deer-vision-[VERSION].jar`
   * Frontend:
     * Move in frontend folder: `cd deer-vision-frontend`
