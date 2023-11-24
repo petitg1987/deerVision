@@ -40,7 +40,12 @@ sudo chmod 755 -R /home/ubuntu/data/db
 
 #Schedule database backup
 echo "$(date '+%Y-%m-%d %H:%M:%S') - Scheduling database backup" >> /home/ubuntu/userdata.log
-echo -e "#"'!'"/bin/bash\n\nif [ \"\$(id -u)\" -eq 0 ]; then\n  exec sudo -H -u ubuntu \$0 \"\$@\"\nfi\n\nsudo docker exec -t deervision-db pg_dump -U postgres > /home/ubuntu/deervision_dump.sql\n\naws s3 cp --region eu-central-1 /home/ubuntu/deervision_dump.sql s3://deervision-backend/db-backup/deervision_dump_\`date +%Y-%m-%d"_"%H_%M_%S\`.txt\n\nrm /home/ubuntu/deervision_dump.sql" | sudo tee /etc/cron.daily/deervision-db-backup
+echo -e "#"'!'"/bin/bash\n\n" \
+  "if [ \"\$(id -u)\" -eq 0 ]; then\n  exec sudo -H -u ubuntu \$0 \"\$@\"\nfi\n\n" \
+  "sudo docker exec -t deervision-db pg_dump -U postgres > /home/ubuntu/deervision_dump.sql\n" \
+  "zip -r /home/ubuntu/deervision_dump.zip /home/ubuntu/deervision_dump.sql\n" \
+  "aws s3 cp --region eu-central-1 /home/ubuntu/deervision_dump.zip s3://deervision-backend/db-backup/deervision_dump_\`date +%Y-%m-%d"_"%H_%M_%S\`.zip\n" \
+  "rm /home/ubuntu/deervision_dump.sql /home/ubuntu/deervision_dump.zip" | sudo tee /etc/cron.daily/deervision-db-backup
 sudo chmod +x /etc/cron.daily/deervision-db-backup
 
 #Create certificate (Let's encrypt)

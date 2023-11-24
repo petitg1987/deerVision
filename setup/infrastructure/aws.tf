@@ -251,7 +251,7 @@ data "aws_ami" "ubuntu" {
   owners = ["self"]
   filter {
     name = "image-id"
-    values = ["ami-055cb71dff2d966de"] #Private AMI with Ubuntu 22.04 LTS
+    values = ["ami-04bd8340511a48f9b"] #Private AMI with Ubuntu 22.04 LTS
   }
 }
 

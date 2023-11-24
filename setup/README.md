@@ -13,8 +13,8 @@
     * Type=Standard, Name=deervisionDbPassword, Value=clear DB password
     * Type=Standard, Name=deervisionAdminPassword, Value=BCrypt hashed password with 10 rounds
     * Type=Standard, Name=deervisionAdminJwtSecret, Value=JWT secret
-  * Add secret in GitHub
-    * Name=EC2_SSH_PRIVATE_KEY, Value=EC2 private key (`~/.ssh/deervision.pem`)
+* GitHub
+  * Name=EC2_SSH_PRIVATE_KEY, Value=EC2 private key (`~/.ssh/deervision.pem`)
 
 # Manage infrastructure
 * Create infrastructure: `./infrastructure/infra.sh create`
