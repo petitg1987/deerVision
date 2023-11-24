@@ -1,8 +1,6 @@
 # Deer Vision Website
-## URL
-https://deervision.studio
-
 ## Website Content
+https://deervision.studio
 * Showcasing the games developed by Deer Vision studio
 * API for the games:
   * API to send games statistics
