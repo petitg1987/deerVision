@@ -34,9 +34,14 @@ fi
 echo "$(date '+%Y-%m-%d %H:%M:%S') - Launching database" >> /home/ubuntu/userdata.log
 dbPassword=$(aws ssm get-parameter --region eu-central-1 --name deervisionDbPassword --query 'Parameter.Value' --output text)
 mkdir -p /home/ubuntu/data/db
-sudo docker run --restart always --name deervision-db -e POSTGRES_PASSWORD=$dbPassword -v /home/ubuntu/data/db/:/var/lib/postgresql/data -p 5432:5432 -d postgres:14.5
+sudo docker run --restart always --name deervision-db -e POSTGRES_PASSWORD=$dbPassword -v /home/ubuntu/data/db/:/var/lib/postgresql/data -d postgres:14.5
 sleep 10 #Wait volume is created by docker
 sudo chmod 755 -R /home/ubuntu/data/db
+
+#Schedule database backup
+echo "$(date '+%Y-%m-%d %H:%M:%S') - Scheduling database backup" >> /home/ubuntu/userdata.log
+echo -e "#"'!'"/bin/bash\n\nif [ \"\$(id -u)\" -eq 0 ]; then\n  exec sudo -H -u ubuntu \$0 \"\$@\"\nfi\n\nsudo docker exec -t deervision-db pg_dump -U postgres > /home/ubuntu/deervision_dump.sql\n\naws s3 cp --region eu-central-1 /home/ubuntu/deervision_dump.sql s3://deervision-backend/db-backup/deervision_dump_\`date +%Y-%m-%d"_"%H_%M_%S\`.txt\n\nrm /home/ubuntu/deervision_dump.sql" | sudo tee /etc/cron.daily/deervision-db-backup
+sudo chmod +x /etc/cron.daily/deervision-db-backup
 
 #Create certificate (Let's encrypt)
 mkdir -p /home/ubuntu/data/letsencrypt/logs

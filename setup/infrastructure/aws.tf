@@ -305,6 +305,11 @@ resource "aws_iam_role_policy" "ec2_instance_role_policy" {
         "Effect": "Allow",
         "Action": ["ecr:BatchGetImage", "ecr:GetDownloadUrlForLayer", "ecr:DescribeImages", "ecr:ListImages", "ecr:BatchDeleteImage"],
         "Resource": aws_ecr_repository.docker_registry.arn
+      },
+      { #EC2 instance can push data in S3 (db backup)
+        "Effect": "Allow",
+        "Action": ["s3:PutObject"],
+        "Resource": "${aws_s3_bucket.storage_backend.arn}/*"
       }
     ]
   })
@@ -598,6 +603,38 @@ resource "aws_route53_record" "dns_record_www_ipv6_front" {
     zone_id = aws_cloudfront_distribution.s3_distribution.hosted_zone_id
     evaluate_target_health = true
   }
+}
+
+##########################################################################################
+# DB BACKUP STORAGE
+##########################################################################################
+resource "aws_s3_bucket" "storage_backend" {
+  bucket = "${var.appName}-backend"
+  tags = {
+    Name = "${var.appName}Backend"
+    Application = var.appName
+  }
+}
+
+resource "aws_s3_bucket_acl" "storage_backend_bucket_acl" {
+  bucket = aws_s3_bucket.storage_backend.id
+  acl = "private"
+  depends_on = [aws_s3_bucket_ownership_controls.storage_backend_bucket_acl_ownership]
+}
+
+resource "aws_s3_bucket_ownership_controls" "storage_backend_bucket_acl_ownership" {
+  bucket = aws_s3_bucket.storage_backend.id
+  rule {
+    object_ownership = "ObjectWriter"
+  }
+}
+
+resource "aws_s3_bucket_public_access_block" "storage_access_backend" {
+  bucket = aws_s3_bucket.storage_backend.id
+  block_public_acls = true
+  block_public_policy = true
+  ignore_public_acls = true
+  restrict_public_buckets = true
 }
 
 ##########################################################################################
