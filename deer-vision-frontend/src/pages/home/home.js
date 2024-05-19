@@ -37,7 +37,7 @@ class Home extends Component {
             }
 
             let screenshotsModal = document.getElementById('screenshots-modal');
-            if (screenshotsModal.style.display === "flex") {
+            if (screenshotsModal && screenshotsModal.style.display === "flex") {
                 let body = document.getElementsByTagName("body")[0];
                 body.style.cursor = "auto";
                 screenshotsModal.style.display = "none";
