@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useRef} from 'react';
+import React, {useCallback, useEffect, useRef, useState} from 'react';
 import './visitor-graph.css';
 import Chart from 'chart.js/auto';
 import {getBackendUrl} from "../../js/access";
@@ -8,20 +8,14 @@ export default function VisitorCountryGraph({token}) {
     let visitorCountryChart = useRef(null);
     let windowWidth = useRef(-1);
 
-    const refreshVisitorCountryChart = useCallback(async () => {
-        const retrieveVisitorCount = async (retrieveDays) => {
-            let visitorCountryRespond = await fetch(getBackendUrl() + 'api/admin/visitor-country?retrieveDays=' + retrieveDays, {
-                method: "GET",
-                headers: new Headers({
-                    'Authorization': 'Bearer ' + token,
-                })
-            });
-            return await visitorCountryRespond.json();
+    const [visitorCountryJson, setVisitorCountryJson] = useState(null);
+    const [todayVisitorCountryJson, setTodayVisitorCountryJson] = useState(null);
+
+    const updateVisitorCountryChart = useCallback(() => {
+        if (visitorCountryJson === null || todayVisitorCountryJson === null) {
+            return null;
         }
 
-        let visitorCountryJson = await retrieveVisitorCount(40);
-
-        let todayVisitorCountryJson = await retrieveVisitorCount(1);
         let adjustedTodayVisitorCountryJson = {};
         for (let countryIndex in Object.keys(visitorCountryJson)) {
             let countryString = Object.keys(visitorCountryJson)[countryIndex];
@@ -88,24 +82,46 @@ export default function VisitorCountryGraph({token}) {
                 }
             }
         });
-    }, [token]);
+    }, [todayVisitorCountryJson, visitorCountryJson]);
 
-    const onWindowResize = useCallback(async () => {
+    const onWindowResize = useCallback( () => {
         if(windowWidth.current !== window.innerWidth){
             windowWidth.current = window.innerWidth;
-            await refreshVisitorCountryChart();
+            updateVisitorCountryChart();
         }
-    }, [refreshVisitorCountryChart]);
+    }, [updateVisitorCountryChart]);
 
     useEffect(() => {
-        refreshVisitorCountryChart().then();
         windowWidth.current = window.innerWidth;
-
         window.addEventListener('resize', onWindowResize);
         return () => { //umount
             window.removeEventListener('resize', onWindowResize);
         };
-    }, [onWindowResize, refreshVisitorCountryChart]);
+    }, [onWindowResize]);
+
+    useEffect(() => {
+        updateVisitorCountryChart();
+    }, [visitorCountryJson, todayVisitorCountryJson, updateVisitorCountryChart]);
+
+    useEffect(() => {
+        fetch(getBackendUrl() + 'api/admin/visitor-country?retrieveDays=40', {
+                method: "GET",
+                headers: new Headers({
+                    'Authorization': 'Bearer ' + token,
+                })
+            })
+            .then(response => response.json())
+            .then(json => setVisitorCountryJson(json));
+
+        fetch(getBackendUrl() + 'api/admin/visitor-country?retrieveDays=1', {
+                method: "GET",
+                headers: new Headers({
+                    'Authorization': 'Bearer ' + token,
+                })
+            })
+            .then(response => response.json())
+            .then(json => setTodayVisitorCountryJson(json));
+    }, [token]);
 
     return (
         <div className={"visitorChart"}>
