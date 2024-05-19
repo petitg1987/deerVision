@@ -648,7 +648,7 @@ resource "aws_ecr_repository" "docker_registry" {
   }
 }
 
-#Only one OIDC for that url is allowed in an AWS account. DeerVision project is responsible to create it. Others projets only use it !
+#Only one OIDC for that url is allowed in an AWS account. DeerVision project is responsible to create it. Others projects only use it !
 resource "aws_iam_openid_connect_provider" "git_hub_action_provider" {
   url = "https://token.actions.githubusercontent.com"
   client_id_list = ["sts.amazonaws.com"]
