@@ -173,7 +173,7 @@ class Home extends Component {
                         <p>Influencers & Press</p>
                         <div className="game-description">
                             <ul className={"game-list"}>
-                                <li>Steam keys for influencers and press: <a className={"text-link"} target="_blank" rel="noopener noreferrer" href="https://www.keymailer.co/g/games/169095">Keymailer</a> / <a className={"text-link"} target="_blank" rel="noopener noreferrer" href="https://woovit.com/offer/photon-engineer/">Woovit</a>.</li>
+                                <li>Steam keys for influencers and press: <a className={"text-link"} target="_blank" rel="noopener noreferrer" href="https://www.keymailer.co/g/games/169095">Keymailer</a>.</li>
                                 <li>Feel free to use our <a className={"text-link"} href="/games/pe-press-kit">press kit</a> as you wish.</li>
                             </ul>
                         </div>
