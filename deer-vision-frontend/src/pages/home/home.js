@@ -61,7 +61,7 @@ class Home extends Component {
         if (!window.matchMedia("(max-width: 800px)").matches) {
             let modalImg = document.getElementById("screenshots-modal-content");
             modalImg.src = ""; //for slow connection: display white/empty image first instead of the previous one displayed
-            modalImg.src = require('../../images/photon-engineer/screenshot' + screenshotId + '_1440p.webp');
+            modalImg.src = require('../../images/photon-engineer/screenshot' + screenshotId + '.png');
 
             let body = document.getElementsByTagName("body")[0];
             body.style.cursor = "pointer";
