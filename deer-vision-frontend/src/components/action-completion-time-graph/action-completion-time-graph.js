@@ -120,6 +120,14 @@ class ActionCompletionTimeGraph extends Component {
                             callback: function(value) {
                                 return value + ' players';
                             }
+                        },
+                        grid: {
+                            color: 'rgba(255, 255, 255, 0.05)'
+                        }
+                    },
+                    x: {
+                        grid: {
+                            color: 'rgba(255, 255, 255, 0.05)'
                         }
                     }
                 },

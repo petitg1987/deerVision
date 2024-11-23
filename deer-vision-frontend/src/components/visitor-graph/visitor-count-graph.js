@@ -44,6 +44,14 @@ export default function VisitorCountGraph({token}) {
                         min: 0,
                         ticks: {
                             stepSize: 1
+                        },
+                        grid: {
+                            color: 'rgba(255, 255, 255, 0.05)'
+                        }
+                    },
+                    x: {
+                        grid: {
+                            color: 'rgba(255, 255, 255, 0.05)'
                         }
                     }
                 },
