@@ -1,10 +1,5 @@
-.desc-text p::first-letter {
-    font-weight: bold;
-    font-size: 1.2em;
-    color: #0089b5;
-}
-
 .desc-text p {
+    font-size: 1.1em;
     margin-bottom: 0.2em;
     margin-top: 1.0em;
 }

@@ -24,7 +24,7 @@
     margin-right: 53px;
     font-size: 1.0rem;
     font-family: "Verdana", sans-serif;
-    background-color: #363649;
+    background-color: #2b3238;
     border-radius: 10px;
 }
 
@@ -42,29 +42,11 @@
     margin-bottom: 0.25em;
 }
 
-.game-about {
-    list-style: none;
-}
-
-.game-about li {
-    margin-bottom: 0.7em;
-}
-
-.game-about li::before {
-    content: "\2022";
-    color: #0089b5;
-    font-weight: bold;
-    font-size: 1.2rem;
-    display: inline-block;
-    width: 1.0em;
-    margin-left: -1.0em;
-}
-
 .game-soc-container {
     display: inline-block;
     padding: 5px 12px;
     margin-bottom: 25px;
-    background-color: #363649;
+    background-color: #2b3238;
     border-radius: 10px;
 }
 

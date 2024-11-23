@@ -5,7 +5,7 @@
 
 body {
     width: 100%;
-    background: repeating-linear-gradient(-45deg, #414155, #414155 4px, #424257 4px, #424257 8px);
+    background: #23282d;
     font-family: Verdana, sans-serif;
     font-size: 18px;
     color: #ffffff;
@@ -34,7 +34,7 @@ ul {
 }
 
 footer {
-    background-color: #4b4b64;
+    background-color: #1b1f23;
     width: 100%;
 }
 

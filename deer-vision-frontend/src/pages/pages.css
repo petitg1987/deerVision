@@ -4,16 +4,13 @@ h2 {
     text-align: center;
     color: #ffffff;
     letter-spacing: .5rem;
-    text-decoration: underline;
-    text-decoration-thickness: 0.08em;
-    text-decoration-color: #0089b5;
-    text-underline-offset: 0.2em;
+    text-shadow: #ffffff 0 0 8px;
     text-transform: uppercase;
 }
 
 .text-link:link, .text-link:visited, .text-link:hover, .text-link:active {
     color: #ffffff;
-    text-decoration-color: #0089b5;
+    text-decoration-color: #ffffff;
     text-decoration-thickness: 0.1rem;
     text-decoration-style: solid;
 }
@@ -46,13 +43,13 @@ table {
 
 td, th {
     border: 1px solid #000000;
-    background-color: #414155;
+    background-color: #2b3238;
     padding-right: 7px;
     padding-left: 7px;
 }
 
 th {
-    background-color: #505065;
+    background-color: #31383f;
     color: #ffffff;
     height: 30px;
 }

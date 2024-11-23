@@ -12,7 +12,7 @@
     max-width: 800px;
     padding: 5px 10px;
     font-size: 1.0rem;
-    background-color: #363649;
+    background-color: #2b3238;
     border-radius: 10px;
     margin-bottom: 2.5rem;
 }
@@ -50,6 +50,7 @@
     display: flex;
     flex-direction: row;
     gap: 0.5em;
+    margin-top: 0.75em;
 }
 
 .blog-img {

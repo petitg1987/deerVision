@@ -30,7 +30,7 @@
 }
 
 .popup {
-    background-color: #414155;
+    background-color: #1b1f23;
     box-shadow: 5px 5px 10px #202020;
     display: inline-block;
     height: 75%;
@@ -47,7 +47,7 @@
 
 .popup-close {
     position: absolute;
-    background-color: #505065;
+    background-color: #1b1f23;
     padding: 5px;
     top: 13%;
     right: 11%;
