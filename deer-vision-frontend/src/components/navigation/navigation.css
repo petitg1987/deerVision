@@ -18,6 +18,10 @@
     padding-left: 6pc;
 }
 
+.nav-logo-img {
+    margin: 2px;
+}
+
 .nav-logo-text {
     padding-left: 10px;
     font-weight: bold;

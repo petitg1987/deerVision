@@ -39,7 +39,7 @@ class Navigation extends Component {
             <nav className="nav" id="nav-id">
                 <div className="nav-main-container">
                     <a href="/#" className="nav-logo">
-                        <img className="nav-logo-img" src={studioLogoMini} alt="Studio Logo" width="61" height="61"/>
+                        <img className="nav-logo-img" src={studioLogoMini} alt="Studio Logo" width="57" height="57"/>
                         <div className="nav-logo-text">Deer Vision Studio</div>
                     </a>
 
