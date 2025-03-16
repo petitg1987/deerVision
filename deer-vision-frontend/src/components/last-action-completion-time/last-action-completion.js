@@ -10,7 +10,10 @@ class LastActionCompletion extends Component {
         this.state = {tableData: []};
     }
 
-    convertUTCToLocal(dateStr) {
+    /*
+     * @param dateStr format: "dd/mm/yyyy HH24:MI"
+     */
+    convertUtcToLocal(dateStr) {
         // Extract date components from "dd/mm/yyyy HH24:MI" format
         let [datePart, timePart] = dateStr.split(' ');
         let [day, month, year] = datePart.split('/').map(Number);
@@ -43,7 +46,7 @@ class LastActionCompletion extends Component {
 
             lastCompletionsData.push(
                 <tr key={shortRequestKey}>
-                    <td>{this.convertUTCToLocal(lc.creationDateTime)}</td>
+                    <td>{lc.creationDateTime}</td>
                     <td>{lc.levelId}</td>
                     <td>{actionName}</td>
                     <td className="secondary-info">{shortRequestKey}</td>

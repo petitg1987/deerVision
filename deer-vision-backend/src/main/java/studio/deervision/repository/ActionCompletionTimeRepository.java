@@ -24,7 +24,7 @@ public interface ActionCompletionTimeRepository extends JpaRepository<ActionComp
             "GROUP BY ROUND(act.completionTime / 60.0, 0), act.actionName")
     List<ActionCompletionCountForMinute> groupCompletionTimeByMinute(String appId, int levelId, String actionName, boolean includeSnapshot);
 
-    @Query (value = "SELECT subquery.request_key as requestKey, subquery.level_id as levelId, subquery.action_name as actionName, TO_CHAR(subquery.creation_date_time, 'dd/mm/yyyy HH24:MI') as creationDateTime " +
+    @Query (value = "SELECT subquery.request_key as requestKey, subquery.level_id as levelId, subquery.action_name as actionName, subquery.creation_date_time as creationDateTime " +
             "FROM ( " +
             "    SELECT DISTINCT ON(sact.request_key) *" +
             "    FROM action_completion_time sact " +
