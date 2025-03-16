@@ -38,7 +38,7 @@ old_container_name=${DOCKER_BASE_CONTAINER_NAME}Blue
 old_port='8081'
 new_container_name=${DOCKER_BASE_CONTAINER_NAME}Green
 new_port='8080'
-greenContainerExist=$(sudo docker ps --format '{{.Names}}' | grep -q "${DOCKER_BASE_CONTAINER_NAME}Green")
+greenContainerExist=$(sudo docker ps --format '{{.Names}}' | grep -q "${DOCKER_BASE_CONTAINER_NAME}Green") || true
 if [[ -n "$greenContainerExist" ]]; then
   old_container_name=${DOCKER_BASE_CONTAINER_NAME}Green
   old_port='8080'
