@@ -10,26 +10,17 @@ class LastActionCompletion extends Component {
         this.state = {tableData: []};
     }
 
-    /*
-     * @param dateStr format: "dd/mm/yyyy HH24:MI"
-     */
-    convertUtcToLocal(dateStr) {
-        // Extract date components from "dd/mm/yyyy HH24:MI" format
-        let [datePart, timePart] = dateStr.split(' ');
-        let [day, month, year] = datePart.split('/').map(Number);
-        let [hour, minute] = timePart.split(':').map(Number);
+    convertUTCToLocal(utcDateString) {
+        let formattedUtcString = utcDateString.replace(" ", "T") + "Z";
+        let date = new Date(formattedUtcString);
 
-        let utcDate = new Date(Date.UTC(year, month - 1, day, hour, minute));
-        let localDate = new Date(utcDate);
+        let year = date.getFullYear();
+        let month = String(date.getMonth() + 1).padStart(2, "0");
+        let day = String(date.getDate()).padStart(2, "0");
+        let hours = String(date.getHours()).padStart(2, "0");
+        let minutes = String(date.getMinutes()).padStart(2, "0");
 
-        // Format the output as "dd/mm/yyyy HH24:MI"
-        let dd = String(localDate.getDate()).padStart(2, '0');
-        let mm = String(localDate.getMonth() + 1).padStart(2, '0'); // Month is zero-based
-        let yyyy = localDate.getFullYear();
-        let HH = String(localDate.getHours()).padStart(2, '0');
-        let MI = String(localDate.getMinutes()).padStart(2, '0');
-
-        return `${dd}/${mm}/${yyyy} ${HH}:${MI}`;
+        return `${day}/${month}/${year} ${hours}:${minutes}`;
     }
 
     async refreshLastCompletions() {
@@ -46,7 +37,7 @@ class LastActionCompletion extends Component {
 
             lastCompletionsData.push(
                 <tr key={shortRequestKey}>
-                    <td>{lc.creationDateTime}</td>
+                    <td>{this.convertUTCToLocal(lc.creationDateTime)}</td>
                     <td>{lc.levelId}</td>
                     <td>{actionName}</td>
                     <td className="secondary-info">{shortRequestKey}</td>
