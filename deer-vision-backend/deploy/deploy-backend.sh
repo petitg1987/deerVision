@@ -38,7 +38,8 @@ old_container_name=${DOCKER_BASE_CONTAINER_NAME}Blue
 old_port='8081'
 new_container_name=${DOCKER_BASE_CONTAINER_NAME}Green
 new_port='8080'
-if sudo docker ps --format '{{.Names}}' | grep -q "${DOCKER_BASE_CONTAINER_NAME}Green"; then
+greenContainerExist=$(sudo docker ps --format '{{.Names}}' | grep -q "${DOCKER_BASE_CONTAINER_NAME}Green")
+if [[ -n "$greenContainerExist" ]]; then
   old_container_name=${DOCKER_BASE_CONTAINER_NAME}Green
   old_port='8080'
   new_container_name=${DOCKER_BASE_CONTAINER_NAME}Blue
@@ -46,6 +47,8 @@ if sudo docker ps --format '{{.Names}}' | grep -q "${DOCKER_BASE_CONTAINER_NAME}
 fi
 new_tag=$(echo "$image_info" | sort -k2 -r | awk '{print $1}' | head -n 1)
 old_tag=$(sudo docker inspect --format='{{.Config.Image}}' $old_container_name | awk -F: '{print $2}')
+echo "  - Old container name: ${old_container_name}, New container name: ${new_container_name}"
+echo "  - Old tag: ${old_tag}, New tag: ${new_tag}"
 
 echo "Loading secret parameters"
 dbPassword=$(aws ssm get-parameter --region eu-central-1 --name deervisionDbPassword --query 'Parameter.Value' --output text)
