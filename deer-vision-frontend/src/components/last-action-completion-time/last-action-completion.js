@@ -10,6 +10,25 @@ class LastActionCompletion extends Component {
         this.state = {tableData: []};
     }
 
+    convertUTCToLocal(dateStr) {
+        // Extract date components from "dd/mm/yyyy HH24:MI" format
+        let [datePart, timePart] = dateStr.split(' ');
+        let [day, month, year] = datePart.split('/').map(Number);
+        let [hour, minute] = timePart.split(':').map(Number);
+
+        let utcDate = new Date(Date.UTC(year, month - 1, day, hour, minute));
+        let localDate = new Date(utcDate);
+
+        // Format the output as "dd/mm/yyyy HH24:MI"
+        let dd = String(localDate.getDate()).padStart(2, '0');
+        let mm = String(localDate.getMonth() + 1).padStart(2, '0'); // Month is zero-based
+        let yyyy = localDate.getFullYear();
+        let HH = String(localDate.getHours()).padStart(2, '0');
+        let MI = String(localDate.getMinutes()).padStart(2, '0');
+
+        return `${dd}/${mm}/${yyyy} ${HH}:${MI}`;
+    }
+
     async refreshLastCompletions() {
         let lastCompletionsJson = await getWithToken(getBackendUrl() + 'api/admin/levels/lastCompletions?appId=' + this.props.appId, this.props.token);
 
@@ -24,7 +43,7 @@ class LastActionCompletion extends Component {
 
             lastCompletionsData.push(
                 <tr key={shortRequestKey}>
-                    <td>{lc.creationDateTime}</td>
+                    <td>{this.convertUTCToLocal(lc.creationDateTime)}</td>
                     <td>{lc.levelId}</td>
                     <td>{actionName}</td>
                     <td className="secondary-info">{shortRequestKey}</td>
