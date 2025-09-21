@@ -1,4 +1,4 @@
-#Generate with ansible-vault encrypt_string 'THE_PASSWORD_HERE' --name 'db_password'
+#Generate with: ansible-vault encrypt_string 'THE_PASSWORD_HERE' --name 'db_password'
 db_password: !vault |
   $ANSIBLE_VAULT;1.1;AES256
   61376537306166376333633238636535663563663434633239363162653065383934326362393365
