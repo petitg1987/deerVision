@@ -1,10 +1,10 @@
-# Manage database
-* Start dev. database: `./start.sh`
-* Stop dev. database: `./stop.sh`
+# Manage local database
+* Start dev. database: `./database/start.sh`
+* Stop dev. database: `./database/stop.sh`
  
-# Access to database
+# Access to local database
 ## Pre-requisites
-* Install Postgres tools: `sudo apt install postgresql-client-common postgresql-client-14`
+* Install Postgres tools: `sudo apt install postgresql-client-common postgresql-client-16`
 
 ## Console
 * Execute (password: dev): `psql -h localhost -d postgres -p 5432 -U postgres`
@@ -16,6 +16,3 @@
 
 ## Access to docker container
 * Execute `sudo docker exec -it deervision-db bash`
-
-## Create database dump
-* Execute "docker exec -t deervision-db pg_dump -U postgres > ~/deervision_dump_`date +%d-%m-%Y"_"%H_%M_%S`.sql"
