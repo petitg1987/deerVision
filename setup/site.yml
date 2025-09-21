@@ -1,0 +1,4 @@
+- hosts: orionservers
+  become: yes
+  roles:
+    - database

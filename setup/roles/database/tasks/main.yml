@@ -1,0 +1,20 @@
+- name: Ensure database directory exists
+  file:
+    path: /data/deervision/db
+    state: directory
+    mode: '0755'
+    owner: greg
+    group: greg
+
+- name: Run PostgreSQL container
+  community.docker.docker_container:
+    name: deervision-db
+    image: postgres:17.6
+    restart_policy: always
+    env:
+      POSTGRES_PASSWORD: "{{ db_password }}"
+    volumes:
+      - /data/deervision/db:/var/lib/postgresql/data
+    published_ports:
+      - "13001:5432"
+    detach: true

@@ -38,6 +38,7 @@ sudo docker run --restart always --name deervision-db -e POSTGRES_PASSWORD=$dbPa
 sleep 10 #Wait volume is created by docker
 sudo chmod 755 -R /home/ubuntu/data/db
 
+#TODO GPE review !!!!
 #Schedule database backup
 echo "$(date '+%Y-%m-%d %H:%M:%S') - Scheduling database backup" >> /home/ubuntu/userdata.log
 echo -e "#"'!'"/bin/bash\n\n" \
