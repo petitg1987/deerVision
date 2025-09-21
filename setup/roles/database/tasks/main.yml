@@ -1,6 +1,6 @@
 - name: Ensure database directory exists
   file:
-    path: /data/deervision/db
+    path: "{{ db_dir }}"
     state: directory
     mode: '0755'
     owner: greg
@@ -14,7 +14,19 @@
     env:
       POSTGRES_PASSWORD: "{{ db_password }}"
     volumes:
-      - /data/deervision/db:/var/lib/postgresql/data
+      - "{{ db_dir }}:/var/lib/postgresql/data"
     published_ports:
       - "13001:5432"
     detach: true
+
+- name: Wait for container to initialize volume
+  wait_for:
+    path: "{{ db_dir }}"
+    state: present
+    timeout: 30
+
+- name: Ensure permissions for DB directory
+  file:
+    path: "{{ db_dir }}"
+    recurse: yes
+    mode: '0755'
