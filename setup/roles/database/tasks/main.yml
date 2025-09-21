@@ -30,3 +30,11 @@
     path: "{{ db_dir }}"
     recurse: yes
     mode: '0755'
+
+- name: Schedule database backup
+  template:
+    src: deervision-db-backup.j2
+    dest: /etc/cron.daily/deervision-db-backup
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: '0755'

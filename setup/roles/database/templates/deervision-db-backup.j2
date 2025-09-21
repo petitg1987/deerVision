@@ -1,0 +1,9 @@
+#!/bin/bash
+
+if [ "$(id -u)" -eq 0 ]; then
+  exec sudo -H -u {{ ansible_user }} "$0" "$@"
+fi
+
+sudo docker exec -t deervision-db pg_dump -U postgres > /tmp/deervision_dump.sql
+mkdir -p /data/deervision/backup/db/
+zip -r /data/deervision/backup/db/deervision_dump_$(date '+%Y-%m-%d_%H_%M_%S').zip /tmp/deervision_dump.sql
