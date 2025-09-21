@@ -1,4 +1,4 @@
-# Pre-requisites
+# Server setup
 * Set up a server using 'serverSetup' project
 * Create a file `~/.vault_pass.txt` with the Ansible vault password
 * Update the IP address of the server in 'infra/inventory.ini'
