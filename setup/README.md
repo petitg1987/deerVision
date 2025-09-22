@@ -17,8 +17,21 @@
 * Execute: `ssh greg@152.53.144.87 "cat /tmp/deervision_dump_to_restore.sql | sudo docker exec -i deervision-db psql -U postgres -d postgres"`
 * Check: `ssh greg@152.53.144.87 "sudo docker exec -i deervision-db psql -U postgres -d postgres -c 'SELECT * FROM usage ORDER BY id DESC LIMIT 1;'"`
 
-# Connect to the server
+# Deploy the application
+* Commit on master branch to trigger the webhook
+
+# Various
+## Connect to the server
 * Execute: `ssh greg@152.53.144.87`
 
-# Deploy the application
-* Commit on master branch to trigger the GitHub actions
+## Decrypt secret from the Ansible vault
+* Execute:
+    ```
+    export chiphertext='$ANSIBLE_VAULT;1.1;AES256
+    61376537306166376333633238636535663563663434633239363162653065383934326362393365
+    3165303132666138313935393532336539353661373136330a646436353032633631383134323137
+    33326438613765663664363331633130326565633331383034393564373165326462613861393232
+    6662366239363466640a323634633038653939303965316166396161653363623437313531333535
+    3161'
+    printf "%s\n" $chiphertext | ansible-vault decrypt
+    ````
