@@ -3,6 +3,8 @@
 set -e
 cd "$(dirname "$0")"
 
+#TODO provide password from ansible variable (use file / volume ?) + add network to access to the database
+
 echo "Starting to deploy the backend image"
 docker stop deer-vision-backend || true
 docker rm deer-vision-backend || true

@@ -20,7 +20,7 @@
 # Deploy the application
 * Commit on master branch to trigger the webhook
 
-# Various
+# Utils
 ## Connect to the server
 * Execute: `ssh greg@152.53.144.87`
 
