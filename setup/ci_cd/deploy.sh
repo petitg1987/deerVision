@@ -4,9 +4,9 @@ set -e
 cd "$(dirname "$0")"
 
 echo "Starting to deploy the backend image"
-sudo docker stop deer-vision-backend || true
-sudo docker rm deer-vision-backend || true
-sudo docker run -d \
+docker stop deer-vision-backend || true
+docker rm deer-vision-backend || true
+docker run -d \
     -p 13002:8080 \
     -e DB_PASSWORD="$DB_PASSWORD" \
     -e ADMIN_PASSWORD="$ADMIN_PASSWORD" \
