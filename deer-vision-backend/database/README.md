@@ -15,4 +15,4 @@
   * Exit: \q
 
 ## Access to docker container
-* Execute `sudo docker exec -it deervision-db bash`
+* Execute `sudo docker exec -it deer-vision-db bash`

@@ -3,5 +3,5 @@
 set -e
 cd "$(dirname "$0")"
 
-docker stop deervision-db || true
-docker rm deervision-db || true
+docker stop deer-vision-db || true
+docker rm deer-vision-db || true

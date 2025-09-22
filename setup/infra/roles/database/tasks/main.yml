@@ -8,7 +8,7 @@
 
 - name: Run PostgreSQL container
   community.docker.docker_container:
-    name: deervision-db
+    name: deer-vision-db
     image: postgres:17.6
     restart_policy: always
     env:
@@ -33,8 +33,8 @@
 
 - name: Schedule database backup
   template:
-    src: deervision-db-backup.j2
-    dest: /etc/cron.daily/deervision-db-backup
+    src: deer-vision-db-backup.j2
+    dest: /etc/cron.daily/deer-vision-db-backup
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
     mode: '0755'
