@@ -3,7 +3,7 @@
 * Set up a server using 'serverSetup' project
 * Create a file `~/.vault_pass.txt` with the Ansible vault password
 * Update the IP address of the server in 'infra/inventory.ini'
-* Execute: `ansible-playbook -i setup/inventory.ini setup/site.yml --vault-password-file ~/.vault_pass.txt`
+* Execute: `ansible-playbook -i setup/infra/inventory.ini setup/infra/site.yml --vault-password-file ~/.vault_pass.txt`
 
 ## Configure GitHub
 * Define a webhook in 'deerVision' repository settings:
