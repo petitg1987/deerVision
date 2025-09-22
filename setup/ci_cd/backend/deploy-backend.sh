@@ -1,5 +1,7 @@
 #!/bin/bash
 
+#TODO GPE remove this file
+
 set -e
 
 AWS_ACCOUNT_ID='496124100072'
