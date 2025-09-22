@@ -10,4 +10,4 @@ mvn -B clean package
 
 cd ./deploy/
 cp ../target/deer-vision*.jar ./deer-vision.jar
-docker build -t .
+docker build -t deer-vision:latest .
