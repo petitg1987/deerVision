@@ -2,7 +2,7 @@
   lineinfile:
     path: /etc/environment
     regexp: '^DEER_VISION_DB_PASSWORD='
-    line: "DEER_VISION_DB_PASSWORD={{ db_password }}"
+    line: "DEER_VISION_DB_PASSWORD=\"{{ db_password }}\""
     create: yes
   notify: Refresh environment
 
@@ -10,7 +10,7 @@
   lineinfile:
     path: /etc/environment
     regexp: '^DEER_VISION_ADMIN_PASSWORD='
-    line: "DEER_VISION_ADMIN_PASSWORD={{ admin_password }}"
+    line: "DEER_VISION_ADMIN_PASSWORD=\"{{ admin_password }}\""
     create: yes
   notify: Refresh environment
 
@@ -18,6 +18,6 @@
   lineinfile:
     path: /etc/environment
     regexp: '^DEER_VISION_ADMIN_JWT_SECRET='
-    line: "DEER_VISION_ADMIN_JWT_SECRET={{ admin_jwt_secret }}"
+    line: "DEER_VISION_ADMIN_JWT_SECRET=\"{{ admin_jwt_secret }}\""
     create: yes
   notify: Refresh environment
