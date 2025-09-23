@@ -1,23 +1,31 @@
-- name: Add environment variable for database password
-  lineinfile:
-    path: /etc/environment
-    regexp: '^DEER_VISION_DB_PASSWORD='
-    line: "DEER_VISION_DB_PASSWORD=\"{{ db_password }}\""
-    create: yes
-  notify: Refresh environment
+- name: Create a secret directory
+  file:
+    path: /data/ci_cd/secret
+    state: directory
+    owner: root
+    group: root
+    mode: '0755'
 
-- name: Add environment variable for admin password
-  lineinfile:
-    path: /etc/environment
-    regexp: '^DEER_VISION_ADMIN_PASSWORD='
-    line: "DEER_VISION_ADMIN_PASSWORD=\"{{ admin_password }}\""
-    create: yes
-  notify: Refresh environment
+- name: Create a file for database password
+  copy:
+    content: "{{ db_password }}"
+    dest: /data/ci_cd/secret/deerVisionDbPassword
+    owner: root
+    group: root
+    mode: '0644'
 
-- name: Add environment variable for admin JWT secret
-  lineinfile:
-    path: /etc/environment
-    regexp: '^DEER_VISION_ADMIN_JWT_SECRET='
-    line: "DEER_VISION_ADMIN_JWT_SECRET=\"{{ admin_jwt_secret }}\""
-    create: yes
-  notify: Refresh environment
+- name: Create a file for admin password
+  copy:
+    content: "{{ admin_password }}"
+    dest: /data/ci_cd/secret/deerVisionAdminPassword
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: Create a file for admin JWT secret
+  copy:
+    content: "{{ admin_jwt_secret }}"
+    dest: /data/ci_cd/secret/deerVisionAdminJwtSecret
+    owner: root
+    group: root
+    mode: '0644'
