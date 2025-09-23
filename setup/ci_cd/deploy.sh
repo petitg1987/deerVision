@@ -9,8 +9,8 @@ echo "Starting to deploy the backend image"
 docker stop deer-vision-backend || true
 docker rm deer-vision-backend || true
 
-sudo docker network create "app-dv-network" || true
-sudo docker network connect "app-dv-network" "deer-vision-db" || true
+docker network create "app-dv-network" || true
+docker network connect "app-dv-network" "deer-vision-db" || true
 
 docker run -d \
     -p 13002:8080 \
