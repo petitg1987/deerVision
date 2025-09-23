@@ -1,0 +1,5 @@
+- name: Refresh environment
+  shell: source /etc/environment
+  args:
+    executable: /bin/bash
+  listen: Refresh environment
