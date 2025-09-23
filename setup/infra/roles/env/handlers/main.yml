@@ -1,3 +1,0 @@
-- name: Refresh environment
-  shell: . /etc/environment
-  listen: Refresh environment
