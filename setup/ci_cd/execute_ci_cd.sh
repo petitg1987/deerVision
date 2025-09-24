@@ -3,6 +3,25 @@
 set -e
 cd "$(dirname "$0")"
 
+function checkDeploymentSuccess() {
+  base_url=$1
+  max_attempts=50
+  success=false
+  for ((i=1; i<=max_attempts; i++)); do
+    http_status=$(curl -s -o /dev/null -w "%{http_code}" "$base_url"/api/test/deploy || true)
+    echo "Attempt $i - Request on $base_url return HTTP code $http_status"
+    if [ "$http_status" -eq 200 ]; then
+      success=true
+      break
+    fi
+    sleep 5
+  done
+  if [ "$success" = false ]; then
+    echo "API did not return 200 after $max_attempts attempts on $base_url"
+    exit 1
+  fi
+}
+
 echo "1. Starting to build the backend image"
 cd ../../deer-vision-backend/
 mvn -B clean package
@@ -46,7 +65,15 @@ docker run -d \
     --name "${new_container_name}" \
     --network="deer-vision-network" \
     deer-vision-backend:latest
+checkDeploymentSuccess "http://127.0.0.1:$new_port"
 
+echo "5. Switch from old container ($old_container_name:$old_port) to new container ($new_container_name:$new_port)"
+#TODO sudo sed -i "s/127.0.0.1:$old_port;/127.0.0.1:$new_port;/" "/etc/nginx/sites-available/reverseproxy"
+#TODO sudo systemctl restart nginx
+docker stop $old_container_name || true
+docker rm $old_container_name || true
+#TODO checkDeploymentSuccess "https://backend.$APP_DOMAIN_NAME"
 
-#docker stop deer-vision-backend || true
-#docker rm deer-vision-backend || true
+echo "6. Cleaning local Docker images"
+docker image prune -a -f
+docker system prune -a -f
