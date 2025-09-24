@@ -10,9 +10,9 @@ docker rm deer-vision-backend || true
 docker network create "deer-vision-network" || true
 docker network connect "deer-vision-network" "deer-vision-db" || true
 
-dbPassword=$(cat /data/secret/deerVisionDbPassword)
-adminPassword=$(cat /data/secret/deerVisionAdminPassword)
-adminJwtToken=$(cat /data/secret/deerVisionAdminJwtSecret)
+dbPassword=$(cat /data/ci_cd/secret/deerVisionDbPassword)
+adminPassword=$(cat /data/ci_cd/secret/deerVisionAdminPassword)
+adminJwtToken=$(cat /data/ci_cd/secret/deerVisionAdminJwtSecret)
 
 docker run -d \
     -p 13002:8080 \

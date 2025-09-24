@@ -7,7 +7,7 @@
 
 ## Configure GitHub
 * Define a webhook in 'deerVision' repository settings:
-  * Payload URL: http://152.53.144.87:11001
+  * Payload URL: http://152.53.144.87:9001
   * Content type: application/json
   * Events: push
 
