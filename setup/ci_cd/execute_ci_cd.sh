@@ -25,7 +25,7 @@ if [[ -n "$greenContainerExist" ]]; then
   new_container_name=${DOCKER_BASE_CONTAINER_NAME}Blue
   new_port='13002'
 fi
-echo "  - Old container name: ${old_container_name}/${old_port}, New container name: ${new_container_name}:${new_port}"
+echo "  - Old container name: ${old_container_name}:${old_port}, New container name: ${new_container_name}:${new_port}"
 
 echo "3. Loading backend secret parameters"
 dbPassword=$(cat /data/ci_cd/secret/deerVisionDbPassword)
