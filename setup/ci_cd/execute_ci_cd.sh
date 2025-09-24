@@ -18,7 +18,7 @@ old_container_name=deer-vision-backend-blue
 old_port='13002'
 new_container_name=deer-vision-backend-green
 new_port='13003'
-greenContainerExist=$(docker ps --format '{{.Names}}' | grep -q "deer-vision-backend-green") || true
+greenContainerExist=$(docker ps --format '{{.Names}}' | grep "deer-vision-backend-green" || true)
 if [[ -n "$greenContainerExist" ]]; then
   old_container_name=deer-vision-backend-green
   old_port='13003'
