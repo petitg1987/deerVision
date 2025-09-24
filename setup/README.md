@@ -24,6 +24,10 @@
 ## Connect to the server
 * Execute: `ssh greg@152.53.144.87`
 
+## Check deployment logs
+* Execute (live logs): `journalctl -fu ci_cd`
+* Execute (past logs): `journalctl -u ci_cd`
+
 ## Decrypt secret from the Ansible vault
 * Execute:
     ```
