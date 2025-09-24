@@ -2,10 +2,6 @@
 
 set -e
 
-/usr/bin/echo "LOLLLLL"
-/usr/bin/echo $PATH
-/usr/bin/echo "LOLLLL2L"
-
 echo "Starting to build the backend image"
 cd "$(dirname "$0")"
 cd ../../deer-vision-backend/
