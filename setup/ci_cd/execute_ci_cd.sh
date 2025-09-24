@@ -22,7 +22,7 @@ greenContainerExist=$(docker ps --format '{{.Names}}' | grep "deer-vision-backen
 if [[ -n "$greenContainerExist" ]]; then
   old_container_name=deer-vision-backend-green
   old_port='13003'
-  new_container_name=${DOCKER_BASE_CONTAINER_NAME}Blue
+  new_container_name=deer-vision-backend-blue
   new_port='13002'
 fi
 echo "  - Old container name: ${old_container_name}:${old_port}, New container name: ${new_container_name}:${new_port}"
