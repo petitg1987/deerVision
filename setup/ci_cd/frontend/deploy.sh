@@ -15,6 +15,7 @@ rm -rf /tmp/img_frontend/
 mkdir -p /tmp/img_frontend/
 cp -r ./build/ /tmp/img_frontend/
 cp ../setup/ci_cd/frontend/Dockerfile /tmp/img_frontend/Dockerfile
+cp ../setup/ci_cd/frontend/default.conf /tmp/img_frontend/default.conf
 docker build -t deer-vision-frontend:latest /tmp/img_frontend
 
 echo " "
