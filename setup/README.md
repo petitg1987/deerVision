@@ -26,7 +26,7 @@
 
 ## Check deployment logs
 * Execute (live logs): `journalctl -fu ci_cd`
-* Execute (past logs): `journalctl -u ci_cd`
+* Execute (past logs): `journalctl -u ci_cd -n 500 --no-pager`
 
 ## Decrypt secret from the Ansible vault
 * Execute:
