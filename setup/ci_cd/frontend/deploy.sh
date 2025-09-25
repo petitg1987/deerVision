@@ -10,7 +10,7 @@ yarn install
 yarn build
 rm -rf /tmp/img_frontend/
 mkdir -p /tmp/img_frontend/
-cp -r ./build/ /tmp/img_frontend/
+cp -r ./build/. /tmp/img_frontend/
 cp ../setup/ci_cd/frontend/Dockerfile /tmp/img_frontend/Dockerfile
 docker build -t deer-vision-frontend:latest /tmp/img_frontend
 
