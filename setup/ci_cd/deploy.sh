@@ -2,12 +2,12 @@
 
 set -e
 cd "$(dirname "$0")"
-directory_dir=$1
+repository_dir=$1
 
-cd "${directory_dir}/setup/ci_cd/backend/"
+cd "${repository_dir}/setup/ci_cd/backend/"
 chmod +x ./deploy.sh
-./deploy.sh "$directory_dir"
+./deploy.sh "$repository_dir"
 
-cd "${directory_dir}/setup/ci_cd/frontend/"
+cd "${repository_dir}/setup/ci_cd/frontend/"
 chmod +x ./deploy.sh
-./deploy.sh "$directory_dir"
+./deploy.sh "$repository_dir"

@@ -2,13 +2,13 @@
 
 set -e
 cd "$(dirname "$0")"
-directory_dir=$1
+repository_dir=$1
 
 echo " "
 echo "-----------------------------------------------------"
 echo "1. Starting to build the frontend image"
 echo "-----------------------------------------------------"
-cd "$directory_dir"/deer-vision-frontend/
+cd "$repository_dir"/deer-vision-frontend/
 yarn install
 yarn build
 rm -rf /tmp/img_frontend/

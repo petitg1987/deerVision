@@ -2,7 +2,7 @@
 
 set -e
 cd "$(dirname "$0")"
-directory_dir=$1
+repository_dir=$1
 
 function checkDeploymentSuccess() {
   base_url=$1
@@ -27,7 +27,7 @@ echo " "
 echo "-----------------------------------------------------"
 echo "1. Starting to build the backend image"
 echo "-----------------------------------------------------"
-cd "$directory_dir"/deer-vision-backend/
+cd "$repository_dir"/deer-vision-backend/
 mvn -B clean package
 rm -rf /tmp/img_backend/
 mkdir -p /tmp/img_backend/
