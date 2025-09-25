@@ -18,7 +18,7 @@ echo "2. Deploy the new Docker image (deer-vision-frontend:latest)"
 docker stop deer-vision-frontend || true
 docker rm deer-vision-frontend || true
 docker run -d \
-    -p 13005:8080 \
+    -p 13005:80 \
     --restart always \
     --name deer-vision-frontend \
     deer-vision-frontend:latest
