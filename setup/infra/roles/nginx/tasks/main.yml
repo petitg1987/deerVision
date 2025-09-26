@@ -37,9 +37,9 @@
     group: greg
     mode: '0755'
   vars:
-    max_requests_by_second: 100
+    max_requests_by_second: 250
     max_requests_body_size_in_kb: 1024
-    max_requests_burst: 50
+    max_requests_burst: 100
 
 - name: Enable site by creating symlink
   ansible.builtin.file:
