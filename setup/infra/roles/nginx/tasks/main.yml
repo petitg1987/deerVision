@@ -1,0 +1,17 @@
+- name: Create Nginx config
+  template:
+    src: deer-vision.conf.j2
+    dest: /etc/nginx/sites-available/deer-vision.conf
+    owner: greg
+    group: greg
+    mode: '0755'
+  vars:
+    max_requests_by_second: 100
+    max_requests_body_size_in_kb: 1024
+    max_requests_burst: 50
+
+- name: Enable site by creating symlink
+  ansible.builtin.file:
+    src: /etc/nginx/sites-available/deer-vision.conf
+    dest: /etc/nginx/sites-enabled/deer-vision.conf
+    state: link

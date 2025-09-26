@@ -35,6 +35,6 @@
   template:
     src: deer-vision-db-backup.j2
     dest: /etc/cron.daily/deer-vision-db-backup
-    owner: "{{ ansible_user }}"
-    group: "{{ ansible_user }}"
+    owner: greg
+    group: greg
     mode: '0755'
