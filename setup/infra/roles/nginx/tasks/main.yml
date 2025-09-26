@@ -1,3 +1,34 @@
+- name: Ensure letsencrypt directories exist
+  file:
+    path: "{{ item }}"
+    state: directory
+    mode: '0755'
+    owner: greg
+    group: greg
+  loop:
+    - /data/deervision/letsencrypt/logs
+    - /data/deervision/letsencrypt/work
+    - /data/deervision/letsencrypt/config
+
+- name: Check if certificate already exists
+  stat:
+    path: data/deervision/letsencrypt/config/live/deervision.studio
+  register: cert_dir
+
+#- name: Create certificate with certbot if missing
+#  command: >
+#    certbot -n --agree-tos
+#    -m petitg1987@gmail.com
+#    --logs-dir /data/deervision/letsencrypt/logs
+#    --work-dir /data/deervision/letsencrypt/work
+#    --config-dir /data/deervision/letsencrypt/config
+#    certonly --dns-route53 -d deervision.studio
+#  become: true
+#  when: not cert_dir.stat.exists
+#  register: certbot_result
+
+#TODO schedule update !
+
 - name: Create Nginx config
   template:
     src: deer-vision.conf.j2

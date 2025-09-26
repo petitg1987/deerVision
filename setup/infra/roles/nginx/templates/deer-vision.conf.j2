@@ -2,10 +2,10 @@ limit_req_zone $binary_remote_addr zone=req_zone:500m rate={{ max_requests_by_se
 server {
    listen 443;
    listen [::]:443;
-   server_name _;
+   server_name deervision.studio;
    ssl on;
-   ssl_certificate /home/ubuntu/data/letsencrypt/config/live/backend.deervision.studio/fullchain.pem;
-   ssl_certificate_key /home/ubuntu/data/letsencrypt/config/live/backend.deervision.studio/privkey.pem;
+   ssl_certificate /data/deervision/letsencrypt/config/live/deervision.studio/fullchain.pem;
+   ssl_certificate_key /data/deervision/letsencrypt/config/live/deervision.studio/privkey.pem;
    client_max_body_size {{ max_requests_body_size_in_kb }}K;
    location / {
       limit_req zone=req_zone burst={{ max_requests_burst }} nodelay;
